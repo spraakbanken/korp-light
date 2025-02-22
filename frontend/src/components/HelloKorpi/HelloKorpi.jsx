@@ -9,13 +9,14 @@ export default function HelloKorpi () {
     }
 
     return(
-        <>
+        <div className="hello__korpi">
             <h1>Hello, Korpi!</h1>
-            <Button className="simple-button rounded" 
+            <Button className="simple-button" 
                 variant="danger" 
                 size="sm"
                 onClick={handleClick}>
-                Lets Go!</Button>
-        </>
+                Lets Go!
+            </Button>
+        </div>
     );
 }
