@@ -6,21 +6,21 @@ Coming Soon!
 
 ## For Developers
 ### Quickstart
-0. Have python (and virtual environment), node, npm, fastapi installed in your system!
+0. Have python (virtual environment called .env), node, npm, fastapi installed on your system!
 1. Clone this Repository
 ```
-git clone 
+git clone https://git.chalmers.se/pomesh/korpi.git 
 ```
 2. Open your favourite terminal (unix-based, backend code may not work on windows)
-3. Change Directory into **backend** folder and run build_py_files.sh to build the backend corpora.
+3. Change Directory into **backend** folder and run run_server.sh to build the backend corpora and run the fastapi server.
 You may need to give executable permissions to this file.
 ```
 cd backend
-chmod +x build_py_files.sh
-./build_py_files.sh
+chmod +x run_server.sh
+./run_server.sh
 ```
-5. Change directory into **frontend**.
-6. Install dependencies and start local server. Make sure you have node and npm installed.
+5. Open new terminal and navigate into **frontend**.
+6. Install dependencies and start local server for front end. Make sure you have node and npm installed.
 ```
 npm install
 npm run dev
