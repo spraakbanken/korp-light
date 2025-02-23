@@ -16,4 +16,4 @@ Each component should be self-contained as much as possible.
 A page is a collection of components. For example the landing page will consist of a navbar and search component.
 Each page is placed in its own folder, the name of the folder is the same as that of the page.
 ### services
-Xontains javascript code for interfacing with backend.
+Contains javascript code for interfacing with backend.
