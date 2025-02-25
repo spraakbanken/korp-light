@@ -8,24 +8,28 @@ const axios_instance = axios.create({
   baseURL: server_config.pl_korp_api,
 });
 
-function getCorpusInfo(corpus='bnc-100k') {
+export async function getCorpusInfo(corpus='bnc-100k') {
 
   const params = {
     "corpus" : String(corpus),
   }
-  
-  axios_instance
-    .get('/info', {params})
-    .then(res => console.log(res.data))
-    .catch(err => console.error(err));
+
+  try {
+    const response = await axios_instance('/corpus_info', { params });
+    console.log(response.data);
+    
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // sample result, remove later
-getCorpusInfo('bnc-100k');
+//getCorpusInfo('bnc-100k');
 
 // Parse all queries from react to send to server
 // We can build cqp here if we want or in the React component
-function getQuery(params) {
+function getCorpusQuery(params) {
   console.log('query not implemented');
 }
 
