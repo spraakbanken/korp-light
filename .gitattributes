@@ -1,2 +1,2 @@
 # Stop git from modifying bash scripts
-*.sh -crlf
+# *.sh -lf
