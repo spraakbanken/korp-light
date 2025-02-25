@@ -1,0 +1,181 @@
+
+body {
+    font-family: 'SF Pro Text', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #FFFFFF;
+}
+
+
+.landing-page {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* adapts */
+    background-color: #FFFFFF;
+}
+
+
+.nav-bar {
+    width: 100%;
+    height: 108px;
+    background-color: #EFEFEF;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+
+.logo img {
+    width: 100px;
+}
+
+/*container */
+.nav-buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center; 
+    gap: 15px; 
+    cursor: pointer;
+}
+
+
+.settings-button {
+    background: #CB9DF0;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #322F2F;
+    
+}
+
+.settings-button img {
+    width: 20px;
+    height: 20px;
+}
+
+
+.help-button {
+    background: #F0C1E1;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #322F2F;
+}
+
+.help-button img {
+    width: 20px;
+    height: 20px;
+}
+
+
+.burger-menu {
+    background: #CB9DF0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
+.search-bar {
+    width: 562px;
+    height: 57px;
+    margin: 0 auto; /* Centering */
+    display: flex;
+    align-items: center;
+    background: rgba(250, 250, 250, 0.93);
+    border: 1px solid #F0581A;
+    border-radius: 30px;
+    padding: 8px;
+    position: relative;
+    top: 15%; /* dynamic adjustment */
+}
+
+.search-bar__icon {
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+}
+
+.search-bar__input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 17px;
+    line-height: 22px;
+    color: rgba(60, 60, 67, 0.6);
+    background: transparent;
+}
+
+
+.search-button-group {
+    width: 217px;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    position: relative;
+    top: 20%; /* dynamic adjustment*/
+}
+
+.search-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #CB9DF0;
+    border: none;
+}
+
+.search-button img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Individual buttons */
+.advanced-search-button {
+    background-color: #F0C1E1;
+}
+
+.corp-button {
+    background-color: #FDDBBB;
+}
+
+.history-button {
+    background-color: #FFF9BF;
+}
+
+.simple-search-button {
+    background-color: #CB9DF0;
+}
+
+/* chalmers o sånt
+footer{
+    display: flex;
+    margin-top: 50px;
+    position: relative;
+}
+
+footer .chalmers img {
+  idk
+}
+*/
+
+
