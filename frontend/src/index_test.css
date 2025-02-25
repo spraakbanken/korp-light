@@ -1,0 +1,214 @@
+:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-weight: 400;
+  
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* Define colours here for time being */
+    --bg-color: #ededed;
+  }
+  
+  body, html {
+    background-color: var(--bg-color);
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* --- Global Styles --- */
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'SF Pro Text', sans-serif;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+  }
+  
+  * {
+    box-sizing: inherit;
+  }
+  
+  /* --- Landing Page Styles --- */
+  .landing-page {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full height of the viewport */
+    background: #FFFFFF;
+  }
+  
+  /* --- Search Bar Styles --- */
+  .search-bar {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px;
+    position: absolute;
+    width: 80%;
+    max-width: 562px;
+    height: 57px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 20vh;
+    background: rgba(250, 250, 250, 0.93);
+    border: 1px solid #F0581A;
+    border-radius: 30px;
+  }
+  
+  .search-bar__icon {
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    left: 10px;
+    font-family: 'SF Pro Display';
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 50px;
+    display: flex;
+    align-items: center;
+    color: rgba(60, 60, 67, 0.6);
+  }
+  
+  .search-bar__input {
+    width: 100%;
+    height: 22px;
+    font-family: 'SF Pro Text';
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 22px;
+    letter-spacing: -0.408px;
+    color: rgba(60, 60, 67, 0.6);
+    padding-left: 35px;
+    border: none;
+    outline: none;
+  }
+  
+  /* --- Search Button Group --- */
+  .search-button-group {
+    position: absolute;
+    width: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 60vh;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  
+  .search-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FFF9BF;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+  
+  .search-button:hover {
+    filter: brightness(1.1);
+    transform: translateY(-3px);
+  }
+  
+  .search-button.simple-search-button {
+    background: #CB9DF0;
+  }
+  
+  .search-button.advanced-search-button {
+    background: #F0C1E1;
+  }
+  
+  .search-button.catalogue-button {
+    background: #FDDBBB;
+  }
+  
+  /* --- Logo Styles --- */
+  .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 80vh;
+    text-align: center;
+  }
+  
+  .logo img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* --- NavBar Styles --- */
+  .nav-bar {
+    position: absolute;
+    width: 100%;
+    height: 80px;
+    background: #EFEFEF;
+    border-bottom: 1px solid #EAEAEA;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+  
+  /* --- Button Styles (Settings, Help, Burger Menu) --- */
+  .settings-button,
+  .help-button,
+  .burger-menu {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .settings-button {
+    background: #CB9DF0;
+  }
+  
+  .help-button {
+    background: #F0C1E1;
+  }
+  
+  .burger-menu {
+    background: #CB9DF0;
+  }
+  
+  .settings-button:hover,
+  .help-button:hover,
+  .burger-menu:hover {
+    filter: brightness(1.1);
+  }
+  
+  /* --- Responsive Design --- */
+  @media (max-width: 768px) {
+    .landing-page {
+      padding: 20px;
+    }
+  
+    .search-bar {
+      width: 90%;
+      top: 10vh;
+    }
+  
+    .search-button-group {
+      top: 50vh;
+      width: 80%;
+    }
+  
+    .logo {
+      top: 75vh;
+    }
+  
+    .nav-bar {
+      height: 60px;
+    }
+  }
+  
