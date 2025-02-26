@@ -43,4 +43,8 @@ export async function getCorpusQuery(params) {
   console.log('query not implemented');
 }
 
+export function getSearchInput(params) {
+  console.log(params);
+}
+
 // See korp web-api for complete api calls to implement and parse
