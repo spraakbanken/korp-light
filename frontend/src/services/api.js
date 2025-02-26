@@ -8,14 +8,18 @@ const axios_instance = axios.create({
   baseURL: server_config.sb_korp_api,
 });
 
+let queryParams = {
+  "corpus" : String('bnc-100k'),
+  "cqp" : String(),
+}
+
 export async function getCorpusInfo(corpus='bnc-100k') {
 
-  const params = {
-    "corpus" : String(corpus),
-  }
+  queryParams.corpus = corpus;
+  console.log(queryParams);
 
   try {
-    const response = await axios_instance('/corpus_info', { params });
+    const response = await axios_instance('/corpus_info', { params: queryParams });
     console.log(response.data);
     
     return response.data;
@@ -39,13 +43,13 @@ export function toggleAPI(which_server) {
 
 // Parse all queries from react to send to server
 // We can build cqp here if we want or in the React component
-export async function getCorpusQuery(params) {
-  const params2 = {
-    "corpus" : String(corpus),
-    "cqp" : getSearchInput(params),
-  }
+export async function getCorpusQuery(inQuery) {
+  
+  queryParams.cqp = buildQuery(inQuery);
+
   try {
-    const response = await axios_instance('/query', { params2 });
+    const response = await axios_instance('/query', { params: queryParams });
+    console.log(queryParams);
     console.log(response.data);
     
     return response.data;
@@ -55,9 +59,9 @@ export async function getCorpusQuery(params) {
   }
 }
 
-export function getSearchInput(params) {
+export function buildQuery(params) {
+  //Build the query here, assign it in the getCorpusQuery function.
   const result = `[word = "${params}"]`;
-  console.log(result);
   return result;
 }
 
