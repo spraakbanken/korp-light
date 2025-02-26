@@ -24,6 +24,16 @@ export async function getCorpusInfo(corpus='bnc-100k') {
   }
 }
 
+export function toggleAPI(which_server) {
+  const servers = [
+    {id: 0, value: server_config.pl_korp_api},
+    {id: 1, value: server_config.sb_korp_api},
+  ];
+
+  axios_instance.baseURL = servers[which_server].value
+  console.log(axios_instance.baseURL)
+}
+
 // sample result, remove later
 //getCorpusInfo('bnc-100k');
 

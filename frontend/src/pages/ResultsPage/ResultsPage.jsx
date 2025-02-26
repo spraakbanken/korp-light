@@ -11,9 +11,10 @@ export default function ResultsPage() {
 
     const [corpus, setCorpus] = useState("bnc-100k");
 
-    const {data = [], isLoading} = useQuery({
+    const {data = [], isLoading, refetch} = useQuery({
         queryKey: [corpus],
-        queryFn: () => getCorpusInfo(corpus)
+        queryFn: () => getCorpusInfo(corpus),
+        enabled: false,
     });
 
     return(
@@ -25,7 +26,7 @@ export default function ResultsPage() {
             <Button className="simple-button m-1" 
                     variant="danger" 
                     size="sm"
-                    onClick={null}>
+                    onClick={() => refetch()}>
                     Test React Query!
             </Button>
             
