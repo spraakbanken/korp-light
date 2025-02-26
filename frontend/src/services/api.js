@@ -40,11 +40,25 @@ export function toggleAPI(which_server) {
 // Parse all queries from react to send to server
 // We can build cqp here if we want or in the React component
 export async function getCorpusQuery(params) {
-  console.log('query not implemented');
+  const params2 = {
+    "corpus" : String(corpus),
+    "cqp" : getSearchInput(params),
+  }
+  try {
+    const response = await axios_instance('/query', { params2 });
+    console.log(response.data);
+    
+    return response.data;
+  } catch (error) {
+    console.log("ERROR: ", error);
+    return `ERROR: corpus: ${corpus} not found on local server! Did you build it?`;
+  }
 }
 
 export function getSearchInput(params) {
-  console.log(params);
+  const result = `[word = "${params}"]`;
+  console.log(result);
+  return result;
 }
 
 // See korp web-api for complete api calls to implement and parse

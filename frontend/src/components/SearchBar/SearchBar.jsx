@@ -1,13 +1,19 @@
 import { useState } from "react";
 import "./SearchBar.css";
 import Form from 'react-bootstrap/Form';
-import { getSearchInput } from "../../services/api";
+import { getCorpusQuery } from "../../services/api";
 import Button from 'react-bootstrap/Button';
+import { useQuery } from '@tanstack/react-query';
 
 
 export default function SearchBar() {
 
     const [searchInput, setSearchInput] = useState("");
+    const {data = [], isLoading, error, refetch} = useQuery({
+        queryKey: [searchInput],
+        queryFn: () => getCorpusQuery(searchInput),
+        enabled: false,
+    });
 
     return (
         <>
@@ -18,9 +24,12 @@ export default function SearchBar() {
                 placeholder="Search"
                 onChange={(e) => setSearchInput(e.target.value)}
             />
-            <Button type="submit" onClick={() => getSearchInput(searchInput)}>
+            <Button type="submit" onClick={() => refetch()}>
                 Search
             </Button>
+            <div>
+                {isLoading? <p>Loading...</p> : JSON.stringify(data)}
+            </div>
         </>
     )
 }
