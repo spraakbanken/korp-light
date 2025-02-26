@@ -10,6 +10,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image';
 import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import ToggleAPI from "../ToggleAPI/ToggleAPI";
 
 export default function NavigationBar () {
 
@@ -33,6 +34,7 @@ export default function NavigationBar () {
                     width="100"/>
             </Navbar.Brand>
             <Nav className="me">
+                <ToggleAPI />
                 <OverlayTrigger placement="bottom" overlay={help_tip}>
                     <Nav.Link className="circle__button" href={null}>
                         <Image src={help_logo}></Image>
