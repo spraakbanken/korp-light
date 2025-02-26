@@ -11,7 +11,7 @@ export default function ResultsPage() {
 
     const [corpus, setCorpus] = useState("bnc-100k");
 
-    const {data = [], isLoading, refetch} = useQuery({
+    const {data = [], isLoading, error, refetch} = useQuery({
         queryKey: [corpus],
         queryFn: () => getCorpusInfo(corpus),
         enabled: false,
@@ -22,7 +22,9 @@ export default function ResultsPage() {
             <NavigationBar />
             <h1 className="mt-5">Results</h1>
             <p>Display Results on this page!</p>
-            
+
+            <input type="text" 
+                onChange={(e) => setCorpus(e.target.value)}/>
             <Button className="simple-button m-1" 
                     variant="danger" 
                     size="sm"

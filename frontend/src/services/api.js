@@ -20,7 +20,8 @@ export async function getCorpusInfo(corpus='bnc-100k') {
     
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.log("ERROR: ", error);
+    return `ERROR: corpus: ${corpus} not found on local server! Did you build it?`;
   }
 }
 
@@ -30,8 +31,7 @@ export function toggleAPI(which_server) {
     {id: 1, value: server_config.sb_korp_api},
   ];
 
-  axios_instance.baseURL = servers[which_server].value
-  console.log(axios_instance.baseURL)
+  axios_instance.defaults.baseURL = servers[which_server].value
 }
 
 // sample result, remove later
@@ -39,7 +39,7 @@ export function toggleAPI(which_server) {
 
 // Parse all queries from react to send to server
 // We can build cqp here if we want or in the React component
-function getCorpusQuery(params) {
+export async function getCorpusQuery(params) {
   console.log('query not implemented');
 }
 

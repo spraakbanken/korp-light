@@ -8,14 +8,7 @@ import './ToggleAPI.css';
 import { toggleAPI } from "../../services/api.js";
 
 export default function ToggleAPI() {
-
-    const [value, setValue] = useState(0);
-
-    const radios = [
-        {id: 0, value: 'Språkbanken'},
-        {id: 1, value: 'Peter-Local'},
-    ];
-
+    
     return (
         <>
             <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
