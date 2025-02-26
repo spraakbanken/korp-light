@@ -1,13 +1,17 @@
 import "./SearchBar.css";
+import Form from 'react-bootstrap/Form';
+
 
 export default function SearchBar() {
 
     return (
-        <input
-            id="searchBar"
-            className="searchBar"
-            type="search"
-            placeholder="Search"
-        />
+        <>
+            <Form.Control
+                id="searchBar"
+                className="searchBar"
+                type="search"
+                placeholder="Search"
+            />
+        </>
     )
 }
