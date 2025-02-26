@@ -1,6 +1,7 @@
 // React Components
 import HelloKorpi from "../../components/HelloKorpi/HelloKorpi.jsx";
 import NavigationBar from "../../components/NavigationBar/NavigationBar.jsx";
+import SearchBar from "../../components/SearchBar/SearchBar.jsx";
 
 //Bootstrap Components
 
@@ -11,6 +12,7 @@ export default function App() {
     return (
         <>
             <NavigationBar />
+            <SearchBar />
             <HelloKorpi />
         </>
     );

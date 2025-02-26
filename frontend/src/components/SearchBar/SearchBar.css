@@ -1,0 +1,11 @@
+.searchBar {
+    margin-inline: auto;
+    padding: 10px;
+    margin-bottom: 15px;
+    margin-top: 50px;
+    border: 1px solid #f0581a;
+    border-radius: 30px;
+    background-color: #f6f6f6;
+    transition: border 0.3s;
+}
+
