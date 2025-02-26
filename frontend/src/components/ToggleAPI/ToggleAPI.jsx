@@ -5,6 +5,7 @@ import ToggleButton from "react-bootstrap/ToggleButton";
 
 import './ToggleAPI.css';
 
+import { toggleAPI } from "../../services/api.js";
 
 export default function ToggleAPI() {
 
@@ -21,13 +22,13 @@ export default function ToggleAPI() {
                 <ToggleButton className="toggle-button" 
                         id="api-toggle-button-1" 
                         value={1}
-                        onChange={(e) => setValue(0)}>
+                        onChange={(e) => toggleAPI(1)}>
                     Språkbanken
                 </ToggleButton>
                 <ToggleButton className="toggle-button" 
                         id="api-toggle-button-2" 
                         value={2}
-                        onChange={(e) => setValue(1)}>
+                        onChange={(e) => toggleAPI(0)}>
                     Peter-Local
                 </ToggleButton>
             </ToggleButtonGroup>
