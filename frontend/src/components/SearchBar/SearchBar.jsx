@@ -6,10 +6,10 @@ import Button from 'react-bootstrap/Button';
 import { useQuery } from '@tanstack/react-query';
 
 
-export default function SearchBar() {
+export default function SearchBar({returnQueryData}) {
 
     const [searchInput, setSearchInput] = useState("");
-    
+
     const {data = [], isLoading, error, refetch} = useQuery({
         queryKey: [searchInput],
         queryFn: () => getCorpusQuery(searchInput),
@@ -25,12 +25,16 @@ export default function SearchBar() {
                 placeholder="Search"
                 onChange={(e) => setSearchInput(e.target.value)}
             />
-            <Button type="submit" onClick={() => refetch()}>
-                Search
+            <Button type="submit" onClick={() => {
+                refetch();
+                console.log("returnQueryData: ", data)
+                returnQueryData(data);
+                }}>
+            Search
             </Button>
-            <div>
-                {isLoading? <p>Loading...</p> : JSON.stringify(data)}
-            </div>
+            {/* <div>
+                {isLoading? <p>Loading...</p> : <p>Data Loaded, see Console.</p>}
+            </div> */}
         </>
     )
 }

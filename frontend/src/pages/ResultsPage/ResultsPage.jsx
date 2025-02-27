@@ -6,7 +6,7 @@ import NavigationBar from "../../components/NavigationBar/NavigationBar.jsx";
 import { useQuery } from "@tanstack/react-query";
 
 import { getCorpusInfo } from "../../services/api.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import mockResults from './mockResults.json' with {type: 'json'};
 import SearchBar from "../../components/SearchBar/SearchBar.jsx";
@@ -14,6 +14,8 @@ import SearchBar from "../../components/SearchBar/SearchBar.jsx";
 export default function ResultsPage() {
 
     const [corpus, setCorpus] = useState("bnc-100k");
+    const [queryData, setQueryData] = useState({});
+    const [isDataLoaded, setIsDataLoaded] = useState(false); 
 
     const {data = [], isLoading, error, refetch} = useQuery({
         queryKey: [corpus],
@@ -23,6 +25,18 @@ export default function ResultsPage() {
 
     function getCorpusData(data) {
         console.log("CORPUS JSON: ", data["corpora"]);
+    }
+
+    // useEffect(() => {
+    //     console.log("used effect");
+    // }, [queryData]);
+
+    function getQueryData(indata) {
+        //need temp variable for this to work.
+        const res = indata;
+        setQueryData(res); 
+        
+        console.log("QUERY: ", queryData.kwic);
     }
 
     return(
@@ -56,11 +70,12 @@ export default function ResultsPage() {
                     JSON.stringify(data.corpora)}
             </div>    
 
-            <SearchBar />
+            <SearchBar returnQueryData={getQueryData}/>
 
             <div className="mt-5">
-                {/* {isLoading ? <p>Loading...</p> : JSON.stringify(data)} */}
-                {<ResultsPanel response={mockResults} />}
+                {/*queryData.kwic == undefined ? <p>Loading...</p> : JSON.stringify(queryData) */}
+                {queryData.kwic === undefined ? <p>Loading...</p> : 
+                    <ResultsPanel response={queryData} />}
             </div>
         </>
     );
