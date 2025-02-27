@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+import queryParams from './queryParams.js';
 import server_config from './server_config.js';
 
 // Sample Axios Code
@@ -8,23 +9,20 @@ const axios_instance = axios.create({
   baseURL: server_config.sb_korp_api,
 });
 
-let queryParams = {
-  "corpus" : String('bnc-100k'),
-  "cqp" : String(),
-}
-
 export async function getCorpusInfo(corpus='bnc-100k') {
 
   queryParams.corpus = corpus;
   console.log(queryParams);
 
   try {
-    const response = await axios_instance('/corpus_info', { params: queryParams });
-    console.log(response.data);
+    const response = await axios_instance('/corpus_info', { 
+        params: queryParams,
+    });
+    console.log("CORPUS RESPONSE: ", response.data);
     
     return response.data;
   } catch (error) {
-    console.log("ERROR: ", error);
+    console.log("getCorpusInfo ERROR: ", error);
     return `ERROR: corpus: ${corpus} not found on local server! Did you build it?`;
   }
 }
@@ -48,20 +46,20 @@ export async function getCorpusQuery(inQuery) {
   queryParams.cqp = buildQuery(inQuery);
 
   try {
-    const response = await axios_instance('/query', { params: queryParams });
+    const response = await axios_instance('/query', {params: queryParams});
     console.log(queryParams);
     console.log(response.data);
     
     return response.data;
   } catch (error) {
-    console.log("ERROR: ", error);
-    return `ERROR: corpus: ${corpus} not found on local server! Did you build it?`;
+    console.log("getCorpusQuery ERROR: ", error);
+    return `ERROR: corpus: ${queryParams.corpus} not found on local server! Did you build it?`;
   }
 }
 
 export function buildQuery(params) {
   //Build the query here, assign it in the getCorpusQuery function.
-  const result = `[word = "${params}"]`;
+  const result = `[word="${params}"]`;
   return result;
 }
 

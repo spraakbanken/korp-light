@@ -9,6 +9,7 @@ import { getCorpusInfo } from "../../services/api.js";
 import { useState } from "react";
 
 import mockResults from './mockResults.json' with {type: 'json'};
+import SearchBar from "../../components/SearchBar/SearchBar.jsx";
 
 export default function ResultsPage() {
 
@@ -25,14 +26,15 @@ export default function ResultsPage() {
             <NavigationBar />
             <h1 className="mt-5">Results</h1>
             <p>Display Results on this page!</p>
-
-            <input type="text" 
+            
+            <input type="text" placeholder="corpus name, e.g. ROMI"
                 onChange={(e) => setCorpus(e.target.value)}/>
+
             <Button className="simple-button m-1" 
                     variant="danger" 
                     size="sm"
                     onClick={() => refetch()}>
-                    Test React Query!
+                    Switch Corpus!
             </Button>
             
             <Link to={"/"}>
@@ -43,6 +45,14 @@ export default function ResultsPage() {
                     Take me back!
                 </Button>
             </Link>
+
+            <div> 
+                <p>Selected Corpus: </p>
+                {isLoading? <p>Loading...</p> : 
+                    JSON.stringify(data.corpora)}
+            </div>    
+
+            <SearchBar />
 
             <div className="mt-5">
                 {/* {isLoading ? <p>Loading...</p> : JSON.stringify(data)} */}

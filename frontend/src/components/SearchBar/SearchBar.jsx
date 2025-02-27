@@ -9,6 +9,7 @@ import { useQuery } from '@tanstack/react-query';
 export default function SearchBar() {
 
     const [searchInput, setSearchInput] = useState("");
+    
     const {data = [], isLoading, error, refetch} = useQuery({
         queryKey: [searchInput],
         queryFn: () => getCorpusQuery(searchInput),

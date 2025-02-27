@@ -9,13 +9,13 @@ let queryParams = {
     "show_struct": [String()],
     "default_within": String(),
     "within": [String()],
-    "in_order": Boolean,
+    "in_order": Boolean(),
     "sort": String(),
     "random_seed": Number(),
     "cut": Number(),
     "cqp#": String(),
-    "expand_prequeries": Boolean,
-    "incremental": Boolean,
+    "expand_prequeries": Boolean(),
+    "incremental": Boolean(),
     "query_data": String(),
 }
 
