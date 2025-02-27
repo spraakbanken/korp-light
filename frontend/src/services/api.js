@@ -1,4 +1,5 @@
 import axios from 'axios';
+//import qs from 'qs';
 
 import queryParams from './queryParams.js';
 import server_config from './server_config.js';
@@ -44,7 +45,7 @@ export function toggleAPI(which_server) {
 export async function getCorpusQuery(inQuery) {
   
   queryParams.cqp = buildQuery(inQuery);
-
+   
   try {
     const response = await axios_instance('/query', {params: queryParams});
     console.log(queryParams);
@@ -59,8 +60,14 @@ export async function getCorpusQuery(inQuery) {
 
 export function buildQuery(params) {
   //Build the query here, assign it in the getCorpusQuery function.
-  const result = `[word="${params}"]`;
-  return result;
+    // this doesnt work yet, we can only search one word for now.  
+    // const cqpParams = {
+    //     'word': String(params),
+    // }
+    // const result = qs.stringify(cqpParams);
+    
+    const result = `[word="${params}"]`;
+    return result;
 }
 
 // See korp web-api for complete api calls to implement and parse

@@ -13,7 +13,7 @@ let queryParams = {
     "sort": String(),
     "random_seed": Number(),
     "cut": Number(),
-    "cqp#": String(),
+    //"cqp#": String(),
     "expand_prequeries": Boolean(),
     "incremental": Boolean(),
     "query_data": String(),
