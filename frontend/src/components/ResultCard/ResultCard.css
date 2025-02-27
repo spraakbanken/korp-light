@@ -1,0 +1,30 @@
+.token-container {
+    max-width: 75vw; 
+    overflow: hidden; 
+    white-space: nowrap; 
+    word-break: keep-all; 
+
+  }
+  
+  .token {
+    border-radius: 5px;
+    justify-content: center;
+    margin-right: 5px;
+    white-space: nowrap; 
+    word-break: keep-all; 
+  }
+  
+  .token.match {
+    background-color: #ffeb3b;
+    font-weight: bold;
+    border: 1px solid #fbc02d;
+  }
+  
+  .spacer {
+    flex-grow: 1;
+  }
+
+  
+  .resultRow {
+    border-bottom: 1px solid #e0e0e0;
+  }
