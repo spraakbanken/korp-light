@@ -21,6 +21,10 @@ export default function ResultsPage() {
         enabled: false,
     });
 
+    function getCorpusData(data) {
+        console.log("CORPUS JSON: ", data["corpora"]);
+    }
+
     return(
         <>
             <NavigationBar />
@@ -33,7 +37,7 @@ export default function ResultsPage() {
             <Button className="simple-button m-1" 
                     variant="danger" 
                     size="sm"
-                    onClick={() => refetch()}>
+                    onClick={() => {refetch(); getCorpusData(data)}}>
                     Switch Corpus!
             </Button>
             
