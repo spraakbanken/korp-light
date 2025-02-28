@@ -26,9 +26,11 @@ export default function SearchBar({returnQueryData}) {
                 onChange={(e) => setSearchInput(e.target.value)}
             />
             <Button type="submit" onClick={() => {
-                refetch();
-                console.log("returnQueryData: ", data)
-                returnQueryData(data);
+                refetch().then((res) => {
+                    returnQueryData(res);
+                    console.log("returnQueryData: ", data)
+                });
+                //returnQueryData(data);
                 }}>
             Search
             </Button>

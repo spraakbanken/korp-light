@@ -33,9 +33,10 @@ export default function ResultsPage() {
 
     function getQueryData(indata) {
         //need temp variable for this to work.
-        const res = indata;
+        const res = indata.data;
         setQueryData(res); 
         
+        console.log("indata: ", indata);
         console.log("QUERY: ", queryData.kwic);
     }
 
