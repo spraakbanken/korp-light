@@ -1,6 +1,5 @@
 import "./NavigationBar.css"
 
-import korp_logo from '../../assets/korp.svg';
 import help_logo from '../../assets/help-circle.svg';
 import settings_logo from '../../assets/settings.svg';
 
@@ -11,6 +10,7 @@ import Image from 'react-bootstrap/Image';
 import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import ToggleAPI from "../ToggleAPI/ToggleAPI";
+import SideMenu from "../SideMenu/SideMenu";
 
 export default function NavigationBar () {
 
@@ -29,10 +29,7 @@ export default function NavigationBar () {
     return(
         <Navbar className="main__navbar">
             <Container>
-            <Navbar.Brand href="null">
-                <Image src={korp_logo} alt="korpi logo" 
-                    width="100"/>
-            </Navbar.Brand>
+            <SideMenu />
             <Nav className="me">
                 <ToggleAPI />
                 <OverlayTrigger placement="bottom" overlay={help_tip}>
