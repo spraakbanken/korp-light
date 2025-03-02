@@ -16,7 +16,6 @@ export default function ResultsPage() {
     const [corpus, setCorpus] = useState("bnc-100k");
     const [corpusInput, setCorpusInput] = useState("bnc-100k");
     const [searchWordInput, setSearchWordInput] = useState('');
-    const [isWordChanged, setIsWordChanged] = useState(false);
 
     const [queryData, setQueryData] = useState({});
 
@@ -49,27 +48,16 @@ export default function ResultsPage() {
         }
         setCorpus(`[ ${current_corpora} ]`)
     }
+    
+    useEffect(() => {
+        if(searchWordInput){
+            searchQueryRefetch().then((res) => {
+                setQueryData(res.data);
+            });
 
-    function getQueryData(indata) {
-        //need temp variable for this to work.
-        const res = indata;
-        setQueryData(res); 
-        
-        console.log("indata: ", indata);
-        console.log("QUERY: ", queryData.kwic);
-    }
-
-    if (isWordChanged) {
-
-        searchQueryRefetch().then((res) => {
-            
-            getQueryData(res.data)
-            console.log("RES ", res.data);
-            console.log("word", searchWordInput)
-        })
-
-        setIsWordChanged(false)
-    }
+            console.log("CHANGED: ", searchWordInput)
+        }
+    }, [searchWordInput, searchQueryRefetch])
 
     return(
         <>
@@ -86,7 +74,6 @@ export default function ResultsPage() {
                     onClick={() => {
                         searchCorpusRefetch().then((res) => {
                             getCorpusData(res.data);
-                            setIsWordChanged(true);
                         }); 
                     }}>
                     Switch Corpus!
@@ -106,9 +93,10 @@ export default function ResultsPage() {
                 {searchCorpusIsLoading? <p>Loading...</p> : corpus}
             </div>    
 
-            <SearchBar returnSearchInput={ (e) => {
-                setSearchWordInput(e); 
+            <SearchBar returnSearchInput={(e) => {
+                setSearchWordInput(e);
             }}/>
+
             <p>Searching for: {searchWordInput}</p>
 
             <div className="mt-5">
