@@ -5,7 +5,7 @@ import ResultsPanel from "../../components/ResultsPanel/ResultsPanel.jsx";
 import NavigationBar from "../../components/NavigationBar/NavigationBar.jsx";
 import { useQuery } from "@tanstack/react-query";
 
-import { getCorpusInfo } from "../../services/api.js";
+import { getCorpusInfo, getCorpusQuery } from "../../services/api.js";
 import { useEffect, useState } from "react";
 
 import mockResults from './mockResults.json' with {type: 'json'};
@@ -14,30 +14,61 @@ import SearchBar from "../../components/SearchBar/SearchBar.jsx";
 export default function ResultsPage() {
 
     const [corpus, setCorpus] = useState("bnc-100k");
-    const [queryData, setQueryData] = useState({});
-    const [isDataLoaded, setIsDataLoaded] = useState(false); 
+    const [corpusInput, setCorpusInput] = useState("bnc-100k");
+    const [searchWordInput, setSearchWordInput] = useState('');
+    const [isWordChanged, setIsWordChanged] = useState(false);
 
-    const {data = [], isLoading, error, refetch} = useQuery({
-        queryKey: [corpus],
-        queryFn: () => getCorpusInfo(corpus),
+    const [queryData, setQueryData] = useState({});
+
+    const 
+        {  data      : searchCorpusData = [], 
+           isLoading : searchCorpusIsLoading, 
+           refetch   : searchCorpusRefetch,
+        } = useQuery({
+        queryKey: [corpusInput],
+        queryFn: () => getCorpusInfo(corpusInput),
+        enabled: false,
+    });
+
+    const 
+        {  data      : searchQueryData = [], 
+           isLoading : searchQueryIsLoading, 
+           refetch   : searchQueryRefetch,
+        } = useQuery({
+        queryKey: [searchWordInput],
+        queryFn: () => getCorpusQuery(searchWordInput),
         enabled: false,
     });
 
     function getCorpusData(data) {
-        console.log("CORPUS JSON: ", data["corpora"]);
+        const langs = data.corpora
+        let current_corpora = []
+        for (const lang in langs) {
+            //add error checking for corpora not existing?
+            current_corpora = current_corpora + " " + (data.corpora[lang]['info']['Name'])
+        }
+        setCorpus(`[ ${current_corpora} ]`)
     }
-
-    // useEffect(() => {
-    //     console.log("used effect");
-    // }, [queryData]);
 
     function getQueryData(indata) {
         //need temp variable for this to work.
-        const res = indata.data;
+        const res = indata;
         setQueryData(res); 
         
         console.log("indata: ", indata);
         console.log("QUERY: ", queryData.kwic);
+    }
+
+    if (isWordChanged) {
+
+        searchQueryRefetch().then((res) => {
+            
+            getQueryData(res.data)
+            console.log("RES ", res.data);
+            console.log("word", searchWordInput)
+        })
+
+        setIsWordChanged(false)
     }
 
     return(
@@ -47,12 +78,17 @@ export default function ResultsPage() {
             <p>Display Results on this page!</p>
             
             <input type="text" placeholder="corpus name, e.g. ROMI"
-                onChange={(e) => setCorpus(e.target.value)}/>
+                onChange={(e) => setCorpusInput(e.target.value)}/>
 
             <Button className="simple-button m-1" 
                     variant="danger" 
                     size="sm"
-                    onClick={() => {refetch(); getCorpusData(data)}}>
+                    onClick={() => {
+                        searchCorpusRefetch().then((res) => {
+                            getCorpusData(res.data);
+                            setIsWordChanged(true);
+                        }); 
+                    }}>
                     Switch Corpus!
             </Button>
             
@@ -67,11 +103,13 @@ export default function ResultsPage() {
 
             <div> 
                 <p>Selected Corpus: </p>
-                {isLoading? <p>Loading...</p> : 
-                    JSON.stringify(data.corpora)}
+                {searchCorpusIsLoading? <p>Loading...</p> : corpus}
             </div>    
 
-            <SearchBar returnQueryData={getQueryData}/>
+            <SearchBar returnSearchInput={ (e) => {
+                setSearchWordInput(e); 
+            }}/>
+            <p>Searching for: {searchWordInput}</p>
 
             <div className="mt-5">
                 {/*queryData.kwic == undefined ? <p>Loading...</p> : JSON.stringify(queryData) */}
