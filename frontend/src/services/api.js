@@ -28,6 +28,37 @@ export async function getCorpusInfo(corpus='bnc-100k') {
   }
 }
 
+export async function getCorpusCollections(collection='default') {
+    try {
+        const response = await axios_instance('/corpus_config');
+        return response.data;
+    } catch (error) {
+        console.log("getCorpusCollections ERROR: ", error);
+        return `ERROR: collection ${collection} not found!`
+    }
+}
+
+export async function getCorpusCollectionsList(collection='default') {  
+    try {
+        const res = await getCorpusCollections(collection);
+        let m = {}
+        let modes = res.modes;
+        for (let mode of modes) {
+            let t = mode.label.swe;
+            if (t) {
+                m[t] = mode.mode;
+            } else {
+                m[mode.label] = mode.mode
+            }
+        }
+        console.log('m: ', m)
+        return m;
+    } catch (error) {
+        return `Error getting Corpus List: ${error}`;
+    }
+}
+
+
 export function toggleAPI(which_server) {
   const servers = [
     {id: 0, value: server_config.pl_korp_api},
