@@ -13,10 +13,9 @@ export default function App() {
     return (
         <>
             <NavigationBar />
+            <HelloKorpi />
             <SearchBar />
             <CorpusDropDown/>
-            <HelloKorpi />
-           
         </>
     );
 }

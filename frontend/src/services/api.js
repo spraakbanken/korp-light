@@ -1,6 +1,7 @@
 import axios from 'axios';
 //import qs from 'qs';
 
+import history from './history.js';
 import queryParams from './queryParams.js';
 import server_config from './server_config.js';
 
@@ -82,6 +83,7 @@ export async function getCorpusQuery(inQuery) {
     console.log(queryParams);
     console.log(response.data);
     
+    history[inQuery] = response.request.responseURL
     return response.data;
   } catch (error) {
     console.log("getCorpusQuery ERROR: ", error);

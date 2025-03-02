@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { Offcanvas, Button, Nav, OverlayTrigger } from "react-bootstrap";
+import { Offcanvas, Button, Nav, NavDropdown, OverlayTrigger } from "react-bootstrap";
 import Tooltip from 'react-bootstrap/Tooltip';
 import "./SideMenu.css";
+
+import history from "../../services/history";
 
 export default function SideMenu() {
     const [show, setShow] = useState(false);
@@ -31,9 +33,21 @@ export default function SideMenu() {
                     <Nav className="flex-column">
                         <Nav.Link className="gray-row" href="/">Hem</Nav.Link>
                         {/* TODO link to help/tour */}
-                        <Nav.Link className="orange-row" href="#">Användarhandledning</Nav.Link>
+                        <Nav.Link className="orange-row" href="#" >Användarhandledning</Nav.Link>
                         {/* TODO link to history page */}
-                        <Nav.Link className="gray-row" href="#">Historik</Nav.Link>
+                        <NavDropdown
+                            title="Historik"
+                            id={`offcanvasNavbarDropdown-expand-sm}`}>
+                            
+                            { Object.keys(history).map((item) => {
+                                return <NavDropdown.Item key={item}href="#action3">{item}</NavDropdown.Item>
+                            })}
+
+                        </NavDropdown>
+                        
+                        {/* <Nav.Link className="gray-row" href="#">Historik</Nav.Link> */}
+                        
+                        
                         <Nav.Link className="orange-row" href="https://spraakbanken.gu.se/om">Mer om Språkbanken</Nav.Link>
                     </Nav>
                 </Offcanvas.Body>
