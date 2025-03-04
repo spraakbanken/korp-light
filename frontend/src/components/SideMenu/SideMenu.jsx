@@ -4,6 +4,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import "./SideMenu.css";
 
 import history from "../../services/history";
+import { NavLink } from "react-router-dom";
 
 export default function SideMenu() {
     const [show, setShow] = useState(false);
@@ -33,11 +34,13 @@ export default function SideMenu() {
                     <Nav className="flex-column">
                         <Nav.Link className="gray-row" href="/">Hem</Nav.Link>
                         {/* TODO link to help/tour */}
-                        <Nav.Link className="orange-row" href="#" >Användarhandledning</Nav.Link>
+                       
                         {/* TODO link to history page */}
                         <NavDropdown
                             title="Historik"
-                            id={`offcanvasNavbarDropdown-expand-sm}`}>
+                            id={`offcanvasNavbarDropdown-expand-sm}`}
+                            autoClose="inside"
+                            className="orange-row">
                             
                             { Object.keys(history).map((item) => {
                                 return <NavDropdown.Item key={item}href="#action3">{item}</NavDropdown.Item>
@@ -46,7 +49,8 @@ export default function SideMenu() {
                         </NavDropdown>
                         
                         {/* <Nav.Link className="gray-row" href="#">Historik</Nav.Link> */}
-                        
+
+                        <Nav.Link to={"/"} className="gray-row" href="/help" >Användarhandledning</Nav.Link>
                         
                         <Nav.Link className="orange-row" href="https://spraakbanken.gu.se/om">Mer om Språkbanken</Nav.Link>
                     </Nav>
