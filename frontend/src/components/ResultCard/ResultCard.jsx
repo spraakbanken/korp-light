@@ -3,10 +3,20 @@ import React, { useState, useEffect } from 'react';
 import './ResultCard.css';
 
 export default function ResultCard({ response, n }) {
+
   
     const showToken = (token) => {
       const word = token.word; 
       const title = Object.keys(token).map((k) => `${k}: ${token[k]}`).join('\n');
+      const specialChars = [',', ':', ';'];
+      if (specialChars.includes(word)) {
+        return (
+          <span className="special-char" title={title}>
+            {word}
+          </span>
+        );
+      }
+      
       return (
         <span className="token" title={title}>
           {word}
@@ -14,17 +24,30 @@ export default function ResultCard({ response, n }) {
       );
     };
   
+
+    const preprocessToken = (token) => {
+      let processedTokens = [];
+
+      token.forEach((token, index) => {
+        const word = token.word;
+
+
+        if (index > 0 && /,;:/.test(token.word)) {
+          processedTokens[processedTokens.length - 1].word += word;
+        } else {
+          processedTokens.push({ ...token });
+        }
+      });
+      return processedTokens;
+    };
+
+   
+
+
+
     if (!response) return null;
 
-    // <td className="match">
-    //             {line.tokens.slice(line.match.start, line.match.end + 1).map((token, i) => (
-    //               <span key={i} className="match-highlight">
-    //                 {showToken(token)}
-    //               </span>
-    //             ))}
-    //           </td>
-
-
+    const processedTokens = preprocessToken(response.tokens);
     const matchIndex = response.match.start;
     const tokensBeforeMatch = matchIndex;
     const tokensAfterMatch = response.tokens.length - matchIndex - 1;
@@ -33,24 +56,80 @@ export default function ResultCard({ response, n }) {
     return (
         <tr key={n} className='resultRow'>
           <td className='tableD'>
-            <div className="token-container">
-                <div className="spacer" style={{ flex: tokensBeforeMatch }}></div>
+            <div className='token-container'>
+              <div className="prefix-container">
+                {processedTokens.slice(0, matchIndex).map((token, i) => (
+                  < span key={i} className="prefix">{showToken(token)}</span>
+                ))}
+              </div>
+
+              <div className="match-container">
+                <span className="token match">{showToken(processedTokens[matchIndex])}</span>
+              </div>
 
 
-              {response.tokens.map((token, i) => (
+              <div className="suffix-container">
+                {processedTokens.slice(matchIndex + 1).map((token, i) => (
+                  <span key={i} className="suffix">{showToken(token)}</span>
+                ))}
+              </div>
+
+
+              {/* <div className="spacer" style={{ flex: tokensBeforeMatch }}></div> */}
+
+
+
+
+
+
+
+
+
+              {/* {response.tokens.map((token, i) => (
                 <React.Fragment key={i}>
-                  {i === matchIndex ? (
-                    <span className="token match">{showToken(token)}</span>
-                  ) : (
-                    showToken(token)
-                  )}
+
+                  
+                
+                {i === matchIndex ? (
+                  <div className="token match">{showToken(token)}</div>
+                ) : i < matchIndex ? (
+                  <div className="prefix">{showToken(token)}</div>
+                ) : i > matchIndex ? (
+                  <div className="suffix">{showToken(token)}</div>
+                ) : (
+                  showToken(token)
+                )
+                
+                
+                }
                 </React.Fragment>
-              ))}
+              ))} */}
     
-                <div className="spacer" style={{ flex: tokensAfterMatch }}></div>
-            </div>
+                {/* <div className="spacer" style={{ flex: tokensAfterMatch }}></div> */}
+              </div>
           </td>
         </tr>
       );
     }
   
+
+/*     <div className="token-container">
+    
+    <div className="prefix-container">
+        {response.tokens.slice(0, matchIndex).map((token, i) => (
+            <span key={i} className="prefix">{showToken(token)}</span>
+        ))}
+    </div>
+
+    
+    <div className="match-container">
+        <span className="token match">{showToken(response.tokens[matchIndex])}</span>
+    </div>
+
+    
+    <div className="suffix-container">
+        {response.tokens.slice(matchIndex + 1).map((token, i) => (
+            <span key={i} className="suffix">{showToken(token)}</span>
+        ))}
+    </div>
+</div> */

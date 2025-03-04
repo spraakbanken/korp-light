@@ -1,30 +1,64 @@
+.tableD{
+
+
+}
+
 .token-container {
-    max-width: 75vw; 
-    overflow: hidden; 
-    white-space: nowrap; 
-    word-break: keep-all; 
+  display: flex;
+  overflow: hidden;
 
-  }
-  
-  .token {
-    border-radius: 5px;
-    justify-content: center;
-    margin-right: 5px;
-    white-space: nowrap; 
-    word-break: keep-all; 
-  }
-  
-  .token.match {
-    background-color: #ffeb3b;
-    font-weight: bold;
-    border: 1px solid #fbc02d;
-  }
-  
-  .spacer {
-    flex-grow: 1;
-  }
 
+}
+
+
+.prefix, .suffix{
   
-  .resultRow {
-    border-bottom: 1px solid #e0e0e0;
-  }
+  margin-left: 3px;
+}
+
+.special-char{
+  margin-left: 0;
+}
+  
+.token {
+  white-space: nowrap; 
+  word-break: keep-all; 
+}
+
+.token.match {
+  font-weight: bold;
+  text-align: center;
+}
+
+.resultRow {
+  border-bottom: 1px solid #e0e0e0;
+
+}
+
+.prefix-container,
+.suffix-container {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  width: 48%;
+  max-width: 48%;
+
+}
+
+.suffix-container {
+  justify-content: flex-start;
+}
+
+.match-container {
+flex-shrink: 0;
+display: flex;
+justify-content: center;
+align-items: center;
+min-width: 4%; 
+width: 4%;
+}
+
+
+
+
+

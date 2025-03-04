@@ -50,13 +50,14 @@ export default function ResultsPage() {
     }
     
     useEffect(() => {
-        if(searchWordInput){
-            searchQueryRefetch().then((res) => {
-                setQueryData(res.data);
-            });
+        // if(searchWordInput){
+        //     searchQueryRefetch().then((res) => {
+        //         setQueryData(res.data);
+        //     });
 
-            console.log("CHANGED: ", searchWordInput)
-        }
+        //     console.log("CHANGED: ", searchWordInput)
+        // }
+        setQueryData(mockResults);
     }, [searchWordInput, searchQueryRefetch])
 
     return(
@@ -101,7 +102,7 @@ export default function ResultsPage() {
 
             <div className="mt-5">
                 {/*queryData.kwic == undefined ? <p>Loading...</p> : JSON.stringify(queryData) */}
-                {queryData.kwic === undefined ? <p>Loading...</p> : 
+                {queryData.kwic === undefined ? <p>Loading...</p> :
                     <ResultsPanel response={queryData} />}
             </div>
         </>

@@ -28,7 +28,7 @@ const ResultsPanel = ({ response }) => {
 
 return (
   <div className="results-panel">
-    <h3>Sök resultat:</h3>
+    <h3>Sökresultat:</h3>
     <div>Antal: {hits}, visar {start+1}–{end+1}</div>
     <table className="custom-table">
       <thead>
