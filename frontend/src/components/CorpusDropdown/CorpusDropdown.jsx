@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getCorpusCollectionsList } from "../../services/api";
 
-export default function CorpusDropDown () {;
+export default function CorpusDropDown () {
     
     const def = {'Reload Collections': 'b'}
     const [collectionsList, setCollectionsList] = useState(def);

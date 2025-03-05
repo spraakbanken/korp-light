@@ -1,12 +1,13 @@
 .tableD{
-
+  justify-content: space-between;
 
 }
 
 .token-container {
   display: flex;
   overflow: hidden;
-
+  flex-wrap: nowrap;
+  justify-content: center;
 
 }
 
@@ -28,21 +29,26 @@
 .token.match {
   font-weight: bold;
   text-align: center;
+
 }
 
 .resultRow {
   border-bottom: 1px solid #e0e0e0;
 
+
 }
 
 .prefix-container,
 .suffix-container {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  width: 48%;
-  max-width: 48%;
 
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  justify-content: flex-end;
+  width: 45%;
+  max-width: 45%;
+  position: relative;
 }
 
 .suffix-container {
@@ -50,14 +56,48 @@
 }
 
 .match-container {
-flex-shrink: 0;
-display: flex;
-justify-content: center;
-align-items: center;
-min-width: 4%; 
-width: 4%;
-}
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  text-align: center;
+  width: fit-content;
+  min-width: 40px; 
+  max-width: 10%;
 
+}
+/* @media (max-width: 900px) {
+
+  .prefix-container,
+  .suffix-container {
+  
+    display: flex;
+    justify-content: flex-end;
+    width: 43%;
+    max-width: 43%;
+    position: relative;
+  
+  
+  }
+  .suffix-container {
+    justify-content: flex-start;
+  }
+  
+  .match-container {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 12%; 
+    width: 12%;
+    max-width: 12%;
+    
+  
+  
+  }
+
+} */
 
 
 

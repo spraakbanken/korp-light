@@ -50,15 +50,24 @@ export default function ResultsPage() {
     }
     
     useEffect(() => {
-        // if(searchWordInput){
-        //     searchQueryRefetch().then((res) => {
-        //         setQueryData(res.data);
-        //     });
+        if(searchWordInput){
 
-        //     console.log("CHANGED: ", searchWordInput)
-        // }
-        setQueryData(mockResults);
+
+            searchQueryRefetch().then((res) => {
+                console.log(res.data)
+                setQueryData(res.data);
+                
+            });
+
+            
+
+            console.log("CHANGED: ", searchWordInput)
+        }
+
     }, [searchWordInput, searchQueryRefetch])
+
+    
+
 
     return(
         <>
