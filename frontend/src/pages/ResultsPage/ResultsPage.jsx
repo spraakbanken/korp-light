@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 
 import mockResults from './mockResults.json' with {type: 'json'};
 import SearchBar from "../../components/SearchBar/SearchBar.jsx";
+import Footer from "../../components/Footer/Footer.jsx";
 
 export default function ResultsPage() {
 
@@ -51,6 +52,7 @@ export default function ResultsPage() {
     
     useEffect(() => {
         if(searchWordInput){
+
 
 
             searchQueryRefetch().then((res) => {
@@ -114,6 +116,7 @@ export default function ResultsPage() {
                 {queryData.kwic === undefined ? <p>Loading...</p> :
                     <ResultsPanel response={queryData} />}
             </div>
+            <Footer/>
         </>
     );
 }
