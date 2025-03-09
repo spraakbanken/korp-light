@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './ResultsPanel.css';
 
 import ResultCard from '../ResultCard/ResultCard.jsx'
+import ErrorPage from '../../pages/ErrorPage/ErrorPage.jsx';
+
 
 const ResultsPanel = ({ response }) => {
   
@@ -9,15 +11,27 @@ const ResultsPanel = ({ response }) => {
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(0);
   const [kwicLines, setKwicLines] = useState([]);
+  const [error, setError] = useState(false);
 
+  
   useEffect(() => {
     if (response) {
-      setHits(response.hits);
-      setStart(response.start);
-      setEnd(response.end);
-      setKwicLines(response.kwic);
+      if (response.error) {
+        setError(true); // API response has error
+      } else {
+        setHits(response.hits || 0);
+        setStart(response.start || 0);
+        setEnd(response.end || 0);
+        setKwicLines(response.kwic || []);
+      }
+    } else {
+      setError(true); // response undefined
     }
-  }, [response]); 
+  }, [response]);
+
+  if (error || hits === 0) {
+    return <ErrorPage />;
+  }
 
 
   
