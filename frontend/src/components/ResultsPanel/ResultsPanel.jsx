@@ -12,9 +12,11 @@ const ResultsPanel = ({ response }) => {
 
   useEffect(() => {
     if (response) {
+      console.log("Response:", response)
+      console.log("ResponseKwic:", response.kwic)
       setHits(response.hits);
-      setStart(response.start);
-      setEnd(response.end);
+
+
       setKwicLines(response.kwic);
     }
   }, [response]); 

@@ -41,16 +41,25 @@ export default function ResultCard({ response, n }) {
       return processedTokens;
     };
 
-   
+    
 
 
 
     if (!response) return null;
 
     const processedTokens = preprocessToken(response.tokens);
-    const matchIndex = response.match.start;
-    const tokensBeforeMatch = matchIndex;
-    const tokensAfterMatch = response.tokens.length - matchIndex - 1;
+
+    let matchIndex;
+
+    if (response.match && response.match[0] && response.match[0].start !== undefined) {
+        matchIndex = response.match[0].start;
+    } else if (response.match && response.match.start !== undefined) {
+        matchIndex = response.match.start;
+    }
+    
+    
+    console.log("matchindex:", matchIndex);
+
 
   
     return (
