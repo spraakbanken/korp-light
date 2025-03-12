@@ -58,7 +58,7 @@ export default function ResultCard({ response, n }) {
     }
     
     
-    console.log("matchindex:", matchIndex);
+    //console.log("matchindex:", matchIndex);
 
 
   
