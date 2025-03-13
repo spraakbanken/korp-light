@@ -3,7 +3,7 @@ import "./SearchBar.css";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-
+//this gives type error for some reason! 
 export default function SearchBar({returnSearchInput}) {
 
     const [searchInput, setSearchInput] = useState("");

@@ -1,40 +1,35 @@
-
 .corpus_bar{
-    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 #dropdown-basic {
-    width: 66px;
-    height: 66px;
-    background: #FDDBBB;
-    border-radius: 50%;
+    background: transparent;
+    width: 24px;
+    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .dropdown-toggle::after{
     display: none;
 }
 
-#corpus_menu {
+#dropdown-menu {
     background: #FDDBBB;
-    border: none;
+    border: 1px solid gray;
     color: #F5926A;
-    font-family: "Roboto", sans-serif;
-    font-weight: 500;
-    font-size: 18px;
-    letter-spacing: 0.46px;
-    padding: 10px 20px;
-    border-radius: 30px;
+    font-size: 1.2rem;
+    letter-spacing: 1.1;
+
+
+    height: 400px;
+    overflow-y: scroll;
+
+    border-radius: 24px;
     text-align: left;
+
 }
 
   

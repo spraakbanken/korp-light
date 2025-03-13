@@ -4,3 +4,11 @@
   margin: 0 auto;
   text-align: center;
 }
+
+.landingpage__button_group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin: 20px 0;
+}

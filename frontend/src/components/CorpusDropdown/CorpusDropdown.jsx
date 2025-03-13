@@ -1,6 +1,7 @@
 import "./CorpusDropdown.css";
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
+import CircleButton from "../CircleButton/CircleButton";
 import Image from 'react-bootstrap/Image'
 import book_logo from '../../assets/book-open.svg';
 
@@ -10,7 +11,7 @@ import { getCorpusCollectionsList } from "../../services/api";
 
 export default function CorpusDropDown () {
     
-    const def = {'Reload Collections': 'b'}
+    const def = {'Loading...': 'default'}
     const [collectionsList, setCollectionsList] = useState(def);
 
     const { data = [], isLoading, error, refetch} = useQuery({
@@ -36,18 +37,20 @@ export default function CorpusDropDown () {
 
     return (
     <>
-        <Button onClick={() => _getLists()}>Test Collections</Button>
-
-        {isLoading ? <p>Loading...</p> : <p></p>}
-        
-        <Dropdown className="corpus_bar">
+        <Dropdown className="corpus_bar" 
+            drop='down-centered'>
             <Dropdown.Toggle id="dropdown-basic">
-                <Image src={book_logo}></Image>
+                <CircleButton 
+                    buttonColour='yellow'
+                    buttonImage={book_logo}
+                    buttonOnClick={() => _getLists()} />
             </Dropdown.Toggle>
-            <Dropdown.Menu id="corpus_menu">
+            <Dropdown.Menu id="dropdown-menu">
             
             { Object.keys(collectionsList).map((item) => {
-                return <Dropdown.Item href={null} key={item}>{item}</Dropdown.Item>
+                return <Dropdown.Item href={null} key={item}>
+                    {item}
+                </Dropdown.Item>
             })}
 
             </Dropdown.Menu>
