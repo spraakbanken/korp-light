@@ -1,22 +1,19 @@
 import "./CorpusDropdown.css";
 import Dropdown from 'react-bootstrap/Dropdown';
-import Button from 'react-bootstrap/Button';
 import CircleButton from "../CircleButton/CircleButton";
-import Image from 'react-bootstrap/Image'
-import book_logo from '../../assets/book-open.svg';
 
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getCorpusCollectionsList } from "../../services/api";
 
-export default function CorpusDropDown () {
+export default function CorpusDropDown ({colour, buttonLogo, getListFunction}) {
     
     const def = {'Loading...': 'default'}
     const [collectionsList, setCollectionsList] = useState(def);
 
     const { data = [], isLoading, error, refetch} = useQuery({
         queryKey : [collectionsList],
-        queryFn: () => getCorpusCollectionsList(),
+        queryFn: () => getListFunction(),
         enabled: true,
     });
 
@@ -41,8 +38,8 @@ export default function CorpusDropDown () {
             drop='down-centered'>
             <Dropdown.Toggle id="dropdown-basic">
                 <CircleButton 
-                    buttonColour='yellow'
-                    buttonImage={book_logo}
+                    buttonColour= {colour}
+                    buttonImage={buttonLogo}
                     buttonOnClick={() => _getLists()} />
             </Dropdown.Toggle>
             <Dropdown.Menu id="dropdown-menu">
