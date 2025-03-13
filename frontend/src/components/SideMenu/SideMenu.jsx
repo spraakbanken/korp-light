@@ -3,7 +3,7 @@ import { Offcanvas, Button, Nav, NavDropdown, OverlayTrigger } from "react-boots
 import Tooltip from 'react-bootstrap/Tooltip';
 import "./SideMenu.css";
 
-import history from "../../services/history";
+import { setHistory, getHistory } from "../../services/history";
 import { NavLink } from "react-router-dom";
 
 export default function SideMenu() {
@@ -11,6 +11,8 @@ export default function SideMenu() {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const history = getHistory();
 
     const menu_tip = (
         <Tooltip id="menu_tooltip">

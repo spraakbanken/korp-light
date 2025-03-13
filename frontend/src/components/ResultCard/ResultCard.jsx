@@ -57,6 +57,10 @@ export default function ResultCard({ response, n }) {
         matchIndex = response.match.start;
     }
     
+    
+    //console.log("matchindex:", matchIndex);
+
+
   
     return (
         <tr key={n} className='resultRow'>
