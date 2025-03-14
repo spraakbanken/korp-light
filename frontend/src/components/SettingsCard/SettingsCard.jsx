@@ -2,10 +2,12 @@ import { Card } from "react-bootstrap";
 import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import { Moon, Sun } from "react-bootstrap-icons";
+import { Modal } from "react-bootstrap";
 
 import "./SettingsCard.css";
+import { propTypes } from "react-bootstrap/esm/Image";
 
-export default function SettingsCard() {
+export default function SettingsCard(props) {
     const [resultsPerPage, setResultsPerPage] = useState(20);
     const [sampleSize, setSampleSize] = useState(1);
     const [contextSize, setContextSize] = useState(10);
@@ -17,12 +19,13 @@ export default function SettingsCard() {
     };
 
     return (
-        <div className="settings-overlay">
-            <Card className="settings-card">
-                <Card.Body>
-                    <Card.Title className="text-center">Inställningar</Card.Title>
-                    <hr />
-
+       
+            <Modal {...props}
+                className="_settings-card" centered>
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">Inställningar</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
                     {/* Results per page */}
                     <Form.Group className="mb-3">
                         <Form.Label>RESULTAT PER SIDA:</Form.Label>
@@ -102,12 +105,12 @@ export default function SettingsCard() {
                         />
                     </Form.Group>
 
-                    {/* Close button */}
-                    <a href="/">
+                </Modal.Body>
+                
+                {/* Close button */}
+                <Modal.Footer onClick={props.onHide}>
                         <Button variant="danger" className="w-50">STÄNG</Button>
-                    </a>
-                </Card.Body>
-            </Card>
-        </div>
+                </Modal.Footer>
+            </Modal>
     );
 }
