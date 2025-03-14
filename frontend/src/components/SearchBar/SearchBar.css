@@ -1,12 +1,30 @@
+.searchBarContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px; 
+}
+
+.searchBarWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
 .searchBar {
-    margin-inline: auto;
-    padding: 10px;
-    margin-bottom: 15px;
-    margin-top: 50px;
+    padding: 10px 40px 10px 15px; 
     border: 1px solid #f0581a;
     border-radius: 30px;
     background-color: #f6f6f6;
-    transition: border 0.3s;
     width: 300px;
 }
 
+.searchBarButton {
+    position: absolute;
+    right: 10px; 
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #f0581a;
+}
