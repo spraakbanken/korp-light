@@ -1,8 +1,38 @@
+import { useEffect, useState } from 'react';
 import './CircleButton.css'
 
 import Image from 'react-bootstrap/Image';
 
 export default function CircleButton({buttonImage, buttonColour, buttonOnClick}) {
+
+    const [selected, setSelected] = useState(false);
+    
+    // this might be overengineered
+    let selectedClass = () => {
+        if (selected){
+            return 'circlebutton__selected';
+        } else {
+            return '';
+        }
+    };
+
+    function handleClick() {
+        setSelected(!selected);
+        if (!selected) {
+            buttonOnClick();
+        }
+    }
+
+    //handle clicks outside of element!
+    useEffect( () => {
+        if (selected) {
+            document.addEventListener('mousedown', handleClick)
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClick);
+        }
+    }, [selected]);
 
     const style = {
         "--button-bgc" : buttonColour
@@ -10,9 +40,9 @@ export default function CircleButton({buttonImage, buttonColour, buttonOnClick})
 
     return (
         <div className="circle__buton__container">
-            <Image className="circlebutton" 
+            <Image className={`circlebutton + ${selectedClass()}`} 
                 src={buttonImage} 
-                onClick={buttonOnClick}
+                onClick={handleClick}
                 style={style} />
         </div>
     );
