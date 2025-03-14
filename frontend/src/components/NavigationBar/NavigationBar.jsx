@@ -11,9 +11,13 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import ToggleAPI from "../ToggleAPI/ToggleAPI";
 import SideMenu from "../SideMenu/SideMenu";
+import { useState } from "react";
+import SettingsCard from "../SettingsCard/SettingsCard";
 
 export default function NavigationBar () {
-
+    //Settings Modal
+    const [settingsModal, setSettingsModal] = useState(false);
+    
     const settings_tip = (
         <Tooltip id="settings_tooltip">
             <strong>Settings</strong>
@@ -26,6 +30,7 @@ export default function NavigationBar () {
         </Tooltip>
     );
 
+    
     return(
         <Navbar className="main__navbar">
             <Container>
@@ -38,12 +43,19 @@ export default function NavigationBar () {
                     </Nav.Link>
                 </OverlayTrigger>
                 <OverlayTrigger placement="bottom" overlay={settings_tip}>
-                    <Nav.Link className="circle__button" href={null}>
-                        <Image src={settings_logo}></Image>
+                    <Nav.Link className="circle__button" href={null} 
+                        onClick={() => setSettingsModal(true)}>
+                            <Image src={settings_logo}></Image>
                     </Nav.Link>
                 </OverlayTrigger>
             </Nav>
             </Container>
+
+            <SettingsCard 
+                show={settingsModal}
+                onHide={() => setSettingsModal(false)}>
+            </SettingsCard>
+
         </Navbar>
     );
 }

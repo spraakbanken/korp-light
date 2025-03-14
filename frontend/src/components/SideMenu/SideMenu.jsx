@@ -44,7 +44,7 @@ export default function SideMenu() {
                             autoClose="inside"
                             className="orange-row">
                             
-                            { Object.keys(history).map((item) => {
+                            { Object.keys(history ?? {}).map((item) => {
                                 return <NavDropdown.Item key={item}href="#action3">{item}</NavDropdown.Item>
                             })}
 

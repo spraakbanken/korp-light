@@ -7,11 +7,14 @@ import CorpusDropDown from "../../components/CorpusDropdown/CorpusDropdown.jsx";
 //assets
 import corpus_logo from '../../assets/book-open.svg';
 import history_logo from '../../assets/rotate-ccw.svg';
+import sliders_logo from '../../assets/sliders.svg';
+import search_logo from '../../assets/search.svg';
 
 // main style
 import "./LandingPage.css"
 import { getCorpusCollectionsList } from "../../services/api.js";
 import { getHistory } from "../../services/history.js";
+import CircleButton from "../../components/CircleButton/CircleButton.jsx";
 
 
 export default function LandingPage() {
@@ -23,14 +26,26 @@ export default function LandingPage() {
             <SearchBar returnSearchInput={null}/>
 
             <div className="landingpage__button_group">
+            
+                <CircleButton 
+                    buttonColour='lime'
+                    buttonImage={search_logo}
+                    buttonOnClick={null} />
+
                 <CorpusDropDown
                     colour='lightblue'
                     buttonLogo={history_logo}
                     getListFunction={getHistory}/>
+
                 <CorpusDropDown
                     colour='orange'
                     buttonLogo={corpus_logo}
                     getListFunction={getCorpusCollectionsList}/>
+
+                <CircleButton 
+                    buttonColour='hotpink'
+                    buttonImage={sliders_logo}
+                    buttonOnClick={null} />
             </div>
         </>
     );
