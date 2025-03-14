@@ -38,7 +38,7 @@ export default function NavigationBar () {
                     </Nav.Link>
                 </OverlayTrigger>
                 <OverlayTrigger placement="bottom" overlay={settings_tip}>
-                    <Nav.Link className="circle__button" href={null}>
+                    <Nav.Link className="circle__button" href={'/settings'}>
                         <Image src={settings_logo}></Image>
                     </Nav.Link>
                 </OverlayTrigger>
