@@ -3,6 +3,8 @@ import HelloKorpi from "../../components/HelloKorpi/HelloKorpi.jsx";
 import NavigationBar from "../../components/NavigationBar/NavigationBar.jsx";
 import SearchBar from "../../components/SearchBar/SearchBar.jsx";
 import CorpusDropDown from "../../components/CorpusDropdown/CorpusDropdown.jsx";
+import CircleButton from "../../components/CircleButton/CircleButton.jsx";
+import InfoText from "../../components/InfoText/InfoText.jsx";
 
 //assets
 import corpus_logo from '../../assets/book-open.svg';
@@ -12,9 +14,10 @@ import search_logo from '../../assets/search.svg';
 
 // main style
 import "./LandingPage.css"
+
+// services
 import { getCorpusCollectionsList } from "../../services/api.js";
 import { getHistory } from "../../services/history.js";
-import CircleButton from "../../components/CircleButton/CircleButton.jsx";
 
 
 export default function LandingPage() {
@@ -47,6 +50,7 @@ export default function LandingPage() {
                     buttonImage={sliders_logo}
                     buttonOnClick={null} />
             </div>
+            <InfoText className="info_text"/>
         </>
     );
 }
