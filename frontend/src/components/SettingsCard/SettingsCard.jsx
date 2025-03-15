@@ -1,11 +1,10 @@
-import { Card } from "react-bootstrap";
 import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import { Moon, Sun } from "react-bootstrap-icons";
 import { Modal } from "react-bootstrap";
 
 import "./SettingsCard.css";
-import { propTypes } from "react-bootstrap/esm/Image";
+
 
 export default function SettingsCard(props) {
     const [resultsPerPage, setResultsPerPage] = useState(20);
