@@ -11,6 +11,8 @@ import { useEffect, useState } from "react";
 import mockResults from './mockResults.json' with {type: 'json'};
 import SearchBar from "../../components/SearchBar/SearchBar.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
+import ProgressBar from "../../components/ProgressBar/ProgressBar.jsx"; 
+
 
 export default function ResultsPage() {
 
@@ -110,6 +112,8 @@ export default function ResultsPage() {
             }}/>
 
             <p>Searching for: {searchWordInput}</p>
+
+            <ProgressBar isLoading={searchQueryIsLoading} />
 
             <div className="mt-5">
                 {/*queryData.kwic == undefined ? <p>Loading...</p> : JSON.stringify(queryData) */}
