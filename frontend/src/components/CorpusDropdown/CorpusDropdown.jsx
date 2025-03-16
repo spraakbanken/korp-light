@@ -33,37 +33,25 @@ export default function CorpusDropDown({ colour, buttonLogo }) {
         });
     };
 
-    // 🔹 **Recursive function** to render categories and subcategories
+    const hasSubcategories = (items) => {
+        return Object.keys(items).length > 0; // Check if there are further subcategories
+    };
+
     const renderCategory = (category, items) => {
+        const hasChildren = hasSubcategories(items);
+
         return (
             <div key={category}>
                 <div
                     className="dropdown-category"
-                    onClick={() => toggleCategory(category)}
+                    onClick={() => hasChildren && toggleCategory(category)}
                 >
-                    {expandedCategories.has(category) ? "▼" : "▶"} {category}
+                    {hasChildren ? (expandedCategories.has(category) ? "▼" : "▶") : "•"} {category}
                 </div>
 
-                {expandedCategories.has(category) && (
+                {expandedCategories.has(category) && hasChildren && (
                     <div className="category-items">
-                        {Object.keys(items).map((subItem) => {
-                            if (typeof items[subItem] === "object") {
-                                // 🔹 If the item is an object, it's a **subcategory**
-                                return renderCategory(subItem, items[subItem]);
-                            } else {
-                                // 🔹 If it's a string, it's a **corpus (leaf node)**
-                                return (
-                                    <Dropdown.Item as="div" key={subItem} className="dropdown-item-checkbox">
-                                        <Form.Check
-                                            type="checkbox"
-                                            label={subItem}
-                                            checked={selectedItems.has(subItem)}
-                                            onChange={() => toggleSelection(subItem)}
-                                        />
-                                    </Dropdown.Item>
-                                );
-                            }
-                        })}
+                        {Object.keys(items).map((subItem) => renderCategory(subItem, items[subItem]))}
                     </div>
                 )}
             </div>
@@ -73,22 +61,18 @@ export default function CorpusDropDown({ colour, buttonLogo }) {
     return (
         <Dropdown className="corpus_bar" drop="down-centered">
             <Dropdown.Toggle id="dropdown-basic">
-                <CircleButton
-                    buttonColour={colour}
-                    buttonImage={buttonLogo}
-                />
+                <CircleButton buttonColour={colour} buttonImage={buttonLogo} />
                 {selectedItems.size > 0 && ` ${selectedItems.size} valda`}
             </Dropdown.Toggle>
 
             <Dropdown.Menu id="dropdown-menu">
                 <div className="dropdown-header">
-                    <button className="btn btn-sm btn-light" onClick={() => setSelectedItems(new Set())}>Avmarkera alla</button>
+                    <button className="btn btn-sm btn-light" onClick={() => setSelectedItems(new Set())}>
+                        Avmarkera alla
+                    </button>
                 </div>
 
-                {/* 🔹 Render top-level categories */}
-                {Object.keys(collectionsList).map((category) =>
-                    renderCategory(category, collectionsList[category])
-                )}
+                {Object.keys(collectionsList).map((category) => renderCategory(category, collectionsList[category]))}
             </Dropdown.Menu>
         </Dropdown>
     );
