@@ -23,8 +23,8 @@ import { getHistory } from "../../services/history.js";
 export default function LandingPage() {
 
     return (
-        <>
-            <NavigationBar />
+        <div>
+            {/* We have to remove it for now <NavigationBar /> */}
             <HelloKorpi />
             <SearchBar returnSearchInput={null}/>
 
@@ -51,6 +51,6 @@ export default function LandingPage() {
                     buttonOnClick={null} />
             </div>
             <InfoText className="info_text"/>
-        </>
+        </div>
     );
 }

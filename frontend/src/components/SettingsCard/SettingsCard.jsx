@@ -1,22 +1,16 @@
 import { Form, Button } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Moon, Sun } from "react-bootstrap-icons";
 import { Modal } from "react-bootstrap";
 
 import "./SettingsCard.css";
 
+import SettingsContext from "../../services/settingsContext.js";
 
 export default function SettingsCard(props) {
-    const [settingsObject, setSettingsObject] = useState({});
-    const [selectedView, setSelectedView] = useState("wide");
+    const {settings, setSettings} = useContext(SettingsContext);
 
-    let _settings = {
-    "resultsPerPage": 20,
-    "sampleSize": 1,
-    "contextSize": 10,
-    "theme": "light",
-    "selectedView": "wide"
-    }
+    const [selectedView, setSelectedView] = useState("wide");
       
     const handleViewChange = (view) => {
         setSelectedView(view);
@@ -24,8 +18,8 @@ export default function SettingsCard(props) {
 
     useEffect(() => {
         console.log("CHANGED SETTINGS");
-        props.returnSettingsObject(settingsObject)
-    }, [settingsObject]);
+        console.log(settings)
+    }, [settings]);
 
     return (
        
@@ -39,14 +33,13 @@ export default function SettingsCard(props) {
                     <Form.Group className="mb-3">
                         <Form.Label>RESULTAT PER SIDA:</Form.Label>
                         <Form.Select 
-                            onClick={console.log("resPerPage", _settings.resultsPerPage)} 
+                            onClick={console.log("resPerPage", settings.resultsPerPage)} 
                             onChange={(e) => {
-
-                                _settings.resultsPerPage = e.target.value; 
-                                console.log('settings', _settings)
-                                setSettingsObject(_settings)
-                                }}
-                                value={settingsObject.resultsPerPage} >
+                                setSettings({
+                                    ...settings,
+                                    resultsPerPage: e.target.value
+                                })}}
+                                value={settings.resultsPerPage} >
                             {[10, 20, 50, 100].map((num) => (
                                 <option key={num} value={num}>{num} Resultat</option>
                             ))}
@@ -63,9 +56,9 @@ export default function SettingsCard(props) {
                             </Form.Select>
                             <Form.Control
                                 type="number"
-                                value={_settings.sampleSize}
-                                onClick={console.log("sampleSize", _settings.sampleSize)}
-                                onChange={(e) => setSettingsObject(_settings.sampleSize = e.target.value)}
+                                value={settings.sampleSize}
+                                onClick={console.log("sampleSize", settings.sampleSize)}
+                                onChange={(e) => setSettings({...settings, sampleSize : e.target.value})}
                             />
                         </div>
                     </Form.Group>
@@ -75,9 +68,9 @@ export default function SettingsCard(props) {
                         <Form.Label>KONTEXT STORLEK:</Form.Label>
                         <Form.Control
                             type="number"
-                            value={_settings.contextSize}
-                            onClick={console.log("contextSize", _settings.contextSize)}
-                            onChange={(e) => setSettingsObject(_settings.contextSize = e.target.value)}
+                            value={settings.contextSize}
+                            onClick={console.log("contextSize", settings.contextSize)}
+                            onChange={(e) => setSettings({...settings, contextSize : e.target.value})}
                         />
                     </Form.Group>
 
@@ -88,18 +81,24 @@ export default function SettingsCard(props) {
                             <button
                                 className="light-mode-button"
                                 onClick={() => 
-                                    setSettingsObject("theme", _settings.theme = "light")
+                                    setSettings({
+                                        ...settings,
+                                        theme: 'light'
+                                    })
                                 }
-                                active={_settings.theme === "light" ? "true" : "false"}
+                                active={settings.theme === "light" ? "true" : "false"}
                             >
                                 <Sun />
                             </button>
                             <button
                                 className="dark-mode-button"
                                 onClick={() => 
-                                    setSettingsObject("theme", _settings.theme = "dark")
+                                    setSettings({
+                                        ...settings,
+                                        theme: 'light'
+                                    })
                                 }
-                                active={_settings.theme === "dark" ? "true" : "false"}
+                                active={settings.theme === "dark" ? "true" : "false"}
                             >
                                 <Moon />
                             </button>
