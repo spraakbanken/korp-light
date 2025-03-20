@@ -20,7 +20,7 @@ export async function getCorpusInfo(corpus='bnc-100k') {
     const response = await axios_instance('/corpus_info', { 
         params: queryParams,
     });
-    console.log("CORPUS RESPONSE: ", response.data);
+   // console.log("CORPUS RESPONSE: ", response.data);
     
     return response.data;
   } catch (error) {
@@ -38,8 +38,7 @@ export async function getCorpusCollections(collection='default') {
         return `ERROR: collection ${collection} not found!`
     }
 }
-{/*below works, under the commented is a test to find more info*/}
-{/*
+
 export async function getCorpusCollectionsList(collection='default') {  
     try {
         const res = await getCorpusCollections(collection);
@@ -59,47 +58,19 @@ export async function getCorpusCollectionsList(collection='default') {
         return `Error getting Corpus List: ${error}`;
     }
 }
-*/}
 
-export async function getCorpusCollectionsList(collection='default') {  
+export async function _getCorpusCollectionsList(collection = 'default') {
   try {
-      const res = await getCorpusCollections(collection);
-      console.log("FULL CORPUS CONFIG RESPONSE: ", res);  // Log API response
-      
-      let categorizedData = {};
-      let folders = res.folders;
+    const res = await getCorpusCollections(collection);
+   // console.log("FULL CORPUS CONFIG RESPONSE: ", res);
 
-      if (!folders) return {};
-
-        for (let category in folders) {
-            let subItems = folders[category];
-            let processedSubItems = {};
-
-            if (subItems.subfolders && typeof subItems.subfolders === "object") {
-                for (let key in subItems.subfolders) {
-                    if (!["title", "description", "corpora"].includes(key.toLowerCase())) {
-                        processedSubItems[key] = subItems.subfolders[key];
-                    }
-                }
-            } else if (Array.isArray(subItems)) {
-                subItems.forEach(item => {
-                    if (!["title", "description", "corpora"].includes(item.toLowerCase())) {
-                        processedSubItems[item] = {};
-                    }
-                });
-            }
-
-              categorizedData[category] = processedSubItems;
-          
-      }
-      console.log("Processed Categorized Data: ", categorizedData);
-      return categorizedData;
+    // Return the full folders tree untouched
+    return res.folders || {};
   } catch (error) {
-      console.log("Error getting Corpus List:", error);
-      return {};
+    console.log("Error getting Corpus List:", error);
+    return {};
   }
 }
-
 
 
 
