@@ -1,5 +1,5 @@
 import { Form, Button } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Moon, Sun } from "react-bootstrap-icons";
 import { Modal } from "react-bootstrap";
 
@@ -7,15 +7,25 @@ import "./SettingsCard.css";
 
 
 export default function SettingsCard(props) {
-    const [resultsPerPage, setResultsPerPage] = useState(20);
-    const [sampleSize, setSampleSize] = useState(1);
-    const [contextSize, setContextSize] = useState(10);
-    const [theme, setTheme] = useState("light");
+    const [settingsObject, setSettingsObject] = useState({});
     const [selectedView, setSelectedView] = useState("wide");
 
+    let _settings = {
+    "resultsPerPage": 20,
+    "sampleSize": 1,
+    "contextSize": 10,
+    "theme": "light",
+    "selectedView": "wide"
+    }
+      
     const handleViewChange = (view) => {
         setSelectedView(view);
     };
+
+    useEffect(() => {
+        console.log("CHANGED SETTINGS");
+        props.returnSettingsObject(settingsObject)
+    }, [settingsObject]);
 
     return (
        
@@ -28,7 +38,15 @@ export default function SettingsCard(props) {
                     {/* Results per page */}
                     <Form.Group className="mb-3">
                         <Form.Label>RESULTAT PER SIDA:</Form.Label>
-                        <Form.Select value={resultsPerPage} onChange={(e) => setResultsPerPage(e.target.value)}>
+                        <Form.Select 
+                            onClick={console.log("resPerPage", _settings.resultsPerPage)} 
+                            onChange={(e) => {
+
+                                _settings.resultsPerPage = e.target.value; 
+                                console.log('settings', _settings)
+                                setSettingsObject(_settings)
+                                }}
+                                value={settingsObject.resultsPerPage} >
                             {[10, 20, 50, 100].map((num) => (
                                 <option key={num} value={num}>{num} Resultat</option>
                             ))}
@@ -45,8 +63,9 @@ export default function SettingsCard(props) {
                             </Form.Select>
                             <Form.Control
                                 type="number"
-                                value={sampleSize}
-                                onChange={(e) => setSampleSize(e.target.value)}
+                                value={_settings.sampleSize}
+                                onClick={console.log("sampleSize", _settings.sampleSize)}
+                                onChange={(e) => setSettingsObject(_settings.sampleSize = e.target.value)}
                             />
                         </div>
                     </Form.Group>
@@ -56,8 +75,9 @@ export default function SettingsCard(props) {
                         <Form.Label>KONTEXT STORLEK:</Form.Label>
                         <Form.Control
                             type="number"
-                            value={contextSize}
-                            onChange={(e) => setContextSize(e.target.value)}
+                            value={_settings.contextSize}
+                            onClick={console.log("contextSize", _settings.contextSize)}
+                            onChange={(e) => setSettingsObject(_settings.contextSize = e.target.value)}
                         />
                     </Form.Group>
 
@@ -67,15 +87,19 @@ export default function SettingsCard(props) {
                         <div className="theme-toggle">
                             <button
                                 className="light-mode-button"
-                                onClick={() => setTheme("light")}
-                                active={theme === "light" ? "true" : "false"}
+                                onClick={() => 
+                                    setSettingsObject("theme", _settings.theme = "light")
+                                }
+                                active={_settings.theme === "light" ? "true" : "false"}
                             >
                                 <Sun />
                             </button>
                             <button
                                 className="dark-mode-button"
-                                onClick={() => setTheme("dark")}
-                                active={theme === "dark" ? "true" : "false"}
+                                onClick={() => 
+                                    setSettingsObject("theme", _settings.theme = "dark")
+                                }
+                                active={_settings.theme === "dark" ? "true" : "false"}
                             >
                                 <Moon />
                             </button>
@@ -88,19 +112,22 @@ export default function SettingsCard(props) {
                             type="checkbox"
                             label="Wide View"
                             checked={selectedView === "wide"}
-                            onChange={() => handleViewChange("wide")}
+                            onChange={() => handleViewChange("wide")
+                            }
                         />
                         <Form.Check
                             type="checkbox"
                             label="Grid View"
                             checked={selectedView === "grid"}
-                            onChange={() => handleViewChange("grid")}
+                            onChange={() => handleViewChange("grid")
+                            }
                         />
                         <Form.Check
                             type="checkbox"
                             label="Zen View"
                             checked={selectedView === "zen"}
-                            onChange={() => handleViewChange("zen")}
+                            onChange={() => handleViewChange("zen")
+                            }
                         />
                     </Form.Group>
 

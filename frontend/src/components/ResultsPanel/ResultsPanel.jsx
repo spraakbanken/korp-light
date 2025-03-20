@@ -5,7 +5,7 @@ import ResultCard from '../ResultCard/ResultCard.jsx'
 import ErrorPage from '../../pages/ErrorPage/ErrorPage.jsx';
 
 
-const ResultsPanel = ({ response }) => {
+const ResultsPanel = ({ response, settings}) => {
   
   const [hits, setHits] = useState(0);
   const [startHit, setStartHit] = useState(0);
@@ -15,7 +15,7 @@ const ResultsPanel = ({ response }) => {
   const [page, setPage] = useState(0);
   const [currentResults, setCurrentResults] = useState([]);
 
-
+  const [settingsObject, setSettingsObject] = useState({});
 
   const resultsPerPage = 20;
 
@@ -111,6 +111,7 @@ return (
       <tbody>
         {currentResults.map((line, index) => {
           let n = startHit + index;
+          console.log("line", line);
           return <ResultCard key={n} response={line} n={n} />;
         })}
       </tbody>
