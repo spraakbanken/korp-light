@@ -38,8 +38,7 @@ export async function getCorpusCollections(collection='default') {
         return `ERROR: collection ${collection} not found!`
     }
 }
-{/*below works, under the commented is a test to find more info*/}
-{/*
+
 export async function getCorpusCollectionsList(collection='default') {  
     try {
         const res = await getCorpusCollections(collection);
@@ -59,8 +58,8 @@ export async function getCorpusCollectionsList(collection='default') {
         return `Error getting Corpus List: ${error}`;
     }
 }
-*/} 
-export async function getCorpusCollectionsList(collection = 'default') {
+
+export async function _getCorpusCollectionsList(collection = 'default') {
   try {
     const res = await getCorpusCollections(collection);
    // console.log("FULL CORPUS CONFIG RESPONSE: ", res);
