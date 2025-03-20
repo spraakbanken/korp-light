@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./SearchBar.css";
 import Form from 'react-bootstrap/Form';
 import { Search } from "react-bootstrap-icons";
@@ -7,6 +7,13 @@ import { Search } from "react-bootstrap-icons";
 export default function SearchBar({ returnSearchInput }) {
 
     const [searchInput, setSearchInput] = useState("");
+    // const [words, setWords] = useState([]);
+
+    // useEffect(() => {
+    //     setWords(searchInput.split(' '));
+    //     console.log(words);
+
+    // }, [searchInput]);
 
     return (
         <div className="searchBarContainer">
