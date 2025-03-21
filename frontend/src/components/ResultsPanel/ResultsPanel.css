@@ -61,10 +61,11 @@ h3 {
   background-color: #f1f1f1; 
 }
 
-
-
-
-
-
+.no-results {
+  font-size: 18px;
+  color: black;
+  text-align: center;
+  margin-top: 20px;
+}
 
 
