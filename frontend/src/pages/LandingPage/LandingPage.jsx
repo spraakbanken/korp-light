@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+
 // React Components
 import HelloKorpi from "../../components/HelloKorpi/HelloKorpi.jsx";
 import NavigationBar from "../../components/NavigationBar/NavigationBar.jsx";
@@ -5,6 +7,7 @@ import SearchBar from "../../components/SearchBar/SearchBar.jsx";
 import CorpusDropDown from "../../components/CorpusDropdown/CorpusDropdown.jsx";
 import CircleButton from "../../components/CircleButton/CircleButton.jsx";
 import InfoText from "../../components/InfoText/InfoText.jsx";
+import HistoryPanel from "../../components/HistoryPanel/HistoryPanel.jsx";
 
 //assets
 import corpus_logo from '../../assets/book-open.svg';
@@ -17,10 +20,14 @@ import "./LandingPage.css"
 
 // services
 import { getCorpusCollectionsList } from "../../services/api.js";
-import { getHistory } from "../../services/history.js";
 
 
 export default function LandingPage() {
+    const [showHistory, setShowHistory] = useState(false);
+
+    const toggleHistory = () => {
+        setShowHistory((prev) => !prev);
+    };
 
     return (
         <div>
@@ -35,10 +42,10 @@ export default function LandingPage() {
                     buttonImage={search_logo}
                     buttonOnClick={null} />
 
-                <CorpusDropDown
-                    colour='lightblue'
-                    buttonLogo={history_logo}
-                    getListFunction={getHistory}/>
+                <CircleButton
+                    buttonColour='lightblue'
+                    buttonImage={history_logo}
+                    buttonOnClick={toggleHistory} />
 
                 <CorpusDropDown
                     colour='orange'
@@ -50,6 +57,7 @@ export default function LandingPage() {
                     buttonImage={sliders_logo}
                     buttonOnClick={null} />
             </div>
+            {showHistory && <HistoryPanel />}
             <InfoText className="info_text"/>
         </div>
     );

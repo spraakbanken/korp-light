@@ -2,14 +2,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    padding: 10px; 
+    width: 100wv;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .searchBarWrapper {
     position: relative;
     display: flex;
     align-items: center;
+    width: 30%
 }
 
 .searchBar {
@@ -17,7 +19,7 @@
     border: 1px solid #f0581a;
     border-radius: 30px;
     background-color: #f6f6f6;
-    width: 300px;
+    width: 100%;
 }
 
 .searchBarButton {
