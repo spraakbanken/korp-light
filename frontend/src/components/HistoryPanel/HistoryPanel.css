@@ -50,3 +50,26 @@
 .history-table tr:hover {
     text-decoration: underline;
 }
+
+@media (max-width: 768px) {
+    .history-table {
+        width: 100%;
+        border: none;
+    
+    }
+
+    .history-table td {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    .history-table tbody tr:first-child td {
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+    
+    .history-table tbody tr:last-child td {
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+}
