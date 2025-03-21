@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100wv;
+    width: 100%;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -29,4 +29,15 @@
     border: none;
     cursor: pointer;
     color: #f0581a;
+}
+
+@media (max-width: 768px) {
+    .searchBarWrapper {
+        width: 75%; 
+    }
+
+    .searchBar {
+        font-size: 16px; 
+        padding: 12px 45px 12px 20px; 
+    }
 }
