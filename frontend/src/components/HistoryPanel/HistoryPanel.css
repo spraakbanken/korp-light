@@ -13,10 +13,10 @@
     width: 30%;
     table-layout: fixed;
     margin: 20px 0;
-    border-collapse: separate; /* Allows border-radius to work */
-    border-spacing: 0; /* Prevents gaps between cells */
+    border-collapse: separate; 
+    border-spacing: 0;
     border: 1px #F5926A solid;
-    border-radius: 20px; /* Round corners */
+    border-radius: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     font-weight: bold;
 }
