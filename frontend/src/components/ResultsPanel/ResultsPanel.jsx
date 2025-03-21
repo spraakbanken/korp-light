@@ -65,9 +65,6 @@ const ResultsPanel = ({ response, settings }) => {
     }
   }, [response, page]);
 
-  if (error) {
-    return <ErrorPage />;
-  }
 
   if (hits === 0) {
     return (
