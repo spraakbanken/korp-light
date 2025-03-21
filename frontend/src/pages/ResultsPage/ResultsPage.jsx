@@ -6,23 +6,17 @@ import NavigationBar from "../../components/NavigationBar/NavigationBar.jsx";
 import { useQuery } from "@tanstack/react-query";
 
 import { getCorpusInfo, getCorpusQuery } from "../../services/api.js";
-import { createContext, useEffect, useState } from "react";
-
-import mockResults from './mockResults.json' with {type: 'json'};
+import { useContext, useEffect, useState } from "react";
+import SettingsContext from "../../services/settingsContext.jsx";
 import SearchBar from "../../components/SearchBar/SearchBar.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
 import ProgressBar from "../../components/ProgressBar/ProgressBar.jsx"; 
+import "./ResultPage.css"
 
-import SettingsContext from "../../services/settingsContext.js";
 
 export default function ResultsPage() {
-    const [settings, setSettings] = useState({ 
-        "resultsPerPage": 20,
-        "sampleSize": 1,
-        "contextSize": 10,
-        "theme": "light",
-        "selectedView": "wide"});
 
+    const { settings, updateSettings } = useContext(SettingsContext);
     const [corpus, setCorpus] = useState("bnc-100k");
     const [corpusInput, setCorpusInput] = useState("bnc-100k");
     const [searchWordInput, setSearchWordInput] = useState('');
@@ -83,8 +77,7 @@ export default function ResultsPage() {
     }, [settings])
 
     return(
-        <>
-        <SettingsContext.Provider value={{settings, setSettings}} >
+        <div>
             <NavigationBar />
             <h1 className="mt-5">Results</h1>
             <p>Display Results on this page!</p>
@@ -131,7 +124,6 @@ export default function ResultsPage() {
                     <ResultsPanel response={queryData} />}
             </div>
             <Footer/>
-        </SettingsContext.Provider>
-        </>
+        </div>
     );
 }

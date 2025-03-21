@@ -3,23 +3,26 @@ import { CheckAll } from 'react-bootstrap-icons';
 import { useState, useEffect } from 'react';
 import "./ProgressBar.css";
 
-
-// TODO: Fix progressbar showing when reloading page
 export default function LoadingProgressBar({ isLoading }) {
     const [isComplete, setIsComplete] = useState(false);
+    const [hasSearched, setHasSearched] = useState(false); 
 
     useEffect(() => {
-        if (!isLoading) {
+        if (isLoading) {
+            setHasSearched(true); 
+        }
+
+        if (!isLoading && hasSearched) {
             setIsComplete(true);
             setTimeout(() => {
                 setIsComplete(false);
             }, 1000);
         }
-    }, [isLoading]);
+    }, [isLoading, hasSearched]);
 
     return (
         <>
-            {isLoading && (
+            {isLoading && hasSearched && (
                 <div className="progress-bar-container">
                     <div className="progress-bar">
                         <ProgressBar animated now={100} />
@@ -27,7 +30,6 @@ export default function LoadingProgressBar({ isLoading }) {
                 </div>
             )}
 
-            {/* Display CheckAll icon after progress bar completion */}
             {!isLoading && isComplete && (
                 <div className='progress-finished'>
                     <div className="progress-bar">

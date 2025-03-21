@@ -2,13 +2,13 @@ import { Form, Button } from "react-bootstrap";
 import { useContext, useEffect, useState } from "react";
 import { Moon, Sun } from "react-bootstrap-icons";
 import { Modal } from "react-bootstrap";
-
+import SettingsContext from "../../services/settingsContext.jsx";
 import "./SettingsCard.css";
 
-import SettingsContext from "../../services/settingsContext.js";
+// import SettingsContext from "../../services/settingsContext.js";
 
 export default function SettingsCard(props) {
-    const {settings, setSettings} = useContext(SettingsContext);
+    const {settings, updateSettings} = useContext(SettingsContext);
 
     const [selectedView, setSelectedView] = useState("wide");
       
@@ -35,7 +35,7 @@ export default function SettingsCard(props) {
                         <Form.Select 
                             onClick={console.log("resPerPage", settings.resultsPerPage)} 
                             onChange={(e) => {
-                                setSettings({
+                                updateSettings({
                                     ...settings,
                                     resultsPerPage: e.target.value
                                 })}}
@@ -58,7 +58,7 @@ export default function SettingsCard(props) {
                                 type="number"
                                 value={settings.sampleSize}
                                 onClick={console.log("sampleSize", settings.sampleSize)}
-                                onChange={(e) => setSettings({...settings, sampleSize : e.target.value})}
+                                onChange={(e) => updateSettings({...settings, sampleSize : e.target.value})}
                             />
                         </div>
                     </Form.Group>
@@ -70,7 +70,7 @@ export default function SettingsCard(props) {
                             type="number"
                             value={settings.contextSize}
                             onClick={console.log("contextSize", settings.contextSize)}
-                            onChange={(e) => setSettings({...settings, contextSize : e.target.value})}
+                            onChange={(e) => updateSettings({...settings, contextSize : e.target.value})}
                         />
                     </Form.Group>
 
@@ -81,7 +81,7 @@ export default function SettingsCard(props) {
                             <button
                                 className="light-mode-button"
                                 onClick={() => 
-                                    setSettings({
+                                    updateSettings({
                                         ...settings,
                                         theme: 'light'
                                     })
@@ -93,7 +93,7 @@ export default function SettingsCard(props) {
                             <button
                                 className="dark-mode-button"
                                 onClick={() => 
-                                    setSettings({
+                                    updateSettings({
                                         ...settings,
                                         theme: 'light'
                                     })

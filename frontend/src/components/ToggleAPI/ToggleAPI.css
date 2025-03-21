@@ -1,4 +1,20 @@
 .toggle-button {
-    height: 40px;
-    margin-top: 15px;
+    background-color: #e0e0e0; 
+    color: #333;  
+    border: none;  
+    padding: 10px 20px; 
+    border-radius: 8px;  
+    margin: 0 8px;  
+    transition: all 0.3s ease-in-out; 
+}
+
+.toggle-button:hover {
+    background-color: #d6d6d6; 
+}
+
+.toggle-button:focus,
+.toggle-button.active {
+    border: 2px solid #ffa94d; 
+    background-color: #f8f9fa;  
+    box-shadow: 0 0 5px rgba(255, 169, 77, 0.6);  
 }
