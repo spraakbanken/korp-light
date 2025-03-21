@@ -32,6 +32,7 @@ export default function LandingPage() {
     return (
         <div>
             {/* We have to remove it for now <NavigationBar /> */}
+            <NavigationBar/>
             <HelloKorpi />
             <SearchBar returnSearchInput={null}/>
 
