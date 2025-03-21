@@ -3,3 +3,9 @@
    margin: 0 auto;
 }
 
+
+@media (max-width: 768px) {
+   .infoTextContainer {
+      width: 75%;
+   }
+}
