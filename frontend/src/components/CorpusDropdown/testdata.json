@@ -1,0 +1,1551 @@
+{
+    "fisk": [
+        "Finlandssvenska texter",
+        "Det första steget för att skapa en finlandssvensk korpus togs redan på 1990-talet (Institutionen för nordiska språk vid Helsingfors universitet) och under åren 1999–2000 fortsatte arbetet (ett samarbetsprojekt mellan Institutet för de inhemska språken, Institutionen för allmän språkvetenskap och CSC (IT Center for Science)). Under åren 2011–2013 byggs den finlandssvenska korpusen ut som ett samarbetsprojekt mellan Svenska litteratursällskapet i Finland, Institutet för de inhemska språken och Göteborgs universitet.",
+        [],
+        {
+            "k2": [
+                "Myndighetstexter",
+                "No description",
+                [
+                    [
+                        "informationstidningar",
+                        "Finlandssvenska: Kommuners och städers informationstidningar 2001–2013"
+                    ],
+                    [
+                        "informationstidningar",
+                        "Finland Swedish: Kommuners och städers informationstidningar 2001–2013"
+                    ],
+                    [
+                        "lagtexter",
+                        "Finlandssvenska: Lagtexter 1990–2000"
+                    ],
+                    [
+                        "lagtexter",
+                        "Finland Swedish: Lagtexter 1990–2000"
+                    ],
+                    [
+                        "myndighet",
+                        "Finlandssvenska: Myndighetsprosa 1990–2013"
+                    ],
+                    [
+                        "myndighet",
+                        "Finland Swedish: Authority texts 1990–2013"
+                    ],
+                    [
+                        "propositioner",
+                        "Finlandssvenska: Propositioner 1993–2013"
+                    ],
+                    [
+                        "propositioner",
+                        "Finland Swedish: Proposals 1993–2013"
+                    ]
+                ]
+            ]
+        },
+        {
+            "k2": [
+                "Skön- och facklitteratur",
+                "No description",
+                [
+                    [
+                        "barnlitteratur",
+                        "Finlandssvenska: Barnlitteratur 1988–2012"
+                    ],
+                    [
+                        "barnlitteratur",
+                        "Finland Swedish: Children's literature 1988–2012"
+                    ],
+                    [
+                        "fsbessaistik",
+                        "Finlandssvenska: Essäistisk litteratur 1963–2013"
+                    ],
+                    [
+                        "fsbessaistik",
+                        "Finland Swedish: Essayistic literature 1963–2013"
+                    ],
+                    [
+                        "fsbsakprosa",
+                        "Finlandssvenska: Sakprosa 2006–2013"
+                    ],
+                    [
+                        "fsbsakprosa",
+                        "Finland Swedish: Non-fiction 2006–2013"
+                    ],
+                    [
+                        "fsbskonlit1960-1999",
+                        "Finlandssvenska: Skönlitteratur 1960–1999"
+                    ],
+                    [
+                        "fsbskonlit1960-1999",
+                        "Finland Swedish: Fiction 1960–1999"
+                    ],
+                    [
+                        "fsbskonlit2000tal",
+                        "Finlandssvenska: Skönlitteratur 2000–2013"
+                    ],
+                    [
+                        "fsbskonlit2000tal",
+                        "Finland Swedish: Fiction 2000–2013"
+                    ],
+                    [
+                        "ungdomslitteratur",
+                        "Finlandssvenska: Ungdomslitteratur 1992–2012"
+                    ],
+                    [
+                        "ungdomslitteratur",
+                        "Finland Swedish: Youth Literature 1992–2012"
+                    ]
+                ]
+            ]
+        },
+        {
+            "k2": [
+                "Tidskrifter",
+                "No description",
+                [
+                    [
+                        "astra1960-1979",
+                        "Finlandssvenska: Astra 1960–1979"
+                    ],
+                    [
+                        "astra1960-1979",
+                        "Finland Swedish: Astra 1960–1979"
+                    ],
+                    [
+                        "astranova",
+                        "Finlandssvenska: Astra Nova 2008–2010"
+                    ],
+                    [
+                        "astranova",
+                        "Finland Swedish: Astra Nova 2008–2010"
+                    ],
+                    [
+                        "bullen",
+                        "Finlandssvenska: Bullen 2010–2012"
+                    ],
+                    [
+                        "bullen",
+                        "Finland Swedish: Bullen 2010–2012"
+                    ],
+                    [
+                        "fanbararen",
+                        "Finlandssvenska: Fanbäraren 2011–2012"
+                    ],
+                    [
+                        "fanbararen",
+                        "Finland Swedish: Fanbäraren 2011–2012"
+                    ],
+                    [
+                        "finsktidskrift",
+                        "Finlandssvenska: Finsk tidskrift 2011–2012"
+                    ],
+                    [
+                        "finsktidskrift",
+                        "Finland Swedish: Finsk tidskrift 2011–2012"
+                    ],
+                    [
+                        "forumfeot",
+                        "Finlandssvenska: Forum för ekonomi och teknik 2008–2012"
+                    ],
+                    [
+                        "forumfeot",
+                        "Finland Swedish: Forum för ekonomi och teknik 2008–2012"
+                    ],
+                    [
+                        "hankeiten",
+                        "Finlandssvenska: Hankeiten 2006–2012"
+                    ],
+                    [
+                        "hankeiten",
+                        "Finland Swedish: Hankeiten 2006–2012"
+                    ],
+                    [
+                        "hanken",
+                        "Finlandssvenska: Hanken 2008–2011"
+                    ],
+                    [
+                        "hanken",
+                        "Finland Swedish: Hanken 2008–2011"
+                    ],
+                    [
+                        "jft",
+                        "Finlandssvenska: JFT 2000–2013"
+                    ],
+                    [
+                        "jft",
+                        "Finland Swedish: JFT 2000–2013"
+                    ],
+                    [
+                        "kallan",
+                        "Finlandssvenska: Källan 2008–2010"
+                    ],
+                    [
+                        "kallan",
+                        "Finland Swedish: Källan 2008–2010"
+                    ],
+                    [
+                        "meddelanden",
+                        "Finlandssvenska: Meddelanden från Åbo Akademi 2002–2010"
+                    ],
+                    [
+                        "meddelanden",
+                        "Finland Swedish: Meddelanden från Åbo Akademi 2002–2010"
+                    ],
+                    [
+                        "nyaargus",
+                        "Finlandssvenska: Nya Argus 2010–2011"
+                    ],
+                    [
+                        "nyaargus",
+                        "Finland Swedish: Nya Argus 2010–2011"
+                    ],
+                    [
+                        "studentbladet",
+                        "Finlandssvenska: Studentbladet 2011"
+                    ],
+                    [
+                        "studentbladet",
+                        "Finland Swedish: Studentbladet 2011"
+                    ],
+                    [
+                        "svenskbygden",
+                        "Finlandssvenska: Svenskbygden 2010–2011"
+                    ],
+                    [
+                        "svenskbygden",
+                        "Finland Swedish: Svenskbygden 2010–2011"
+                    ]
+                ]
+            ]
+        },
+        {
+            "k2": [
+                "Tidningstexter",
+                "No description",
+                [
+                    [
+                        "at2012",
+                        "Finlandssvenska: Ålandstidningen 2012"
+                    ],
+                    [
+                        "at2012",
+                        "Finland Swedish: Ålandstidningen 2012"
+                    ],
+                    [
+                        "borgabladet",
+                        "Finlandssvenska: Borgåbladet 2012–2013"
+                    ],
+                    [
+                        "borgabladet",
+                        "Finland Swedish: Borgåbladet 2012–2013"
+                    ],
+                    [
+                        "ostranyland",
+                        "Finlandssvenska: Östra Nyland 2012–2013"
+                    ],
+                    [
+                        "ostranyland",
+                        "Finland Swedish: Östra Nyland 2012–2013"
+                    ],
+                    [
+                        "vastranyland",
+                        "Finlandssvenska: Västra Nyland 2012–2013"
+                    ],
+                    [
+                        "vastranyland",
+                        "Finland Swedish: Västra Nyland 2012–2013"
+                    ]
+                ]
+            ]
+        },
+        {
+            "k2": [
+                "Webbtexter",
+                "No description",
+                [
+                    [
+                        "fsbbloggvuxna",
+                        "Finlandssvenska: Bloggtexter 2006–2013"
+                    ],
+                    [
+                        "fsbbloggvuxna",
+                        "Finland Swedish: Blog texts 2006–2013"
+                    ],
+                    [
+                        "magmakolumner",
+                        "Finlandssvenska: Magma kolumner 2009–2012"
+                    ],
+                    [
+                        "magmakolumner",
+                        "Finland Swedish: Magma columns 2009–2012"
+                    ]
+                ]
+            ]
+        }
+    ],
+    "governmental": [
+        "Myndighetstexter",
+        "No description",
+        [
+            [
+                "klarsprak",
+                "Förvaltningsmyndigheters texter"
+            ],
+            [
+                "sou",
+                "KBs digitaliserade SOU:er (1922–1996)"
+            ],
+            [
+                "snp7879",
+                "SNP 1978–79"
+            ],
+            [
+                "snp7879",
+                "SNP 1978–79"
+            ]
+        ],
+        {
+            "k2": [
+                "Tvåkammarriksdagen",
+                {
+                    "swe": "<b>Samling av textdokument från Tvåkammarriksdagen</b><br><br>\nDenna resurs innehåller en samling textdokument från svenska Tvåkammarriksdagen.\nDen är indelad i olika kategorier(t.ex. motioner, protokoll,\nregister etc.) och har annoterats med olika ord- och dokumentnivåattribut.\nVarje kategori är tillgänglig för nedladdning som en zippad fil.",
+                    "eng": "<b>Collection of textual documents from the Swedish bicameral parliament data</b><br><br>\nThis resource contains a collection of textual documents from the Swedish\nbicameral parliament data. It is is divided into various categories\n(e.g. motions, protocols, registers, ect.) and have been annotated with\nvarious word and document level attributes. Each category is available\nfor download as a zipped file."
+                },
+                [
+                    [
+                        "tkr-bet-mem-utl",
+                        "Tvåkammarriksdagen: Betänkanden, memorial, utlåtanden"
+                    ],
+                    [
+                        "tkr-bet-mem-utl",
+                        "Bicameral riksdag: Reports, memorandums and opinions"
+                    ],
+                    [
+                        "tkr-motioner",
+                        "Tvåkammarriksdagen: Motioner"
+                    ],
+                    [
+                        "tkr-motioner",
+                        "Bicameral riksdag: Motions"
+                    ],
+                    [
+                        "tkr-protokoll",
+                        "Tvåkammarriksdagen: Protokoll"
+                    ],
+                    [
+                        "tkr-protokoll",
+                        "Bicameral riksdag: Protocols"
+                    ],
+                    [
+                        "tkr-register",
+                        "Tvåkammarriksdagen: Register"
+                    ],
+                    [
+                        "tkr-register",
+                        "Bicameral riksdag: Register"
+                    ],
+                    [
+                        "tkr-rskr",
+                        "Tvåkammarriksdagen: Riksdagsskrivelser"
+                    ],
+                    [
+                        "tkr-rskr",
+                        "Bicameral riksdag: Letters of the Riksdag"
+                    ],
+                    [
+                        "tkr-berattelser-redogorelser-frsrdg",
+                        "Tvåkammarriksdagen: Berättelser, redogörelser, framställningar"
+                    ],
+                    [
+                        "tkr-berattelser-redogorelser-frsrdg",
+                        "Bicameral riksdag: Narratives and accounts"
+                    ],
+                    [
+                        "tkr-propositioner-skrivelser",
+                        "Tvåkammarriksdagen: Propositioner, skrivelser"
+                    ],
+                    [
+                        "tkr-propositioner-skrivelser",
+                        "Bicameral riksdag: Propositions and letters"
+                    ],
+                    [
+                        "tkr-reglementen-sfs",
+                        "Tvåkammarriksdagen: Reglementen, svensk författningssamling"
+                    ],
+                    [
+                        "tkr-reglementen-sfs",
+                        "Bicameral riksdag: Regulations"
+                    ],
+                    [
+                        "tkr-riksdagens-forfattningssamling-rfs",
+                        "Tvåkammarriksdagen: Riksdagens författningssamling RFS"
+                    ],
+                    [
+                        "tkr-riksdagens-forfattningssamling-rfs",
+                        "Bicameral riksdag: The constitution of the Riksdag"
+                    ],
+                    [
+                        "tkr-utredningar-kombet-sou",
+                        "Tvåkammarriksdagen: Utredningar, EU-förslag, betänkande, statens offentliga utredningar"
+                    ],
+                    [
+                        "tkr-utredningar-kombet-sou",
+                        "Bicameral riksdag: Government official investigations"
+                    ]
+                ]
+            ]
+        },
+        {
+            "k2": [
+                "Riksdagens öppna data",
+                {
+                    "swe": "Data från <a href=\"https://data.riksdagen.se/data/dokument/\" target=\"_blank\">data.riksdagen.se/data/dokument/</a> insamlat 2022.",
+                    "eng": "The data was collected from <a href=\"data.riksdagen.se/data/dokument/\"target=\"_blank\">data.riksdagen.se/data/dokument/</a> in 2022 and is subject to updates."
+                },
+                [
+                    [
+                        "rd-bet",
+                        "Riksdagens öppna data: Betänkande"
+                    ],
+                    [
+                        "rd-ds",
+                        "Riksdagens öppna data: Departementsserien"
+                    ],
+                    [
+                        "rd-eun",
+                        "Riksdagens öppna data: EUN"
+                    ],
+                    [
+                        "rd-flista",
+                        "Riksdagens öppna data: Föredragningslista"
+                    ],
+                    [
+                        "rd-fpm",
+                        "Riksdagens öppna data: Faktapromemoria"
+                    ],
+                    [
+                        "rd-frsrdg",
+                        "Riksdagens öppna data: Framställning/redogörelse"
+                    ],
+                    [
+                        "rd-ip",
+                        "Riksdagens öppna data: Interpellation"
+                    ],
+                    [
+                        "rd-kammakt",
+                        "Riksdagens öppna data: Kammaraktiviteter"
+                    ],
+                    [
+                        "rd-kom",
+                        "Riksdagens öppna data: KOM"
+                    ],
+                    [
+                        "rd-mot",
+                        "Riksdagens öppna data: Motion"
+                    ],
+                    [
+                        "rd-ovr",
+                        "Riksdagens öppna data: Övrigt"
+                    ],
+                    [
+                        "rd-prop",
+                        "Riksdagens öppna data: Proposition"
+                    ],
+                    [
+                        "rd-prot",
+                        "Riksdagens öppna data: Protokoll"
+                    ],
+                    [
+                        "rd-rskr",
+                        "Riksdagens öppna data: Riksdagsskrivelse"
+                    ],
+                    [
+                        "rd-samtr",
+                        "Riksdagens öppna data: Sammanträden"
+                    ],
+                    [
+                        "rd-skfr",
+                        "Riksdagens öppna data: Skriftliga frågor"
+                    ],
+                    [
+                        "rd-sou",
+                        "Riksdagens öppna data: Statens offentliga utredningar"
+                    ],
+                    [
+                        "rd-tlista",
+                        "Riksdagens öppna data: Talarlista"
+                    ],
+                    [
+                        "rd-utr",
+                        "Riksdagens öppna data: Utredningar"
+                    ],
+                    [
+                        "rd-utsk",
+                        "Riksdagens öppna data: Utskottsdokument"
+                    ],
+                    [
+                        "rd-yttr",
+                        "Riksdagens öppna data: Yttrande"
+                    ],
+                    [
+                        "sfs",
+                        "Svensk författningssamling"
+                    ],
+                    [
+                        "sfs",
+                        "Swedish Code of Statutes"
+                    ]
+                ]
+            ]
+        }
+    ],
+    "l2": [
+        "L2-Korp",
+        "No description",
+        [
+            [
+                "coctaill-ae",
+                "COCTAILL activities & examples"
+            ],
+            [
+                "coctaill-lt",
+                "COCTAILL lesson text"
+            ],
+            [
+                "coctaill",
+                "COCTAILL"
+            ],
+            [
+                "spinv1",
+                "SpIn v1"
+            ],
+            [
+                "sw1203v1",
+                "SW1203 v1"
+            ],
+            [
+                "swellv1-original",
+                "SweLL v1 original"
+            ],
+            [
+                "swellv1-target",
+                "SweLL v1 target"
+            ],
+            [
+                "tisusv1",
+                "TISUS v1"
+            ]
+        ]
+    ],
+    "magazines": [
+        "Tidskrifter",
+        "No description",
+        [
+            [
+                "fof",
+                "Forskning & Framsteg"
+            ],
+            [
+                "podiet",
+                "Podiet"
+            ],
+            [
+                "podiet",
+                "Podiet"
+            ]
+        ]
+    ],
+    "medical": [
+        "Medicinska texter",
+        "No description",
+        [
+            [
+                "diabetolog",
+                "DiabetologNytt (1996–1999)"
+            ],
+            [
+                "smittskydd",
+                "Smittskydd"
+            ]
+        ],
+        {
+            "k2": [
+                "Läkartidningen",
+                "No description",
+                [
+                    [
+                        "lt1996",
+                        "Läkartidningen 1996"
+                    ],
+                    [
+                        "lt1996",
+                        "Läkartidningen medical journal 1996"
+                    ],
+                    [
+                        "lt1997",
+                        "Läkartidningen 1997"
+                    ],
+                    [
+                        "lt1997",
+                        "Läkartidningen medical journal 1997"
+                    ],
+                    [
+                        "lt1998",
+                        "Läkartidningen 1998"
+                    ],
+                    [
+                        "lt1998",
+                        "Läkartidningen medical journal 1998"
+                    ],
+                    [
+                        "lt1999",
+                        "Läkartidningen 1999"
+                    ],
+                    [
+                        "lt1999",
+                        "Läkartidningen medical journal 1999"
+                    ],
+                    [
+                        "lt2000",
+                        "Läkartidningen 2000"
+                    ],
+                    [
+                        "lt2000",
+                        "Läkartidningen medical journal 2000"
+                    ],
+                    [
+                        "lt2001",
+                        "Läkartidningen 2001"
+                    ],
+                    [
+                        "lt2001",
+                        "Läkartidningen medical journal 2001"
+                    ],
+                    [
+                        "lt2002",
+                        "Läkartidningen 2002"
+                    ],
+                    [
+                        "lt2002",
+                        "Läkartidningen medical journal 2002"
+                    ],
+                    [
+                        "lt2003",
+                        "Läkartidningen 2003"
+                    ],
+                    [
+                        "lt2003",
+                        "Läkartidningen medical journal 2003"
+                    ],
+                    [
+                        "lt2004",
+                        "Läkartidningen 2004"
+                    ],
+                    [
+                        "lt2004",
+                        "Läkartidningen medical journal 2004"
+                    ],
+                    [
+                        "lt2005",
+                        "Läkartidningen 2005"
+                    ],
+                    [
+                        "lt2005",
+                        "Läkartidningen medical journal 2005"
+                    ],
+                    [
+                        "lt2006",
+                        "Läkartidningen 2006"
+                    ],
+                    [
+                        "lt2006",
+                        "Läkartidningen medical journal 2006"
+                    ]
+                ]
+            ]
+        }
+    ],
+    "newstexts": [
+        "Nyhetstexter",
+        "No description",
+        [
+            [
+                "attasidor",
+                "8 Sidor"
+            ],
+            [
+                "attasidor",
+                "8 Sidor"
+            ],
+            [
+                "da",
+                "Dagens Arena"
+            ],
+            [
+                "da",
+                "Dagens Arena"
+            ],
+            [
+                "dn1987",
+                "DN 1987"
+            ],
+            [
+                "dn1987",
+                "DN 1987"
+            ],
+            [
+                "ordat",
+                "ORDAT"
+            ],
+            [
+                "ordat",
+                "ORDAT"
+            ]
+        ],
+        {
+            "k2": [
+                "Göteborgs-Posten",
+                "No description",
+                [
+                    [
+                        "gp1994",
+                        "GP 1994"
+                    ],
+                    [
+                        "gp2001",
+                        "GP 2001"
+                    ],
+                    [
+                        "gp2002",
+                        "GP 2002"
+                    ],
+                    [
+                        "gp2003",
+                        "GP 2003"
+                    ],
+                    [
+                        "gp2004",
+                        "GP 2004"
+                    ],
+                    [
+                        "gp2005",
+                        "GP 2005"
+                    ],
+                    [
+                        "gp2006",
+                        "GP 2006"
+                    ],
+                    [
+                        "gp2007",
+                        "GP 2007"
+                    ],
+                    [
+                        "gp2008",
+                        "GP 2008"
+                    ],
+                    [
+                        "gp2009",
+                        "GP 2009"
+                    ],
+                    [
+                        "gp2010",
+                        "GP 2010"
+                    ],
+                    [
+                        "gp2011",
+                        "GP 2011"
+                    ],
+                    [
+                        "gp2012",
+                        "GP 2012"
+                    ],
+                    [
+                        "gp2013",
+                        "GP 2013"
+                    ],
+                    [
+                        "gp2d",
+                        "GP – Två dagar"
+                    ]
+                ]
+            ]
+        },
+        {
+            "k2": [
+                "Press",
+                "No description",
+                [
+                    [
+                        "press65",
+                        "Press 65"
+                    ],
+                    [
+                        "press76",
+                        "Press 76"
+                    ],
+                    [
+                        "press95",
+                        "Press 95"
+                    ],
+                    [
+                        "press96",
+                        "Press 96"
+                    ],
+                    [
+                        "press97",
+                        "Press 97"
+                    ],
+                    [
+                        "press98",
+                        "Press 98"
+                    ]
+                ]
+            ]
+        },
+        {
+            "k2": [
+                "Webbnyheter",
+                "No description",
+                [
+                    [
+                        "webbnyheter2001",
+                        "Webbnyheter 2001"
+                    ],
+                    [
+                        "webbnyheter2001",
+                        "Web News 2001"
+                    ],
+                    [
+                        "webbnyheter2002",
+                        "Webbnyheter 2002"
+                    ],
+                    [
+                        "webbnyheter2002",
+                        "Web News 2002"
+                    ],
+                    [
+                        "webbnyheter2003",
+                        "Webbnyheter 2003"
+                    ],
+                    [
+                        "webbnyheter2003",
+                        "Web News 2003"
+                    ],
+                    [
+                        "webbnyheter2004",
+                        "Webbnyheter 2004"
+                    ],
+                    [
+                        "webbnyheter2004",
+                        "Web News 2004"
+                    ],
+                    [
+                        "webbnyheter2005",
+                        "Webbnyheter 2005"
+                    ],
+                    [
+                        "webbnyheter2005",
+                        "Web News 2005"
+                    ],
+                    [
+                        "webbnyheter2006",
+                        "Webbnyheter 2006"
+                    ],
+                    [
+                        "webbnyheter2006",
+                        "Web News 2006"
+                    ],
+                    [
+                        "webbnyheter2007",
+                        "Webbnyheter 2007"
+                    ],
+                    [
+                        "webbnyheter2007",
+                        "Web News 2007"
+                    ],
+                    [
+                        "webbnyheter2008",
+                        "Webbnyheter 2008"
+                    ],
+                    [
+                        "webbnyheter2008",
+                        "Web News 2008"
+                    ],
+                    [
+                        "webbnyheter2009",
+                        "Webbnyheter 2009"
+                    ],
+                    [
+                        "webbnyheter2009",
+                        "Web News 2009"
+                    ],
+                    [
+                        "webbnyheter2010",
+                        "Webbnyheter 2010"
+                    ],
+                    [
+                        "webbnyheter2010",
+                        "Web News 2010"
+                    ],
+                    [
+                        "webbnyheter2011",
+                        "Webbnyheter 2011"
+                    ],
+                    [
+                        "webbnyheter2011",
+                        "Web News 2011"
+                    ],
+                    [
+                        "webbnyheter2012",
+                        "Webbnyheter 2012"
+                    ],
+                    [
+                        "webbnyheter2012",
+                        "Web News 2012"
+                    ],
+                    [
+                        "webbnyheter2013",
+                        "Webbnyheter 2013"
+                    ],
+                    [
+                        "webbnyheter2013",
+                        "Web News 2013"
+                    ]
+                ]
+            ]
+        },
+        {
+            "k2": [
+                "SVT nyheter",
+                "No description",
+                [
+                    [
+                        "svt-2004",
+                        "SVT news 2004"
+                    ],
+                    [
+                        "svt-2004",
+                        "SVT nyheter 2004"
+                    ],
+                    [
+                        "svt-2005",
+                        "SVT news 2005"
+                    ],
+                    [
+                        "svt-2005",
+                        "SVT nyheter 2005"
+                    ],
+                    [
+                        "svt-2006",
+                        "SVT news 2006"
+                    ],
+                    [
+                        "svt-2006",
+                        "SVT nyheter 2006"
+                    ],
+                    [
+                        "svt-2007",
+                        "SVT news 2007"
+                    ],
+                    [
+                        "svt-2007",
+                        "SVT nyheter 2007"
+                    ],
+                    [
+                        "svt-2008",
+                        "SVT news 2008"
+                    ],
+                    [
+                        "svt-2008",
+                        "SVT nyheter 2008"
+                    ],
+                    [
+                        "svt-2009",
+                        "SVT news 2009"
+                    ],
+                    [
+                        "svt-2009",
+                        "SVT nyheter 2009"
+                    ],
+                    [
+                        "svt-2010",
+                        "SVT news 2010"
+                    ],
+                    [
+                        "svt-2010",
+                        "SVT nyheter 2010"
+                    ],
+                    [
+                        "svt-2011",
+                        "SVT news 2011"
+                    ],
+                    [
+                        "svt-2011",
+                        "SVT nyheter 2011"
+                    ],
+                    [
+                        "svt-2012",
+                        "SVT news 2012"
+                    ],
+                    [
+                        "svt-2012",
+                        "SVT nyheter 2012"
+                    ],
+                    [
+                        "svt-2013",
+                        "SVT news 2013"
+                    ],
+                    [
+                        "svt-2013",
+                        "SVT nyheter 2013"
+                    ],
+                    [
+                        "svt-2014",
+                        "SVT news 2014"
+                    ],
+                    [
+                        "svt-2014",
+                        "SVT nyheter 2014"
+                    ],
+                    [
+                        "svt-2015",
+                        "SVT news 2015"
+                    ],
+                    [
+                        "svt-2015",
+                        "SVT nyheter 2015"
+                    ],
+                    [
+                        "svt-2016",
+                        "SVT news 2016"
+                    ],
+                    [
+                        "svt-2016",
+                        "SVT nyheter 2016"
+                    ],
+                    [
+                        "svt-2017",
+                        "SVT news 2017"
+                    ],
+                    [
+                        "svt-2017",
+                        "SVT nyheter 2017"
+                    ],
+                    [
+                        "svt-2018",
+                        "SVT news 2018"
+                    ],
+                    [
+                        "svt-2018",
+                        "SVT nyheter 2018"
+                    ],
+                    [
+                        "svt-2019",
+                        "SVT news 2019"
+                    ],
+                    [
+                        "svt-2019",
+                        "SVT nyheter 2019"
+                    ],
+                    [
+                        "svt-2020",
+                        "SVT news 2020"
+                    ],
+                    [
+                        "svt-2020",
+                        "SVT nyheter 2020"
+                    ],
+                    [
+                        "svt-2021",
+                        "SVT news 2021"
+                    ],
+                    [
+                        "svt-2021",
+                        "SVT nyheter 2021"
+                    ],
+                    [
+                        "svt-2022",
+                        "SVT nyheter 2022"
+                    ],
+                    [
+                        "svt-2022",
+                        "SVT news 2022"
+                    ],
+                    [
+                        "svt-2023",
+                        "SVT nyheter 2023"
+                    ],
+                    [
+                        "svt-2023",
+                        "SVT news 2023"
+                    ],
+                    [
+                        "svt-nodate",
+                        "SVT news unknown date"
+                    ],
+                    [
+                        "svt-nodate",
+                        "SVT nyheter okänt datum"
+                    ]
+                ]
+            ]
+        }
+    ],
+    "novels": [
+        "Skönlitteratur",
+        "No description",
+        [
+            [
+                "aspacsv",
+                "ASPAC: svenska"
+            ],
+            [
+                "aspacsv",
+                "ASPAC: Swedish"
+            ],
+            [
+                "rom99",
+                "Norstedtsromaner (1999)"
+            ],
+            [
+                "rom99",
+                "Norstedts novels (1999)"
+            ],
+            [
+                "romg",
+                "Äldre svenska romaner"
+            ],
+            [
+                "romg",
+                "Older Swedish novels"
+            ],
+            [
+                "romi",
+                "Bonniersromaner I (1976–77)"
+            ],
+            [
+                "romi",
+                "Bonnier novels I (1976–77)"
+            ],
+            [
+                "romii",
+                "Bonniersromaner II (1980–81)"
+            ],
+            [
+                "romii",
+                "Bonniers novels II (1980–81)"
+            ],
+            [
+                "saltnld-sv",
+                "SALT svenska-nederländska"
+            ],
+            [
+                "storsuc",
+                "SUC-romaner (StorSUC)"
+            ],
+            [
+                "storsuc",
+                "SUC Novels (StorSUC)"
+            ]
+        ]
+    ],
+    "protected": [
+        "Skyddade korpusar",
+        "No description",
+        [
+            [
+                "ansokningar",
+                "Ansökningar"
+            ],
+            [
+                "ansokningar",
+                "Applications"
+            ],
+            [
+                "asu",
+                "ASU"
+            ],
+            [
+                "asu",
+                "ASU"
+            ],
+            [
+                "forhor",
+                "Förhör"
+            ],
+            [
+                "forhor",
+                "Interrogations"
+            ],
+            [
+                "gdc",
+                "Gothenburg Dialogue Corpus (GDC)"
+            ],
+            [
+                "ivip",
+                "IVIP"
+            ],
+            [
+                "ivip",
+                "IVIP"
+            ],
+            [
+                "lawline",
+                "Lawline"
+            ],
+            [
+                "mepac-i",
+                "MEPAC intervjuer"
+            ],
+            [
+                "mepac",
+                "MEPAC bloggar"
+            ],
+            [
+                "platsannonser",
+                "Platsannonser"
+            ],
+            [
+                "soexempel",
+                "Språkprov SO 2009"
+            ],
+            [
+                "spin-source",
+                "SpIn"
+            ],
+            [
+                "sprakfragor",
+                "Besvarade språkfrågor"
+            ],
+            [
+                "sprakfragor",
+                "Questions and answers about the Swedish language"
+            ],
+            [
+                "sw1203",
+                "SW1203-uppsatser"
+            ],
+            [
+                "sw1203",
+                "SW1203-essays"
+            ],
+            [
+                "sw1203v2",
+                "SW1203-uppsatser version 2"
+            ],
+            [
+                "swell-original",
+                "SweLL original"
+            ],
+            [
+                "swell-target",
+                "SweLL target"
+            ],
+            [
+                "tisus",
+                "TISUS-texter"
+            ],
+            [
+                "tisus",
+                "TISUS texts"
+            ],
+            [
+                "tisusv2",
+                "TISUS-texter v2"
+            ]
+        ]
+    ],
+    "socialmedia": [
+        "Sociala medier",
+        "No description",
+        [
+            [
+                "sic2",
+                "SIC2 - Stockholm Internet Corpus"
+            ]
+        ],
+        {
+            "k2": [
+                "Bloggmix",
+                {
+                    "swe": "Material från ett urval av svenska bloggar. Uppdateras regelbundet.",
+                    "eng": "Texts from a selection of Swedish blogs. Is continually updated."
+                },
+                [
+                    [
+                        "bloggmix1998",
+                        "Bloggmix 1998"
+                    ],
+                    [
+                        "bloggmix1998",
+                        "Blog mix 1998"
+                    ],
+                    [
+                        "bloggmix1999",
+                        "Bloggmix 1999"
+                    ],
+                    [
+                        "bloggmix1999",
+                        "Blog mix 1999"
+                    ],
+                    [
+                        "bloggmix2000",
+                        "Bloggmix 2000"
+                    ],
+                    [
+                        "bloggmix2000",
+                        "Blog mix 2000"
+                    ],
+                    [
+                        "bloggmix2001",
+                        "Bloggmix 2001"
+                    ],
+                    [
+                        "bloggmix2001",
+                        "Blog mix 2001"
+                    ],
+                    [
+                        "bloggmix2002",
+                        "Bloggmix 2002"
+                    ],
+                    [
+                        "bloggmix2002",
+                        "Blog mix 2002"
+                    ],
+                    [
+                        "bloggmix2003",
+                        "Bloggmix 2003"
+                    ],
+                    [
+                        "bloggmix2003",
+                        "Blog mix 2003"
+                    ],
+                    [
+                        "bloggmix2004",
+                        "Bloggmix 2004"
+                    ],
+                    [
+                        "bloggmix2004",
+                        "Blog mix 2004"
+                    ],
+                    [
+                        "bloggmix2005",
+                        "Bloggmix 2005"
+                    ],
+                    [
+                        "bloggmix2005",
+                        "Blog mix 2005"
+                    ],
+                    [
+                        "bloggmix2006",
+                        "Bloggmix 2006"
+                    ],
+                    [
+                        "bloggmix2006",
+                        "Blog mix 2006"
+                    ],
+                    [
+                        "bloggmix2007",
+                        "Bloggmix 2007"
+                    ],
+                    [
+                        "bloggmix2007",
+                        "Blog mix 2007"
+                    ],
+                    [
+                        "bloggmix2008",
+                        "Bloggmix 2008"
+                    ],
+                    [
+                        "bloggmix2008",
+                        "Blog mix 2008"
+                    ],
+                    [
+                        "bloggmix2009",
+                        "Bloggmix 2009"
+                    ],
+                    [
+                        "bloggmix2009",
+                        "Blog mix 2009"
+                    ],
+                    [
+                        "bloggmix2010",
+                        "Bloggmix 2010"
+                    ],
+                    [
+                        "bloggmix2010",
+                        "Blog mix 2010"
+                    ],
+                    [
+                        "bloggmix2011",
+                        "Bloggmix 2011"
+                    ],
+                    [
+                        "bloggmix2011",
+                        "Blog mix 2011"
+                    ],
+                    [
+                        "bloggmix2012",
+                        "Bloggmix 2012"
+                    ],
+                    [
+                        "bloggmix2012",
+                        "Blog mix 2012"
+                    ],
+                    [
+                        "bloggmix2013",
+                        "Bloggmix 2013"
+                    ],
+                    [
+                        "bloggmix2013",
+                        "Blog mix 2013"
+                    ],
+                    [
+                        "bloggmix2014",
+                        "Bloggmix 2014"
+                    ],
+                    [
+                        "bloggmix2014",
+                        "Blog mix 2014"
+                    ],
+                    [
+                        "bloggmix2015",
+                        "Bloggmix 2015"
+                    ],
+                    [
+                        "bloggmix2016",
+                        "Bloggmix 2016"
+                    ],
+                    [
+                        "bloggmix2017",
+                        "Bloggmix 2017"
+                    ],
+                    [
+                        "bloggmixodat",
+                        "Bloggmix okänt datum"
+                    ],
+                    [
+                        "bloggmixodat",
+                        "Blog mix unknown date"
+                    ]
+                ]
+            ]
+        },
+        {
+            "k2": [
+                "Diskussionsforum",
+                "No description",
+                []
+            ]
+        },
+        {
+            "k2": [
+                "Twitter",
+                "No description",
+                [
+                    [
+                        "twitter-2015",
+                        "Svensk Twitter 2015"
+                    ],
+                    [
+                        "twitter-2015",
+                        "Swedish Twitter 2015"
+                    ],
+                    [
+                        "twitter-2016",
+                        "Svensk Twitter 2016"
+                    ],
+                    [
+                        "twitter-2016",
+                        "Swedish Twitter 2016"
+                    ],
+                    [
+                        "twitter-2017",
+                        "Svensk Twitter 2017"
+                    ],
+                    [
+                        "twitter-2017",
+                        "Swedish Twitter 2017"
+                    ],
+                    [
+                        "twitter-pldebatt-130612",
+                        "Twitter: Partiledardebatt juni 2013"
+                    ],
+                    [
+                        "twitter-pldebatt-130612",
+                        "Twitter: Party Leader Debate June 2013"
+                    ],
+                    [
+                        "twitter-pldebatt-131006",
+                        "Twitter: Partiledardebatt oktober 2013"
+                    ],
+                    [
+                        "twitter-pldebatt-131006",
+                        "Twitter: Party Leader Debate October 2013"
+                    ],
+                    [
+                        "twitter-pldebatt-140504",
+                        "Twitter: Partiledardebatt maj 2014"
+                    ],
+                    [
+                        "twitter-pldebatt-140504",
+                        "Twitter: Party Leader Debate May 2014"
+                    ],
+                    [
+                        "twitter",
+                        "Twittermix"
+                    ],
+                    [
+                        "twitter",
+                        "Twitter Mix"
+                    ]
+                ]
+            ]
+        }
+    ],
+    "strindberg": [
+        "August Strindberg",
+        "No description",
+        [
+            [
+                "strindbergbrev",
+                "August Strindbergs brev"
+            ],
+            [
+                "strindbergbrev",
+                "August Strindberg's letters"
+            ],
+            [
+                "strindbergromaner",
+                "August Strindbergs romaner"
+            ],
+            [
+                "strindbergromaner",
+                "August Strindberg's novels"
+            ]
+        ]
+    ],
+    "sweac": [
+        "Akademiska texter",
+        "No description",
+        [
+            [
+                "sweachum",
+                "Akademiska texter: Humaniora"
+            ],
+            [
+                "sweachum",
+                "Academic texts: Humanities"
+            ],
+            [
+                "sweacsam",
+                "Akademiska texter: Samhällsvetenskap"
+            ],
+            [
+                "sweacsam",
+                "Academic texts: Social science"
+            ]
+        ]
+    ]
+}
