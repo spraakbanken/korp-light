@@ -1,8 +1,15 @@
 // gets the "master corpus" which we use for corpus dropdown
 // will have to refactor later kupo
 
-import fs from 'fs';
 
+// getMasterCorpus calls ?corpus_config from korp webapi 
+// it returns an ARRAY with 4 elements 
+// [NAME, DESCRIPTION, CORPORA, SUBCORPORA]
+// CORPORA in turn is an ARRAY of [NAME, DESCRIPTION for EACH CORPUS]]
+// SUBCORPORA contains again NAME, DESCRIPTION AND CORPORA
+// Check testdata.json to see how the response looks like.
+
+import fs from 'fs';
 
 async function handleCorpusCategories(data) {
 
@@ -54,7 +61,7 @@ async function handleCorpusCategories(data) {
   return masterCorpus
 }
 
-async function getCorpusResponse() {
+async function getMasterCorpus() {
 
   fetch('https://ws.spraakbanken.gu.se/ws/korp/v8/corpus_config')
     .then(resp => resp.json())
@@ -66,10 +73,10 @@ async function getCorpusResponse() {
           fs.writeFile('test.json', f, function(err) {
             if (err) {
               console.log(err)
-            }
+           }
           })
         })
     .catch(err => console.log(err))
 })}
 
-getCorpusResponse();
+//getMasterCorpus();
