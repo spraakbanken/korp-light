@@ -17,8 +17,11 @@ export default function SettingsCard(props) {
     };
 
     useEffect(() => {
-        console.log("CHANGED SETTINGS");
-        console.log(settings)
+        // We have to move this out somewhere else, maybe App?
+        // Move when we store settings in 
+        //  localStorage.setItem('settings', settings)
+        document.querySelector('body').
+            setAttribute('theme', settings.theme)
     }, [settings]);
 
     return (
@@ -95,7 +98,7 @@ export default function SettingsCard(props) {
                                 onClick={() => 
                                     updateSettings({
                                         ...settings,
-                                        theme: 'light'
+                                        theme: 'dark'
                                     })
                                 }
                                 active={settings.theme === "dark" ? "true" : "false"}

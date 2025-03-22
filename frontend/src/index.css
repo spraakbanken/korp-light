@@ -19,3 +19,13 @@ body, html {
     margin: 0;
     padding: 0;
 }
+
+[theme="dark"]{
+    /* Add more colour definitions and 
+    check that all .css files in the project use the variables */
+    --bg-color: #5c5454;
+}
+
+[theme="light"] {
+  --bg-color: #ededed;
+}
