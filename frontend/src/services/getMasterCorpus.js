@@ -17,7 +17,7 @@ async function handleCorpusCategories(data) {
           transformedList[i] = data.corpora[i].title
         } else {
           let corpusList = []
-          for (const [k, v] of Object.entries(data.corpora[i].title)) {
+          for (const v of Object.values(data.corpora[i].title)) {
             console.log('Corpus title: ', v)
             corpusList.push(v)
           }
@@ -30,21 +30,24 @@ async function handleCorpusCategories(data) {
   }
     
   if (data.folders) {
-    for (const [idx, [k, v]] of Object.entries(Object.entries(data.folders))) {
+    for (const [_, [k, v]] of Object.entries(Object.entries(data.folders))) {
       //console.log(v)
       masterCorpus[k] = [
         v.title.swe || v.title || undefined , 
         v.description || 'No description',
         await getName(v.corpora) || undefined]
-      if ('subfolders' in v) {        
+      
+      
+      
+        if ('subfolders' in v) { 
+        let temp = {}       
         for (const [k2, v2] of Object.entries(v.subfolders)) {
-          let temp = {}
           temp[k2] = [
              v2.title.swe || v2.title || undefined,
              v2.description || 'No description', 
              await getName(v2.corpora) || undefined]
-          masterCorpus[k] = temp
-        }
+            }
+            masterCorpus[k].push({subcorpora: temp})
       }
     }
   }
@@ -59,15 +62,14 @@ async function getCorpusResponse() {
       handleCorpusCategories(data).then(
         e => {
           let f = JSON.stringify(e, null, 4)
-          //console.log(f)
+          console.log(f)
           fs.writeFile('test.json', f, function(err) {
             if (err) {
               console.log(err)
             }
           })
-        });
-    })
-    .catch(err => {console.log(err)})
-}
+        })
+    .catch(err => console.log(err))
+})}
 
 getCorpusResponse();
