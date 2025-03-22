@@ -5,7 +5,7 @@ import ResultsPage from "../pages/ResultsPage/ResultsPage.jsx";
 import HelpPage from "../pages/HelpPage/HelpPage.jsx";
 import SettingsPage from "../pages/SettingsPage/SettingsPage.jsx";
 
-import { SettingsProvider } from "../services/settingsContext.jsx";
+import { SettingsProvider } from "../services/SettingsProvider.jsx";
 
 //Bootstrap Components
 

@@ -1,0 +1,27 @@
+// Default context values
+export function initialSettings() { 
+    return {
+        "resultsPerPage": 20,
+        "sampleSize": 1,
+        "contextSize": 10,
+        "theme": "dark",
+        "selectedView": "wide"
+    }
+}
+
+export function setLocalSettings(val) {
+    try {
+        window.localStorage.setItem('settings', JSON.stringify(val));
+    } catch (e) {
+        console.log('Error localStorage settings: ', e);
+    }
+}
+
+export function getLocalSettings() {
+    try {
+        const val = window.localStorage.getItem('settings')
+        return val ? JSON.parse(val) : () => initialSettings();
+    } catch (e) {
+        console.log('Error localStorage settings: ', e);
+    }
+}

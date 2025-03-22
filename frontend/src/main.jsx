@@ -8,8 +8,6 @@ import { StrictMode } from 'react';
 
 import { BrowserRouter as Router } from 'react-router-dom'; // Import Router
 
-
-
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')).render(

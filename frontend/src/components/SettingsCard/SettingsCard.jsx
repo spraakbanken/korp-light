@@ -2,10 +2,8 @@ import { Form, Button } from "react-bootstrap";
 import { useContext, useEffect, useState } from "react";
 import { Moon, Sun } from "react-bootstrap-icons";
 import { Modal } from "react-bootstrap";
-import SettingsContext from "../../services/settingsContext.jsx";
+import SettingsContext from "../../services/SettingsContext.jsx";
 import "./SettingsCard.css";
-
-// import SettingsContext from "../../services/settingsContext.js";
 
 export default function SettingsCard(props) {
     const {settings, updateSettings} = useContext(SettingsContext);

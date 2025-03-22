@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { getCorpusInfo, getCorpusQuery } from "../../services/api.js";
 import { useContext, useEffect, useState } from "react";
-import SettingsContext from "../../services/settingsContext.jsx";
+import SettingsContext from "../../services/SettingsContext.jsx";
 import SearchBar from "../../components/SearchBar/SearchBar.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
 import ProgressBar from "../../components/ProgressBar/ProgressBar.jsx"; 
