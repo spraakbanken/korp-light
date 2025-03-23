@@ -1,12 +1,16 @@
 import { Accordion } from "react-bootstrap";
 import testdata from '../../services/testdata.json'
 
-function populateCorpus(e) {
+import './CorpusSelector.css'
+
+function populateCorpus(e, onClickHandler) {
     let title = null;
     let desc = null;
     let corpora = [];
     let subcorporaList = [];
       
+    let testDict = []
+
     title = e[0]
     desc = e[1].swe || e[1] || ''
 
@@ -15,32 +19,37 @@ function populateCorpus(e) {
         if (arr.length === 1) {
             corpora.push(arr.title)
         } else {
-            Object.values(e[2]).forEach(corpus => {
-            if (Array.isArray(corpus) ) {
-                //console.log('CORPUS 1: ', corpus[0]) 
-                corpora.push(corpus[0])   
+            Object.entries(e[2]).forEach((entry) => {
+                const [key, value] = entry;
+
+                testDict[key] = value
+                //console.log('CORPUS ID ', key, 'NAME ', value)
+            if (Array.isArray(value) ) {
+                corpora.push(value[0])   
             } else {
-                //console.log('CORPUS 2: ', corpus)
-                corpora.push(corpus)
+                corpora.push(value)
             }
             })
         }
     }
     
     if (e[3] !== undefined) {
-        
         Object.values(e[3]).forEach((el) => {
             Object.values(el).forEach((el2) => {
                 subcorporaList.push(populateCorpus(el2));
             })
         });
     }
+
     return (
         <Accordion.Item eventKey={Math.random()}>
                 <Accordion.Header>{title}</Accordion.Header>
-                {desc ? <Accordion.Body>{desc}</Accordion.Body> : null}
-                {corpora.map(corpus => 
-                    <Accordion.Body key={Math.random()}>
+                {desc ? <Accordion.Body className="corpus__desc">{desc}</Accordion.Body> : null}
+                {corpora.map((corpus) => 
+                    <Accordion.Body 
+                    onClick={(e) => onClickHandler(e, 'hello!')} 
+                    className="corpus__labels" 
+                    key={Math.random()}>
                         {corpus}
                     </Accordion.Body>)}
                 {subcorporaList.map(elem => 
@@ -51,14 +60,19 @@ function populateCorpus(e) {
                     </Accordion.Body>)}
         </Accordion.Item>
     );
-  }
+}
 
 export default function CorpusSelector() {
+
+    function onClickHandler(e, corpusData) {
+        console.log('CLICKED', corpusData)
+    }
+
     return (
         <>
             <Accordion>
                 {Object.values(testdata).map((k) => {
-                    return populateCorpus(k)
+                    return populateCorpus(k, onClickHandler)
                 })}
             </Accordion>
         </>

@@ -1,0 +1,15 @@
+.corpus__desc {
+    background-color: lightblue;
+    color: white;
+}
+
+.corpus__labels {
+    color: red;
+    background-color: #ededed;
+    border: 1px dashed gray;
+}
+
+.corpus__labels:hover {
+    background-color: #fcefef;
+    cursor: pointer;
+}
