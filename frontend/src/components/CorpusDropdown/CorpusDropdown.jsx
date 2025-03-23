@@ -2,7 +2,7 @@ import "./CorpusDropdown.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import CircleButton from "../CircleButton/CircleButton";
 import { useEffect, useState } from "react";
-import getMainLevels from "../../services/corpusSelectorExample";
+import { hello} from "../../services/api";
 
 export default function CorpusDropDown({ colour, buttonLogo,  }) {
     const [selectedItems, setSelectedItems] = useState(new Set());
