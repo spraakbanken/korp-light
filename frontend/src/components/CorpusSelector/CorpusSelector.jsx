@@ -14,17 +14,19 @@ function populateCorpus(e) {
     title = e[0]
     desc = e[1].swe || e[1]
 
-    if (e[2] !== undefined) {    
-        if (e[2].length === 1) {
-            console.log('SINGULAR CORPUS IS: ', e[2])
-            corpora.push(e[2])  
+    if (e[2] !== undefined) {
+        let arr = Object.keys(e[2])   
+        console.log('TEST SINGULAR CORPUS IS: ', arr)
+        console.log('TEST WITH CHILDNODES: ', arr.length)
+        if (arr.length === 1) {
+            corpora.push(arr.title)
         } else {
             Object.values(e[2]).forEach(corpus => {
             if (Array.isArray(corpus) ) {
-                console.log('CORPUS: ', corpus[0]) 
+                console.log('CORPUS 1: ', corpus[0]) 
                 corpora.push(corpus[0])   
             } else {
-                console.log('CORPUS: ', corpus)
+                console.log('CORPUS 2: ', corpus)
                 corpora.push(corpus)
             }
             })
