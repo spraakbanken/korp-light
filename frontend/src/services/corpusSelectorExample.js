@@ -2,9 +2,9 @@
 // Use in corpusDropdown
 
 // The data variable contains test.json
-import data  from './test.json'
+//import data  from './test.json'
 
-function getMainLevels(inData) {
+export function getMainLevels(inData) {
   Object.values(inData).forEach(e => {
     console.log('TITLE: ', e[0])
     console.log('DESCRIPTION', e[1].swe || e[1])

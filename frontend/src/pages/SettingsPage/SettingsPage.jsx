@@ -1,11 +1,11 @@
+import CorpusSelector from "../../components/CorpusSelector/CorpusSelector";
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
-import SettingsCard from "../../components/SettingsCard/SettingsCard";
 
 export default function SettingsPage() {
     return (
         <div>
             <NavigationBar />
-            <SettingsCard />
+            <CorpusSelector />
         </div>
     );
 }
