@@ -17,11 +17,10 @@ export default function CircleButton({buttonImage, buttonColour, buttonOnClick})
     // };
 
     function handleClick() {
-        setSelected(!selected);
-        if (selected) {
-            buttonOnClick();
-        }
+        setSelected((prev) => !prev); // Toggle state
+        buttonOnClick(); // Call the function immediately
     }
+    
 
     // //handle clicks outside of element!
     // useEffect( () => {

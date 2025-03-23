@@ -2,7 +2,7 @@ let queryParams = {
     "corpus" : String(),
     "cqp" : String(),
     "start": 0,
-    "end": 10,
+    "end": 100,
     "default_context": String(),
     "context": [String()],
     "show": [String()],

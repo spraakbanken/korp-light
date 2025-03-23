@@ -6,16 +6,17 @@ import NavigationBar from "../../components/NavigationBar/NavigationBar.jsx";
 import { useQuery } from "@tanstack/react-query";
 
 import { getCorpusInfo, getCorpusQuery } from "../../services/api.js";
-import { useEffect, useState } from "react";
-
-import mockResults from './mockResults.json' with {type: 'json'};
+import { useContext, useEffect, useState } from "react";
+import SettingsContext from "../../services/SettingsContext.jsx";
 import SearchBar from "../../components/SearchBar/SearchBar.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
 import ProgressBar from "../../components/ProgressBar/ProgressBar.jsx"; 
+import "./ResultPage.css"
 
 
 export default function ResultsPage() {
 
+    const { settings, updateSettings } = useContext(SettingsContext);
     const [corpus, setCorpus] = useState("bnc-100k");
     const [corpusInput, setCorpusInput] = useState("bnc-100k");
     const [searchWordInput, setSearchWordInput] = useState('');
@@ -71,10 +72,12 @@ export default function ResultsPage() {
     }, [searchWordInput, searchQueryRefetch])
 
     
-
+    useEffect(() => {
+        console.log("Settings in Results: ", settings);
+    }, [settings])
 
     return(
-        <>
+        <div>
             <NavigationBar />
             <h1 className="mt-5">Results</h1>
             <p>Display Results on this page!</p>
@@ -121,6 +124,6 @@ export default function ResultsPage() {
                     <ResultsPanel response={queryData} />}
             </div>
             <Footer/>
-        </>
+        </div>
     );
 }

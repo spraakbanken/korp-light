@@ -2,9 +2,23 @@
     background-color: #faf9fb;
     border-bottom: 1px solid #eaeaea;
     padding: 10px;
+    width: 100%;
 }
 
-.circle__button {
+.icon-hover {
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .icon-hover:hover {
+    transform: scale(1.1); 
+  }
+  
+  .icon-hover:active {
+    transform: scale(0.95); 
+  }
+  
+
+/* .circle__button {
     background-color: #fd7e14;
     border: 1px solid gray;
     border-radius: 50%;
@@ -22,4 +36,4 @@
 .circle__button img {
     padding: 2px;
     filter: invert(100%);
-}
+} */

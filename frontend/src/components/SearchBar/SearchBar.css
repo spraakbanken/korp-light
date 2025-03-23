@@ -3,13 +3,15 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 10px; 
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .searchBarWrapper {
     position: relative;
     display: flex;
     align-items: center;
+    width: 30%
 }
 
 .searchBar {
@@ -17,7 +19,7 @@
     border: 1px solid #f0581a;
     border-radius: 30px;
     background-color: #f6f6f6;
-    width: 300px;
+    width: 100%;
 }
 
 .searchBarButton {
@@ -27,4 +29,15 @@
     border: none;
     cursor: pointer;
     color: #f0581a;
+}
+
+@media (max-width: 768px) {
+    .searchBarWrapper {
+        width: 75%; 
+    }
+
+    .searchBar {
+        font-size: 16px; 
+        padding: 12px 45px 12px 20px; 
+    }
 }

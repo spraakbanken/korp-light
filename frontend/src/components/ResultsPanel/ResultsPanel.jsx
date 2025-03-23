@@ -5,8 +5,8 @@ import ResultCard from '../ResultCard/ResultCard.jsx'
 import ErrorPage from '../../pages/ErrorPage/ErrorPage.jsx';
 
 
-const ResultsPanel = ({ response }) => {
-  
+const ResultsPanel = ({ response, settings }) => {
+
   const [hits, setHits] = useState(0);
   const [startHit, setStartHit] = useState(0);
   const [endHit, setEndHit] = useState(20);
@@ -15,11 +15,11 @@ const ResultsPanel = ({ response }) => {
   const [page, setPage] = useState(0);
   const [currentResults, setCurrentResults] = useState([]);
 
-
+  const [settingsObject, setSettingsObject] = useState({});
 
   const resultsPerPage = 20;
 
-  
+
   useEffect(() => {
     if (response) {
       if (response.error) {
@@ -50,14 +50,14 @@ const ResultsPanel = ({ response }) => {
         setStartHit(start);
         setEndHit(end);
 
-    
+
         setCurrentResults(response.kwic.slice(start, end));
 
         console.log("hits", response.hits);
         console.log("start", start);
         console.log("end", end);
         console.log("res", currentResults);
-        
+
 
       }
     } else {
@@ -65,15 +65,12 @@ const ResultsPanel = ({ response }) => {
     }
   }, [response, page]);
 
-  
 
-
-
-
-  if (error || hits === 0) {
-    return <ErrorPage />;
+  if (hits === 0) {
+    return (
+      <h2 className='no-results'>No results found</h2>
+    );
   }
-
 
   const handleNextPage = () => {
     if (page < Math.floor(hits / resultsPerPage)) {
@@ -87,45 +84,46 @@ const ResultsPanel = ({ response }) => {
     }
   };
 
-  
-
-  
-// Renders a table for the objects returned, kwicLines is basically an array of the objects, where each "search result" is rendered inside a table row element.
-// line.tokens is an array of tokens/words/phrases, and the map iterates over them to display them in the row.
-
-// React fragment basically just takes a way a div that would be in the way for easier styling etc. Kind of like an invisible div.
 
 
 
+  // Renders a table for the objects returned, kwicLines is basically an array of the objects, where each "search result" is rendered inside a table row element.
+  // line.tokens is an array of tokens/words/phrases, and the map iterates over them to display them in the row.
 
-return (
-  <div className="results-panel">
-    <h3>Sökresultat:</h3>
-    <div>Antal: {hits}, visar {startHit + 1}–{endHit}</div>
-    <table className="custom-table">
-      <thead>
-        <tr>
-          <th>Matchningar</th>
-        </tr>
-      </thead>
-      <tbody>
-        {currentResults.map((line, index) => {
-          let n = startHit + index;
-          return <ResultCard key={n} response={line} n={n} />;
-        })}
-      </tbody>
-    </table>
-    
-    <div className="pagination-buttons">
-      <button onClick={handlePrevPage} disabled={page === 0}>
-        ← Föregående
-      </button>
-      <button onClick={handleNextPage} disabled={endHit >= hits}>
-        Nästa →
-      </button>
+  // React fragment basically just takes a way a div that would be in the way for easier styling etc. Kind of like an invisible div.
+
+
+
+
+  return (
+    <div className="results-panel">
+      <h3>Sökresultat:</h3>
+      <div>Antal: {hits}, visar {startHit + 1}–{endHit}</div>
+      <table className="custom-table">
+        <thead>
+          <tr>
+            <th>Matchningar</th>
+          </tr>
+        </thead>
+        <tbody>
+          {currentResults.map((line, index) => {
+            let n = startHit + index;
+            console.log("line", line);
+            return <ResultCard key={n} response={line} n={n} />;
+          })}
+        </tbody>
+      </table>
+
+      <div className="pagination-buttons">
+        <button onClick={handlePrevPage} disabled={page === 0}>
+          ← Föregående
+        </button>
+        <button onClick={handleNextPage} disabled={endHit >= hits}>
+          Nästa →
+        </button>
+      </div>
     </div>
-  </div>
-);
+  );
 };
 
 export default ResultsPanel;
