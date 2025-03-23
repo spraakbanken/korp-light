@@ -2,10 +2,12 @@ import "./CorpusDropdown.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import CircleButton from "../CircleButton/CircleButton";
 import { useEffect, useState } from "react";
+import { hello} from "../../services/api";
 
 export default function CorpusDropDown({ colour, buttonLogo,  }) {
     const [selectedItems, setSelectedItems] = useState(new Set());
     const [expandedCategories, setExpandedCategories] = useState(new Set());
+
 
     const toggleSelection = (item) => {
         setSelectedItems((prev) => {
@@ -23,8 +25,8 @@ export default function CorpusDropDown({ colour, buttonLogo,  }) {
         });
     };
 
-    const renderCategory = (category, data = {}, path = "") => {
-        const fullPath = path ? `${path}/${category}` : category;
+
+    const renderCorpusTree = (category) => {
         return (
             <div key={fullPath}>
                 <div
@@ -67,6 +69,7 @@ export default function CorpusDropDown({ colour, buttonLogo,  }) {
                         Avmarkera alla
                     </button>
                 </div>
+
             </Dropdown.Menu>
         </Dropdown>
     );

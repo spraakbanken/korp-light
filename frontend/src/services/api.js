@@ -12,16 +12,12 @@ const axios_instance = axios.create({
 });
 
 export async function getCorpusInfo(corpus='bnc-100k') {
-
   queryParams.corpus = corpus;
-  console.log(queryParams);
 
   try {
     const response = await axios_instance('/corpus_info', { 
         params: queryParams,
-    });
-   // console.log("CORPUS RESPONSE: ", response.data);
-    
+    });    
     return response.data;
   } catch (error) {
     console.log("getCorpusInfo ERROR: ", error);
@@ -59,20 +55,6 @@ export async function getCorpusCollectionsList(collection='default') {
     }
 }
 
-export async function _getCorpusCollectionsList(collection = 'default') {
-  try {
-    const res = await getCorpusCollections(collection);
-   // console.log("FULL CORPUS CONFIG RESPONSE: ", res);
-
-    // Return the full folders tree untouched
-    return res.folders || {};
-  } catch (error) {
-    console.log("Error getting Corpus List:", error);
-    return {};
-  }
-}
-
-
 
 export function toggleAPI(which_server) {
   const servers = [
@@ -94,8 +76,6 @@ export async function getCorpusQuery(inQuery) {
    
   try {
     const response = await axios_instance('/query', {params: queryParams});
-    console.log(queryParams);
-    console.log(response.data);
     
     setHistory(inQuery, response.request.responseURL);
     return response.data;
