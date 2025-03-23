@@ -1,7 +1,9 @@
 import { Accordion } from "react-bootstrap";
+
 import testdata from '../../services/testdata.json'
 
 import './CorpusSelector.css'
+import { useEffect, useState } from "react";
 
 export default function CorpusSelector() {
 
@@ -51,7 +53,7 @@ export default function CorpusSelector() {
                     {desc ? <Accordion.Body className="corpus__desc">{desc}</Accordion.Body> : null}
                     {corpora.map((corpus) => 
                         <Accordion.Body 
-                        onClick={e => handleClick(e, testDict)} 
+                        onClick={ e => handleClick(e, testDict) } 
                         className="corpus__labels" 
                         key={Math.random()}>
                             {corpus}
@@ -67,19 +69,32 @@ export default function CorpusSelector() {
     }
     
 
+    const [selectedCorpora, setSelectedCorpora] = useState([]);
+
     const handleClick = (e, corpusData) => {
         const pickedCorpus = Object.keys(corpusData)
             .find(o => corpusData[o] === e.target.innerText)
-        console.log('Corpus id: ', pickedCorpus)
+        
+        if (selectedCorpora.includes(pickedCorpus)) {
+            setSelectedCorpora(selectedCorpora.filter(c => c !== pickedCorpus))
+        } else {
+            setSelectedCorpora([...selectedCorpora, pickedCorpus])
+        }
     }   
+
+    useEffect(() => {
+        console.log('selected corpora: ', selectedCorpora)
+    }, [selectedCorpora])
 
     return (
         <>
+        
             <Accordion>
                 {Object.values(testdata).map((k) => {
                     return generateCorpusSelector(k)
                 })}
             </Accordion>
+           
         </>
     );
 }
