@@ -1,12 +1,10 @@
 // Default context values
-export function initialSettings() { 
-    return {
-        "resultsPerPage": 20,
-        "sampleSize": 1,
-        "contextSize": 10,
-        "theme": "dark",
-        "selectedView": "wide"
-    }
+let _settings = {   
+    "resultsPerPage": 20,
+    "sampleSize": 1,
+    "contextSize": 10,
+    "theme": "light",
+    "selectedView": "wide"
 }
 
 export function setLocalSettings(val) {
@@ -20,7 +18,7 @@ export function setLocalSettings(val) {
 export function getLocalSettings() {
     try {
         const val = window.localStorage.getItem('settings')
-        return val ? JSON.parse(val) : () => initialSettings();
+        return val ? JSON.parse(val) : _settings;
     } catch (e) {
         console.log('Error localStorage settings: ', e);
     }

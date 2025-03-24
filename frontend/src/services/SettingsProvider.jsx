@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { setLocalSettings, getLocalSettings, initialSettings} from './initialSettings.js';
+import { setLocalSettings, getLocalSettings} from './initialSettings.js';
 import SettingsContext from './SettingsContext.jsx';
 
 export function SettingsProvider({ children }) {
   
-    const [settings, setSettings] = useState(initialSettings); //Should be getlocal when works.
-
+    const [settings, setSettings] = useState(
+        () => getLocalSettings()); 
+    
     const updateSettings = (newSettings) => {
         setSettings(prevSettings => ({ ...prevSettings, ...newSettings }));
     };
