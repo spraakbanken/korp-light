@@ -49,35 +49,39 @@ export default function CorpusSelector() {
             }); 
         }
         
+        function renderSubcorpora (id, elem) {
+            return (<Accordion.Body key={id}>
+                    <Accordion> 
+                        {elem}
+                    </Accordion>
+                </Accordion.Body>);
+        }
+
         return (
-            <Accordion> 
-                <Accordion.Item>
+             
+                <Accordion>
                     <Accordion.Header>{title}</Accordion.Header>
                     <Accordion.Body className="corpus__desc">{desc}</Accordion.Body>
                     {Object.entries(testDict).map(([key, corpus]) => 
                         <Accordion.Body 
-                        onClick={ e2 => handleCorpusClick(e2, testDict) } 
+                        onClick={ e2 => handleCorpusClick(e2) }
                         className="corpus__labels" 
                         corpus={key}
                         key={key}>
-                            {corpus}
+                                {corpus}
                         </Accordion.Body>)}
-                    {Object.entries(subcorporaList).map(([id, elem]) => 
-                        <Accordion.Body key={id}>
-                            <Accordion>
-                                {elem}
-                            </Accordion>
-                        </Accordion.Body>)}
-                </Accordion.Item>
-            </Accordion>
+                        {Object.entries(subcorporaList).map(([id, elem]) => 
+                            renderSubcorpora(id, elem)
+                        )}
+                </Accordion>
+            
         );
     }
 
     const [selectedCorpora, setSelectedCorpora] = useState([]);
 
     const handleHeaderClick = (e) => {
-        const clickedElement = e.target
-        console.log(e.target.attributes);
+       console.log(e.target);
     }    
     const handleCorpusClick = (e) => {
         const pickedCorpus = e.target.getAttribute('corpus')
@@ -87,6 +91,7 @@ export default function CorpusSelector() {
         } else {
             setSelectedCorpora([...selectedCorpora, pickedCorpus])
         }
+        
     }   
 
     useEffect(() => {
