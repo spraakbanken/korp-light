@@ -19,7 +19,7 @@ export default function CorpusSelector() {
         desc = e[1].swe || e[1] || ''
     
         if (e[2] !== undefined) {
-            let arr = Object.keys(e[2])   
+            let arr = Object.keys(e[2])  
             if (arr.length === 1) {
                 corpora.push(arr.title)
             } else {
@@ -42,38 +42,45 @@ export default function CorpusSelector() {
         if (e[3] !== undefined) {
             Object.values(e[3]).forEach((el) => {
                 Object.values(el).forEach((el2) => {
-                    subcorporaList.push(generateCorpusSelector(el2));
+                    //we have to use a different way to get ID! uuid package?
+                    const subcorpId = crypto.randomUUID()
+                    subcorporaList[subcorpId]= generateCorpusSelector(el2);
                 })
             }); 
         }
-    
+        
         return (
-            <Accordion.Item eventKey={Math.random()}>
+            <Accordion> 
+                <Accordion.Item>
                     <Accordion.Header>{title}</Accordion.Header>
-                    {desc ? <Accordion.Body className="corpus__desc">{desc}</Accordion.Body> : null}
-                    {corpora.map((corpus) => 
+                    <Accordion.Body className="corpus__desc">{desc}</Accordion.Body>
+                    {Object.entries(testDict).map(([key, corpus]) => 
                         <Accordion.Body 
-                        onClick={ e => handleClick(e, testDict) } 
+                        onClick={ e2 => handleCorpusClick(e2, testDict) } 
                         className="corpus__labels" 
-                        key={Math.random()}>
+                        corpus={key}
+                        key={key}>
                             {corpus}
                         </Accordion.Body>)}
-                    {subcorporaList.map(elem => 
-                        <Accordion.Body key={Math.random()}>
+                    {Object.entries(subcorporaList).map(([id, elem]) => 
+                        <Accordion.Body key={id}>
                             <Accordion>
                                 {elem}
                             </Accordion>
                         </Accordion.Body>)}
-            </Accordion.Item>
+                </Accordion.Item>
+            </Accordion>
         );
     }
-    
 
     const [selectedCorpora, setSelectedCorpora] = useState([]);
 
-    const handleClick = (e, corpusData) => {
-        const pickedCorpus = Object.keys(corpusData)
-            .find(o => corpusData[o] === e.target.innerText)
+    const handleHeaderClick = (e) => {
+        const clickedElement = e.target
+        console.log(e.target.attributes);
+    }    
+    const handleCorpusClick = (e) => {
+        const pickedCorpus = e.target.getAttribute('corpus')
         
         if (selectedCorpora.includes(pickedCorpus)) {
             setSelectedCorpora(selectedCorpora.filter(c => c !== pickedCorpus))
@@ -89,7 +96,7 @@ export default function CorpusSelector() {
     return (
         <>
         
-            <Accordion>
+            <Accordion alwaysOpen='false'>
                 {Object.values(testdata).map((k) => {
                     return generateCorpusSelector(k)
                 })}
