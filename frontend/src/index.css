@@ -23,9 +23,18 @@ body, html {
 [theme="dark"]{
     /* Add more colour definitions and 
     check that all .css files in the project use the variables */
-    --bg-color: #5c5454;
+    --bg-color: #3B3B3B;
+    --primary-color: #F89066;
+    --secondary-color: #898989;
+    --tertiary-color: #FDDBBB;
+    --quaternary-color: #FFCEBA;
+    --quinary-color: #363333;
 }
 
 [theme="light"] {
-  --bg-color: #ededed;
+  --bg-color: #FFFFFF;
+  --primary-color: #F89066;
+  --secondary-color: #EFEFEF;
+  --tertiary-color: #FDDBBB;
+  --quaternary-color: #FFCEBA;
 }
