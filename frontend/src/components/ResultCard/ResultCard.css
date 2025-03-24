@@ -1,6 +1,7 @@
 .tableD{
   justify-content: space-between;
 
+
 }
 
 .token-container {
@@ -33,8 +34,7 @@
 }
 
 .resultRow {
-  border-bottom: 1px solid #e0e0e0;
-
+ 
 
 }
 

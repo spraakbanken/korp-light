@@ -79,7 +79,7 @@ const ResultsPanel = ({ response }) => {
 
   return (
     <div className="results-panel">
-      <h3>Sökresultat:</h3>
+      <h1>Sökresultat</h1>
       <div>Antal: {hits}, visar {startHit + 1}–{endHit}</div>
       <table className="custom-table">
         <thead>
