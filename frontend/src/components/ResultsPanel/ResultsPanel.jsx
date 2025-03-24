@@ -1,21 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import './ResultsPanel.css';
-
 import ResultCard from '../ResultCard/ResultCard.jsx'
 import ErrorPage from '../../pages/ErrorPage/ErrorPage.jsx';
-
-
-const ResultsPanel = ({ response, settings }) => {
+import SettingsContext from "../../services/SettingsContext.jsx";
+import { MoveLeft, MoveRight } from 'lucide-react';
+const ResultsPanel = ({ response }) => {
 
   const [hits, setHits] = useState(0);
   const [startHit, setStartHit] = useState(0);
   const [endHit, setEndHit] = useState(20);
-  const [kwicLines, setKwicLines] = useState([]);
-  const [error, setError] = useState(false);
   const [page, setPage] = useState(0);
   const [currentResults, setCurrentResults] = useState([]);
-
-  const [settingsObject, setSettingsObject] = useState({});
+  const { settings, updateSettings } = useContext(SettingsContext);
 
   const resultsPerPage = 20;
 
@@ -26,7 +22,6 @@ const ResultsPanel = ({ response, settings }) => {
         setError(true); // API response has error
       } else {
         setHits(response.hits || 0);
-        setKwicLines(response.kwic || []);
         setPage(0);
       }
     } else {
@@ -40,30 +35,20 @@ const ResultsPanel = ({ response, settings }) => {
       if (response.error) {
         setError(true); // API response has error
       } else {
-        console.log(page);
-        // const start = page * resultsPerPage;
-        // const end = Math.min(start + resultsPerPage, response.hits)
 
-        const start = page * resultsPerPage;
-        const end = Math.min(start + resultsPerPage, response.hits);
+        const start = page * settings.resultsPerPage;
+        const end = Math.min(start + settings.resultsPerPage, response.hits);
 
         setStartHit(start);
         setEndHit(end);
-
-
         setCurrentResults(response.kwic.slice(start, end));
-
-        console.log("hits", response.hits);
-        console.log("start", start);
-        console.log("end", end);
-        console.log("res", currentResults);
-
 
       }
     } else {
       setError(true); // response undefined
     }
-  }, [response, page]);
+  }, [response, page, settings]);
+
 
 
   if (hits === 0) {
@@ -92,9 +77,6 @@ const ResultsPanel = ({ response, settings }) => {
 
   // React fragment basically just takes a way a div that would be in the way for easier styling etc. Kind of like an invisible div.
 
-
-
-
   return (
     <div className="results-panel">
       <h3>Sökresultat:</h3>
@@ -106,6 +88,7 @@ const ResultsPanel = ({ response, settings }) => {
           </tr>
         </thead>
         <tbody>
+          <tr className='corpusName'></tr>
           {currentResults.map((line, index) => {
             let n = startHit + index;
             console.log("line", line);
@@ -116,10 +99,10 @@ const ResultsPanel = ({ response, settings }) => {
 
       <div className="pagination-buttons">
         <button onClick={handlePrevPage} disabled={page === 0}>
-          ← Föregående
+        <MoveLeft size={28} className=" icon-hover text-dark hover:text-primary" />
         </button>
         <button onClick={handleNextPage} disabled={endHit >= hits}>
-          Nästa →
+        <MoveRight size={28} className=" icon-hover text-dark hover:text-primary" />
         </button>
       </div>
     </div>

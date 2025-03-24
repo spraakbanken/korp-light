@@ -3,6 +3,7 @@ import "./SearchBar.css";
 import Form from 'react-bootstrap/Form';
 import { Search } from "react-bootstrap-icons";
 
+
 //this gives type error for some reason! 
 export default function SearchBar({ returnSearchInput }) {
 
