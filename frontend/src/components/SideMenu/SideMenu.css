@@ -37,10 +37,3 @@
 .second-row {
     background-color: #FFCEBA;
 }
-
-.offcanvas .btn-close {
-    background-color: var(--navbar-color);
-    color: var(--text-color);
-    border-radius: 50%;
-    padding: 5px;
-}
