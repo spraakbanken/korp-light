@@ -37,12 +37,14 @@ const ResultsPanel = ({ response }) => {
       } else {
 
         const start = page * settings.resultsPerPage;
-        const end = Math.min(start + settings.resultsPerPage, response.hits);
+        const end = Math.min(start + parseInt(settings.resultsPerPage), response.hits);
 
         setStartHit(start);
         setEndHit(end);
         setCurrentResults(response.kwic.slice(start, end));
-
+        console.log("start+setting", start + parseInt(settings.resultsPerPage));
+        console.log("start", start);
+        console.log("end", end);
       }
     } else {
       setError(true); // response undefined
@@ -91,7 +93,7 @@ const ResultsPanel = ({ response }) => {
           <tr className='corpusName'></tr>
           {currentResults.map((line, index) => {
             let n = startHit + index;
-            console.log("line", line);
+
             return <ResultCard key={n} response={line} n={n} />;
           })}
         </tbody>

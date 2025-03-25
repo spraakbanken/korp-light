@@ -47,6 +47,8 @@ h1 {
 
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
+  border-top-left-radius: none;
+  border-top-right-radius: none;
 
 }
 
@@ -55,8 +57,16 @@ h1 {
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
   border-bottom: none;
+  border-top-left-radius: none;
+  border-top-right-radius: none;
 
 
+}
+
+.custom-table tr{
+
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 
@@ -64,6 +74,7 @@ h1 {
 .custom-table td {
   padding: 12px 12px;
   font-family: 'Arial', sans-serif; 
+
   
 }
 
