@@ -121,15 +121,6 @@ export default function ResultsPage() {
                 </Button>
             </form>
 
-            
-            <Link to={"/"}>
-                <Button className="simple-button m-1" 
-                    variant="danger" 
-                    size="sm"
-                    onClick={null}>
-                    Gå tillbaka!
-                </Button>
-            </Link>
 
             <div> 
                 <p>Vald Korpus: </p>
