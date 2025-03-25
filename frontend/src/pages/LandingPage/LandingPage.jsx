@@ -52,7 +52,7 @@ export default function LandingPage() {
     );
 
     const handleSubmit = (event) => {
-        navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(corporas[0])}`);
+        navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(corporas[0] || "romi")}`);
       };
 
 
