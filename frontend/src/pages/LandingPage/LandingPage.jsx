@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Tooltip from 'react-bootstrap/Tooltip';
-
+import { useNavigate } from "react-router-dom";
 // React Components
 import HelloKorpi from "../../components/HelloKorpi/HelloKorpi.jsx";
 import NavigationBar from "../../components/NavigationBar/NavigationBar.jsx";
@@ -26,6 +26,7 @@ import { getCorpusCollectionsList } from "../../services/api.js";
 
 export default function LandingPage() {
     const [showHistory, setShowHistory] = useState(false);
+    const navigate = useNavigate();
 
     const toggleHistory = () => {
         setShowHistory((prev) => !prev);
@@ -49,12 +50,20 @@ export default function LandingPage() {
         </Tooltip>
     );
 
+    const handleSubmit = (event) => {
+        navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent("romi")}`);
+      };
+
+
+
     return (
         <div>
             {/* We have to remove it for now <NavigationBar /> */}
             <NavigationBar />
             <HelloKorpi />
-            <SearchBar returnSearchInput={null} />
+            <SearchBar returnSearchInput={(e) => {
+                            handleSubmit(e);
+                        }}/>
 
             <div className="landingpage__button_group">
 
