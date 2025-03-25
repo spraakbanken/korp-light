@@ -8,11 +8,10 @@
 
   max-width: 80vw;
   margin: 0 auto; 
-  background: rgba(255, 255, 255, 0.911); /* Semi-transparent white background */
-  backdrop-filter: blur(10px); /* Apply a blur effect behind the panel */
+  background: var(--resultpanel-bg-color); 
+  backdrop-filter: blur(10px);
 
 }
-
 
 
 h1 {
@@ -25,20 +24,18 @@ h1 {
   width: 100%;
   table-layout: fixed;
   margin: 20px 0;
-  background-color: rgba(255, 255, 255, 0.1); /* Transparent background for table */
-  
+  background-color: rgba(255, 255, 255, 0.1); 
 }
 
 
 .custom-table tr:nth-child(even) {
-  background-color: #f9f9f9; 
-  box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.3); /* Even softer blur */
-  
+  background-color: #D9D9D9; 
+  box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.3);
 }
 
 .custom-table tr:nth-child(odd) {
-  background-color: #ffffff;
-  box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.3); /* Even softer blur */
+  background-color: #B3B2B2;
+  box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.3);
 }
 
 .custom-table tr:last-child td{
@@ -49,33 +46,25 @@ h1 {
   border-bottom-left-radius: 8px;
   border-top-left-radius: none;
   border-top-right-radius: none;
-
 }
 
 .custom-table tr:last-child{
-
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
   border-bottom: none;
   border-top-left-radius: none;
   border-top-right-radius: none;
-
-
 }
 
 .custom-table tr{
-
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
 
 
-
 .custom-table td {
   padding: 12px 12px;
-  font-family: 'Arial', sans-serif; 
-
-  
+  font-family: 'Arial', sans-serif;   
 }
 
 .custom-table th {
@@ -85,7 +74,6 @@ h1 {
   border-top-right-radius: 8px;
   font-weight: bold;
   font-family: 'Arial', sans-serif; 
-  
 }
 
 
