@@ -21,13 +21,13 @@ export default function NavigationBar () {
     
     const settings_tip = (
         <Tooltip id="settings_tooltip">
-            <strong>Settings</strong>
+            <strong>Inställningar</strong>
         </Tooltip>
     );
 
     const help_tip = (
         <Tooltip id="help_tooltip">
-            <strong>Help</strong>
+            <strong>Hjälp</strong>
         </Tooltip>
     );
 

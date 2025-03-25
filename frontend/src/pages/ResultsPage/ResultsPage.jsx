@@ -79,8 +79,7 @@ export default function ResultsPage() {
     return(
         <div>
             <NavigationBar />
-            <h1 className="mt-5">Results</h1>
-            <p>Display Results on this page!</p>
+            <h1 className="mt-5">Resultat</h1>
             
             <input type="text" placeholder="corpus name, e.g. ROMI"
                 onChange={(e) => setCorpusInput(e.target.value)}/>
@@ -93,7 +92,7 @@ export default function ResultsPage() {
                             getCorpusData(res.data);
                         }); 
                     }}>
-                    Switch Corpus!
+                    Byt Korpus!
             </Button>
             
             <Link to={"/"}>
@@ -101,26 +100,26 @@ export default function ResultsPage() {
                     variant="danger" 
                     size="sm"
                     onClick={null}>
-                    Take me back!
+                    Gå tillbaka!
                 </Button>
             </Link>
 
             <div> 
-                <p>Selected Corpus: </p>
-                {searchCorpusIsLoading? <p>Loading...</p> : corpus}
+                <p>Vald Korpus: </p>
+                {searchCorpusIsLoading? <p>Laddar...</p> : corpus}
             </div>    
 
             <SearchBar returnSearchInput={(e) => {
                 setSearchWordInput(e);
             }}/>
 
-            <p>Searching for: {searchWordInput}</p>
+            <p>Söker efter: {searchWordInput}</p>
 
             <ProgressBar isLoading={searchQueryIsLoading} />
 
             <div className="mt-5">
                 {/*queryData.kwic == undefined ? <p>Loading...</p> : JSON.stringify(queryData) */}
-                {queryData.kwic === undefined ? <p>Loading...</p> :
+                {queryData.kwic === undefined ? <p>Laddar...</p> :
                     <ResultsPanel response={queryData} />}
             </div>
             <Footer/>
