@@ -22,7 +22,7 @@ export default function ResultsPage() {
     const navigate = useNavigate();
 
     const { settings, updateSettings } = useContext(SettingsContext);
-    const [corpus, setCorpus] = useState("ROMI");
+    const [corpus, setCorpus] = useState("romi");
     const [corpusInput, setCorpusInput] = useState();
     const [searchWordInput, setSearchWordInput] = useState(searchQueryTest); // IDK if we use this
 
@@ -35,7 +35,7 @@ export default function ResultsPage() {
            isLoading : searchCorpusIsLoading, 
            refetch   : searchCorpusRefetch,
         } = useQuery({
-        queryKey: [corpusInput || "ROMI"], // Defaults to ROMI
+        queryKey: [corpusInput || "romi"], // Defaults to ROMI, we have to include corpus in routing.
         queryFn: () => getCorpusInfo(corpusInput),
         enabled: corpusInput !== "",
     });
