@@ -14,16 +14,18 @@ import ProgressBar from "../../components/ProgressBar/ProgressBar.jsx";
 import "./ResultPage.css"
 
 
+
 export default function ResultsPage() {
 
     const location = useLocation(); //All this is first draft for routing.
     const queryParams = new URLSearchParams(location.search); 
     const searchQueryTest = queryParams.get('searchQueryTest'); 
+    const corpusQueryTest = queryParams.get('corpus'); 
     const navigate = useNavigate();
 
     const { settings, updateSettings } = useContext(SettingsContext);
-    const [corpus, setCorpus] = useState("romi");
-    const [corpusInput, setCorpusInput] = useState();
+    const [corpus, setCorpus] = useState(corpusQueryTest);
+    const [corpusInput, setCorpusInput] = useState(corpusQueryTest || 'romi');
     const [searchWordInput, setSearchWordInput] = useState(searchQueryTest); // IDK if we use this
 
     const [queryData, setQueryData] = useState({});
@@ -35,7 +37,7 @@ export default function ResultsPage() {
            isLoading : searchCorpusIsLoading, 
            refetch   : searchCorpusRefetch,
         } = useQuery({
-        queryKey: [corpusInput || "romi"], // Defaults to ROMI, we have to include corpus in routing.
+        queryKey: [corpusInput], // Defaults to ROMI, we have to include corpus in routing.
         queryFn: () => getCorpusInfo(corpusInput),
         enabled: corpusInput !== "",
         
@@ -54,7 +56,7 @@ export default function ResultsPage() {
 
     const handleSubmit = (event) => {
         setSearchWordInput(event)
-        navigate(`/results?searchQueryTest=${encodeURIComponent(event)}`);
+        navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(corpusInput)}`);
       };
 
 
@@ -89,6 +91,10 @@ export default function ResultsPage() {
     useEffect(() => {
         setSearchWordInput(searchQueryTest || '');
       }, [searchQueryTest]);
+
+    useEffect(() => {
+    setCorpusInput(corpusQueryTest || 'romi');
+    }, [corpusQueryTest]);
     
     useEffect(() => {
         console.log("Settings in Results: ", settings);
@@ -102,9 +108,7 @@ export default function ResultsPage() {
 
     return(
         <div>
-            <NavigationBar />
-            <h1 className="mt-5 results-header">Resultat</h1>
-            
+            <NavigationBar />            
             <form onSubmit={(e) => {
                 e.preventDefault(); // Prevent page reload
                 setCorpusInput(e.target.corpusInput.value); // Update state
@@ -115,16 +119,6 @@ export default function ResultsPage() {
                 </Button>
             </form>
 
-            
-            <Link to={"/"}>
-                <Button className="simple-button m-1" 
-                    variant="danger" 
-                    size="sm"
-                    onClick={null}>
-                    Gå tillbaka!
-                </Button>
-            </Link>
-
             <div> 
                 <p>Vald Korpus: </p>
                 {searchCorpusIsLoading? <p>Laddar...</p> : corpus}
@@ -134,8 +128,6 @@ export default function ResultsPage() {
                 handleSubmit(e);
             }}/>
 
-            <p>Söker efter: {searchWordInput}</p>
-
             <ProgressBar isLoading={searchQueryIsLoading} />
 
             <div className="mt-5">
@@ -143,7 +135,7 @@ export default function ResultsPage() {
                 {queryData.kwic === undefined ? <p>Laddar...</p> :
                     <ResultsPanel response={queryData} />}
             </div>
-            <Footer/>
+            <Footer className="results-footer"/>
         </div>
     );
 }

@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Tooltip from 'react-bootstrap/Tooltip';
+import { useNavigate } from "react-router-dom";
+import SettingsContext from '../../services/SettingsContext';
 
 // React Components
 import HelloKorpi from "../../components/HelloKorpi/HelloKorpi.jsx";
@@ -16,16 +18,23 @@ import corpus_logo from '../../assets/book-open.svg';
 import history_logo from '../../assets/rotate-ccw.svg';
 import sliders_logo from '../../assets/sliders.svg';
 import search_logo from '../../assets/search.svg';
+import KorpLight from '../../assets/korp.svg';
+import KorpDark from '../../assets/whiteKorp.svg';
 
 // main style
 import "./LandingPage.css"
 
 // services
 import { getCorpusCollectionsList } from "../../services/api.js";
-
+import CorporaContext from "../../services/CorporaContext.jsx";
 
 export default function LandingPage() {
     const [showHistory, setShowHistory] = useState(false);
+    const { corporas } = useContext(CorporaContext);
+    const navigate = useNavigate();
+    const { settings } = useContext(SettingsContext);
+
+    const korpImage =  settings.theme === "light" ? KorpLight : KorpDark; 
 
     const toggleHistory = () => {
         setShowHistory((prev) => !prev);
@@ -49,12 +58,21 @@ export default function LandingPage() {
         </Tooltip>
     );
 
+    const handleSubmit = (event) => {
+        navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(corporas.corporas || "romi")}`);
+      };
+
+
+
     return (
         <div>
             {/* We have to remove it for now <NavigationBar /> */}
             <NavigationBar />
-            <HelloKorpi />
-            <SearchBar returnSearchInput={null} />
+            <img className="korp-image" src={korpImage} alt="" />
+
+            <SearchBar returnSearchInput={(e) => {
+                            handleSubmit(e);
+                        }}/>
 
             <div className="landingpage__button_group">
 
@@ -85,7 +103,7 @@ export default function LandingPage() {
             </div>
             {showHistory && <HistoryPanel />}
             <InfoText className="info_text"/>
-            <Footer className="footer"/>
+            <Footer className="landing-footer"/>
         </div>
     );
 }

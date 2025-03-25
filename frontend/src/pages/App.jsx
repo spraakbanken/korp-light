@@ -4,8 +4,9 @@ import LandingPage from "../pages/LandingPage/LandingPage.jsx";
 import ResultsPage from "../pages/ResultsPage/ResultsPage.jsx";
 import HelpPage from "../pages/HelpPage/HelpPage.jsx";
 import SettingsPage from "../pages/SettingsPage/SettingsPage.jsx";
-
 import { SettingsProvider } from "../services/SettingsProvider.jsx";
+
+import { CorporaProvider } from "../services/CorporaProvider.jsx";
 
 //Bootstrap Components
 
@@ -16,6 +17,7 @@ import "./App.css"
 export default function App() {
     return (
       <SettingsProvider>
+      <CorporaProvider>
         <main>
           <Routes>
             <Route path="/" element={<LandingPage />} />
@@ -24,6 +26,7 @@ export default function App() {
             <Route path="/settings" element={<SettingsPage />} />
           </Routes>
         </main>
+        </CorporaProvider>
       </SettingsProvider>
     );
   }

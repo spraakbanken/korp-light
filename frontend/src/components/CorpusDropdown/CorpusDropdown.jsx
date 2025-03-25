@@ -9,6 +9,7 @@ import ChosenCorporas from "../ChosenCorporasButton/ChosenCorporasButton";
 export default function CorpusDropDown({ colour, buttonLogo }) {
     const [selectedCorpora, setSelectedCorpora] = useState([]);
     const [expanded, setExpanded] = useState({});
+    const { corporas, updateCorporas } = useContext(CorporaContext);
 
         const toggleExpanded = (title) => {
             setExpanded((prev) => ({
@@ -100,6 +101,12 @@ export default function CorpusDropDown({ colour, buttonLogo }) {
 
     useEffect(() => {
         console.log("Selected corpora: ", selectedCorpora);
+
+        updateCorporas({
+            ...corporas,
+            corporas: selectedCorpora[0]
+        })
+        console.log(corporas);
     }, [selectedCorpora]);
 
     return (

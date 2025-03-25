@@ -13,7 +13,7 @@
     width: 30%;
     table-layout: fixed;
     margin: 20px 0;
-    border-collapse: separate; 
+    border-collapse: separate;
     border-spacing: 0;
     border: 1px #F5926A solid;
     border-radius: 20px;
@@ -51,11 +51,19 @@
     text-decoration: underline;
 }
 
+.history-table a {
+    color: inherit; 
+    text-decoration: none; 
+}
+
+.history-table a:hover {
+    text-decoration: underline; 
+}
+
 @media (max-width: 768px) {
     .history-table {
         width: 100%;
         border: none;
-    
     }
 
     .history-table td {
@@ -67,7 +75,7 @@
         border-top-left-radius: 0px;
         border-top-right-radius: 0px;
     }
-    
+
     .history-table tbody tr:last-child td {
         border-bottom-left-radius: 0px;
         border-bottom-right-radius: 0px;

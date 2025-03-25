@@ -14,12 +14,6 @@ export default function HelloKorpi () {
         <div className="hello__korpi">
             <h1>Hello, Korpi!</h1>
             <Link to={"/results"}>
-                <Button className="simple-button" 
-                    variant="danger" 
-                    size="sm"
-                    onClick={handleClick}>
-                    Lets Go!
-                </Button>
             </Link>
         </div>
     );
