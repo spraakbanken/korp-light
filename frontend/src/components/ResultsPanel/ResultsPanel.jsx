@@ -42,9 +42,6 @@ const ResultsPanel = ({ response }) => {
         setStartHit(start);
         setEndHit(end);
         setCurrentResults(response.kwic.slice(start, end));
-        console.log("start+setting", start + parseInt(settings.resultsPerPage));
-        console.log("start", start);
-        console.log("end", end);
       }
     } else {
       setError(true); // response undefined

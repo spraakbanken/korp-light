@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Offcanvas, Button, Nav, NavDropdown, OverlayTrigger } from "react-bootstrap";
 import Tooltip from 'react-bootstrap/Tooltip';
+import { List } from "react-bootstrap-icons";
 import "./SideMenu.css";
 
 import { setHistory, getHistory } from "../../services/history";
@@ -23,9 +24,7 @@ export default function SideMenu() {
     return (
         <>
             <OverlayTrigger placement="bottom" overlay={menu_tip}>
-                <Button variant="light" onClick={handleShow} className="menu-button">
-                    ☰
-                </Button>
+                <List size={48} className="menu-button" onClick={handleShow} />
             </OverlayTrigger>
 
             <Offcanvas show={show} onHide={handleClose} className="side-menu">
