@@ -6,6 +6,15 @@ import { useEffect, useState } from "react";
 
 export default function CorpusDropDown({ colour, buttonLogo }) {
     const [selectedCorpora, setSelectedCorpora] = useState([]);
+    const [expanded, setExpanded] = useState({});
+
+        const toggleExpanded = (title) => {
+            setExpanded((prev) => ({
+                ...prev,
+                [title]: !prev[title],
+            }));
+        };
+
 
     const handleCorpusClick = (corpusId) => {
         if (selectedCorpora.includes(corpusId)) {
@@ -48,26 +57,37 @@ export default function CorpusDropDown({ colour, buttonLogo }) {
         }
 
         return (
-            <div key={title}>
-                <Dropdown.Header>{title}</Dropdown.Header>
-                {desc && <div className="corpdesc px-3">{desc}</div>}
-
-                {Object.entries(testDict).map(([id, label]) => (
-                    <Dropdown.Item
-                        key={id}
-                        onClick={() => handleCorpusClick(id)}
-                        className="corpus__labels"
-                        active={selectedCorpora.includes(id)}
-                    >
-                        {label}
-                    </Dropdown.Item>
-                ))}
-
-                {subcorporaList.map((sub) => (
-                    <div key={sub.id}>{sub.content}</div>
-                ))}
-            </div>
+            <>
+                <Dropdown.Header 
+                    onClick={() => toggleExpanded(title)} 
+                    style={{ cursor: 'pointer' }}
+                >
+                    {expanded[title] ? '▼' : '▶'} {title}
+                </Dropdown.Header>
+        
+                {expanded[title] && (
+                    <>
+                        {desc && <div className="corpdesc px-3">{desc}</div>}
+        
+                        {Object.entries(testDict).map(([id, label]) => (
+                            <Dropdown.Item
+                                key={id}
+                                onClick={() => handleCorpusClick(id)}
+                                className="corpus__labels"
+                                active={selectedCorpora.includes(id)}
+                            >
+                                {label}
+                            </Dropdown.Item>
+                        ))}
+        
+                        {subcorporaList.map(({id, content}) => (
+                            <div key={id}>{content}</div>
+                        ))}
+                    </>
+                )}
+            </>
         );
+        
     };
 
     useEffect(() => {
@@ -75,7 +95,8 @@ export default function CorpusDropDown({ colour, buttonLogo }) {
     }, [selectedCorpora]);
 
     return (
-        <Dropdown className="corpus_bar" drop="down-centered">
+        <div className="corpus-dropdown-container">
+        <Dropdown >
             <Dropdown.Toggle id="dropdown-basic">
                 <CircleButton buttonColour={colour} buttonImage={buttonLogo} />
                 {selectedCorpora.length > 0 && ` ${selectedCorpora.length} valda`}
@@ -94,5 +115,6 @@ export default function CorpusDropDown({ colour, buttonLogo }) {
                 {Object.values(testdata).map((e, index) => renderCorpusSelector(e))}
             </Dropdown.Menu>
         </Dropdown>
+        </div>
     );
 }
