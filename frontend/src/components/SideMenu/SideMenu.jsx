@@ -44,7 +44,7 @@ export default function SideMenu() {
                             
                             { Object.keys(history ?? {}).map((item) => {
                                 return <NavDropdown.Item key={item}>
-                                <Link to={`/results?searchQueryTest=${encodeURIComponent(item)}`}>
+                                <Link className="link" to={`/results?searchQueryTest=${encodeURIComponent(item)}`}>
                                   {item}
                                 </Link>
                               </NavDropdown.Item>
