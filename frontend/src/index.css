@@ -30,6 +30,8 @@ body, html {
     --tertiary-color: #FDDBBB;
     --quaternary-color: #FFCEBA;
     --text-color: #FFFFFF;
+    --resultpanel-bg-color: #888383;
+   
 }
 
 [theme="light"] {
@@ -39,4 +41,5 @@ body, html {
   --tertiary-color: #FDDBBB;
   --quaternary-color: #FFCEBA;
   --text-color: #000000;
+  --resultpanel-bg-color: rgba(255, 255, 255, 0.911);
 }
