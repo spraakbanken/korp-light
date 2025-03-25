@@ -3,7 +3,7 @@
 .corpus_bar{
     display: flex;
     justify-content: center;
-    padding: 8px;
+    padding: 300px;
 }
 
 #dropdown-basic {
@@ -20,6 +20,7 @@
 }
 
 #dropdown-menu {
+    padding-top: 5px;
     background: #FDDBBB;
     border: 1px solid rgb(244, 89, 0);
     color: #e9b29d;
