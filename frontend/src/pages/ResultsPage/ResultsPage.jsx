@@ -135,7 +135,7 @@ export default function ResultsPage() {
                 {queryData.kwic === undefined ? <p>Laddar...</p> :
                     <ResultsPanel response={queryData} />}
             </div>
-            <Footer className"landing-footer"/>
+            <Footer className="results-footer"/>
         </div>
     );
 }

@@ -103,7 +103,7 @@ export default function LandingPage() {
             </div>
             {showHistory && <HistoryPanel />}
             <InfoText className="info_text"/>
-            <Footer className="footer"/>
+            <Footer className="landing-footer"/>
         </div>
     );
 }
