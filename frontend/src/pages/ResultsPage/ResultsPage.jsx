@@ -38,6 +38,7 @@ export default function ResultsPage() {
         queryKey: [corpusInput || "romi"], // Defaults to ROMI, we have to include corpus in routing.
         queryFn: () => getCorpusInfo(corpusInput),
         enabled: corpusInput !== "",
+        
     });
 
     const 
@@ -53,11 +54,7 @@ export default function ResultsPage() {
 
     const handleSubmit = (event) => {
         setSearchWordInput(event)
-
-
-
         navigate(`/results?searchQueryTest=${encodeURIComponent(event)}`);
-
       };
 
 
@@ -78,7 +75,6 @@ export default function ResultsPage() {
 
 
             searchQueryRefetch().then((res) => {
-                console.log(res.data)
                 setQueryData(res.data);
                 
             });
@@ -88,7 +84,7 @@ export default function ResultsPage() {
             console.log("CHANGED: ", searchWordInput)
         }
 
-    }, [searchWordInput, searchQueryRefetch])
+    }, [searchWordInput, searchQueryRefetch, searchCorpusData])
 
     useEffect(() => {
         setSearchWordInput(searchQueryTest || '');
@@ -98,24 +94,27 @@ export default function ResultsPage() {
         console.log("Settings in Results: ", settings);
     }, [settings])
 
+    useEffect(() => {
+        if (searchCorpusData && corpusInput) {
+          getCorpusData(searchCorpusData); 
+        }
+      }, [searchCorpusData, corpusInput]);
+
     return(
         <div>
             <NavigationBar />
             <h1 className="mt-5 results-header">Resultat</h1>
             
-            <input type="text" placeholder="corpus name, e.g. ROMI"
-                onChange={(e) => setCorpusInput(e.target.value)}/>
-
-            <Button className="simple-button m-1" 
-                    variant="danger" 
-                    size="sm"
-                    onClick={() => {
-                        searchCorpusRefetch().then((res) => {
-                            getCorpusData(res.data);
-                        }); 
-                    }}>
+            <form onSubmit={(e) => {
+                e.preventDefault(); // Prevent page reload
+                setCorpusInput(e.target.corpusInput.value); // Update state
+            }}>
+                <input type="text" name="corpusInput" placeholder="corpus name, e.g. ROMI" />
+                <Button type="submit" className="simple-button m-1" variant="danger" size="sm">
                     Byt Korpus!
-            </Button>
+                </Button>
+            </form>
+
             
             <Link to={"/"}>
                 <Button className="simple-button m-1" 

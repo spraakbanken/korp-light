@@ -34,7 +34,7 @@ export default function SettingsCard(props) {
                     <Form.Group className="mb-3">
                         <Form.Label>RESULTAT PER SIDA:</Form.Label>
                         <Form.Select 
-                            onClick={console.log("resPerPage", settings.resultsPerPage)} 
+                            
                             onChange={(e) => {
                                 updateSettings({
                                     ...settings,
@@ -58,7 +58,7 @@ export default function SettingsCard(props) {
                             <Form.Control
                                 type="number"
                                 value={settings.sampleSize}
-                                onClick={console.log("sampleSize", settings.sampleSize)}
+                                
                                 onChange={(e) => updateSettings({...settings, sampleSize : e.target.value})}
                             />
                         </div>
@@ -70,7 +70,7 @@ export default function SettingsCard(props) {
                         <Form.Control
                             type="number"
                             value={settings.contextSize}
-                            onClick={console.log("contextSize", settings.contextSize)}
+                            
                             onChange={(e) => updateSettings({...settings, contextSize : e.target.value})}
                         />
                     </Form.Group>
