@@ -104,7 +104,7 @@ export default function CorpusDropDown({ colour, buttonLogo }) {
 
         updateCorporas({
             ...corporas,
-            corporas: selectedCorpora[0]
+            corporas: selectedCorpora[0] //VET EJ HUR VI BYGGER URL QUERYN FÖR FLERA CORPUSAR.
         })
         console.log(corporas);
     }, [selectedCorpora]);

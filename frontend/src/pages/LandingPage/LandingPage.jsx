@@ -59,6 +59,7 @@ export default function LandingPage() {
     );
 
     const handleSubmit = (event) => {
+        //VET EJ HUR VI BYGGER URL QUERYN FÖR FLERA CORPUSAR.
         navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(corporas.corporas || "romi")}`);
       };
 
