@@ -4,15 +4,16 @@
     border: none;
     padding: 10px;
     cursor: pointer;
-    color: #fd7e14;    
+    color: #F89066;    
 }
 
 .menu-button:hover {
-    background-color: #d2691e;
+    color: #FF7840;
 }
 
-.side-menu .offcanvas {
-    background-color: #f5f1f6;
+.side-menu{
+    background-color: var(--navbar-color);
+    color: var(--text-color);
 }
 
 .side-menu .nav-link {
@@ -26,13 +27,13 @@
 }
 
 .side-menu .nav-link:hover {
-    background-color: #4164f2;
+    background-color: #FF7840;
 }
 
-.gray-row {
-    background-color: #D9D9D9;
+.first-row {
+    background-color: #F89066;
 }
 
-.orange-row {
-    background-color: #fd7e14;
+.second-row {
+    background-color: #FFCEBA;
 }
