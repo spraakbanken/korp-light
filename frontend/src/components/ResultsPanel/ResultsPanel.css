@@ -84,4 +84,7 @@ h1 {
   margin-top: 20px;
 }
 
-
+.result-th {
+  background-color: var(--primary-color);
+  font-weight: bold;
+}
