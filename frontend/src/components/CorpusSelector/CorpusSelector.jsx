@@ -64,7 +64,7 @@ export default function CorpusSelector() {
                     <Accordion.Body className="corpus__desc">{desc}</Accordion.Body>
                     {Object.entries(testDict).map(([key, corpus]) => 
                         <Accordion.Body 
-                        onClick={ e2 => handleCorpusClick(e2) }
+                        onClick={ e2 => handleCorpusClick(e2, key, corpus) }
                         className="corpus__labels" 
                         corpus={key}
                         key={key}>
@@ -78,18 +78,22 @@ export default function CorpusSelector() {
         );
     }
 
-    const [selectedCorpora, setSelectedCorpora] = useState([]);
+    const [selectedCorpora, setSelectedCorpora] = useState([{}]);
 
     const handleHeaderClick = (e) => {
        console.log(e.target);
     }    
-    const handleCorpusClick = (e) => {
+    const handleCorpusClick = (e, corpusID, corpusLabel) => {
         const pickedCorpus = e.target.getAttribute('corpus')
         
+        console.log('Corpus Label: ', corpusLabel, 'Corpus ID: ', corpusID)
+        let newDict = {}
+        newDict.corpusID = corpusID
+        newDict.corpusLabel = corpusLabel
         if (selectedCorpora.includes(pickedCorpus)) {
             setSelectedCorpora(selectedCorpora.filter(c => c !== pickedCorpus))
         } else {
-            setSelectedCorpora([...selectedCorpora, pickedCorpus])
+            setSelectedCorpora([...selectedCorpora, newDict])
         }
         
     }   
