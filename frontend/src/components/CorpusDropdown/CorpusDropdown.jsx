@@ -2,82 +2,120 @@ import "./CorpusDropdown.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import Tooltip from 'react-bootstrap/Tooltip';
 import CircleButton from "../CircleButton/CircleButton";
+import testdata from '../../services/testdata.json';
 import { useEffect, useState } from "react";
-//import { hello} from "../../services/api";
 
-export default function CorpusDropDown({ colour, buttonLogo,  }) {
-    const [selectedItems, setSelectedItems] = useState(new Set());
-    const [expandedCategories, setExpandedCategories] = useState(new Set());
+export default function CorpusDropDown({ colour, buttonLogo }) {
+    const [selectedCorpora, setSelectedCorpora] = useState([]);
+    const [expanded, setExpanded] = useState({});
+
+        const toggleExpanded = (title) => {
+            setExpanded((prev) => ({
+                ...prev,
+                [title]: !prev[title],
+            }));
+        };
 
 
-    const toggleSelection = (item) => {
-        setSelectedItems((prev) => {
-            const newSelection = new Set(prev);
-            newSelection.has(item) ? newSelection.delete(item) : newSelection.add(item);
-            return newSelection;
-        });
+    const handleCorpusClick = (corpusId) => {
+        if (selectedCorpora.includes(corpusId)) {
+            setSelectedCorpora(selectedCorpora.filter(c => c !== corpusId));
+        } else {
+            setSelectedCorpora([...selectedCorpora, corpusId]);
+        }
     };
 
-    const toggleCategory = (category) => {
-        setExpandedCategories((prev) => {
-            const newExpanded = new Set(prev);
-            newExpanded.has(category) ? newExpanded.delete(category) : newExpanded.add(category);
-            return newExpanded;
-        });
-    };
+    const renderCorpusSelector = (e) => {
+        const title = e[0];
+        const desc = e[1]?.swe || e[1] || '';
+        const corpora = [];
+        const subcorporaList = [];
 
-    const corpus_tip = (
-        <Tooltip id="help_tooltip">
-            <strong>Välj Korpus</strong>
-        </Tooltip>
-    );
+        const testDict = {};
 
+        if (e[2]) {
+            Object.entries(e[2]).forEach(([key, value]) => {
+                if (Array.isArray(value)) {
+                    corpora.push(value[0]);
+                    testDict[key] = value[0];
+                } else {
+                    corpora.push(value);
+                    testDict[key] = value;
+                }
+            });
+        }
 
-    const renderCorpusTree = (category) => {
+        if (e[3]) {
+            Object.values(e[3]).forEach((nested) => {
+                Object.values(nested).forEach((sub) => {
+                    const subId = crypto.randomUUID();
+                    subcorporaList.push({
+                        id: subId,
+                        content: renderCorpusSelector(sub)
+                    });
+                });
+            });
+        }
+
         return (
-            <div key={fullPath}>
-                <div
-                 className="dropdown-category"
-                 onClick={() => isExpandable && toggleCategory(fullPath)}
-                 // get title here 
-             >
-                 {isExpandable ? (expandedCategories.has(fullPath) ? "▼" : "▶") : "•"}{" "}
-               { /* get title here*/}
-
-             </div>
-                {expandedCategories.has(fullPath) && (
-                    <div className="category-items">
-                    {/* Corpora radio-boxes */}
-                    {data.corpora.map((corpus) => (
-                    <Form.Check
-                        key={corpus}
-                        type="radio"
-                        checked={selectedItems.has(corpus)}
-                        onChange={() => toggleSelection(corpus)}
-                    />
-                ))}   
-                    </div>
+            <>
+                <Dropdown.Header 
+                    onClick={() => toggleExpanded(title)} 
+                    style={{ cursor: 'pointer' }}
+                >
+                    {expanded[title] ? '▼' : '▶'} {title}
+                </Dropdown.Header>
+        
+                {expanded[title] && (
+                    <>
+                        {desc && <div className="corpdesc px-3">{desc}</div>}
+        
+                        {Object.entries(testDict).map(([id, label]) => (
+                            <Dropdown.Item
+                                key={id}
+                                onClick={() => handleCorpusClick(id)}
+                                className="corpus__labels"
+                                active={selectedCorpora.includes(id)}
+                            >
+                                {label}
+                            </Dropdown.Item>
+                        ))}
+        
+                        {subcorporaList.map(({id, content}) => (
+                            <div key={id}>{content}</div>
+                        ))}
+                    </>
                 )}
-            </div>
+            </>
         );
+        
     };
-    
+
+    useEffect(() => {
+        console.log("Selected corpora: ", selectedCorpora);
+    }, [selectedCorpora]);
 
     return (
-        <Dropdown className="corpus_bar" drop="down-centered">
+        <div className="corpus-dropdown-container">
+        <Dropdown >
             <Dropdown.Toggle id="dropdown-basic">
-                <CircleButton buttonColour={colour} buttonImage={buttonLogo} buttonToolTip={corpus_tip} />
-                {selectedItems.size > 0 && ` ${selectedItems.size} valda`}
+                <CircleButton buttonColour={colour} buttonImage={buttonLogo} />
+                {selectedCorpora.length > 0 && ` ${selectedCorpora.length} valda`}
             </Dropdown.Toggle>
 
             <Dropdown.Menu id="dropdown-menu">
                 <div className="dropdown-header">
-                    <button className="btn btn-sm btn-light" onClick={() => setSelectedItems(new Set())}>
+                    <button
+                        className="btn btn-sm btn-light"
+                        onClick={() => setSelectedCorpora([])}
+                    >
                         Avmarkera alla
                     </button>
                 </div>
 
+                {Object.values(testdata).map((e, index) => renderCorpusSelector(e))}
             </Dropdown.Menu>
         </Dropdown>
+        </div>
     );
 }
