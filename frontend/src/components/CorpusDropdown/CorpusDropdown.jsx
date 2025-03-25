@@ -3,8 +3,8 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Tooltip from 'react-bootstrap/Tooltip';
 import CircleButton from "../CircleButton/CircleButton";
 import testdata from '../../services/testdata.json';
-import { useContext, useEffect, useState } from "react";
-import CorporaContext from "../../services/CorporaContext.jsx";
+import { useEffect, useState } from "react";
+import ChosenCorporas from "../ChosenCorporasButton/ChosenCorporasButton";
 
 export default function CorpusDropDown({ colour, buttonLogo }) {
     const [selectedCorpora, setSelectedCorpora] = useState([]);
@@ -111,6 +111,12 @@ export default function CorpusDropDown({ colour, buttonLogo }) {
 
     return (
         <div className="corpus-dropdown-container">
+        <ChosenCorporas
+        selectedCorpora={selectedCorpora}
+        onRemove={(corpusId) =>
+            setSelectedCorpora((prev) => prev.filter((id) => id !== corpusId))
+        }
+        ></ChosenCorporas>
         <Dropdown >
             <Dropdown.Toggle id="dropdown-basic">
                 <CircleButton buttonColour={colour} buttonImage={buttonLogo} buttonToolTip={corpus_tip}/>
