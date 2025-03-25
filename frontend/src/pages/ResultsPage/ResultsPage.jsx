@@ -121,7 +121,6 @@ export default function ResultsPage() {
                 </Button>
             </form>
 
-
             <div> 
                 <p>Vald Korpus: </p>
                 {searchCorpusIsLoading? <p>Laddar...</p> : corpus}
@@ -130,8 +129,6 @@ export default function ResultsPage() {
             <SearchBar returnSearchInput={(e) => {
                 handleSubmit(e);
             }}/>
-
-            <p>Söker efter: {searchWordInput}</p>
 
             <ProgressBar isLoading={searchQueryIsLoading} />
 
