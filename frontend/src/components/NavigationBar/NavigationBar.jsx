@@ -27,6 +27,7 @@ export default function NavigationBar () {
     const [settingsModal, setSettingsModal] = useState(false);
     const { settings } = useContext(SettingsContext);
 
+
     const iconColor = settings.theme === "light" ? "black" : "white"; 
 
     const korpImage =  settings.theme === "light" ? KorpLight : KorpDark; 

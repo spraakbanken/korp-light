@@ -26,7 +26,7 @@ import CorporaContext from "../../services/CorporaContext.jsx";
 
 export default function LandingPage() {
     const [showHistory, setShowHistory] = useState(false);
-    const { corporas, updateCorporas } = useContext(CorporaContext);
+    const { corporas } = useContext(CorporaContext);
     const navigate = useNavigate();
 
     const toggleHistory = () => {
@@ -52,7 +52,7 @@ export default function LandingPage() {
     );
 
     const handleSubmit = (event) => {
-        navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(corporas[0] || "romi")}`);
+        navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(corporas.corporas || "romi")}`);
       };
 
 

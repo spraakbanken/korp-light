@@ -3,10 +3,10 @@ import CorporaContext from './CorporaContext.jsx';
 
 export function CorporaProvider({ children }) {
   
-    const [corporas, setCorporas] = useState([]); 
+    const [corporas, setCorporas] = useState({api:1}); 
     
-    const updateCorporas = (newCorporas) => {
-        setCorporas(newCorporas)
+    const updateCorporas = (newCorpora) => {
+        setCorporas(prevCorporas => ({ ...prevCorporas, ...newCorpora }));
     };
 
 

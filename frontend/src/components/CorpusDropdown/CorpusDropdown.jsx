@@ -101,7 +101,11 @@ export default function CorpusDropDown({ colour, buttonLogo }) {
 
     useEffect(() => {
         console.log("Selected corpora: ", selectedCorpora);
-        updateCorporas(selectedCorpora);
+
+        updateCorporas({
+            ...corporas,
+            corporas: selectedCorpora[0]
+        })
         console.log(corporas);
     }, [selectedCorpora]);
 

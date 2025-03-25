@@ -64,7 +64,7 @@ export function toggleAPI(which_server) {
   ];
 
   axios_instance.defaults.baseURL = servers[which_server].value
-  console.log(axios_instance.defaults.baseURL)
+
 }
 
 // sample result, remove later
