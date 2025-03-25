@@ -6,13 +6,13 @@ import ChalmersLogoDark from '../../assets/ChalmersLogoDark.svg';
 import ChalmersLogoLight from '../../assets/ChalmersLogoLight.svg';
 
 
-const Footer = () => {
+const Footer = ({ className }) => {
   const { settings } = useContext(SettingsContext);
 
-  const footerImage =  settings.theme === "light" ? ChalmersLogoLight : ChalmersLogoDark; 
+  const footerImage = settings.theme === "light" ? ChalmersLogoLight : ChalmersLogoDark;
 
   return (
-    <footer className='footer'>
+    <footer className={`footer ${className}`}>
       <img src={footerImage} alt='footer' className='footer-image' />
     </footer>
   );

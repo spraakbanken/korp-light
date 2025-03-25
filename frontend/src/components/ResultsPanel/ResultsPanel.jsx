@@ -83,7 +83,7 @@ const ResultsPanel = ({ response }) => {
       <table className="custom-table">
         <thead>
           <tr>
-            <th>Matchningar</th>
+            <th className='result-th'>Matchningar</th>
           </tr>
         </thead>
         <tbody>
@@ -109,4 +109,3 @@ const ResultsPanel = ({ response }) => {
 };
 
 export default ResultsPanel;
-

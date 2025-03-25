@@ -108,9 +108,7 @@ export default function ResultsPage() {
 
     return(
         <div>
-            <NavigationBar />
-            <h1 className="mt-5 results-header">Resultat</h1>
-            
+            <NavigationBar />            
             <form onSubmit={(e) => {
                 e.preventDefault(); // Prevent page reload
                 setCorpusInput(e.target.corpusInput.value); // Update state
@@ -121,7 +119,6 @@ export default function ResultsPage() {
                 </Button>
             </form>
 
-
             <div> 
                 <p>Vald Korpus: </p>
                 {searchCorpusIsLoading? <p>Laddar...</p> : corpus}
@@ -131,8 +128,6 @@ export default function ResultsPage() {
                 handleSubmit(e);
             }}/>
 
-            <p>Söker efter: {searchWordInput}</p>
-
             <ProgressBar isLoading={searchQueryIsLoading} />
 
             <div className="mt-5">
@@ -140,7 +135,7 @@ export default function ResultsPage() {
                 {queryData.kwic === undefined ? <p>Laddar...</p> :
                     <ResultsPanel response={queryData} />}
             </div>
-            <Footer/>
+            <Footer className="results-footer"/>
         </div>
     );
 }

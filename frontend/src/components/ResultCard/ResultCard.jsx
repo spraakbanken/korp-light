@@ -10,7 +10,7 @@ export default function ResultCard({ response, n }) {
   const showToken = (token) => {
     const word = token.word;
     const title = Object.keys(token).map((k) => `${k}: ${token[k]}`).join('\n');
-    const specialChars = [',', ':', ';'];
+    const specialChars = ['.', ',', ':', ';'];
     if (specialChars.includes(word)) {
       return (
         <span className="special-char" title={title}>
