@@ -30,7 +30,7 @@ import CorporaContext from "../../services/CorporaContext.jsx";
 
 export default function LandingPage() {
     const [showHistory, setShowHistory] = useState(false);
-    const { corporas, updateCorporas } = useContext(CorporaContext);
+    const { corporas } = useContext(CorporaContext);
     const navigate = useNavigate();
     const { settings } = useContext(SettingsContext);
 
@@ -59,7 +59,8 @@ export default function LandingPage() {
     );
 
     const handleSubmit = (event) => {
-        navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(corporas[0] || "romi")}`);
+        //VET EJ HUR VI BYGGER URL QUERYN FÖR FLERA CORPUSAR.
+        navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(corporas.corporas || "romi")}`);
       };
 
 

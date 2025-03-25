@@ -1,0 +1,11 @@
+
+
+.selected-corpora-summary{
+    color: var(--primary-color);
+}
+
+.remove-btn {
+    color: var(--text-color);
+    border: 0;
+    background-color: var(--bg-color);
+}
