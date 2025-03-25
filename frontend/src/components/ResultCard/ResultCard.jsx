@@ -46,7 +46,6 @@ export default function ResultCard({ response, n }) {
 
     const handleContext = (matchIndex, pos) => {
       if (pos === "start"){
-        console.log("startmax",Math.max(matchIndex - settings.contextSize/2, 0));
         return Math.max(matchIndex - (settings.contextSize/2), 0);
       }
       else if (pos === "end"){

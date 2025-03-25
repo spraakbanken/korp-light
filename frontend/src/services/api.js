@@ -11,7 +11,8 @@ const axios_instance = axios.create({
   baseURL: server_config.sb_korp_api,
 });
 
-export async function getCorpusInfo(corpus='bnc-100k') {
+
+export async function getCorpusInfo(corpus='ROMI') {
   queryParams.corpus = corpus;
 
   try {

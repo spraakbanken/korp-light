@@ -4,7 +4,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import "./SideMenu.css";
 
 import { setHistory, getHistory } from "../../services/history";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function SideMenu() {
     const [show, setShow] = useState(false);
@@ -45,7 +45,11 @@ export default function SideMenu() {
                             className="orange-row">
                             
                             { Object.keys(history ?? {}).map((item) => {
-                                return <NavDropdown.Item key={item}href="#action3">{item}</NavDropdown.Item>
+                                return <NavDropdown.Item key={item}>
+                                <Link to={`/results?searchQueryTest=${encodeURIComponent(item)}`}>
+                                  {item}
+                                </Link>
+                              </NavDropdown.Item>
                             })}
 
                         </NavDropdown>
