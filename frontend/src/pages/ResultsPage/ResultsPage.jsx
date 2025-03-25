@@ -79,7 +79,7 @@ export default function ResultsPage() {
     return(
         <div>
             <NavigationBar />
-            <h1 className="mt-5">Resultat</h1>
+            <h1 className="mt-5 results-header">Resultat</h1>
             
             <input type="text" placeholder="corpus name, e.g. ROMI"
                 onChange={(e) => setCorpusInput(e.target.value)}/>

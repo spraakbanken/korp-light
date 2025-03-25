@@ -3,7 +3,7 @@ import SettingsContext from '../../services/SettingsContext';
 import './Footer.css';
 
 import ChalmersLogoDark from '../../assets/ChalmersLogoDark.png';
-import ChalmersLogoLight from '../../assets/ChalmersLogoLight.png';
+import ChalmersLogoLight from '../../assets/ChalmersLogoLight.svg';
 
 
 const Footer = () => {
