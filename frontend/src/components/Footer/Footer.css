@@ -6,9 +6,15 @@
 
 /* Ensure it's fixed at the bottom of the viewport for the landing page */
 .landing-footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    margin-top: 5px;
+}
+
+@media (min-width: 2500px) {
+    .landing-footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
 }
 
 /* Ensure it appears right after the result panel for the results page */
