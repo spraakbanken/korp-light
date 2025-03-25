@@ -1,5 +1,6 @@
 import "./CorpusDropdown.css";
 import Dropdown from "react-bootstrap/Dropdown";
+import Tooltip from 'react-bootstrap/Tooltip';
 import CircleButton from "../CircleButton/CircleButton";
 import testdata from '../../services/testdata.json';
 import { useEffect, useState } from "react";

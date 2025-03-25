@@ -4,7 +4,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import "./SideMenu.css";
 
 import { setHistory, getHistory } from "../../services/history";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function SideMenu() {
     const [show, setShow] = useState(false);
@@ -34,27 +34,28 @@ export default function SideMenu() {
                 </Offcanvas.Header>
                 <Offcanvas.Body className="side-menu-body">
                     <Nav className="flex-column">
-                        <Nav.Link className="gray-row" href="/">Hem</Nav.Link>
+                        <Nav.Link className="first-row" href="/">Hem</Nav.Link>
                         {/* TODO link to help/tour */}
                        
-                        {/* TODO link to history page */}
                         <NavDropdown
                             title="Historik"
                             id={`offcanvasNavbarDropdown-expand-sm}`}
                             autoClose="inside"
-                            className="orange-row">
+                            className="second-row">
                             
                             { Object.keys(history ?? {}).map((item) => {
-                                return <NavDropdown.Item key={item}href="#action3">{item}</NavDropdown.Item>
+                                return <NavDropdown.Item key={item}>
+                                <Link to={`/results?searchQueryTest=${encodeURIComponent(item)}`}>
+                                  {item}
+                                </Link>
+                              </NavDropdown.Item>
                             })}
 
                         </NavDropdown>
                         
-                        {/* <Nav.Link className="gray-row" href="#">Historik</Nav.Link> */}
-
-                        <Nav.Link to={"/"} className="gray-row" href="/help" >Användarhandledning</Nav.Link>
+                        <Nav.Link to={"/"} className="first-row" href="/help" >Användarhandledning</Nav.Link>
                         
-                        <Nav.Link className="orange-row" href="https://spraakbanken.gu.se/om">Mer om Språkbanken</Nav.Link>
+                        <Nav.Link className="second-row" href="https://spraakbanken.gu.se/om">Mer om Språkbanken</Nav.Link>
                     </Nav>
                 </Offcanvas.Body>
             </Offcanvas>

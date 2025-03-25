@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import ResultsPanel from "../../components/ResultsPanel/ResultsPanel.jsx";
 
@@ -16,21 +16,28 @@ import "./ResultPage.css"
 
 export default function ResultsPage() {
 
+    const location = useLocation(); //All this is first draft for routing.
+    const queryParams = new URLSearchParams(location.search); 
+    const searchQueryTest = queryParams.get('searchQueryTest'); 
+    const navigate = useNavigate();
+
     const { settings, updateSettings } = useContext(SettingsContext);
-    const [corpus, setCorpus] = useState("bnc-100k");
-    const [corpusInput, setCorpusInput] = useState("bnc-100k");
-    const [searchWordInput, setSearchWordInput] = useState('');
+    const [corpus, setCorpus] = useState("romi");
+    const [corpusInput, setCorpusInput] = useState();
+    const [searchWordInput, setSearchWordInput] = useState(searchQueryTest); // IDK if we use this
 
     const [queryData, setQueryData] = useState({});
+
+    
 
     const 
         {  data      : searchCorpusData = [], 
            isLoading : searchCorpusIsLoading, 
            refetch   : searchCorpusRefetch,
         } = useQuery({
-        queryKey: [corpusInput],
+        queryKey: [corpusInput || "romi"], // Defaults to ROMI, we have to include corpus in routing.
         queryFn: () => getCorpusInfo(corpusInput),
-        enabled: false,
+        enabled: corpusInput !== "",
     });
 
     const 
@@ -42,6 +49,18 @@ export default function ResultsPage() {
         queryFn: () => getCorpusQuery(searchWordInput),
         enabled: false,
     });
+
+
+    const handleSubmit = (event) => {
+        setSearchWordInput(event)
+
+
+
+        navigate(`/results?searchQueryTest=${encodeURIComponent(event)}`);
+
+      };
+
+
 
     function getCorpusData(data) {
         const langs = data.corpora
@@ -71,6 +90,9 @@ export default function ResultsPage() {
 
     }, [searchWordInput, searchQueryRefetch])
 
+    useEffect(() => {
+        setSearchWordInput(searchQueryTest || '');
+      }, [searchQueryTest]);
     
     useEffect(() => {
         console.log("Settings in Results: ", settings);
@@ -79,7 +101,7 @@ export default function ResultsPage() {
     return(
         <div>
             <NavigationBar />
-            <h1 className="mt-5">Resultat</h1>
+            <h1 className="mt-5 results-header">Resultat</h1>
             
             <input type="text" placeholder="corpus name, e.g. ROMI"
                 onChange={(e) => setCorpusInput(e.target.value)}/>
@@ -110,7 +132,7 @@ export default function ResultsPage() {
             </div>    
 
             <SearchBar returnSearchInput={(e) => {
-                setSearchWordInput(e);
+                handleSubmit(e);
             }}/>
 
             <p>Söker efter: {searchWordInput}</p>

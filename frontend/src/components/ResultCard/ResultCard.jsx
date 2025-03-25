@@ -1,8 +1,10 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import './ResultCard.css';
+import SettingsContext from "../../services/SettingsContext.jsx";
 
 export default function ResultCard({ response, n }) {
+    const { settings, updateSettings } = useContext(SettingsContext);
 
   
     const showToken = (token) => {
@@ -40,7 +42,15 @@ export default function ResultCard({ response, n }) {
       });
       return processedTokens;
     };
+    
 
+    const handleContext = (matchIndex, pos) => {
+      if (pos === "start"){
+        return Math.max(matchIndex - (settings.contextSize/2), 0);
+      }
+      else if (pos === "end"){
+        return Math.min(matchIndex + (settings.contextSize/2));
+    }}
     
 
 
@@ -50,6 +60,7 @@ export default function ResultCard({ response, n }) {
     const processedTokens = preprocessToken(response.tokens);
 
     let matchIndex;
+    let endIndex;
 
     if (response.match && response.match[0] && response.match[0].start !== undefined) {
         matchIndex = response.match[0].start;
@@ -60,6 +71,8 @@ export default function ResultCard({ response, n }) {
     
     //console.log("matchindex:", matchIndex);
 
+    
+
 
   
     return (
@@ -67,7 +80,7 @@ export default function ResultCard({ response, n }) {
           <td className='tableD'>
             <div className='token-container'>
               <div className="prefix-container">
-                {processedTokens.slice(0, matchIndex).map((token, i) => (
+                {processedTokens.slice(handleContext(matchIndex, "start"), matchIndex).map((token, i) => (
                   < span key={i} className="prefix">{showToken(token)}</span>
                 ))}
               </div>
@@ -78,9 +91,10 @@ export default function ResultCard({ response, n }) {
 
 
               <div className="suffix-container">
-                {processedTokens.slice(matchIndex + 1).map((token, i) => (
+                {processedTokens.slice(matchIndex + 1, handleContext(matchIndex, "end")).map((token, i) => (
                   <span key={i} className="suffix">{showToken(token)}</span>
                 ))}
+                
               </div>
 
 

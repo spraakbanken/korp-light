@@ -24,17 +24,19 @@ body, html {
     /* Add more colour definitions and 
     check that all .css files in the project use the variables */
     --bg-color: #3B3B3B;
+    --navbar-color: #363333;
     --primary-color: #F89066;
     --secondary-color: #898989;
     --tertiary-color: #FDDBBB;
     --quaternary-color: #FFCEBA;
-    --quinary-color: #363333;
+    --text-color: #FFFFFF;
 }
 
 [theme="light"] {
   --bg-color: #FFFFFF;
   --primary-color: #F89066;
-  --secondary-color: #EFEFEF;
+  --navbar-color: #EFEFEF;
   --tertiary-color: #FDDBBB;
   --quaternary-color: #FFCEBA;
+  --text-color: #000000;
 }

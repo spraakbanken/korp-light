@@ -1,5 +1,5 @@
 .main__navbar {
-    background-color: #faf9fb;
+    background-color: var(--navbar-color);
     border-bottom: 1px solid #eaeaea;
     padding: 10px;
     width: 100%;
