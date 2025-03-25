@@ -8,6 +8,7 @@ import CorpusDropDown from "../../components/CorpusDropdown/CorpusDropdown.jsx";
 import CircleButton from "../../components/CircleButton/CircleButton.jsx";
 import InfoText from "../../components/InfoText/InfoText.jsx";
 import HistoryPanel from "../../components/HistoryPanel/HistoryPanel.jsx";
+import Footer from "../../components/Footer/Footer.jsx";
 
 //assets
 import corpus_logo from '../../assets/book-open.svg';
@@ -60,6 +61,7 @@ export default function LandingPage() {
             </div>
             {showHistory && <HistoryPanel />}
             <InfoText className="info_text"/>
+            <Footer className="footer"/>
         </div>
     );
 }

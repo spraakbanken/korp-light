@@ -1,8 +1,19 @@
+import { useContext } from 'react';
+import SettingsContext from '../../services/SettingsContext';
 import './Footer.css';
+
+import ChalmersLogoDark from '../../assets/ChalmersLogoDark.png';
+import ChalmersLogoLight from '../../assets/ChalmersLogoLight.png';
+
+
 const Footer = () => {
+  const { settings } = useContext(SettingsContext);
+
+  const footerImage =  settings.theme === "light" ? ChalmersLogoLight : ChalmersLogoDark; 
+
   return (
-    <footer>
-      <h2>CHALMERS</h2>
+    <footer className='footer'>
+      <img src={footerImage} alt='footer' className='footer-image' />
     </footer>
   );
 };
