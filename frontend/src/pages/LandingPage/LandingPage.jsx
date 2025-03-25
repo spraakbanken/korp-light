@@ -37,6 +37,12 @@ export default function LandingPage() {
         </Tooltip>
     );
 
+    const corpus_tip = (
+        <Tooltip id="corpus_tooltip">
+            <strong>Samlingar</strong>
+        </Tooltip>
+    );
+
     const history_tip = (
         <Tooltip id="help_tooltip">
             <strong>Historik</strong>
@@ -66,7 +72,8 @@ export default function LandingPage() {
                 <CorpusDropDown
                     colour='#FFB968'
                     buttonLogo={corpus_logo}
-                    getListFunction={getCorpusCollectionsList} />
+                    getListFunction={getCorpusCollectionsList}
+                    buttonToolTip={corpus_tip} />
 
                 <CircleButton
                     buttonColour='#FFCE6D'

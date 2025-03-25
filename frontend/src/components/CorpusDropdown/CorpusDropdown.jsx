@@ -25,6 +25,12 @@ export default function CorpusDropDown({ colour, buttonLogo }) {
         }
     };
 
+    const corpus_tip = (
+        <Tooltip id="corpus_tooltip">
+            <strong>Samlingar</strong>
+        </Tooltip>
+    );
+
     const renderCorpusSelector = (e) => {
         const title = e[0];
         const desc = e[1]?.swe || e[1] || '';
@@ -99,7 +105,7 @@ export default function CorpusDropDown({ colour, buttonLogo }) {
         <div className="corpus-dropdown-container">
         <Dropdown >
             <Dropdown.Toggle id="dropdown-basic">
-                <CircleButton buttonColour={colour} buttonImage={buttonLogo} />
+                <CircleButton buttonColour={colour} buttonImage={buttonLogo} buttonToolTip={corpus_tip}/>
                 {selectedCorpora.length > 0 && ` ${selectedCorpora.length} valda`}
             </Dropdown.Toggle>
 
