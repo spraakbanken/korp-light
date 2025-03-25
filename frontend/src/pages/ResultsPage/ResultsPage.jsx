@@ -19,11 +19,12 @@ export default function ResultsPage() {
     const location = useLocation(); //All this is first draft for routing.
     const queryParams = new URLSearchParams(location.search); 
     const searchQueryTest = queryParams.get('searchQueryTest'); 
+    const corpusQueryTest = queryParams.get('corpus'); 
     const navigate = useNavigate();
 
     const { settings, updateSettings } = useContext(SettingsContext);
-    const [corpus, setCorpus] = useState("romi");
-    const [corpusInput, setCorpusInput] = useState();
+    const [corpus, setCorpus] = useState(corpusQueryTest);
+    const [corpusInput, setCorpusInput] = useState(corpusQueryTest || 'romi');
     const [searchWordInput, setSearchWordInput] = useState(searchQueryTest); // IDK if we use this
 
     const [queryData, setQueryData] = useState({});
@@ -35,7 +36,7 @@ export default function ResultsPage() {
            isLoading : searchCorpusIsLoading, 
            refetch   : searchCorpusRefetch,
         } = useQuery({
-        queryKey: [corpusInput || "romi"], // Defaults to ROMI, we have to include corpus in routing.
+        queryKey: [corpusInput], // Defaults to ROMI, we have to include corpus in routing.
         queryFn: () => getCorpusInfo(corpusInput),
         enabled: corpusInput !== "",
         
@@ -54,7 +55,7 @@ export default function ResultsPage() {
 
     const handleSubmit = (event) => {
         setSearchWordInput(event)
-        navigate(`/results?searchQueryTest=${encodeURIComponent(event)}`);
+        navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(corpusInput)}`);
       };
 
 
@@ -89,6 +90,10 @@ export default function ResultsPage() {
     useEffect(() => {
         setSearchWordInput(searchQueryTest || '');
       }, [searchQueryTest]);
+
+    useEffect(() => {
+    setCorpusInput(corpusQueryTest || 'romi');
+    }, [corpusQueryTest]);
     
     useEffect(() => {
         console.log("Settings in Results: ", settings);
