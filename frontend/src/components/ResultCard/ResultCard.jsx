@@ -4,111 +4,113 @@ import './ResultCard.css';
 import SettingsContext from "../../services/SettingsContext.jsx";
 
 export default function ResultCard({ response, n }) {
-    const { settings, updateSettings } = useContext(SettingsContext);
+  const { settings, updateSettings } = useContext(SettingsContext);
 
-  
-    const showToken = (token) => {
-      const word = token.word; 
-      const title = Object.keys(token).map((k) => `${k}: ${token[k]}`).join('\n');
-      const specialChars = [',', ':', ';'];
-      if (specialChars.includes(word)) {
-        return (
-          <span className="special-char" title={title}>
-            {word}
-          </span>
-        );
-      }
-      
+
+  const showToken = (token) => {
+    const word = token.word;
+    const title = Object.keys(token).map((k) => `${k}: ${token[k]}`).join('\n');
+    const specialChars = [',', ':', ';'];
+    if (specialChars.includes(word)) {
       return (
-        <span className="token" title={title}>
+        <span className="special-char" title={title}>
           {word}
         </span>
       );
-    };
-  
-
-    const preprocessToken = (token) => {
-      let processedTokens = [];
-
-      token.forEach((token, index) => {
-        const word = token.word;
-
-
-        if (index > 0 && /,;:/.test(token.word)) {
-          processedTokens[processedTokens.length - 1].word += word;
-        } else {
-          processedTokens.push({ ...token });
-        }
-      });
-      return processedTokens;
-    };
-    
-
-    const handleContext = (matchIndex, pos) => {
-      if (pos === "start"){
-        return Math.max(matchIndex - (settings.contextSize/2), 0);
-      }
-      else if (pos === "end"){
-        return Math.min(matchIndex + (settings.contextSize/2));
-    }}
-    
-
-
-
-    if (!response) return null;
-
-    const processedTokens = preprocessToken(response.tokens);
-
-    let matchIndex;
-    let endIndex;
-
-    if (response.match && response.match[0] && response.match[0].start !== undefined) {
-        matchIndex = response.match[0].start;
-    } else if (response.match && response.match.start !== undefined) {
-        matchIndex = response.match.start;
     }
-    
-    
-    //console.log("matchindex:", matchIndex);
 
-    
-
-
-  
     return (
-        <tr key={n} className='resultRow'>
-          <td className='tableD'>
-            <div className='token-container'>
-              <div className="prefix-container">
-                {processedTokens.slice(handleContext(matchIndex, "start"), matchIndex).map((token, i) => (
-                  < span key={i} className="prefix">{showToken(token)}</span>
-                ))}
-              </div>
-
-              <div className="match-container">
-                <span className="token match">{showToken(processedTokens[matchIndex])}</span>
-              </div>
+      <span className="token" title={title}>
+        {word}
+      </span>
+    );
+  };
 
 
-              <div className="suffix-container">
-                {processedTokens.slice(matchIndex + 1, handleContext(matchIndex, "end")).map((token, i) => (
-                  <span key={i} className="suffix">{showToken(token)}</span>
-                ))}
-                
-              </div>
+  const preprocessToken = (token) => {
+    let processedTokens = [];
+
+    token.forEach((token, index) => {
+      const word = token.word;
 
 
-              {/* <div className="spacer" style={{ flex: tokensBeforeMatch }}></div> */}
-
+      if (index > 0 && /,;:/.test(token.word)) {
+        processedTokens[processedTokens.length - 1].word += word;
+      } else {
+        processedTokens.push({ ...token });
+      }
+    });
+    return processedTokens;
+  };
 
 
 
+  const handleContext = (matchIndex, pos) => {
+    if (pos === "start") {
+      return Math.max(matchIndex - (settings.contextSize / 2), 0);
+    }
+    else if (pos === "end") {
+      return Math.min(matchIndex + (settings.contextSize / 2));
+    }
+  }
+
+
+
+
+  if (!response) return null;
+
+  const processedTokens = preprocessToken(response.tokens);
+
+  let matchIndex;
+  let endIndex;
+
+  if (response.match && response.match[0] && response.match[0].start !== undefined) {
+    matchIndex = response.match[0].start;
+  } else if (response.match && response.match.start !== undefined) {
+    matchIndex = response.match.start;
+  }
+
+
+  //console.log("matchindex:", matchIndex);
 
 
 
 
 
-              {/* {response.tokens.map((token, i) => (
+  return (
+    <tr key={n} className='resultRow'>
+      <td className='tableD'>
+        <div className='token-container'>
+          <div className="prefix-container">
+            {processedTokens.slice(handleContext(matchIndex, "start"), matchIndex).map((token, i) => (
+              < span key={i} className="prefix">{showToken(token)}</span>
+            ))}
+          </div>
+
+          <div className="match-container">
+            <span className="token match">{showToken(processedTokens[matchIndex])}</span>
+          </div>
+
+
+          <div className="suffix-container">
+            {processedTokens.slice(matchIndex + 1, handleContext(matchIndex, "end")).map((token, i) => (
+              <span key={i} className="suffix">{showToken(token)}</span>
+            ))}
+
+          </div>
+
+
+          {/* <div className="spacer" style={{ flex: tokensBeforeMatch }}></div> */}
+
+
+
+
+
+
+
+
+
+          {/* {response.tokens.map((token, i) => (
                 <React.Fragment key={i}>
 
                   
@@ -127,14 +129,14 @@ export default function ResultCard({ response, n }) {
                 }
                 </React.Fragment>
               ))} */}
-    
-                {/* <div className="spacer" style={{ flex: tokensAfterMatch }}></div> */}
-              </div>
-          </td>
-        </tr>
-      );
-    }
-  
+
+          {/* <div className="spacer" style={{ flex: tokensAfterMatch }}></div> */}
+        </div>
+      </td>
+    </tr>
+  );
+}
+
 
 /*     <div className="token-container">
     

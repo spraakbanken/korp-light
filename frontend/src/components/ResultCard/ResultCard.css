@@ -1,54 +1,22 @@
-.tableD{
-  justify-content: space-between;
-
-
-}
-
 .token-container {
   display: flex;
-  overflow: hidden;
-  flex-wrap: nowrap;
+  flex-wrap: nowrap; 
   justify-content: center;
-
-}
-
-
-.prefix, .suffix{
-  
-  margin-left: 3px;
-}
-
-.special-char{
-  margin-left: 0;
-}
-  
-.token {
-  white-space: nowrap; 
-  word-break: keep-all; 
-}
-
-.token.match {
-  font-weight: bold;
-  text-align: center;
-
-}
-
-.resultRow {
- 
-
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
 }
 
 .prefix-container,
 .suffix-container {
-
-  display: flex;
-  flex-wrap: nowrap;
+  flex: 1; 
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  display: flex;
   justify-content: flex-end;
-  width: 45%;
-  max-width: 45%;
-  position: relative;
+  gap: 4px; 
+  word-spacing: 4px; 
 }
 
 .suffix-container {
@@ -56,49 +24,14 @@
 }
 
 .match-container {
-  flex-shrink: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-shrink: 0; 
   white-space: nowrap;
   text-align: center;
-  width: fit-content;
-  min-width: 40px; 
-  max-width: 10%;
-
+  padding: 0 10px;
+  background-color: rgba(255, 255, 255, 0);
+  font-weight: bold;
 }
-/* @media (max-width: 900px) {
 
-  .prefix-container,
-  .suffix-container {
-  
-    display: flex;
-    justify-content: flex-end;
-    width: 43%;
-    max-width: 43%;
-    position: relative;
-  
-  
-  }
-  .suffix-container {
-    justify-content: flex-start;
-  }
-  
-  .match-container {
-    flex-shrink: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 12%; 
-    width: 12%;
-    max-width: 12%;
-    
-  
-  
-  }
-
-} */
-
-
-
-
+.special-char {
+  margin-left: -4px;
+}
