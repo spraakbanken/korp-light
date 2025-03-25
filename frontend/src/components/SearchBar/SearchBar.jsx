@@ -23,7 +23,7 @@ export default function SearchBar({ returnSearchInput }) {
                     id="searchBar"
                     className="searchBar"
                     type="search"
-                    placeholder="Search"
+                    placeholder="Sök"
                     onChange={(e) => setSearchInput(e.target.value)}
                     onKeyDown={(e) => {
                         if (e.key === 'Enter') {
