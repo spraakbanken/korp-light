@@ -14,6 +14,7 @@ import ProgressBar from "../../components/ProgressBar/ProgressBar.jsx";
 import "./ResultPage.css"
 
 
+
 export default function ResultsPage() {
 
     const location = useLocation(); //All this is first draft for routing.

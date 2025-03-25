@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Tooltip from 'react-bootstrap/Tooltip';
 import { useNavigate } from "react-router-dom";
 // React Components
@@ -22,10 +22,11 @@ import "./LandingPage.css"
 
 // services
 import { getCorpusCollectionsList } from "../../services/api.js";
-
+import CorporaContext from "../../services/CorporaContext.jsx";
 
 export default function LandingPage() {
     const [showHistory, setShowHistory] = useState(false);
+    const { corporas, updateCorporas } = useContext(CorporaContext);
     const navigate = useNavigate();
 
     const toggleHistory = () => {
@@ -51,7 +52,7 @@ export default function LandingPage() {
     );
 
     const handleSubmit = (event) => {
-        navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent("romi")}`);
+        navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(corporas[0])}`);
       };
 
 

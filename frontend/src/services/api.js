@@ -8,7 +8,7 @@ import server_config from './server_config.js';
 // Sample Axios Code
 // Using Promises, Write a function for each endpoint
 const axios_instance = axios.create({
-  baseURL: server_config.pl_korp_api,
+  baseURL: server_config.sb_korp_api,
 });
 
 
@@ -64,6 +64,7 @@ export function toggleAPI(which_server) {
   ];
 
   axios_instance.defaults.baseURL = servers[which_server].value
+  console.log(axios_instance.defaults.baseURL)
 }
 
 // sample result, remove later

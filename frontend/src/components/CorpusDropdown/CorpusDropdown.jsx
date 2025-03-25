@@ -3,11 +3,13 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Tooltip from 'react-bootstrap/Tooltip';
 import CircleButton from "../CircleButton/CircleButton";
 import testdata from '../../services/testdata.json';
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import CorporaContext from "../../services/CorporaContext.jsx";
 
 export default function CorpusDropDown({ colour, buttonLogo }) {
     const [selectedCorpora, setSelectedCorpora] = useState([]);
     const [expanded, setExpanded] = useState({});
+    const { corporas, updateCorporas } = useContext(CorporaContext);
 
         const toggleExpanded = (title) => {
             setExpanded((prev) => ({
@@ -99,6 +101,8 @@ export default function CorpusDropDown({ colour, buttonLogo }) {
 
     useEffect(() => {
         console.log("Selected corpora: ", selectedCorpora);
+        updateCorporas(selectedCorpora);
+        console.log(corporas);
     }, [selectedCorpora]);
 
     return (
