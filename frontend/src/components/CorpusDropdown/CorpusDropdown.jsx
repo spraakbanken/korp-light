@@ -1,5 +1,6 @@
 import "./CorpusDropdown.css";
 import Dropdown from "react-bootstrap/Dropdown";
+import Tooltip from 'react-bootstrap/Tooltip';
 import CircleButton from "../CircleButton/CircleButton";
 import { useEffect, useState } from "react";
 //import { hello} from "../../services/api";
@@ -24,6 +25,12 @@ export default function CorpusDropDown({ colour, buttonLogo,  }) {
             return newExpanded;
         });
     };
+
+    const corpus_tip = (
+        <Tooltip id="help_tooltip">
+            <strong>Välj Korpus</strong>
+        </Tooltip>
+    );
 
 
     const renderCorpusTree = (category) => {
@@ -59,7 +66,7 @@ export default function CorpusDropDown({ colour, buttonLogo,  }) {
     return (
         <Dropdown className="corpus_bar" drop="down-centered">
             <Dropdown.Toggle id="dropdown-basic">
-                <CircleButton buttonColour={colour} buttonImage={buttonLogo} />
+                <CircleButton buttonColour={colour} buttonImage={buttonLogo} buttonToolTip={corpus_tip} />
                 {selectedItems.size > 0 && ` ${selectedItems.size} valda`}
             </Dropdown.Toggle>
 
