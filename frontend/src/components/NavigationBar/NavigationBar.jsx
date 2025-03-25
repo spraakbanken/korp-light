@@ -15,9 +15,22 @@ import { useState } from "react";
 import SettingsCard from "../SettingsCard/SettingsCard";
 import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
+import { useContext } from 'react';
+import SettingsContext from '../../services/SettingsContext';
+import KorpLight from '../../assets/korp.svg';
+import KorpDark from '../../assets/whiteKorp.svg';
+
+
+
 export default function NavigationBar () {
     //Settings Modal
     const [settingsModal, setSettingsModal] = useState(false);
+    const { settings } = useContext(SettingsContext);
+
+    const iconColor = settings.theme === "light" ? "black" : "white"; 
+
+    const korpImage =  settings.theme === "light" ? KorpLight : KorpDark; 
+    
     
     const settings_tip = (
         <Tooltip id="settings_tooltip">
@@ -36,7 +49,7 @@ export default function NavigationBar () {
         <Navbar className="main__navbar">
           <Container fluid className="d-flex justify-content-between">
             <div><Link to={"/"}>
-                 <img src="src\assets\korp.svg" alt="" />
+                 <img src={korpImage} alt="" />
             </Link>
       
             <SideMenu /></div>
@@ -48,7 +61,7 @@ export default function NavigationBar () {
               
               <OverlayTrigger placement="bottom" overlay={help_tip}>
                 <Nav.Link className="circle__button" href={null}>
-                  <BadgeHelp size={28} className=" icon-hover text-dark hover:text-primary" />
+                  <BadgeHelp size={28} className=" icon-hover text-dark hover:text-primary" color={iconColor} />
                 </Nav.Link>
               </OverlayTrigger>
       
@@ -58,7 +71,7 @@ export default function NavigationBar () {
                   href={null}
                   onClick={() => setSettingsModal(true)}
                 >
-                  <Settings size={28} className="icon-hover text-dark hover:text-primary" />
+                  <Settings size={28} className="icon icon-hover text-dark hover:text-primary" color={iconColor} />
                 </Nav.Link>
               </OverlayTrigger>
             </Nav>
