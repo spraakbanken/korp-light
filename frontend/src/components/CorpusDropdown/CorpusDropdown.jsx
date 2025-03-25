@@ -3,8 +3,9 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Tooltip from 'react-bootstrap/Tooltip';
 import CircleButton from "../CircleButton/CircleButton";
 import testdata from '../../services/testdata.json';
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ChosenCorporas from "../ChosenCorporasButton/ChosenCorporasButton";
+import CorporaContext from "../../services/CorporaContext.jsx";
 
 export default function CorpusDropDown({ colour, buttonLogo }) {
     const [selectedCorpora, setSelectedCorpora] = useState([]);
