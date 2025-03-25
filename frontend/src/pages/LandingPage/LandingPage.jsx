@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Tooltip from 'react-bootstrap/Tooltip';
 
 // React Components
 import HelloKorpi from "../../components/HelloKorpi/HelloKorpi.jsx";
@@ -29,37 +30,53 @@ export default function LandingPage() {
         setShowHistory((prev) => !prev);
     };
 
+    const advanced_tip = (
+        <Tooltip id="settings_tooltip">
+            <strong>Utökad Sökning</strong>
+        </Tooltip>
+    );
+
+    const history_tip = (
+        <Tooltip id="help_tooltip">
+            <strong>Historik</strong>
+        </Tooltip>
+    );
+
     return (
         <div>
             {/* We have to remove it for now <NavigationBar /> */}
-            <NavigationBar/>
+            <NavigationBar />
             <HelloKorpi />
-            <SearchBar returnSearchInput={null}/>
+            <SearchBar returnSearchInput={null} />
 
             <div className="landingpage__button_group">
-            
-                <CircleButton 
-                    buttonColour='lime'
+
+                {/* <CircleButton
+                    buttonColour='#FF9F79'
                     buttonImage={search_logo}
-                    buttonOnClick={null} />
+                    buttonOnClick={null} /> */}
 
                 <CircleButton
-                    buttonColour='lightblue'
-                    buttonImage={history_logo}
-                    buttonOnClick={toggleHistory} />
+                    buttonColour='#FF9F79'
+                    buttonImage={sliders_logo}
+                    buttonOnClick={null}
+                    buttonToolTip={advanced_tip} />
 
                 <CorpusDropDown
-                    colour='orange'
+                    colour='#FFB968'
                     buttonLogo={corpus_logo}
-                    getListFunction={getCorpusCollectionsList}/>
+                    getListFunction={getCorpusCollectionsList} />
 
-                <CircleButton 
-                    buttonColour='hotpink'
-                    buttonImage={sliders_logo}
-                    buttonOnClick={null} />
+                <CircleButton
+                    buttonColour='#FFCE6D'
+                    buttonImage={history_logo}
+                    buttonOnClick={toggleHistory}
+                    buttonToolTip={history_tip} />
+
+
             </div>
             {showHistory && <HistoryPanel />}
-            <InfoText className="info_text"/>
+            <InfoText className="info_text" />
         </div>
     );
 }
