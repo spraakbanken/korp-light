@@ -1,3 +1,17 @@
 .results-header {
     color: var(--text-color);
 }
+
+.results-page{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.results-content{
+    flex: 1;
+}
+
+.results-footer {
+    margin-top: 5px;
+}

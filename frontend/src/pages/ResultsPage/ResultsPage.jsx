@@ -10,7 +10,7 @@ import { useContext, useEffect, useState } from "react";
 import SettingsContext from "../../services/SettingsContext.jsx";
 import SearchBar from "../../components/SearchBar/SearchBar.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
-import ProgressBar from "../../components/ProgressBar/ProgressBar.jsx"; 
+import ProgressBar from "../../components/ProgressBar/ProgressBar.jsx";
 import "./ResultPage.css"
 
 
@@ -18,9 +18,9 @@ import "./ResultPage.css"
 export default function ResultsPage() {
 
     const location = useLocation(); //All this is first draft for routing.
-    const queryParams = new URLSearchParams(location.search); 
-    const searchQueryTest = queryParams.get('searchQueryTest'); 
-    const corpusQueryTest = queryParams.get('corpus'); 
+    const queryParams = new URLSearchParams(location.search);
+    const searchQueryTest = queryParams.get('searchQueryTest');
+    const corpusQueryTest = queryParams.get('corpus');
     const navigate = useNavigate();
 
     const { settings, updateSettings } = useContext(SettingsContext);
@@ -30,34 +30,34 @@ export default function ResultsPage() {
 
     const [queryData, setQueryData] = useState({});
 
-    
 
-    const 
-        {  data      : searchCorpusData = [], 
-           isLoading : searchCorpusIsLoading, 
-           refetch   : searchCorpusRefetch,
-        } = useQuery({
-        queryKey: [corpusInput], // Defaults to ROMI, we have to include corpus in routing.
-        queryFn: () => getCorpusInfo(corpusInput),
-        enabled: corpusInput !== "",
-        
-    });
 
-    const 
-        {  data      : searchQueryData = [], 
-           isLoading : searchQueryIsLoading, 
-           refetch   : searchQueryRefetch,
+    const
+        { data: searchCorpusData = [],
+            isLoading: searchCorpusIsLoading,
+            refetch: searchCorpusRefetch,
         } = useQuery({
-        queryKey: [searchWordInput],
-        queryFn: () => getCorpusQuery(searchWordInput),
-        enabled: false,
-    });
+            queryKey: [corpusInput], // Defaults to ROMI, we have to include corpus in routing.
+            queryFn: () => getCorpusInfo(corpusInput),
+            enabled: corpusInput !== "",
+
+        });
+
+    const
+        { data: searchQueryData = [],
+            isLoading: searchQueryIsLoading,
+            refetch: searchQueryRefetch,
+        } = useQuery({
+            queryKey: [searchWordInput],
+            queryFn: () => getCorpusQuery(searchWordInput),
+            enabled: false,
+        });
 
 
     const handleSubmit = (event) => {
         setSearchWordInput(event)
         navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(corpusInput)}`);
-      };
+    };
 
 
 
@@ -70,18 +70,18 @@ export default function ResultsPage() {
         }
         setCorpus(`[ ${current_corpora} ]`)
     }
-    
+
     useEffect(() => {
-        if(searchWordInput){
+        if (searchWordInput) {
 
 
 
             searchQueryRefetch().then((res) => {
                 setQueryData(res.data);
-                
+
             });
 
-            
+
 
             console.log("CHANGED: ", searchWordInput)
         }
@@ -90,52 +90,54 @@ export default function ResultsPage() {
 
     useEffect(() => {
         setSearchWordInput(searchQueryTest || '');
-      }, [searchQueryTest]);
+    }, [searchQueryTest]);
 
     useEffect(() => {
-    setCorpusInput(corpusQueryTest || 'romi');
+        setCorpusInput(corpusQueryTest || 'romi');
     }, [corpusQueryTest]);
-    
+
     useEffect(() => {
         console.log("Settings in Results: ", settings);
     }, [settings])
 
     useEffect(() => {
         if (searchCorpusData && corpusInput) {
-          getCorpusData(searchCorpusData); 
+            getCorpusData(searchCorpusData);
         }
-      }, [searchCorpusData, corpusInput]);
+    }, [searchCorpusData, corpusInput]);
 
-    return(
-        <div>
-            <NavigationBar />            
-            <form onSubmit={(e) => {
-                e.preventDefault(); // Prevent page reload
-                setCorpusInput(e.target.corpusInput.value); // Update state
-            }}>
-                <input type="text" name="corpusInput" placeholder="corpus name, e.g. ROMI" />
-                <Button type="submit" className="simple-button m-1" variant="danger" size="sm">
-                    Byt Korpus!
-                </Button>
-            </form>
+    return (
+        <div className="results-page">
+            <NavigationBar />
+            <div className="results-content">
+                <form onSubmit={(e) => {
+                    e.preventDefault(); // Prevent page reload
+                    setCorpusInput(e.target.corpusInput.value); // Update state
+                }}>
+                    <input type="text" name="corpusInput" placeholder="corpus name, e.g. ROMI" />
+                    <Button type="submit" className="simple-button m-1" variant="danger" size="sm">
+                        Byt Korpus!
+                    </Button>
+                </form>
 
-            <div> 
-                <p>Vald Korpus: </p>
-                {searchCorpusIsLoading? <p>Laddar...</p> : corpus}
-            </div>    
+                <div>
+                    <p>Vald Korpus: </p>
+                    {searchCorpusIsLoading ? <p>Laddar...</p> : corpus}
+                </div>
 
-            <SearchBar returnSearchInput={(e) => {
-                handleSubmit(e);
-            }}/>
+                <SearchBar returnSearchInput={(e) => {
+                    handleSubmit(e);
+                }} />
 
-            <ProgressBar isLoading={searchQueryIsLoading} />
+                <ProgressBar isLoading={searchQueryIsLoading} />
 
-            <div className="mt-5">
-                {/*queryData.kwic == undefined ? <p>Loading...</p> : JSON.stringify(queryData) */}
-                {queryData.kwic === undefined ? <p>Laddar...</p> :
-                    <ResultsPanel response={queryData} />}
+                <div className="mt-5">
+                    {/*queryData.kwic == undefined ? <p>Loading...</p> : JSON.stringify(queryData) */}
+                    {queryData.kwic === undefined ? <p>Laddar...</p> :
+                        <ResultsPanel response={queryData} />}
+                </div>
             </div>
-            <Footer className="results-footer"/>
+            <Footer className="results-footer" />
         </div>
     );
 }

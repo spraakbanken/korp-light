@@ -34,7 +34,7 @@ export default function LandingPage() {
     const navigate = useNavigate();
     const { settings } = useContext(SettingsContext);
 
-    const korpImage =  settings.theme === "light" ? KorpLight : KorpDark; 
+    const korpImage = settings.theme === "light" ? KorpLight : KorpDark;
 
     const toggleHistory = () => {
         setShowHistory((prev) => !prev);
@@ -61,50 +61,53 @@ export default function LandingPage() {
     const handleSubmit = (event) => {
         //VET EJ HUR VI BYGGER URL QUERYN FÖR FLERA CORPUSAR.
         navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(corporas.corporas || "romi")}`);
-      };
+    };
 
 
 
     return (
-        <div>
+        <div className="landing-page">
             {/* We have to remove it for now <NavigationBar /> */}
             <NavigationBar />
-            <img className="korp-image" src={korpImage} alt="" />
+            <div className="landing-content">
+                <img className="korp-image" src={korpImage} alt="" />
 
-            <SearchBar returnSearchInput={(e) => {
-                            handleSubmit(e);
-                        }}/>
 
-            <div className="landingpage__button_group">
+                <SearchBar returnSearchInput={(e) => {
+                    handleSubmit(e);
+                }} />
 
-                {/* <CircleButton
+                <div className="landingpage__button_group">
+
+                    {/* <CircleButton
                     buttonColour='#FF9F79'
                     buttonImage={search_logo}
                     buttonOnClick={null} /> */}
 
-                <CircleButton
-                    buttonColour='#FF9F79'
-                    buttonImage={sliders_logo}
-                    buttonOnClick={null}
-                    buttonToolTip={advanced_tip} />
+                    <CircleButton
+                        buttonColour='#FF9F79'
+                        buttonImage={sliders_logo}
+                        buttonOnClick={null}
+                        buttonToolTip={advanced_tip} />
 
-                <CorpusDropDown
-                    colour='#FFB968'
-                    buttonLogo={corpus_logo}
-                    getListFunction={getCorpusCollectionsList}
-                    buttonToolTip={corpus_tip} />
+                    <CorpusDropDown
+                        colour='#FFB968'
+                        buttonLogo={corpus_logo}
+                        getListFunction={getCorpusCollectionsList}
+                        buttonToolTip={corpus_tip} />
 
-                <CircleButton
-                    buttonColour='#FFCE6D'
-                    buttonImage={history_logo}
-                    buttonOnClick={toggleHistory}
-                    buttonToolTip={history_tip} />
+                    <CircleButton
+                        buttonColour='#FFCE6D'
+                        buttonImage={history_logo}
+                        buttonOnClick={toggleHistory}
+                        buttonToolTip={history_tip} />
 
 
+                </div>
+                {showHistory && <HistoryPanel />}
+                <InfoText className="info_text" />
             </div>
-            {showHistory && <HistoryPanel />}
-            <InfoText className="info_text"/>
-            <Footer className="landing-footer"/>
+            <Footer className="landing-footer" />
         </div>
     );
 }
