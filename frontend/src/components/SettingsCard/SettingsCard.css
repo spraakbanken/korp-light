@@ -56,6 +56,16 @@
     background-color: #007bff;
 }
 
+.settingsFooter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.settingsCloseButton {
+    width: 100%;
+}
+
 .light-mode-button {
     color: #f39c12;
 }

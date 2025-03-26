@@ -134,8 +134,8 @@ export default function SettingsCard(props) {
                 </Modal.Body>
                 
                 {/* Close button */}
-                <Modal.Footer onClick={props.onHide}>
-                        <Button variant="danger" className="w-50">STÄNG</Button>
+                <Modal.Footer className="settingsFooter" onClick={props.onHide}>
+                        <Button variant="danger" className="w-50 settingsCloseButton">STÄNG</Button>
                 </Modal.Footer>
             </Modal>
     );
