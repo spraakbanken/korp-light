@@ -20,12 +20,12 @@
   .btn.toggle-button:active:not(:disabled),
   .btn.toggle-button:focus:not(:disabled),
   .btn-check:checked + .btn.toggle-button {
-    background-color: #F89066 !important; /* !important may be needed */
+    background-color: #F89066 !important;
     color: white !important;
-    box-shadow: none !important; /* Removes Bootstrap's glow */
+    box-shadow: none !important; 
   }
   
-  /* If using radio/checkbox inputs (ToggleButtonGroup) */
+  
   .btn-check:checked + .btn.toggle-button {
     background-color: #F89066 !important;
     color: white !important;

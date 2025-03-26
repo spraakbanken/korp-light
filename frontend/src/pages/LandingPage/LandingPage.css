@@ -16,3 +16,10 @@
 .korp-image {
   padding-top: 150px;
 }
+
+.tooltip {
+  position: fixed !important; 
+  opacity: 1 !important; 
+  transition: none !important; 
+}
+
