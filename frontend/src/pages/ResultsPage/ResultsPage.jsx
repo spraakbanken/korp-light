@@ -110,7 +110,7 @@ export default function ResultsPage() {
         <div className="results-page">
             <NavigationBar />
             <div className="results-content">
-                <form onSubmit={(e) => {
+                {/* <form onSubmit={(e) => {
                     e.preventDefault(); // Prevent page reload
                     setCorpusInput(e.target.corpusInput.value); // Update state
                 }}>
@@ -123,7 +123,7 @@ export default function ResultsPage() {
                 <div>
                     <p>Vald Korpus: </p>
                     {searchCorpusIsLoading ? <p>Laddar...</p> : corpus}
-                </div>
+                </div> */}
 
                 <SearchBar returnSearchInput={(e) => {
                     handleSubmit(e);
@@ -131,7 +131,7 @@ export default function ResultsPage() {
 
                 <ProgressBar isLoading={searchQueryIsLoading} />
 
-                <div className="mt-5">
+                <div className="mt-2">
                     {/*queryData.kwic == undefined ? <p>Loading...</p> : JSON.stringify(queryData) */}
                     {queryData.kwic === undefined ? <p>Laddar...</p> :
                         <ResultsPanel response={queryData} />}
