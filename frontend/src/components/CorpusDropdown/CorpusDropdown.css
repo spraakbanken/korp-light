@@ -35,5 +35,25 @@
     text-align: center;
 }
 
+.dropdown-item:hover{
+    background-color: #F89066;
+
+
+}
+
+.dropdown-item.active{
+    background-color: #F89066;
+    color: black;
+
+
+}
+
+.dropdown-item.active:hover{
+    background-color: #F89066;
+    color: red;
+
+
+}
+
   
   

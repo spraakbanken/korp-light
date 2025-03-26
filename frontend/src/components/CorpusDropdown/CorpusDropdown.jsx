@@ -20,7 +20,9 @@ export default function CorpusDropDown({ colour, buttonLogo }) {
         };
 
 
-    const handleCorpusClick = (corpusId) => {
+    const handleCorpusClick = (corpusId, event) => {
+        event.stopPropagation(); 
+        event.nativeEvent.stopImmediatePropagation(); 
         if (selectedCorpora.includes(corpusId)) {
             setSelectedCorpora(selectedCorpora.filter(c => c !== corpusId));
         } else {
@@ -82,7 +84,7 @@ export default function CorpusDropDown({ colour, buttonLogo }) {
                         {Object.entries(testDict).map(([id, label]) => (
                             <Dropdown.Item
                                 key={id}
-                                onClick={() => handleCorpusClick(id)}
+                                onClick={(event) => handleCorpusClick(id, event)}
                                 className="corpus__labels"
                                 active={selectedCorpora.includes(id)}
                             >
