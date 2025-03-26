@@ -12,7 +12,6 @@
     justify-content: center;
     align-items: center;
     margin: 10px 0;
-    padding: 0;
     width: 30%;  
     position: relative;
     left: 50%;  
@@ -34,6 +33,7 @@
     align-items: center;
     height: 10px;
     width: 30%;  
+    margin: 10px 0;
     position: relative;
     left: 50%;  
     transform: translateX(-50%);  
