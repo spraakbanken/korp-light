@@ -112,12 +112,12 @@ export default function CorpusDropDown({ colour, buttonLogo }) {
 
     return (
         <div className="corpus-dropdown-container">
-        <ChosenCorporas
+      {/* <ChosenCorporas
         selectedCorpora={selectedCorpora}
         onRemove={(corpusId) =>
             setSelectedCorpora((prev) => prev.filter((id) => id !== corpusId))
         }
-        ></ChosenCorporas>
+        ></ChosenCorporas> */}  
         <Dropdown >
             <Dropdown.Toggle id="dropdown-basic">
                 <CircleButton buttonColour={colour} buttonImage={buttonLogo} buttonToolTip={corpus_tip}/>
