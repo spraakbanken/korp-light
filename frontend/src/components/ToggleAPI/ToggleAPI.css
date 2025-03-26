@@ -1,20 +1,32 @@
-.toggle-button {
-    background-color: #e0e0e0; 
-    color: #333;  
-    border: none;  
-    padding: 10px 20px; 
-    border-radius: 8px;  
-    margin: 0 8px;  
-    transition: all 0.3s ease-in-out; 
-}
-
-.toggle-button:hover {
-    background-color: #d6d6d6; 
-}
-
-.toggle-button:focus,
-.toggle-button.active {
-    border: 2px solid #ffa94d; 
-    background-color: #f8f9fa;  
-    box-shadow: 0 0 5px rgba(255, 169, 77, 0.6);  
-}
+/* Base style */
+.btn.toggle-button {
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin: 0 8px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Hover style (works) */
+  .btn.toggle-button:hover {
+    background-color: #F89066;
+    color: white;
+  }
+  
+  /* Active/Selected style (Fixes blue override) */
+  .btn.toggle-button.active,
+  .btn.toggle-button:active:not(:disabled),
+  .btn.toggle-button:focus:not(:disabled),
+  .btn-check:checked + .btn.toggle-button {
+    background-color: #F89066 !important; /* !important may be needed */
+    color: white !important;
+    box-shadow: none !important; /* Removes Bootstrap's glow */
+  }
+  
+  /* If using radio/checkbox inputs (ToggleButtonGroup) */
+  .btn-check:checked + .btn.toggle-button {
+    background-color: #F89066 !important;
+    color: white !important;
+  }

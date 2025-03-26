@@ -25,11 +25,11 @@ export default function ToggleAPI() {
         value={corporas.api}  
         onChange={handleChange} 
       >
-        <ToggleButton className="toggle-button" id="api-toggle-button-1" value={1}>
+        <ToggleButton className="toggle-button" id="api-toggle-button-1" value={1} >
           Språkbanken
         </ToggleButton>
         <ToggleButton className="toggle-button" id="api-toggle-button-2" value={0}>
-          Peter-Local
+          Peter-API
         </ToggleButton>
       </ToggleButtonGroup>
     </>
