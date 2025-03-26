@@ -121,7 +121,7 @@ export default function CorpusDropDown({ colour, buttonLogo }) {
         <Dropdown >
             <Dropdown.Toggle id="dropdown-basic">
                 <CircleButton buttonColour={colour} buttonImage={buttonLogo} buttonToolTip={corpus_tip}/>
-                {selectedCorpora.length > 0 && ` ${selectedCorpora.length} valda`}
+                {selectedCorpora.length > 0} {/* &&  ` ${selectedCorpora.length} valda`*/}
             </Dropdown.Toggle>
 
             <Dropdown.Menu id="dropdown-menu">
