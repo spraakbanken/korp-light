@@ -15,7 +15,7 @@
     color: white;
   }
   
-  /* Active/Selected style (Fixes blue override) */
+  /* Active/Selected style */
   .btn.toggle-button.active,
   .btn.toggle-button:active:not(:disabled),
   .btn.toggle-button:focus:not(:disabled),
