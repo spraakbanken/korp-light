@@ -4,7 +4,8 @@ let _settings = {
     "sampleSize": 1,
     "contextSize": 10,
     "theme": "light",
-    "selectedView": "wide"
+    "selectedView": "wide",
+    "api": 1
 }
 
 export function setLocalSettings(val) {

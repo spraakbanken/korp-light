@@ -1,16 +1,26 @@
 // components/ToggleAPI/ToggleAPI.jsx
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 import ToggleButton from "react-bootstrap/ToggleButton";
-import  CorporaContext  from "../../services/CorporaContext"; // Import the context
+import  CorporaContext  from "../../services/CorporaContext";
+import  SettingsContext  from "../../services/SettingsContext"; 
 import './ToggleAPI.css';
 import { toggleAPI } from "../../services/api.js";
+import { getLocalSettings } from "../../services/initialSettings.js";
 
 export default function ToggleAPI() {
   const { corporas, updateCorporas } = useContext(CorporaContext);
+  const { settings, updateSettings } = useContext(SettingsContext);
+
+  useEffect(() => {
+    console.log('settings api: ', settings.api)
+    toggleAPI(settings.api)
+  }, [])
+
 
   const handleChange = (value) => {
     toggleAPI(value)
+    updateSettings({...settings, api:value})
     updateCorporas({
       ...corporas,
       api: value
