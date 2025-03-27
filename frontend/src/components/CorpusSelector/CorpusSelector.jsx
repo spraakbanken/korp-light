@@ -1,9 +1,9 @@
 import { Accordion } from "react-bootstrap";
+import { useEffect, useState } from "react";
 
 import testdata from '../../services/testdata.json'
 
 import './CorpusSelector.css'
-import { useEffect, useState } from "react";
 
 export default function CorpusSelector() {
 
@@ -60,7 +60,7 @@ export default function CorpusSelector() {
         return (
              
                 <Accordion>
-                    <Accordion.Header>{title}</Accordion.Header>
+                    <Accordion.Header className="corpus__header">{title}</Accordion.Header>
                     <Accordion.Body className="corpus__desc">{desc}</Accordion.Body>
                     {Object.entries(testDict).map(([key, corpus]) => 
                         <Accordion.Body 
@@ -86,31 +86,27 @@ export default function CorpusSelector() {
     const handleCorpusClick = (e, corpusID, corpusLabel) => {
         const pickedCorpus = e.target.getAttribute('corpus')
         
-        console.log('Corpus Label: ', corpusLabel, 'Corpus ID: ', corpusID)
-        let newDict = {}
-        newDict.corpusID = corpusID
-        newDict.corpusLabel = corpusLabel
-        if (selectedCorpora.includes(pickedCorpus)) {
-            setSelectedCorpora(selectedCorpora.filter(c => c !== pickedCorpus))
-        } else {
-            setSelectedCorpora([...selectedCorpora, newDict])
-        }
-        
+        // this might be inefficient? but atleast we get corpus id and label
+        selectedCorpora.forEach(e => {
+            if(e.corpusID === pickedCorpus) {
+                setSelectedCorpora(selectedCorpora.filter(c => c.corpusID !== pickedCorpus))
+            } else {
+                setSelectedCorpora([...selectedCorpora, {corpusID: corpusID, corpusLabel: corpusLabel}])
+            }
+        })
     }   
 
     useEffect(() => {
-        console.log('selected corpora: ', selectedCorpora)
+        console.log('selected corpora: ', selectedCorpora)       
     }, [selectedCorpora])
 
     return (
-        <>
-        
-            <Accordion alwaysOpen='false'>
+        <div className="corpus__selector__container">
+            <Accordion alwaysOpen='false' flush>
                 {Object.values(testdata).map((k) => {
                     return generateCorpusSelector(k)
                 })}
             </Accordion>
-           
-        </>
+        </div>
     );
 }

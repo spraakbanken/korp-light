@@ -1,15 +1,31 @@
+.corpus__selector__container {
+    margin: 10px auto;
+    max-width: 500px;
+    max-height: 500px;
+    overflow-y: scroll;
+    border: 2px solid orange;
+    border-radius: 5px;
+    background-color: gray;
+}
+
+/*from bootstrap*/
+.accordion-button {
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
 .corpus__desc {
-    background-color: lightblue;
+    background-color: var(--primary-color);
     color: white;
 }
 
 .corpus__labels {
-    color: red;
+    color: black;
+    text-align: left;
     background-color: #ededed;
-    border: 1px dashed gray;
 }
 
 .corpus__labels:hover {
-    background-color: #fcefef;
+    background-color: var(--tertiary-color);
     cursor: pointer;
 }
