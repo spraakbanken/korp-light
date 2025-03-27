@@ -52,7 +52,7 @@ export default function NavigationBar() {
         </div>
 
         <Nav className="d-flex align-items-center">
-          <ToggleAPI />
+          
           <span className="vr border-start border-1 border-dark rounded-3"></span>
 
           <OverlayTrigger placement="bottom" overlay={help_tip}>

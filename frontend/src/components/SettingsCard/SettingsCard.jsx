@@ -3,6 +3,8 @@ import { useContext, useEffect, useState } from "react";
 import { Moon, Sun } from "react-bootstrap-icons";
 import { Modal } from "react-bootstrap";
 import SettingsContext from "../../services/SettingsContext.jsx";
+import ToggleAPI from "../ToggleAPI/ToggleAPI.jsx"
+
 import "./SettingsCard.css";
 
 export default function SettingsCard(props) {
@@ -129,6 +131,13 @@ export default function SettingsCard(props) {
                             onChange={() => handleViewChange("zen")
                             }
                         />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3">
+                        
+                    {/* Toggle API, logic in ToggleAPI.jsx */}
+                    <Form.Label>API:</Form.Label>
+                        <ToggleAPI />   
                     </Form.Group>
 
                 </Modal.Body>

@@ -67,7 +67,7 @@ export default function LandingPage() {
 
     return (
         <div className="landing-page">
-            {/* We have to remove it for now <NavigationBar /> */}
+            
             <NavigationBar />
             <div className="landing-content">
                 <img className="korp-image" src={korpImage} alt="" />
