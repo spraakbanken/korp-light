@@ -1,0 +1,26 @@
+.chosen__corpora__container {
+    padding: 10px;
+    width: 100%;
+    max-height: 250px;
+    display: inline-block;
+    overflow-y: scroll;
+
+}
+
+.chosen__corpora__header {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.chosen__corpora__container p {
+    border: 2px solid transparent;
+    padding: 10px;
+    margin: 10px 50px;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+}
+
+.chosen__corpora__container p:hover {
+    cursor: pointer;
+    border: 2px solid red;
+}

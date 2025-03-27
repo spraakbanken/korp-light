@@ -1,7 +1,7 @@
 .corpus__selector__container {
     margin: 10px auto;
     max-width: 500px;
-    max-height: 500px;
+    max-height: 800px;
     overflow-y: scroll;
     border: 2px solid orange;
     border-radius: 5px;

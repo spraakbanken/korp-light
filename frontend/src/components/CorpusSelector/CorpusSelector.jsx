@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import testdata from '../../services/testdata.json'
 
 import './CorpusSelector.css'
+import ChosenCorpora from "./ChosenCorpora.jsx";
 
 export default function CorpusSelector() {
 
@@ -102,6 +103,7 @@ export default function CorpusSelector() {
 
     return (
         <div className="corpus__selector__container">
+            <ChosenCorpora selectedCorpora={selectedCorpora}/>
             <Accordion alwaysOpen='false' flush>
                 {Object.values(testdata).map((k) => {
                     return generateCorpusSelector(k)
