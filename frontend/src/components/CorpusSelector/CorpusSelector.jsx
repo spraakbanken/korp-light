@@ -79,22 +79,22 @@ export default function CorpusSelector() {
         );
     }
 
-    const [selectedCorpora, setSelectedCorpora] = useState([{}]);
+    const [selectedCorpora, setSelectedCorpora] = useState({});
 
     const handleHeaderClick = (e) => {
        console.log(e.target);
-    }    
+    }
+
     const handleCorpusClick = (e, corpusID, corpusLabel) => {
         const pickedCorpus = e.target.getAttribute('corpus')
         
-        // this might be inefficient? but atleast we get corpus id and label
-        selectedCorpora.forEach(e => {
-            if(e.corpusID === pickedCorpus) {
-                setSelectedCorpora(selectedCorpora.filter(c => c.corpusID !== pickedCorpus))
-            } else {
-                setSelectedCorpora([...selectedCorpora, {corpusID: corpusID, corpusLabel: corpusLabel}])
-            }
-        })
+
+        if(pickedCorpus in selectedCorpora) {
+            const {[pickedCorpus]: _ , ...newState} = selectedCorpora
+            setSelectedCorpora(newState)
+        } else {       
+            setSelectedCorpora({...selectedCorpora, [corpusID]: corpusLabel})
+        }
     }   
 
     useEffect(() => {
