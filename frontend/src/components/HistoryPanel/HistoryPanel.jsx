@@ -11,9 +11,10 @@ export default function HistoryPanel() {
             <table className="history-table">
                 <tbody>
                     {Object.keys(history ?? {}).map((item, index) => (
+
                         <tr key={item} className={index % 2 === 0 ? "even-row" : "odd-row"}>
-                            <td>
-                                <Link to={`/results?searchQueryTest=${encodeURIComponent(item)}`}>
+                            <td>   
+                                <Link to={`/results${history[item]}`}>
                                     {item}
                                 </Link>
                             </td>

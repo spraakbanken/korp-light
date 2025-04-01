@@ -75,11 +75,13 @@ export function toggleAPI(which_server) {
 export async function getCorpusQuery(inQuery) {
   
   queryParams.cqp = buildQuery(inQuery);
+
    
   try {
     const response = await axios_instance('/query', {params: queryParams});
+    const currentUrl = window.location.search; 
     
-    setHistory(inQuery, response.request.responseURL);
+    setHistory(inQuery, currentUrl);
     return response.data;
   } catch (error) {
     console.log("getCorpusQuery ERROR: ", error);
