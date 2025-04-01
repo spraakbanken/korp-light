@@ -1,19 +1,29 @@
+//React
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
-import ResultsPanel from "../../components/ResultsPanel/ResultsPanel.jsx";
-
-import NavigationBar from "../../components/NavigationBar/NavigationBar.jsx";
-import { useQuery } from "@tanstack/react-query";
-
-import { getCorpusInfo, getCorpusQuery } from "../../services/api.js";
 import { useContext, useEffect, useState } from "react";
+//CSS
+import "./ResultPage.css"
+//Libs
+import Tooltip from 'react-bootstrap/Tooltip';
+import { useQuery } from "@tanstack/react-query";
+//Components
+import ResultsPanel from "../../components/ResultsPanel/ResultsPanel.jsx";
+import NavigationBar from "../../components/NavigationBar/NavigationBar.jsx";
 import SettingsContext from "../../services/SettingsContext.jsx";
 import SearchBar from "../../components/SearchBar/SearchBar.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
 import ProgressBar from "../../components/ProgressBar/ProgressBar.jsx";
-import "./ResultPage.css"
+import CircleButton from "../../components/CircleButton/CircleButton.jsx";
+import HistoryPanel from "../../components/HistoryPanel/HistoryPanel.jsx";
+//Services
+import { getCorpusInfo, getCorpusQuery } from "../../services/api.js";
+import { getCorpusCollectionsList } from "../../services/api.js";
 
-
+//Corpus, history, advanced search
+import CorpusDropDown from "../../components/CorpusDropdown/CorpusDropdown.jsx";
+import corpus_logo from '../../assets/book-open.svg';
+import history_logo from '../../assets/rotate-ccw.svg';
+import sliders_logo from '../../assets/sliders.svg';
 
 export default function ResultsPage() {
 
@@ -22,6 +32,7 @@ export default function ResultsPage() {
     const searchQueryTest = queryParams.get('searchQueryTest');
     const corpusQueryTest = queryParams.get('corpus');
     const navigate = useNavigate();
+    const [showHistory, setShowHistory] = useState(false);
 
     const { settings, updateSettings } = useContext(SettingsContext);
     const [corpus, setCorpus] = useState(corpusQueryTest);
@@ -57,6 +68,28 @@ export default function ResultsPage() {
     const handleSubmit = (event) => {
         setSearchWordInput(event)
         navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(corpusInput)}`);
+    };
+
+    const advanced_tip = (
+        <Tooltip id="settings_tooltip">
+            <strong>Utökad Sökning</strong>
+        </Tooltip>
+    );
+
+    const corpus_tip = (
+        <Tooltip id="corpus_tooltip">
+            <strong>Samlingar</strong>
+        </Tooltip>
+    );
+
+    const history_tip = (
+        <Tooltip id="help_tooltip">
+            <strong>Historik</strong>
+        </Tooltip>
+    );
+
+    const toggleHistory = () => {
+        setShowHistory((prev) => !prev);
     };
 
 
@@ -110,25 +143,33 @@ export default function ResultsPage() {
         <div className="results-page">
             <NavigationBar />
             <div className="results-content">
-                {/* <form onSubmit={(e) => {
-                    e.preventDefault(); // Prevent page reload
-                    setCorpusInput(e.target.corpusInput.value); // Update state
-                }}>
-                    <input type="text" name="corpusInput" placeholder="corpus name, e.g. ROMI" />
-                    <Button type="submit" className="simple-button m-1" variant="danger" size="sm">
-                        Byt Korpus!
-                    </Button>
-                </form>
-
-                <div>
-                    <p>Vald Korpus: </p>
-                    {searchCorpusIsLoading ? <p>Laddar...</p> : corpus}
-                </div> */}
-
                 <SearchBar returnSearchInput={(e) => {
                     handleSubmit(e);
                 }} />
 
+                <div className="landingpage__button_group">
+                
+                                    <CircleButton
+                                        buttonColour='#FF9F79'
+                                        buttonImage={sliders_logo}
+                                        buttonOnClick={null}
+                                        buttonToolTip={advanced_tip} />
+                
+                                    <CorpusDropDown
+                                        colour='#FFB968'
+                                        buttonLogo={corpus_logo}
+                                        getListFunction={getCorpusCollectionsList}
+                                        buttonToolTip={corpus_tip} />
+                
+                                    <CircleButton
+                                        buttonColour='#FFCE6D'
+                                        buttonImage={history_logo}
+                                        buttonOnClick={toggleHistory}
+                                        buttonToolTip={history_tip} />
+                
+                
+                </div>
+                    {showHistory && <HistoryPanel />}
                 <ProgressBar isLoading={searchQueryIsLoading} />
 
                 <div className="mt-2">

@@ -134,10 +134,11 @@ export default function SettingsCard(props) {
                     </Form.Group>
 
                     <Form.Group className="mb-3">
-                        
-                    {/* Toggle API, logic in ToggleAPI.jsx */}
                     <Form.Label>API:</Form.Label>
-                        <ToggleAPI />   
+                        <div className=" d-flex align-items-center justify-content-center">
+                            {/* Toggle API, logic in ToggleAPI.jsx */}
+                            <ToggleAPI />   
+                        </div>
                     </Form.Group>
 
                 </Modal.Body>
