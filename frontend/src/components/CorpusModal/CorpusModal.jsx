@@ -193,7 +193,6 @@ const findAndExpandSections = (data, selected) => {
         const hasSubcorpora = e[3]?.subcorpora;
     
         if (e[2]) { //e[2] is corporas that are placed in the folder/main corpora
-            console.log(e[2]);
             Object.entries(e[2]).forEach(([key, value]) => {
                 const label = Array.isArray(value) ? value[0] : value;
                 if (matchesSearch(label) || matchesSearch(title)) {
