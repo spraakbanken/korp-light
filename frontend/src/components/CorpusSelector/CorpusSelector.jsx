@@ -62,7 +62,11 @@ export default function CorpusSelector() {
              
                 <Accordion>
                     <Accordion.Header className="corpus__header">{title}</Accordion.Header>
-                    <Accordion.Body className="corpus__desc">{desc}</Accordion.Body>
+                    {desc !== "" && (
+                    <Accordion.Body className="corpus__desc">
+                        {desc}
+                    </Accordion.Body>
+                    )}
                     {Object.entries(testDict).map(([key, corpus]) => 
                         <Accordion.Body 
                         onClick={ e2 => handleCorpusClick(e2, key, corpus) }

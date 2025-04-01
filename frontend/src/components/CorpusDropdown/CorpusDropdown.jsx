@@ -6,6 +6,7 @@ import testdata from '../../services/testdata.json';
 import { useContext, useEffect, useState } from "react";
 import ChosenCorporas from "../ChosenCorporasButton/ChosenCorporasButton";
 import CorporaContext from "../../services/CorporaContext.jsx";
+import { CircleArrowRight, CircleArrowDown } from "lucide-react"
 
 export default function CorpusDropDown({ colour, buttonLogo }) {
     const [selectedCorpora, setSelectedCorpora] = useState([]);
@@ -74,12 +75,13 @@ export default function CorpusDropDown({ colour, buttonLogo }) {
                     onClick={() => toggleExpanded(title)} 
                     style={{ cursor: 'pointer' }}
                 >
-                    {expanded[title] ? '▼' : '▶'} {title}
+                    {expanded[title] ? <CircleArrowDown /> :  <CircleArrowRight />} {title}
                 </Dropdown.Header>
         
                 {expanded[title] && (
                     <>
-                        {desc && <div className="corpdesc px-3">{desc}</div>}
+                    {/*Kinda ugly with "No description displayed"?*/}
+                        {desc !== "No description" && <div className="corpdesc px-3">{desc}</div>}
         
                         {Object.entries(testDict).map(([id, label]) => (
                             <Dropdown.Item
@@ -126,7 +128,12 @@ export default function CorpusDropDown({ colour, buttonLogo }) {
                 {selectedCorpora.length > 0} {/* &&  ` ${selectedCorpora.length} valda`*/}
             </Dropdown.Toggle>
 
-            <Dropdown.Menu id="dropdown-menu">
+            <Dropdown.Menu id="dropdown-menu" className="dropdown-menu position-absolute start-50 translate-middle-x" 
+                    style={{
+                        top: "100%",
+                        marginTop: "3rem",
+                        minWidth: "250px"
+                    }}>
                 <div className="dropdown-header">
                     <button
                         className="btn btn-sm btn-light"

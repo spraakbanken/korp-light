@@ -22,10 +22,27 @@
 .corpus__labels {
     color: black;
     text-align: left;
-    background-color: #ededed;
+    background: #FDDBBB;;
+    font-size: small;
+    box-shadow: 2px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-.corpus__labels:hover {
-    background-color: var(--tertiary-color);
-    cursor: pointer;
+
+.corpus__labels:hover{
+    background-color: #F89066;
+    color: black;
+
+}
+
+.corpus__labels.active{
+    background-color: #F89066;
+    color: black;
+
+
+}
+
+.corpus__labels.active:hover{
+    background-color: #F89066;
+    color: red;
+
 }
