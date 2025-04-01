@@ -13,6 +13,21 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
     const [selectedCorpora, setSelectedCorpora] = useState([]);
     const [expanded, setExpanded] = useState({});
     const [searchQuery, setSearchQuery] = useState('');
+    const [subcorporaIds, setSubcorporaIds] = useState({}); // Store UUIDs for subcorpora
+
+    // Generate random UUIDs for all subcorpora on first render
+    useEffect(() => {
+        const ids = {};
+        Object.values(testdata).forEach(category => {
+            if (category[3]?.subcorpora) {
+                Object.values(category[3].subcorpora).forEach(subcategory => {
+                    const subTitle = subcategory[0];
+                    ids[subTitle] = crypto.randomUUID(); // Using crypto.randomUUID() like in CorpusSelector
+                });
+            }
+        });
+        setSubcorporaIds(ids);
+    }, []);
 
     //Trying to expand categories when searching, kinda hard
     useEffect(() => {
@@ -54,6 +69,13 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
     
                 if (shouldExpand) {
                     newExpanded[title] = true;
+                    // Also expand all subcorpora when searching (using their UUIDs)
+                    if (category[3]?.subcorpora) {
+                        Object.values(category[3].subcorpora).forEach(subcategory => {
+                            const subTitle = subcategory[0];
+                            newExpanded[subcorporaIds[subTitle]] = true;
+                        });
+                    }
                 }
             });
     
@@ -64,7 +86,11 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
             : corporas.corporas
                 ? [corporas.corporas]
                 : [];
-            findAndSetExpanded(testdata, initialCorpora)
+            let initialExpanded = {}
+            if (initialCorpora.length > 0) {
+                initialExpanded = findAndExpandSections(testdata, initialCorpora);
+            }
+            setExpanded(initialExpanded);
             
         }
     }, [searchQuery]);
@@ -76,7 +102,7 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
             initialExpanded = findAndExpandSections(testdata, initialCorpora);
 
         }
-        setExpanded(initialExpanded);
+        setExpanded(prev => ({ ...prev, ...initialExpanded}));
 
     }
 
@@ -100,17 +126,18 @@ const findAndExpandSections = (data, selected) => {
                         }
                     }
                     
-                    // Check subcorpora in category[3]?.subcorpora
+                    // Check subcorpora in category[3]?.subcorpora (using UUIDs now)
                     if (category[3]?.subcorpora) {
                         Object.values(category[3].subcorpora).forEach(subcategory => {
                             const subTitle = subcategory[0];
+                            const subId = subcorporaIds[subTitle]; // Get UUID for this subcorpora
                             if (subcategory[2]) {
                                 const hasSelected = selected.some(corpusId => 
                                     Object.keys(subcategory[2]).includes(corpusId.toString())
                                 );
                                 if (hasSelected) {
                                     initialExpanded[title] = true; // Expand parent
-                                    initialExpanded[subTitle] = true; // Expand subcategory
+                                    initialExpanded[subId] = true; // Expand subcategory using UUID
                                 }
                             }
                         });
@@ -139,10 +166,10 @@ const findAndExpandSections = (data, selected) => {
         return text.toLowerCase().includes(searchQuery.toLowerCase());
     };
 
-    const toggleExpanded = (title) => {
+    const toggleExpanded = (id) => {
         setExpanded(prev => ({ //Basically copies the existing states and then toggles the specified title.
             ...prev,
-            [title]: !prev[title],
+            [id]: !prev[id], // Now works with either title or UUID
         }));
     };
 
@@ -239,11 +266,12 @@ const findAndExpandSections = (data, selected) => {
         });
     };
 
-    //Maps out all subcorporas
+    //Maps out all subcorporas (now using UUIDs)
     const renderSubcorpora = (subcorporaData) => {
         return Object.entries(subcorporaData).map(([subcorporaName, subcorpora]) => {
             const subTitle = subcorpora[0];
             const subDesc = subcorpora[1]?.swe || subcorpora[1] || ''; //In some corporas there swedish text with .swe and english with .eng
+            const subId = subcorporaIds[subTitle]; // Get UUID for this subcorpora
             const subCorporaDict = {};
             
             if (subcorpora[2]) {//corporas in subcorporas
@@ -260,13 +288,13 @@ const findAndExpandSections = (data, selected) => {
     
             // Expand if searching and has content
             const shouldForceExpand = searchQuery && Object.keys(subCorporaDict).length > 0;
-            const isExpanded = shouldForceExpand || expanded[subTitle];
+            const isExpanded = shouldForceExpand || expanded[subId]; // Use UUID for expansion tracking
     
             return (
-                <div key={subTitle} className="subcorpus-section">
+                <div key={subId} className="subcorpus-section"> {/* Use UUID as key */}
                     <div 
                         className="section-header subcorpus-header"
-                        onClick={() => toggleExpanded(subTitle)}
+                        onClick={() => toggleExpanded(subId)} 
                     >
                         {isExpanded ? <CircleArrowDown size={16} /> : <CircleArrowRight size={16} />}
                         <h6>{highlightSearchMatch(subTitle)}</h6>
