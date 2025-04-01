@@ -12,6 +12,8 @@ import CircleButton from "../../components/CircleButton/CircleButton.jsx";
 import InfoText from "../../components/InfoText/InfoText.jsx";
 import HistoryPanel from "../../components/HistoryPanel/HistoryPanel.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
+import CorpusModal from "../../components/CorpusModal/CorpusModal.jsx";
+import Button from 'react-bootstrap/Button';
 
 //assets
 import corpus_logo from '../../assets/book-open.svg';
@@ -33,12 +35,18 @@ export default function LandingPage() {
     const { corporas } = useContext(CorporaContext);
     const navigate = useNavigate();
     const { settings } = useContext(SettingsContext);
+    const [showModal, setShowModal] = useState(false);
 
     const korpImage = settings.theme === "light" ? KorpLight : KorpDark;
 
     const toggleHistory = () => {
         setShowHistory((prev) => !prev);
     };
+
+    const toggleModal = () => {
+        setShowModal((prev) => !prev);
+    };
+    
 
     const advanced_tip = (
         <Tooltip id="settings_tooltip">
@@ -60,7 +68,7 @@ export default function LandingPage() {
 
     const handleSubmit = (event) => {
         //VET EJ HUR VI BYGGER URL QUERYN FÖR FLERA CORPUSAR.
-        navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(corporas.corporas || "romi")}`);
+        navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(corporas.corporas)}`);
     };
 
 
@@ -90,11 +98,17 @@ export default function LandingPage() {
                         buttonOnClick={null}
                         buttonToolTip={advanced_tip} />
 
-                    <CorpusDropDown
-                        colour='#FFB968'
-                        buttonLogo={corpus_logo}
-                        getListFunction={getCorpusCollectionsList}
+                    <CircleButton
+                        buttonColour='#FF9F79'
+                        buttonImage={corpus_logo}
+                        buttonOnClick={toggleModal}
                         buttonToolTip={corpus_tip} />
+
+                    <CorpusModal 
+                        show={showModal}
+                        onHide={() => setShowModal(false)}
+                        colour='#FFB968'
+                        buttonLogo={corpus_logo}/>
 
                     <CircleButton
                         buttonColour='#FFCE6D'
@@ -104,6 +118,8 @@ export default function LandingPage() {
 
 
                 </div>
+
+
                 {showHistory && <HistoryPanel />}
                 <InfoText className="info_text" />
             </div>

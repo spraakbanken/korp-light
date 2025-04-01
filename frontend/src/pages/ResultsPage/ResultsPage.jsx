@@ -1,6 +1,6 @@
 //React
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useRef, useContext, useEffect, useState } from "react";
 //CSS
 import "./ResultPage.css"
 //Libs
@@ -15,15 +15,18 @@ import Footer from "../../components/Footer/Footer.jsx";
 import ProgressBar from "../../components/ProgressBar/ProgressBar.jsx";
 import CircleButton from "../../components/CircleButton/CircleButton.jsx";
 import HistoryPanel from "../../components/HistoryPanel/HistoryPanel.jsx";
+import CorpusModal from "../../components/CorpusModal/CorpusModal.jsx";
 //Services
 import { getCorpusInfo, getCorpusQuery } from "../../services/api.js";
 import { getCorpusCollectionsList } from "../../services/api.js";
+
 
 //Corpus, history, advanced search
 import CorpusDropDown from "../../components/CorpusDropdown/CorpusDropdown.jsx";
 import corpus_logo from '../../assets/book-open.svg';
 import history_logo from '../../assets/rotate-ccw.svg';
 import sliders_logo from '../../assets/sliders.svg';
+import CorporaContext from "../../services/CorporaContext.jsx";
 
 export default function ResultsPage() {
 
@@ -33,13 +36,39 @@ export default function ResultsPage() {
     const corpusQueryTest = queryParams.get('corpus');
     const navigate = useNavigate();
     const [showHistory, setShowHistory] = useState(false);
+    const { corporas } = useContext(CorporaContext);
 
+    const isInitialMount = useRef(true);
+
+    
     const { settings, updateSettings } = useContext(SettingsContext);
     const [corpus, setCorpus] = useState(corpusQueryTest);
-    const [corpusInput, setCorpusInput] = useState(corpusQueryTest || 'romi');
+    const [corpusInput, setCorpusInput] = useState(corpusQueryTest);
     const [searchWordInput, setSearchWordInput] = useState(searchQueryTest); // IDK if we use this
 
     const [queryData, setQueryData] = useState({});
+    const [showModal, setShowModal] = useState(false);
+
+    const toggleModal = () => {
+        setShowModal((prev) => !prev);
+    };
+
+    const handleCorpusQuery = () => {
+        let tempString = ""
+        if (typeof(corporas.corporas) == "object"){
+        for (let corpus in corporas.corporas){
+            tempString += corporas.corporas[corpus]
+            if (corporas.corporas.length-1 > corpus){
+                tempString += ","
+            }
+        }
+        setCorpusInput(tempString);
+    }
+    else if (typeof(corporas.corporas) == "string"){
+        setCorpusInput(corporas.corporas);
+    }
+    };
+
 
 
 
@@ -67,6 +96,7 @@ export default function ResultsPage() {
 
     const handleSubmit = (event) => {
         setSearchWordInput(event)
+        setCorpusInput(handleCorpusQuery);
         navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(corpusInput)}`);
     };
 
@@ -119,15 +149,13 @@ export default function ResultsPage() {
             console.log("CHANGED: ", searchWordInput)
         }
 
-    }, [searchWordInput, searchQueryRefetch, searchCorpusData])
+    }, [searchWordInput, searchQueryRefetch])
 
     useEffect(() => {
         setSearchWordInput(searchQueryTest || '');
     }, [searchQueryTest]);
 
-    useEffect(() => {
-        setCorpusInput(corpusQueryTest || 'romi');
-    }, [corpusQueryTest]);
+
 
     useEffect(() => {
         console.log("Settings in Results: ", settings);
@@ -137,7 +165,10 @@ export default function ResultsPage() {
         if (searchCorpusData && corpusInput) {
             getCorpusData(searchCorpusData);
         }
-    }, [searchCorpusData, corpusInput]);
+    }, [searchCorpusData]);
+
+    
+
 
     return (
         <div className="results-page">
@@ -155,11 +186,19 @@ export default function ResultsPage() {
                                         buttonOnClick={null}
                                         buttonToolTip={advanced_tip} />
                 
-                                    <CorpusDropDown
-                                        colour='#FFB968'
-                                        buttonLogo={corpus_logo}
-                                        getListFunction={getCorpusCollectionsList}
+                                    <CircleButton
+                                        buttonColour='#FF9F79'
+                                        buttonImage={corpus_logo}
+                                        buttonOnClick={toggleModal}
                                         buttonToolTip={corpus_tip} />
+                
+                
+                                    <CorpusModal 
+                                        show={showModal}
+                                        onHide={() => setShowModal(false)}
+                                        colour='#FFB968'
+                                        buttonLogo={corpus_logo}/>
+
                 
                                     <CircleButton
                                         buttonColour='#FFCE6D'
