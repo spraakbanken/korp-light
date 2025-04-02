@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Tooltip from 'react-bootstrap/Tooltip';
 import { useNavigate } from "react-router-dom";
 import SettingsContext from '../../services/SettingsContext';
@@ -14,6 +14,7 @@ import HistoryPanel from "../../components/HistoryPanel/HistoryPanel.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
 import CorpusModal from "../../components/CorpusModal/CorpusModal.jsx";
 import Button from 'react-bootstrap/Button';
+import { useTour } from "../../services/tour";
 
 //assets
 import corpus_logo from '../../assets/book-open.svg';
@@ -36,8 +37,22 @@ export default function LandingPage() {
     const navigate = useNavigate();
     const { settings } = useContext(SettingsContext);
     const [showModal, setShowModal] = useState(false);
+    const { startTour } = useTour();
 
     const korpImage = settings.theme === "light" ? KorpLight : KorpDark;
+
+    useEffect(() => {
+        // Check if URL has startTour parameter and start tour if it does
+        const searchParams = new URLSearchParams(location.search);
+        if (searchParams.get('startTour') === 'true') {
+            // Slight delay to ensure all elements are rendered
+            setTimeout(() => {
+                startTour();
+                // Clean up URL without refreshing the page
+                navigate('/', { replace: true });
+            }, 500);
+        }
+    }, [location, startTour, navigate]);
 
     const toggleHistory = () => {
         setShowHistory((prev) => !prev);
@@ -46,7 +61,7 @@ export default function LandingPage() {
     const toggleModal = () => {
         setShowModal((prev) => !prev);
     };
-    
+
 
     const advanced_tip = (
         <Tooltip id="settings_tooltip">
@@ -75,15 +90,16 @@ export default function LandingPage() {
 
     return (
         <div className="landing-page">
-            
+
             <NavigationBar />
             <div className="landing-content">
                 <img className="korp-image" src={korpImage} alt="" />
 
-
-                <SearchBar returnSearchInput={(e) => {
-                    handleSubmit(e);
-                }} />
+                <div className="search-bar-wrapper">
+                    <SearchBar returnSearchInput={(e) => {
+                        handleSubmit(e);
+                    }} />
+                </div>
 
                 <div className="landingpage__button_group">
 
@@ -104,11 +120,11 @@ export default function LandingPage() {
                         buttonOnClick={toggleModal}
                         buttonToolTip={corpus_tip} />
 
-                    <CorpusModal 
+                    <CorpusModal
                         show={showModal}
                         onHide={() => setShowModal(false)}
                         colour='#FFB968'
-                        buttonLogo={corpus_logo}/>
+                        buttonLogo={corpus_logo} />
 
                     <CircleButton
                         buttonColour='#FFCE6D'

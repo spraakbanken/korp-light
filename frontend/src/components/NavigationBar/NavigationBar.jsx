@@ -16,6 +16,7 @@ import SettingsContext from '../../services/SettingsContext';
 import KorpLight from '../../assets/korp.svg';
 import KorpDark from '../../assets/whiteKorp.svg';
 import { useLocation } from "react-router-dom";
+import { useTour } from "../../services/tour";
 
 
 export default function NavigationBar() {
@@ -23,9 +24,11 @@ export default function NavigationBar() {
   const [settingsModal, setSettingsModal] = useState(false);
   const { settings } = useContext(SettingsContext);
   const location = useLocation();
+  const {startTour} = useTour();
 
   const iconColor = settings.theme === "light" ? "black" : "white";
   const korpImage = settings.theme === "light" ? KorpLight : KorpDark;
+
 
   const settings_tip = (
     <Tooltip id="settings_tooltip">
@@ -39,6 +42,15 @@ export default function NavigationBar() {
     </Tooltip>
   );
 
+  const handleHelpClick = (e) => {
+    e.preventDefault();
+    if (location.pathname === '/') {
+      startTour();
+    } else {
+      window.location.href = '/?startTour=true';
+    }
+  };
+
   return (
     <Navbar className="main__navbar">
       <Container fluid className="d-flex justify-content-between">
@@ -48,7 +60,7 @@ export default function NavigationBar() {
               <img src={korpImage} alt="Korp Logo" />
             </Link>
           )}
-          <SideMenu />
+          <SideMenu onTourStart={startTour}/>
         </div>
 
         <Nav className="d-flex align-items-center">
@@ -56,7 +68,7 @@ export default function NavigationBar() {
           <span className="vr border-start border-1 border-dark rounded-3"></span>
 
           <OverlayTrigger placement="bottom" overlay={help_tip}>
-            <Nav.Link className="circle__button" href={null}>
+            <Nav.Link className="circle__button" href="#" onClick={handleHelpClick}>
               <BadgeHelp size={28} className=" icon-hover text-dark hover:text-primary" color={iconColor} />
             </Nav.Link>
           </OverlayTrigger>

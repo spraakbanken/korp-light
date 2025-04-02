@@ -7,7 +7,7 @@ import "./SideMenu.css";
 import { setHistory, getHistory } from "../../services/history";
 import { Link, NavLink } from "react-router-dom";
 
-export default function SideMenu() {
+export default function SideMenu({ onTourStart }) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -20,6 +20,17 @@ export default function SideMenu() {
             <strong>Meny</strong>
         </Tooltip>
     );
+
+    const handleUserGuideClick = (e) => {
+        e.preventDefault();
+        handleClose();
+
+        if (location.pathname === '/') {
+            onTourStart();
+        } else {
+            window.location.href = '/?startTour=true';
+        }
+    };
 
     return (
         <>
@@ -35,25 +46,31 @@ export default function SideMenu() {
                     <Nav className="flex-column">
                         <Nav.Link className="first-row" href="/">Hem</Nav.Link>
                         {/* TODO link to help/tour */}
-                       
+
                         <NavDropdown
                             title="Historik"
                             id={`offcanvasNavbarDropdown-expand-sm}`}
                             autoClose="inside"
                             className="second-row">
-                            
-                            { Object.keys(history ?? {}).map((item) => {
+
+                            {Object.keys(history ?? {}).map((item) => {
                                 return <NavDropdown.Item key={item}>
-                                <Link className="link" to={`/results?searchQueryTest=${encodeURIComponent(item)}`}>
-                                  {item}
-                                </Link>
-                              </NavDropdown.Item>
+                                    <Link className="link" to={`/results?searchQueryTest=${encodeURIComponent(item)}`}>
+                                        {item}
+                                    </Link>
+                                </NavDropdown.Item>
                             })}
 
                         </NavDropdown>
-                        
-                        <Nav.Link to={"/"} className="first-row" href="/help" >Användarhandledning</Nav.Link>
-                        
+
+                        <Nav.Link
+                            className="first-row"
+                            href="#"
+                            onClick={handleUserGuideClick}
+                        >
+                            Användarhandledning
+                        </Nav.Link>
+
                         <Nav.Link className="second-row" href="https://spraakbanken.gu.se/om">Mer om Språkbanken</Nav.Link>
                     </Nav>
                 </Offcanvas.Body>
