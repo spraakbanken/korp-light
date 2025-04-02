@@ -4,7 +4,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 import Image from 'react-bootstrap/Image';
 
-export default function CircleButton({ buttonImage, buttonColour, buttonOnClick, buttonToolTip }) {
+export default function CircleButton({ buttonImage, buttonColour, buttonOnClick, buttonToolTip, className = "" }) {
 
     const [selected, setSelected] = useState(false);
 
@@ -41,10 +41,12 @@ export default function CircleButton({ buttonImage, buttonColour, buttonOnClick,
     return (
         <div className="circle__buton__container">
             <OverlayTrigger placement="bottom" overlay={buttonToolTip}>
-                <Image className={`circlebutton`}
+                <Image
+                    className={`circlebutton ${className}`} 
                     src={buttonImage}
                     onClick={handleClick}
-                    style={style} />
+                    style={style}
+                />
             </OverlayTrigger>
 
         </div>

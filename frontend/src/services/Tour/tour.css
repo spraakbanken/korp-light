@@ -1,0 +1,120 @@
+/* src/styles/ShepherdTour.css */
+
+/* Main container for the tour steps */
+.shepherd-theme-custom {
+    /* Basic properties */
+    max-width: 400px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    background-color: #ffffff;
+    color: #333333;
+    z-index: 9999; /* Ensure it's above other elements */
+  }
+  
+  /* Header of the step */
+  .shepherd-theme-custom .shepherd-header {
+    padding: 16px 16px 0;
+    background: transparent;
+  }
+  
+  /* Content of the step */
+  .shepherd-theme-custom .shepherd-text {
+    padding: 16px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  /* Step title - add if you want titles */
+  .shepherd-theme-custom .shepherd-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #222222;
+  }
+  
+  /* Button container at the bottom */
+  .shepherd-theme-custom .shepherd-footer {
+    padding: 0 16px 16px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  /* Individual buttons */
+  .shepherd-theme-custom .shepherd-button {
+    margin-left: 8px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+  }
+  
+  /* Primary buttons (Next, Complete) */
+  .shepherd-theme-custom .shepherd-button-primary {
+    background-color: #FF9F79; /* Using one of your theme colors */
+    color: white;
+  }
+  
+  .shepherd-theme-custom .shepherd-button-primary:hover {
+    background-color: #ff8c5f;
+  }
+  
+  /* Secondary buttons (Cancel, Back) */
+  .shepherd-theme-custom .shepherd-button-secondary {
+    background-color: #f0f0f0;
+    color: #333333;
+  }
+  
+  .shepherd-theme-custom .shepherd-button-secondary:hover {
+    background-color: #e0e0e0;
+  }
+  
+  /* Arrow that points to the element */
+  .shepherd-theme-custom .shepherd-arrow {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  }
+  .shepherd-theme-custom .shepherd-arrow:before {
+    background: #ffffff;
+  }
+  
+  /* Close button */
+  .shepherd-theme-custom .shepherd-cancel-icon {
+    color: #777777;
+    opacity: 0.7;
+    cursor: pointer;
+    margin-top: 4px;
+    margin-right: 4px;
+  }
+  
+  .shepherd-theme-custom .shepherd-cancel-icon:hover {
+    opacity: 1;
+  }
+  
+  /* Modal overlay - make it lighter */
+  .shepherd-modal-overlay-container.shepherd-modal-is-visible {
+    opacity: 0.3; /* Reduced opacity for better visibility */
+    background-color: #000;
+    pointer-events: none; /* This allows clicking through the overlay */
+  }
+  
+  /* Make targeted elements stand out and be clickable */
+  .shepherd-element {
+    z-index: 10000; /* Higher than other elements */
+  }
+  
+  .shepherd-enabled {
+    z-index: 9999; /* Ensure highlighted elements are above the overlay */
+    position: relative; /* Ensure z-index works */
+    pointer-events: auto !important; /* Force elements to be interactive */
+    border-radius: 8px;
+    box-shadow: 0 0 0 4px rgba(255, 159, 121, 0.8), 0 0 0 8000px rgba(0, 0, 0, 0.2); /* Highlight glow + secondary overlay */
+  }
+  
+  /* Override the modal overlay for highlighted elements */
+  .shepherd-target.shepherd-enabled {
+    box-shadow: 0 0 0 4px rgba(255, 159, 121, 0.8);
+    background-color: rgba(255, 255, 255, 1) !important; /* Make highlighted elements fully visible */
+  }

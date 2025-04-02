@@ -14,7 +14,7 @@ import HistoryPanel from "../../components/HistoryPanel/HistoryPanel.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
 import CorpusModal from "../../components/CorpusModal/CorpusModal.jsx";
 import Button from 'react-bootstrap/Button';
-import { useTour } from "../../services/tour";
+import { useTour } from "../../services/Tour/tour.js";
 
 //assets
 import corpus_logo from '../../assets/book-open.svg';
@@ -109,12 +109,14 @@ export default function LandingPage() {
                     buttonOnClick={null} /> */}
 
                     <CircleButton
+                        className="extended-search-button"
                         buttonColour='#FF9F79'
                         buttonImage={sliders_logo}
                         buttonOnClick={null}
                         buttonToolTip={advanced_tip} />
 
                     <CircleButton
+                        className="corpus-button"
                         buttonColour='#FF9F79'
                         buttonImage={corpus_logo}
                         buttonOnClick={toggleModal}
@@ -127,6 +129,7 @@ export default function LandingPage() {
                         buttonLogo={corpus_logo} />
 
                     <CircleButton
+                        className="history-button"
                         buttonColour='#FFCE6D'
                         buttonImage={history_logo}
                         buttonOnClick={toggleHistory}

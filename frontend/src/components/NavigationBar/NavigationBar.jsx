@@ -16,7 +16,7 @@ import SettingsContext from '../../services/SettingsContext';
 import KorpLight from '../../assets/korp.svg';
 import KorpDark from '../../assets/whiteKorp.svg';
 import { useLocation } from "react-router-dom";
-import { useTour } from "../../services/tour";
+import { useTour } from "../../services/Tour/tour";
 
 
 export default function NavigationBar() {

@@ -1,9 +1,8 @@
-// src/services/TourService.js
 import { useEffect } from 'react';
 import Shepherd from 'shepherd.js';
 import 'shepherd.js/dist/css/shepherd.css';
+import './tour.css'; 
 
-// You might want to customize these styles
 const tourOptions = {
   defaultStepOptions: {
     cancelIcon: {
@@ -11,11 +10,18 @@ const tourOptions = {
     },
     classes: 'shepherd-theme-custom',
     scrollTo: true,
+    highlightClass: 'shepherd-enabled',
     popperOptions: {
-      modifiers: [{ name: 'offset', options: { offset: [0, 12] } }]
+      modifiers: [
+        { name: 'offset', options: { offset: [0, 12] } },
+        { name: 'arrow', options: { element: '.shepherd-arrow' } }
+      ]
     }
   },
-  useModalOverlay: true
+  // Modified modal overlay behavior
+  useModalOverlay: true,
+  exitOnEsc: true,
+  keyboardNavigation: true
 };
 
 export const useTour = () => {
@@ -25,39 +31,49 @@ export const useTour = () => {
     // Step 1: Search Bar
     tour.addStep({
       id: 'search-bar',
+      title: 'Sökfält',
       text: 'Här kan du söka efter ord och fraser i våra samlingar',
       attachTo: {
         element: '.search-bar-wrapper',
         on: 'bottom'
       },
+      // Make specific steps interactive when needed
+      modalOverlayOpeningPadding: 8,
+      canClickTarget: true, // Allow interaction with the search bar
       buttons: [
         {
           text: 'Avbryt',
-          action: tour.cancel
+          action: tour.cancel,
+          classes: 'shepherd-button-secondary'
         },
         {
           text: 'Nästa',
-          action: tour.next
+          action: tour.next,
+          classes: 'shepherd-button-primary'
         }
       ]
     });
 
     // Step 2: Advanced Search Button
     tour.addStep({
-      id: 'advanced-search',
+      id: 'extended-search',
+      title: 'Utökad sökning',
       text: 'Utökad sökning låter dig använda mer avancerade sökfunktioner',
       attachTo: {
-        element: '.landingpage__button_group button:nth-child(1)',
+        element: '.extended-search-button',
         on: 'bottom'
       },
+      canClickTarget: true, // Allow interaction with the button
       buttons: [
         {
           text: 'Tillbaka',
-          action: tour.back
+          action: tour.back,
+          classes: 'shepherd-button-secondary'
         },
         {
           text: 'Nästa',
-          action: tour.next
+          action: tour.next,
+          classes: 'shepherd-button-primary'
         }
       ]
     });
@@ -65,19 +81,23 @@ export const useTour = () => {
     // Step 3: Corpus Button
     tour.addStep({
       id: 'corpus-button',
+      title: 'Textsamlingar',
       text: 'Klicka här för att välja vilka textsamlingar du vill söka i',
       attachTo: {
-        element: '.landingpage__button_group button:nth-child(2)',
+        element: '.corpus-button',
         on: 'bottom'
       },
+      canClickTarget: true, // Allow interaction with the button
       buttons: [
         {
           text: 'Tillbaka',
-          action: tour.back
+          action: tour.back,
+          classes: 'shepherd-button-secondary'
         },
         {
           text: 'Nästa',
-          action: tour.next
+          action: tour.next,
+          classes: 'shepherd-button-primary'
         }
       ]
     });
@@ -85,19 +105,23 @@ export const useTour = () => {
     // Step 4: History Button
     tour.addStep({
       id: 'history-button',
+      title: 'Historik',
       text: 'Här kan du se din sökhistorik',
       attachTo: {
-        element: '.landingpage__button_group button:nth-child(3)',
+        element: '.history-button',
         on: 'bottom'
       },
+      canClickTarget: true, // Allow interaction with the button
       buttons: [
         {
           text: 'Tillbaka',
-          action: tour.back
+          action: tour.back,
+          classes: 'shepherd-button-secondary'
         },
         {
           text: 'Avsluta',
-          action: tour.complete
+          action: tour.complete,
+          classes: 'shepherd-button-primary'
         }
       ]
     });
