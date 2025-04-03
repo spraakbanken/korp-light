@@ -1,47 +1,47 @@
-/* src/styles/ShepherdTour.css */
-
-/* Main container for the tour steps */
 .shepherd-theme-custom {
     /* Basic properties */
     max-width: 400px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border-radius: 8px;
+    border-radius: 20px;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
     background-color: #ffffff;
     color: #333333;
-    z-index: 9999; /* Ensure it's above other elements */
-  }
-  
-  /* Header of the step */
-  .shepherd-theme-custom .shepherd-header {
+    z-index: 9999;
+    margin-top: 12px;
+}
+
+/* Header of the step */
+.shepherd-theme-custom .shepherd-header {
     padding: 16px 16px 0;
     background: transparent;
-  }
-  
-  /* Content of the step */
-  .shepherd-theme-custom .shepherd-text {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+/* Content of the step */
+.shepherd-theme-custom .shepherd-text {
     padding: 16px;
     font-size: 16px;
     line-height: 1.5;
-  }
-  
-  /* Step title - add if you want titles */
-  .shepherd-theme-custom .shepherd-title {
+}
+
+/* Step title */
+.shepherd-theme-custom .shepherd-title {
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 8px;
     color: #222222;
-  }
-  
-  /* Button container at the bottom */
-  .shepherd-theme-custom .shepherd-footer {
+}
+
+/* Button container at the bottom */
+.shepherd-theme-custom .shepherd-footer {
     padding: 0 16px 16px;
     display: flex;
     justify-content: flex-end;
-  }
-  
-  /* Individual buttons */
-  .shepherd-theme-custom .shepherd-button {
+}
+
+/* Individual buttons */
+.shepherd-theme-custom .shepherd-button {
     margin-left: 8px;
     padding: 8px 16px;
     border-radius: 4px;
@@ -50,71 +50,128 @@
     cursor: pointer;
     transition: all 0.2s ease;
     border: none;
-  }
-  
-  /* Primary buttons (Next, Complete) */
-  .shepherd-theme-custom .shepherd-button-primary {
-    background-color: #FF9F79; /* Using one of your theme colors */
+}
+
+/* Primary buttons (Next, Complete) */
+.shepherd-theme-custom .shepherd-button-primary {
+    background-color: #FF9F79;
     color: white;
-  }
-  
-  .shepherd-theme-custom .shepherd-button-primary:hover {
+}
+
+.shepherd-theme-custom .shepherd-button-primary:hover {
     background-color: #ff8c5f;
-  }
-  
-  /* Secondary buttons (Cancel, Back) */
-  .shepherd-theme-custom .shepherd-button-secondary {
+}
+
+/* Secondary buttons (Cancel, Back) */
+.shepherd-theme-custom .shepherd-button-secondary {
     background-color: #f0f0f0;
     color: #333333;
-  }
-  
-  .shepherd-theme-custom .shepherd-button-secondary:hover {
+}
+
+.shepherd-theme-custom .shepherd-button-secondary:hover {
     background-color: #e0e0e0;
-  }
-  
-  /* Arrow that points to the element */
-  .shepherd-theme-custom .shepherd-arrow {
+}
+
+/* Arrow that points to the element */
+.shepherd-theme-custom .shepherd-arrow {
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-  }
-  .shepherd-theme-custom .shepherd-arrow:before {
+}
+
+.shepherd-theme-custom .shepherd-arrow:before {
     background: #ffffff;
-  }
-  
-  /* Close button */
-  .shepherd-theme-custom .shepherd-cancel-icon {
+}
+
+/* Close button */
+.shepherd-theme-custom .shepherd-cancel-icon {
     color: #777777;
     opacity: 0.7;
     cursor: pointer;
     margin-top: 4px;
     margin-right: 4px;
-  }
-  
-  .shepherd-theme-custom .shepherd-cancel-icon:hover {
+}
+
+.shepherd-theme-custom .shepherd-cancel-icon:hover {
     opacity: 1;
-  }
-  
-  /* Modal overlay - make it lighter */
-  .shepherd-modal-overlay-container.shepherd-modal-is-visible {
-    opacity: 0.3; /* Reduced opacity for better visibility */
+}
+
+/* Modal overlay - make it lighter */
+.shepherd-modal-overlay-container.shepherd-modal-is-visible {
+    opacity: 0.3;
     background-color: #000;
-    pointer-events: none; /* This allows clicking through the overlay */
-  }
-  
-  /* Make targeted elements stand out and be clickable */
-  .shepherd-element {
-    z-index: 10000; /* Higher than other elements */
-  }
-  
-  .shepherd-enabled {
-    z-index: 9999; /* Ensure highlighted elements are above the overlay */
-    position: relative; /* Ensure z-index works */
-    pointer-events: auto !important; /* Force elements to be interactive */
-    border-radius: 8px;
-    box-shadow: 0 0 0 4px rgba(255, 159, 121, 0.8), 0 0 0 8000px rgba(0, 0, 0, 0.2); /* Highlight glow + secondary overlay */
-  }
-  
-  /* Override the modal overlay for highlighted elements */
-  .shepherd-target.shepherd-enabled {
+    pointer-events: none;
+}
+
+/* Make targeted elements stand out */
+.shepherd-element {
+    z-index: 10000;
+}
+
+.shepherd-enabled {
+    z-index: 9999;
+    position: relative;
+    pointer-events: auto !important;
+    border-radius: 20px;
+    box-shadow: 0 0 0 4px rgba(255, 159, 121, 0.8), 0 0 0 8000px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+}
+
+/* Override the modal overlay for highlighted elements */
+.shepherd-target.shepherd-enabled {
     box-shadow: 0 0 0 4px rgba(255, 159, 121, 0.8);
-    background-color: rgba(255, 255, 255, 1) !important; /* Make highlighted elements fully visible */
+    opacity: 1;
+}
+
+/* For buttons specifically when they are targets */
+button.shepherd-enabled,
+.button.shepherd-enabled,
+[role="button"].shepherd-enabled {
+    filter: brightness(1.1);
+    opacity: 1;
+    background-color: inherit;
+}
+
+/* Make the search bar a brighter, more vibrant color when highlighted */
+.searchBarWrapper.shepherd-enabled,
+.searchBarWrapper.shepherd-target {
+  background-color: white !important; 
+  border: 1px solid #FF9F79 !important; 
+  border-radius: 30px !important;
+}
+
+/* If the search bar contains an input field, also style that */
+.searchBarWrapper.shepherd-enabled input,
+.searchBarWrapper.shepherd-target input {
+  background-color: white !important;
+  border-color: #FF9F79 !important;
+}
+
+/* Ensure any other elements inside maintain the same bright theme */
+.searchBarWrapper.shepherd-enabled *:not(button):not(.shepherd-element) {
+  background-color: #FFFFFF !important;
+}
+
+/* Add this media query for small screens */
+@media (max-width: 768px) {
+    .shepherd-element {
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      width: calc(100% - 20px) !important; 
+      max-width: 400px !important; 
+    }
+    /* Remove arrows when using smaller screens */
+    .shepherd-arrow {
+        display: none !important;
+      }
+    
+    .shepherd-element[data-popper-placement^="bottom"] .shepherd-arrow {
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+    }
+    
+    .shepherd-element[data-popper-placement^="top"] .shepherd-arrow {
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+    }
   }

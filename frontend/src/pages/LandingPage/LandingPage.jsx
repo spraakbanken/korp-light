@@ -95,11 +95,9 @@ export default function LandingPage() {
             <div className="landing-content">
                 <img className="korp-image" src={korpImage} alt="" />
 
-                <div className="search-bar-wrapper">
-                    <SearchBar returnSearchInput={(e) => {
-                        handleSubmit(e);
-                    }} />
-                </div>
+                <SearchBar returnSearchInput={(e) => {
+                    handleSubmit(e);
+                }} />
 
                 <div className="landingpage__button_group">
 
@@ -117,7 +115,7 @@ export default function LandingPage() {
 
                     <CircleButton
                         className="corpus-button"
-                        buttonColour='#FF9F79'
+                        buttonColour='#FFB968'
                         buttonImage={corpus_logo}
                         buttonOnClick={toggleModal}
                         buttonToolTip={corpus_tip} />

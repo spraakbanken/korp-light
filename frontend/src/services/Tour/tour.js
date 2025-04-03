@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Shepherd from 'shepherd.js';
 import 'shepherd.js/dist/css/shepherd.css';
 import './tour.css'; 
@@ -18,7 +17,6 @@ const tourOptions = {
       ]
     }
   },
-  // Modified modal overlay behavior
   useModalOverlay: true,
   exitOnEsc: true,
   keyboardNavigation: true
@@ -27,43 +25,42 @@ const tourOptions = {
 export const useTour = () => {
   const tour = new Shepherd.Tour(tourOptions);
   
-  const setupTour = () => {
-    // Step 1: Search Bar
-    tour.addStep({
-      id: 'search-bar',
-      title: 'Sökfält',
-      text: 'Här kan du söka efter ord och fraser i våra samlingar',
-      attachTo: {
-        element: '.search-bar-wrapper',
-        on: 'bottom'
-      },
-      // Make specific steps interactive when needed
-      modalOverlayOpeningPadding: 8,
-      canClickTarget: true, // Allow interaction with the search bar
-      buttons: [
-        {
-          text: 'Avbryt',
-          action: tour.cancel,
-          classes: 'shepherd-button-secondary'
+    const setupTour = () => {
+      // Step 1: Search Bar
+      tour.addStep({
+        id: 'search-bar',
+        title: 'Sökfält',
+        text: 'Här kan du söka efter ord i våra korpusar.',
+        attachTo: {
+          element: '.searchBarWrapper',
+          on: 'bottom'
         },
-        {
-          text: 'Nästa',
-          action: tour.next,
-          classes: 'shepherd-button-primary'
-        }
-      ]
-    });
+        modalOverlayOpeningPadding: 8,
+        canClickTarget: false, 
+        buttons: [
+          {
+            text: 'Avbryt',
+            action: tour.cancel,
+            classes: 'shepherd-button-secondary'
+          },
+          {
+            text: 'Nästa',
+            action: tour.next,
+            classes: 'shepherd-button-primary'
+          }
+        ]
+      });
 
-    // Step 2: Advanced Search Button
+    // Step 2: Extended Search Button
     tour.addStep({
       id: 'extended-search',
       title: 'Utökad sökning',
-      text: 'Utökad sökning låter dig använda mer avancerade sökfunktioner',
+      text: 'Utökad sökning låter dig använda mer avancerade sökfunktioner, tex grundform eller ordklass',
       attachTo: {
         element: '.extended-search-button',
         on: 'bottom'
       },
-      canClickTarget: true, // Allow interaction with the button
+      canClickTarget: false, 
       buttons: [
         {
           text: 'Tillbaka',
@@ -82,12 +79,12 @@ export const useTour = () => {
     tour.addStep({
       id: 'corpus-button',
       title: 'Textsamlingar',
-      text: 'Klicka här för att välja vilka textsamlingar du vill söka i',
+      text: 'Klicka här för att välja vilka korpusar du vill söka i, tex Nyhetstexter',
       attachTo: {
         element: '.corpus-button',
         on: 'bottom'
       },
-      canClickTarget: true, // Allow interaction with the button
+      canClickTarget: false,
       buttons: [
         {
           text: 'Tillbaka',
@@ -106,12 +103,12 @@ export const useTour = () => {
     tour.addStep({
       id: 'history-button',
       title: 'Historik',
-      text: 'Här kan du se din sökhistorik',
+      text: 'Här kan du se din sökhistorik, tryck på ett ord för att gå till den sökningen',
       attachTo: {
         element: '.history-button',
         on: 'bottom'
       },
-      canClickTarget: true, // Allow interaction with the button
+      canClickTarget: false,
       buttons: [
         {
           text: 'Tillbaka',
