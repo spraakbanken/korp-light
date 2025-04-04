@@ -17,11 +17,11 @@
   padding-top: 150px;
 }
 
-.tooltip {
+/* .tooltip {
   position: fixed !important; 
   opacity: 1 !important; 
   transition: none !important; 
-}
+} */
 
 .landing-page{
   display: flex;
