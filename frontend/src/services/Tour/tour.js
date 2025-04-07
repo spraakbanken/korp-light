@@ -1,6 +1,6 @@
 import Shepherd from 'shepherd.js';
 import 'shepherd.js/dist/css/shepherd.css';
-import './tour.css'; 
+import './tour.css';
 
 const tourOptions = {
   defaultStepOptions: {
@@ -24,43 +24,45 @@ const tourOptions = {
 
 export const useTour = () => {
   const tour = new Shepherd.Tour(tourOptions);
-  
-    const setupTour = () => {
-      // Step 1: Search Bar
-      tour.addStep({
-        id: 'search-bar',
-        title: 'Sökfält',
-        text: 'Här kan du söka efter ord i våra korpusar.',
-        attachTo: {
-          element: '.searchBarWrapper',
-          on: 'bottom'
+
+  const setupTour = () => {
+    const totalSteps = 4;
+
+    // Step 1: Search Bar
+    tour.addStep({
+      id: 'search-bar',
+      title: `Sökfält <div class="step-counter">1/${totalSteps}</div>`,
+      text: 'Här kan du söka efter ord i våra korpusar.',
+      attachTo: {
+        element: '.searchBarWrapper',
+        on: 'bottom'
+      },
+      modalOverlayOpeningPadding: 8,
+      canClickTarget: false,
+      buttons: [
+        {
+          text: 'Avbryt',
+          action: tour.cancel,
+          classes: 'shepherd-button-secondary'
         },
-        modalOverlayOpeningPadding: 8,
-        canClickTarget: false, 
-        buttons: [
-          {
-            text: 'Avbryt',
-            action: tour.cancel,
-            classes: 'shepherd-button-secondary'
-          },
-          {
-            text: 'Nästa',
-            action: tour.next,
-            classes: 'shepherd-button-primary'
-          }
-        ]
-      });
+        {
+          text: 'Nästa',
+          action: tour.next,
+          classes: 'shepherd-button-primary'
+        }
+      ]
+    });
 
     // Step 2: Extended Search Button
     tour.addStep({
       id: 'extended-search',
-      title: 'Utökad sökning',
+      title: `Utökad sökning <div class="step-counter">2/${totalSteps}</div>`,
       text: 'Utökad sökning låter dig använda mer avancerade sökfunktioner, tex grundform eller ordklass',
       attachTo: {
         element: '.extended-search-button',
         on: 'bottom'
       },
-      canClickTarget: false, 
+      canClickTarget: false,
       buttons: [
         {
           text: 'Tillbaka',
@@ -78,7 +80,7 @@ export const useTour = () => {
     // Step 3: Corpus Button
     tour.addStep({
       id: 'corpus-button',
-      title: 'Textsamlingar',
+      title: `Textsamlingar <div class="step-counter">3/${totalSteps}</div>`,
       text: 'Klicka här för att välja vilka korpusar du vill söka i, tex Nyhetstexter',
       attachTo: {
         element: '.corpus-button',
@@ -102,7 +104,7 @@ export const useTour = () => {
     // Step 4: History Button
     tour.addStep({
       id: 'history-button',
-      title: 'Historik',
+      title: `Historik <div class="step-counter">4/${totalSteps}</div>`,
       text: 'Här kan du se din sökhistorik, tryck på ett ord för att gå till den sökningen',
       attachTo: {
         element: '.history-button',
