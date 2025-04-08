@@ -23,7 +23,14 @@
     width: 50%
 }
 
-.filter_button {
+.theme-toggle {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    padding:10px;
+}
+
+.filter button {
     background-color: #f0f0f0;
     border: 2px solid #ccc;
     border-radius: 50%;  
@@ -39,13 +46,13 @@
     justify-content: center;
 }
 
-.filter_button[active="true"] {
+.filter button[active="true"] {
     background-color: #007bff; 
     color: white;
     border-color: #007bff;
 }
 
-.filter_button:hover {
+.filter button:hover {
     background-color: #007bff;
 }
 
@@ -59,3 +66,10 @@
     width: 100%;
 }
 
+.light-mode-button {
+    color: #f39c12;
+}
+
+.dark-mode-button {
+    color: #2c3e50; 
+}

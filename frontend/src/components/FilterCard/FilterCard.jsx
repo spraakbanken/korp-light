@@ -1,10 +1,8 @@
 import { Form, Button } from "react-bootstrap";
 import { useContext, useEffect, useState } from "react";
-import { Moon, Sun } from "react-bootstrap-icons";
 import { Modal } from "react-bootstrap";
 import SettingsContext from "../../services/SettingsContext.jsx";
-import ToggleAPI from "../ToggleAPI/ToggleAPI.jsx"
-
+import ToggleAPI from "../ToggleAPI/ToggleAPI.jsx";
 import "./FilterCard.css";
 
 export default function SettingsCard(props) {
@@ -27,7 +25,7 @@ export default function SettingsCard(props) {
     return (
        
             <Modal {...props}
-                className="_filter-card" centered>
+                className="_settings-card" centered>
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">Inställningar</Modal.Title>
                 </Modal.Header>
@@ -65,7 +63,6 @@ export default function SettingsCard(props) {
                             />
                         </div>
                     </Form.Group>
-
                     {/* Context size */}
                     <Form.Group className="mb-3">
                         <Form.Label>KONTEXT STORLEK:</Form.Label>
@@ -76,7 +73,6 @@ export default function SettingsCard(props) {
                             onChange={(e) => updateSettings({...settings, contextSize : e.target.value})}
                         />
                     </Form.Group>
-
 
                     {/* View selection */}
                     <Form.Group className="mb-3 d-flex justify-content-between">
