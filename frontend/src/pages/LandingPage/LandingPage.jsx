@@ -101,7 +101,7 @@ export default function LandingPage() {
     };
 
     const handleWords = (e) => {
-        setWords(e);
+        setWords(e)
     }
 
     return (

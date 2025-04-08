@@ -1,5 +1,30 @@
 .advanced__search__container {
-    background-color: red;
-    padding: 10px;
+    background-color: var(--bg-colour);
+    padding: 20px;
+    color: black;
+    width: 30%;
+    text-align: center;
+    margin: 0px auto;
+    border: 2px solid var(--primary-color);
+    border-radius: 25px;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.advanced__search__word {
+    border-radius: 5px;
+    padding: 5px 8px;
+    font-weight: bold;
     color: white;
+    background-color: var(--primary-color);
+    border: 1px solid transparent;
+    transition: box-shadow 0.3s ease;
+}
+
+.advanced__search__word:hover {
+    cursor: pointer;
+    background-color: darkorange;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
