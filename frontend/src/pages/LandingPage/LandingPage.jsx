@@ -15,6 +15,7 @@ import Footer from "../../components/Footer/Footer.jsx";
 import CorpusModal from "../../components/CorpusModal/CorpusModal.jsx";
 import Button from 'react-bootstrap/Button';
 import { useTour } from "../../services/Tour/tour.js";
+import CorpusButton from "../../components/CorpusButton/CorpusButton.jsx";
 
 //assets
 import corpus_logo from '../../assets/book-open.svg';
@@ -106,33 +107,31 @@ export default function LandingPage() {
                 }} />
 
                 <div className="landingpage__button_group">
+                    <div className="corpus-button-container">
+                        <CorpusButton
+                            buttonImage={corpus_logo}
+                            buttonOnClick={toggleModal}
+                            buttonToolTip={corpus_tip} />
+                        <CorpusModal
+                            show={showModal}
+                            onHide={() => setShowModal(false)}
+                            colour='#FFB968'
+                            buttonLogo={corpus_logo} />
+                    </div>
 
-                     <CircleButton
-                    clasName="extended-search-button"
-                    buttonColour='#FF9F79'
-                    buttonImage={advanced}
-                    buttonOnClick={null} 
-                    buttonToolTip={advanced_tip}/> 
+                    <CircleButton
+                        clasName="extended-search-button"
+                        buttonColour='#FF9F79'
+                        buttonImage={advanced}
+                        buttonOnClick={null} 
+                        buttonToolTip={advanced_tip}/> 
 
                     <CircleButton
                         className="filter-button"
                         buttonColour='#FF9F78'
                         buttonImage={sliders_logo}
                         buttonOnClick={null}
-                        buttonToolTip={filter_tip} />
-
-                    <CircleButton
-                        className="corpus-button"
-                        buttonColour='#FFB968'
-                        buttonImage={corpus_logo}
-                        buttonOnClick={toggleModal}
-                        buttonToolTip={corpus_tip} />
-
-                    <CorpusModal
-                        show={showModal}
-                        onHide={() => setShowModal(false)}
-                        colour='#FFB968'
-                        buttonLogo={corpus_logo} />
+                        buttonToolTip={filter_tip} />                  
 
                     <CircleButton
                         className="history-button"
@@ -140,8 +139,6 @@ export default function LandingPage() {
                         buttonImage={history_logo}
                         buttonOnClick={toggleHistory}
                         buttonToolTip={history_tip} />
-
-
                 </div>
 
 

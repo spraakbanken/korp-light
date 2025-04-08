@@ -3,7 +3,7 @@ import Image from "react-bootstrap/Image";
 import { useState } from "react";
 import "./CorpusButton.css";
 
-export default function CorpusButton({ buttonColour, buttonImage, buttonOnClick, buttonToolTip }) {
+export default function CorpusButton({ buttonImage, buttonOnClick, buttonToolTip }) {
     const [selected, setSelected] = useState(false);
     
     function handleClick() {
@@ -18,7 +18,6 @@ export default function CorpusButton({ buttonColour, buttonImage, buttonOnClick,
                     className="corpus-button" 
                     onClick={handleClick}
                     style={{ 
-                        backgroundColor: buttonColour || "#FFB968", 
                         cursor: 'pointer' 
                     }}
                 >

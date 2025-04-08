@@ -1,33 +1,29 @@
-.corpus-button-container {
-    display: flex;
-    justify-content: center;
-}
-
 .corpus-button {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #FFB968;
+    background-color: #FFBC80;
     border-radius: 50px;
-    padding: 10px 20px;
-    min-width: 200px;
+    padding: 8px 25px;  
+    min-width: 180px;  
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: all 0.2s ease-in-out;
+    border: 1px solid gray;
+}
+
+.corpus-button-text {
+    font-size: 18px;    
+    font-weight: bold;
+    color: #000;
+    margin-right: 6px; 
+}
+
+.corpus-button-icon {
+    width: 20px;        
+    height: 20px;       
 }
 
 .corpus-button:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
-}
-
-.corpus-button-text {
-    font-size: 20px;
-    font-weight: bold;
-    color: #000;
-    margin-right: 15px;
-}
-
-.corpus-button-icon {
-    width: 24px;
-    height: 24px;
 }
