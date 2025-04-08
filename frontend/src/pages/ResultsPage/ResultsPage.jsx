@@ -16,9 +16,12 @@ import ProgressBar from "../../components/ProgressBar/ProgressBar.jsx";
 import CircleButton from "../../components/CircleButton/CircleButton.jsx";
 import HistoryPanel from "../../components/HistoryPanel/HistoryPanel.jsx";
 import CorpusModal from "../../components/CorpusModal/CorpusModal.jsx";
+import CorpusButton from "../../components/CorpusButton/CorpusButton.jsx";
 //Services
 import { getCorpusInfo, getCorpusQuery } from "../../services/api.js";
 import { getCorpusCollectionsList } from "../../services/api.js";
+//Assets
+import advanced from '../../assets/advanced.svg';
 
 
 //Corpus, history, advanced search
@@ -40,7 +43,7 @@ export default function ResultsPage() {
 
     const isInitialMount = useRef(true);
 
-    
+
     const { settings, updateSettings } = useContext(SettingsContext);
     const [corpus, setCorpus] = useState(corpusQueryTest);
     const [corpusInput, setCorpusInput] = useState(corpusQueryTest);
@@ -55,18 +58,18 @@ export default function ResultsPage() {
 
     const handleCorpusQuery = () => {
         let tempString = ""
-        if (typeof(corporas.corporas) == "object"){
-        for (let corpus in corporas.corporas){
-            tempString += corporas.corporas[corpus]
-            if (corporas.corporas.length-1 > corpus){
-                tempString += ","
+        if (typeof (corporas.corporas) == "object") {
+            for (let corpus in corporas.corporas) {
+                tempString += corporas.corporas[corpus]
+                if (corporas.corporas.length - 1 > corpus) {
+                    tempString += ","
+                }
             }
+            setCorpusInput(tempString);
         }
-        setCorpusInput(tempString);
-    }
-    else if (typeof(corporas.corporas) == "string"){
-        setCorpusInput(corporas.corporas);
-    }
+        else if (typeof (corporas.corporas) == "string") {
+            setCorpusInput(corporas.corporas);
+        }
     };
 
 
@@ -115,6 +118,12 @@ export default function ResultsPage() {
     const history_tip = (
         <Tooltip id="help_tooltip">
             <strong>Historik</strong>
+        </Tooltip>
+    );
+
+    const filter_tip = (
+        <Tooltip id="help_tooltip">
+            <strong>Filtrera</strong>
         </Tooltip>
     );
 
@@ -167,7 +176,7 @@ export default function ResultsPage() {
         }
     }, [searchCorpusData]);
 
-    
+
 
 
     return (
@@ -179,36 +188,41 @@ export default function ResultsPage() {
                 }} />
 
                 <div className="landingpage__button_group">
-                
-                                    <CircleButton
-                                        buttonColour='#FF9F79'
-                                        buttonImage={sliders_logo}
-                                        buttonOnClick={null}
-                                        buttonToolTip={advanced_tip} />
-                
-                                    <CircleButton
-                                        buttonColour='#FF9F79'
-                                        buttonImage={corpus_logo}
-                                        buttonOnClick={toggleModal}
-                                        buttonToolTip={corpus_tip} />
-                
-                
-                                    <CorpusModal 
-                                        show={showModal}
-                                        onHide={() => setShowModal(false)}
-                                        colour='#FFB968'
-                                        buttonLogo={corpus_logo}/>
+                    <div className="corpus-button-container">
+                        <CorpusButton
+                            buttonImage={corpus_logo}
+                            buttonOnClick={toggleModal}
+                            buttonToolTip={corpus_tip} />
+                        <CorpusModal
+                            show={showModal}
+                            onHide={() => setShowModal(false)}
+                            colour='#FFB968'
+                            buttonLogo={corpus_logo} />
+                    </div>
+                    <div className="landingpage__button_container">
+                        <CircleButton
+                            clasName="extended-search-button"
+                            buttonColour='#C9EEFF'
+                            buttonImage={advanced}
+                            buttonOnClick={null}
+                            buttonToolTip={advanced_tip} />
 
-                
-                                    <CircleButton
-                                        buttonColour='#FFCE6D'
-                                        buttonImage={history_logo}
-                                        buttonOnClick={toggleHistory}
-                                        buttonToolTip={history_tip} />
-                
-                
+                        <CircleButton
+                            className="filter-button"
+                            buttonColour='#97DEFF'
+                            buttonImage={sliders_logo}
+                            buttonOnClick={null}
+                            buttonToolTip={filter_tip} />
+
+                        <CircleButton
+                            className="history-button"
+                            buttonColour='#62CDFF'
+                            buttonImage={history_logo}
+                            buttonOnClick={toggleHistory}
+                            buttonToolTip={history_tip} />
+                    </div>
                 </div>
-                    {showHistory && <HistoryPanel />}
+                {showHistory && <HistoryPanel />}
                 <ProgressBar isLoading={searchQueryIsLoading} />
 
                 <div className="mt-2">
