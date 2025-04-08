@@ -20,9 +20,10 @@ import { useTour } from "../../services/Tour/tour.js";
 import corpus_logo from '../../assets/book-open.svg';
 import history_logo from '../../assets/rotate-ccw.svg';
 import sliders_logo from '../../assets/sliders.svg';
-import search_logo from '../../assets/search.svg';
+import advanced from '../../assets/advanced.svg';
 import KorpLight from '../../assets/korp.svg';
 import KorpDark from '../../assets/whiteKorp.svg';
+
 
 // main style
 import "./LandingPage.css"
@@ -62,10 +63,15 @@ export default function LandingPage() {
         setShowModal((prev) => !prev);
     };
 
-
     const advanced_tip = (
-        <Tooltip id="settings_tooltip">
-            <strong>Utökad Sökning</strong>
+        <Tooltip id="advanced_tooltip">
+            <strong>Utökad sökning</strong>
+        </Tooltip>
+    );
+
+    const filter_tip = (
+        <Tooltip id="filter_tooltip">
+            <strong>Filtrera</strong>
         </Tooltip>
     );
 
@@ -101,13 +107,14 @@ export default function LandingPage() {
 
                 <div className="landingpage__button_group">
 
-                    {/* <CircleButton
+                    { <CircleButton
+                    clasName="extended-search-button"
                     buttonColour='#FF9F79'
-                    buttonImage={search_logo}
-                    buttonOnClick={null} /> */}
+                    buttonImage={advanced}
+                    buttonOnClick={null} /> }
 
                     <CircleButton
-                        className="extended-search-button"
+                        className="filter-button"
                         buttonColour='#FF9F79'
                         buttonImage={sliders_logo}
                         buttonOnClick={null}
