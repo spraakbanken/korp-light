@@ -118,27 +118,28 @@ export default function LandingPage() {
                             colour='#FFB968'
                             buttonLogo={corpus_logo} />
                     </div>
+                    <div className="landingpage__button_container">
+                        <CircleButton
+                            clasName="extended-search-button"
+                            buttonColour='#C9EEFF'
+                            buttonImage={advanced}
+                            buttonOnClick={null} 
+                            buttonToolTip={advanced_tip}/> 
 
-                    <CircleButton
-                        clasName="extended-search-button"
-                        buttonColour='#FF9F79'
-                        buttonImage={advanced}
-                        buttonOnClick={null} 
-                        buttonToolTip={advanced_tip}/> 
+                        <CircleButton
+                            className="filter-button"
+                            buttonColour='#97DEFF'
+                            buttonImage={sliders_logo}
+                            buttonOnClick={null}
+                            buttonToolTip={filter_tip} />                  
 
-                    <CircleButton
-                        className="filter-button"
-                        buttonColour='#FF9F78'
-                        buttonImage={sliders_logo}
-                        buttonOnClick={null}
-                        buttonToolTip={filter_tip} />                  
-
-                    <CircleButton
-                        className="history-button"
-                        buttonColour='#FFCE6D'
-                        buttonImage={history_logo}
-                        buttonOnClick={toggleHistory}
-                        buttonToolTip={history_tip} />
+                        <CircleButton
+                            className="history-button"
+                            buttonColour='#62CDFF'
+                            buttonImage={history_logo}
+                            buttonOnClick={toggleHistory}
+                            buttonToolTip={history_tip} />
+                    </div>
                 </div>
 
 

@@ -7,10 +7,11 @@
 .landingpage__button_group {
     display: flex;
     align-items: center;
-    justify-content: center;
-
-    gap: 30px;
+    justify-content: space-between;
     margin-bottom: 20px;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .korp-image {
@@ -28,6 +29,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.landingpage__button_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 .landing-page{
@@ -50,5 +58,27 @@
     bottom: 0;
     left: 0;
     width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .landingpage__button_group {
+      width: 75%; 
+      justify-content: space-between; 
+      gap: 10px; 
+  }
+  
+  .corpus-button-container .corpus-button {
+      min-width: unset; 
+      padding: 8px 10px; 
+      font-size: 14px; 
+  }
+  
+  .landingpage__button_container {
+      gap: 8px; 
+  }
+  
+  .circlebutton {
+      transform: scale(0.9);
   }
 }
