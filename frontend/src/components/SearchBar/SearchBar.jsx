@@ -3,7 +3,7 @@ import "./SearchBar.css";
 import Form from 'react-bootstrap/Form';
 import { Search } from "react-bootstrap-icons";
 
-export default function SearchBar({ returnSearchInput }) {
+export default function SearchBar({ returnSearchInput, returnWords }) {
     const [searchInput, setSearchInput] = useState("");
     const [words, setWords] = useState([]);
     const [isSticky, setIsSticky] = useState(false);
@@ -33,7 +33,12 @@ export default function SearchBar({ returnSearchInput }) {
                     className="searchBar"
                     type="search"
                     placeholder="Sök"
-                    onChange={(e) => setSearchInput(e.target.value)}
+                    onChange={(e) => {
+                        setSearchInput(e.target.value);
+                        if(e.nativeEvent.data === ' ') {
+                            returnWords(words);
+                        }
+                    }}
                     onKeyDown={(e) => {
                         if (e.key === 'Enter') {
                             returnSearchInput(searchInput);

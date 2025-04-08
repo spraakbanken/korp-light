@@ -16,6 +16,7 @@ import CorpusModal from "../../components/CorpusModal/CorpusModal.jsx";
 import Button from 'react-bootstrap/Button';
 import { useTour } from "../../services/Tour/tour.js";
 import CorpusButton from "../../components/CorpusButton/CorpusButton.jsx";
+import AdvancedSearch from "../../components/AdvancedSearch/AdvancedSearch.jsx";
 
 //assets
 import corpus_logo from '../../assets/book-open.svg';
@@ -35,6 +36,8 @@ import CorporaContext from "../../services/CorporaContext.jsx";
 
 export default function LandingPage() {
     const [showHistory, setShowHistory] = useState(false);
+    const [showAdvancedSearch, setShowAdvancedSearch] = useState(false);
+    const [words, setWords] = useState([]);
     const { corporas } = useContext(CorporaContext);
     const navigate = useNavigate();
     const { settings } = useContext(SettingsContext);
@@ -59,6 +62,10 @@ export default function LandingPage() {
     const toggleHistory = () => {
         setShowHistory((prev) => !prev);
     };
+
+    const toggleAdvancedSearch = () => {
+        setShowAdvancedSearch((prev) => !prev);
+    }
 
     const toggleModal = () => {
         setShowModal((prev) => !prev);
@@ -93,7 +100,9 @@ export default function LandingPage() {
         navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(corporas.corporas)}`);
     };
 
-
+    const handleWords = (e) => {
+        setWords(e);
+    }
 
     return (
         <div className="landing-page">
@@ -102,9 +111,14 @@ export default function LandingPage() {
             <div className="landing-content">
                 <img className="korp-image" src={korpImage} alt="" />
 
-                <SearchBar returnSearchInput={(e) => {
+                <SearchBar 
+                returnSearchInput={(e) => {
                     handleSubmit(e);
-                }} />
+                }} 
+                returnWords={(e) => {
+                    handleWords(e);
+                }}
+                />
 
                 <div className="landingpage__button_group">
                     <div className="corpus-button-container">
@@ -123,7 +137,7 @@ export default function LandingPage() {
                             clasName="extended-search-button"
                             buttonColour='#C9EEFF'
                             buttonImage={advanced}
-                            buttonOnClick={null} 
+                            buttonOnClick={toggleAdvancedSearch} 
                             buttonToolTip={advanced_tip}/> 
 
                         <CircleButton
@@ -142,8 +156,11 @@ export default function LandingPage() {
                     </div>
                 </div>
 
-
+                
+                {showAdvancedSearch && <AdvancedSearch words={words}/>}
                 {showHistory && <HistoryPanel />}
+                
+                
                 <InfoText className="info_text" />
             </div>
             <Footer className="landing-footer" />
