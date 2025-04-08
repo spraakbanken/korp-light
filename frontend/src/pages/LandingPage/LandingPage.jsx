@@ -107,18 +107,19 @@ export default function LandingPage() {
 
                 <div className="landingpage__button_group">
 
-                    { <CircleButton
+                     <CircleButton
                     clasName="extended-search-button"
                     buttonColour='#FF9F79'
                     buttonImage={advanced}
-                    buttonOnClick={null} /> }
+                    buttonOnClick={null} 
+                    buttonToolTip={advanced_tip}/> 
 
                     <CircleButton
                         className="filter-button"
-                        buttonColour='#FF9F79'
+                        buttonColour='#FF9F78'
                         buttonImage={sliders_logo}
                         buttonOnClick={null}
-                        buttonToolTip={advanced_tip} />
+                        buttonToolTip={filter_tip} />
 
                     <CircleButton
                         className="corpus-button"
