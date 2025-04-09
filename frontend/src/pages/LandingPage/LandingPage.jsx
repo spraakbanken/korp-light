@@ -55,7 +55,8 @@ export default function LandingPage() {
             // Slight delay to ensure all elements are rendered
             setTimeout(() => {
                 startTour();
-                // Clean up URL without refreshing the page
+                // Clean up URL without
+                //  refreshing the page
                 navigate('/', { replace: true });
             }, 500);
         }
@@ -154,10 +155,8 @@ export default function LandingPage() {
                             buttonColour='#FFB968'
                             buttonImage={sliders_logo}
                             buttonOnClick={toggleFilterModal}
-                            buttonToolTip={filter_tip} />  
-                            buttonOnClick={toggleFilter}
-                            buttonToolTip={filter_tip}
-                            buttonLabel="Filter" />                  
+                            buttonToolTip={filter_tip}   
+                            buttonLabel="Filter"/>                  
 
                             <FilterCard 
                             show={showFilterModal}
