@@ -31,11 +31,12 @@
 .button-label {
     font-size: 12px;
     margin-top: 4px;
+    font-weight: bold;
     text-align: center;
-    display: none; /* Hidden by default */
-    height: 30px; /* Fixed height for all labels */
-    width: 100%; /* Take full container width */
-    overflow: hidden; /* Hide overflow content */
+    display: none; 
+    height: 30px; 
+    width: 100%; 
+    overflow: hidden; 
 }
 
 /* Show on mobile screens */
