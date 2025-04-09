@@ -23,6 +23,21 @@
     transition: box-shadow 0.3s ease;
 }
 
+.advanced__search__entry {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.advanced__search__small__icon {
+    background-color: orange;
+    color: gray;
+    font-weight: bold;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
 .advanced__search__word:hover {
     cursor: pointer;
     border: 1px solid transparent;
