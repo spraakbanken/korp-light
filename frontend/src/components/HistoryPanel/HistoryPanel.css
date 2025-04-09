@@ -33,7 +33,7 @@
 
 .history-table tr:nth-child(even) {
     background-color: #FDDBBB;
-    color: #F5926A;
+    color: #858589;
 }
 
 .history-table tr:nth-child(odd) {
