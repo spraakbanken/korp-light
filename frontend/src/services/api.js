@@ -73,7 +73,8 @@ export function toggleAPI(which_server) {
 // Parse all queries from react to send to server
 // We can build cqp here if we want or in the React component
 export async function getCorpusQuery(inQuery) {
-  
+
+  console.log("inQuery", inQuery)
   queryParams.cqp = buildQuery(inQuery);
 
    
@@ -96,7 +97,7 @@ export function buildQuery(params) {
     //     'word': String(params),
     // }
     // const result = qs.stringify(cqpParams);
-    
+    console.log("params", params);
     const result = `[word="${params}"]`;
     return result;
 }

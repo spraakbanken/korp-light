@@ -110,7 +110,19 @@ export default function LandingPage() {
 
     const handleSubmit = (event) => {
         //VET EJ HUR VI BYGGER URL QUERYN FÖR FLERA CORPUSAR.
-        navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(Object.keys(corporas.corporas))}`);
+        
+        let buildAdvancedQuery = '';
+        Object.entries(wordsDict).map(([word, tag]) => {
+        
+            if (tag === "Grundform") {
+            buildAdvancedQuery = buildAdvancedQuery + `[lemma contains "${word}"]`
+            
+        } else if (tag === "Ord") {
+                buildAdvancedQuery = buildAdvancedQuery + `[word = "${word}"]`
+            }
+        })
+        console.log('final query', buildAdvancedQuery);
+        navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(Object.keys(corporas.corporas))}&cqp=${buildAdvancedQuery}`);
     };
 
     const handleAdvancedSearch = (e) => {
