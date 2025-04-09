@@ -1,5 +1,5 @@
 .advanced__search__container {
-    background-color: var(--bg-colour);
+    background-color: rgb(233, 232, 232);
     padding: 20px;
     color: black;
     width: 30%;
@@ -25,6 +25,7 @@
 
 .advanced__search__word:hover {
     cursor: pointer;
+    border: 1px solid transparent;
     background-color: darkorange;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
