@@ -42,6 +42,7 @@ export default function LandingPage() {
     const navigate = useNavigate();
     const { settings } = useContext(SettingsContext);
     const [showModal, setShowModal] = useState(false);
+    const [showFilterModal, setShowFilterModal] = useState(false);
     const [showFilter, setShowFilter] = useState(false);
     const { startTour } = useTour();
 
@@ -54,7 +55,8 @@ export default function LandingPage() {
             // Slight delay to ensure all elements are rendered
             setTimeout(() => {
                 startTour();
-                // Clean up URL without refreshing the page
+                // Clean up URL without
+                //  refreshing the page
                 navigate('/', { replace: true });
             }, 500);
         }
@@ -64,9 +66,10 @@ export default function LandingPage() {
         setShowHistory((prev) => !prev);
     };
 
-    const toggleFilter = () => {
-        setShowFilter((prev) => !prev);
-    }
+    const toggleFilterModal = () => {
+        setShowFilterModal((prev) => !prev);
+    };
+
 
     const toggleAdvancedSearch = () => {
         setShowAdvancedSearch((prev) => !prev);
@@ -126,11 +129,12 @@ export default function LandingPage() {
                 />
 
                 <div className="landingpage__button_group">
-                    <div className="corpus-button-container">
+                    <div className="corpus-button-div">
                         <CorpusButton
                             buttonImage={corpus_logo}
                             buttonOnClick={toggleModal}
-                            buttonToolTip={corpus_tip} />
+                            buttonToolTip={corpus_tip}
+                            buttonLabel="Korpusar" />
                         <CorpusModal
                             show={showModal}
                             onHide={() => setShowModal(false)}
@@ -143,28 +147,38 @@ export default function LandingPage() {
                             buttonColour='#FF9F79'
                             buttonImage={advanced}
                             buttonOnClick={toggleAdvancedSearch} 
-                            buttonToolTip={advanced_tip}/> 
+                            buttonToolTip={advanced_tip}
+                            buttonLabel="Utökad sökning"/> 
 
                         <CircleButton
                             className="filter-button"
                             buttonColour='#FFB968'
                             buttonImage={sliders_logo}
-                            buttonOnClick={toggleFilter}
-                            buttonToolTip={filter_tip} />                  
+                            buttonOnClick={toggleFilterModal}
+                            buttonToolTip={filter_tip}   
+                            buttonLabel="Filter"/>                  
+
+                            <FilterCard 
+                            show={showFilterModal}
+                            onHide={() => setShowFilterModal(false)}
+                            colour='#FFB968'
+                            buttonLogo={sliders_logo} />
+                                          
 
                         <CircleButton
                             className="history-button"
                             buttonColour='#FFCE6D'
                             buttonImage={history_logo}
                             buttonOnClick={toggleHistory}
-                            buttonToolTip={history_tip} />
+                            buttonToolTip={history_tip} 
+                            buttonLabel="Historik"/>
                     </div>
                 </div>
 
                 
                 {showAdvancedSearch && <AdvancedSearch words={words}/>}
                 {showHistory && <HistoryPanel />}
-                {showFilter && <FilterCard />}
+            
                 
                 <InfoText className="info_text" />
             </div>
