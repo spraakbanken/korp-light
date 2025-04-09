@@ -10,7 +10,7 @@ import { Search } from 'lucide-react';
 
 export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
     const { corporas, updateCorporas } = useContext(CorporaContext);
-    const [selectedCorpora, setSelectedCorpora] = useState([]);
+    const [selectedCorpora, setSelectedCorpora] = useState(corporas.corporas || {});
     const [expanded, setExpanded] = useState({});
     const [searchQuery, setSearchQuery] = useState('');
     const [subcorporaIds, setSubcorporaIds] = useState({}); // Store UUIDs for subcorpora
@@ -81,15 +81,12 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
     
             setExpanded(prev => ({ ...prev, ...newExpanded }));
         }else{
-            const initialCorpora = Array.isArray(corporas.corporas) 
-            ? corporas.corporas 
-            : corporas.corporas
-                ? [corporas.corporas]
-                : [];
+            
             let initialExpanded = {}
-            if (initialCorpora.length > 0) {
-                initialExpanded = findAndExpandSections(testdata, initialCorpora);
+            if(corporas.corporas){
+                initialExpanded = findAndExpandSections(testdata, corporas.corporas);
             }
+
             setExpanded(initialExpanded);
             
         }
@@ -98,30 +95,33 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
 
     const findAndSetExpanded = (testdata, initialCorpora) => {
         let initialExpanded = {}
-        if (initialCorpora.length > 0) {
-            initialExpanded = findAndExpandSections(testdata, initialCorpora);
 
-        }
+        initialExpanded = findAndExpandSections(testdata, initialCorpora);
+
+        
+
         setExpanded(prev => ({ ...prev, ...initialExpanded}));
-
+    
     }
 
-const findAndExpandSections = (data, selected) => {
+    const findAndExpandSections = (data, selected) => {
                 // Expand sections containing selected corpora
 // Function to recursively find and expand sections containing selected corpora, category[0] = title, 1 = Description 2 = main corporas, 3 = subcorporas
                 const initialExpanded = {};
                 Object.values(data).forEach(category => {
                     const title = category[0];
-                    
+                    ("title:", title);
                     
                     // Check "main corpora" or first corporas in "folders" in category[2]
         
                     if (category[2]) {
-
-                        const hasSelected = selected.some(corpusId => 
+                        
+                        const hasSelected = Object.keys(selected).some(corpusId =>
                             Object.keys(category[2]).includes(corpusId.toString())
-                        );
+                          );
+                          (hasSelected);
                         if (hasSelected) {
+                            (title);
                             initialExpanded[title] = true;
                         }
                     }
@@ -132,9 +132,10 @@ const findAndExpandSections = (data, selected) => {
                             const subTitle = subcategory[0];
                             const subId = subcorporaIds[subTitle]; // Get UUID for this subcorpora
                             if (subcategory[2]) {
-                                const hasSelected = selected.some(corpusId => 
+
+                                const hasSelected = Object.keys(selected).some(corpusId =>
                                     Object.keys(subcategory[2]).includes(corpusId.toString())
-                                );
+                                  );
                                 if (hasSelected) {
                                     initialExpanded[title] = true; // Expand parent
                                     initialExpanded[subId] = true; // Expand subcategory using UUID
@@ -143,22 +144,20 @@ const findAndExpandSections = (data, selected) => {
                         });
                     }
                 });
+                (initialExpanded);
                 return initialExpanded;
             };
 
 
     useEffect(() => {
         if (show) {
-            // Handle both array and object formats from context, could be a string when only one selected, which is a list :)
-            const initialCorpora = Array.isArray(corporas.corporas) 
-                ? corporas.corporas 
-                : corporas.corporas
-                    ? [corporas.corporas]
-                    : [];
             
-            setSelectedCorpora(initialCorpora);
-            findAndSetExpanded(testdata, initialCorpora)
+            // Handle both array and object formats from context, could be a string when only one selected, which is a list :)
+            if (corporas.corporas){
+            findAndSetExpanded(testdata, corporas.corporas)
+            }
         }
+        
     }, [show, corporas.corporas]);
 
     const matchesSearch = (text) => {
@@ -173,17 +172,23 @@ const findAndExpandSections = (data, selected) => {
         }));
     };
 
-    const handleCorpusClick = (corpusId) => {
-        const newSelection = selectedCorpora.includes(corpusId)
-            ? selectedCorpora.filter(c => c !== corpusId) // If corpus already selected, remove it 
-            : [...selectedCorpora, corpusId]; // otherwise add it, works like a toggle basically :) Pretty neat
-        
+    const handleCorpusClick = (corpusId, corpusLabel) => {
+        let newSelection;
+        if(corpusId in selectedCorpora){
+            const {[corpusId]: _ , ...newState} = selectedCorpora;
+            newSelection = newState;
+        } else {       
+            newSelection = {...selectedCorpora, [corpusId]: corpusLabel};
+        }
+
         setSelectedCorpora(newSelection);
 
         updateCorporas({
             ...corporas,
-            corporas: newSelection.length === 1 ? newSelection[0] : newSelection //If only one corpus, store as single value, otherwise array
+            corporas: newSelection //If only one corpus, store as single value, otherwise array
         });
+        console.log(corporas.corporas);
+
     };
 
     const renderCorpusSection = (e) => {
@@ -229,11 +234,11 @@ const findAndExpandSections = (data, selected) => {
                                 {Object.entries(testDict).map(([id, label]) => (
                                     <div
                                         key={id}
-                                        className={`corpus-item ${selectedCorpora.includes(id) ? "selected" : ""}`}
-                                        onClick={() => handleCorpusClick(id)}
+                                        className={`corpus-item ${id in selectedCorpora ? "selected" : ""}`}
+                                        onClick={() => handleCorpusClick(id, label)}
                                     >
                                         <span>{highlightSearchMatch(label)}</span>
-                                        {selectedCorpora.includes(id) && <span className="checkmark">✓</span>}
+                                        {id in selectedCorpora && <span className="checkmark">✓</span>}
                                     </div>
                                 ))}
                             </div>
@@ -306,11 +311,11 @@ const findAndExpandSections = (data, selected) => {
                                 {Object.entries(subCorporaDict).map(([id, label]) => (
                                     <div
                                         key={id}
-                                        className={`corpus-item ${selectedCorpora.includes(id) ? "selected" : ""}`}
-                                        onClick={() => handleCorpusClick(id)}
+                                        className={`corpus-item ${id in selectedCorpora ? "selected" : ""}`}
+                                        onClick={() => handleCorpusClick(id, label)}
                                     >
                                         <span>{highlightSearchMatch(label)}</span>
-                                        {selectedCorpora.includes(id) && <span className="checkmark">✓</span>}
+                                        {id in selectedCorpora && <span className="checkmark">✓</span>}
                                     </div>
                                 ))}
                             </div>
@@ -381,9 +386,9 @@ const findAndExpandSections = (data, selected) => {
                 </div>
 
                 <div className="selected-corpora-bar">
-                    {selectedCorpora.length > 0 ? (
+                    {selectedCorpora ? (Object.keys(selectedCorpora).length > 0 ? (
                         <div className="selected-count">
-                            {selectedCorpora.length} valda
+                            {Object.keys(selectedCorpora).length} valda
                             <Button 
                                 variant="link" 
                                 onClick={() => {
@@ -398,7 +403,7 @@ const findAndExpandSections = (data, selected) => {
                         </div>
                     ) : (
                         <div className="empty-selection">Ingen vald corpus</div>
-                    )}
+                    )): (<div className="empty-selection">Ingen vald corpus</div>)}
                 </div>
                 
                 <div className="corpus-container">
