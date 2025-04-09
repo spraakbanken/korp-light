@@ -53,10 +53,10 @@ export default function SettingsCard(props) {
                     <Form.Group className="mb-3">
                         <Form.Label>PROV STORLEK:</Form.Label>
                         <div className="d-flex gap-2">
-                            <Form.Select defaultValue="Procent">
+                            {/* <Form.Select defaultValue="Procent">
                                 <option>Procent</option>
                                 <option>Antal</option>
-                            </Form.Select>
+                            </Form.Select> */}
                             <Form.Control
                                 type="number"
                                 value={settings.sampleSize}
