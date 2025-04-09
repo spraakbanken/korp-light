@@ -19,22 +19,17 @@
   padding-bottom: 10px;
 }
 
-/* .tooltip {
-  position: fixed !important; 
-  opacity: 1 !important; 
-  transition: none !important; 
-} */
-
 .corpus-button-container {
+  flex: 1;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
 }
 
 .landingpage__button_container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 20px;
 }
 
@@ -80,5 +75,9 @@
   
   .circlebutton {
       transform: scale(0.9);
+  }
+
+  .history-button, .filter-button, .extented-search-button {
+      flex: 1; 
   }
 }

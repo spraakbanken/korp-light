@@ -20,3 +20,53 @@
     cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+
+.circle__button__container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-label {
+    font-size: 12px;
+    margin-top: 4px;
+    text-align: center;
+    display: none; /* Hidden by default */
+    height: 30px; /* Fixed height for all labels */
+    width: 100%; /* Take full container width */
+    overflow: hidden; /* Hide overflow content */
+}
+
+/* Show on mobile screens */
+@media (max-width: 768px) {
+    .button-label {
+        display: block; /* Show on mobile */
+        line-height: 15px; /* Adjust line height for wrapped text */
+    }
+}
+
+.circle__button__container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-label {
+    font-size: 12px;
+    margin-top: 4px;
+    text-align: center;
+    display: none; /* Hidden by default */
+    height: 30px; /* Fixed height for all labels */
+    width: 100%; /* Take full container width */
+    overflow: hidden; /* Hide overflow content */
+}
+
+/* Show on mobile screens */
+@media (max-width: 768px) {
+    .button-label {
+        display: block; /* Show on mobile */
+        line-height: 15px; /* Adjust line height for wrapped text */
+    }
+}
