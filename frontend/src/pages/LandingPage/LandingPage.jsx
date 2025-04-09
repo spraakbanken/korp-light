@@ -42,6 +42,7 @@ export default function LandingPage() {
     const navigate = useNavigate();
     const { settings } = useContext(SettingsContext);
     const [showModal, setShowModal] = useState(false);
+    const [showFilterModal, setShowFilterModal] = useState(false);
     const [showFilter, setShowFilter] = useState(false);
     const { startTour } = useTour();
 
@@ -64,9 +65,10 @@ export default function LandingPage() {
         setShowHistory((prev) => !prev);
     };
 
-    const toggleFilter = () => {
-        setShowFilter((prev) => !prev);
-    }
+    const toggleFilterModal = () => {
+        setShowFilterModal((prev) => !prev);
+    };
+
 
     const toggleAdvancedSearch = () => {
         setShowAdvancedSearch((prev) => !prev);
@@ -151,9 +153,18 @@ export default function LandingPage() {
                             className="filter-button"
                             buttonColour='#FFB968'
                             buttonImage={sliders_logo}
+                            buttonOnClick={toggleFilterModal}
+                            buttonToolTip={filter_tip} />  
                             buttonOnClick={toggleFilter}
                             buttonToolTip={filter_tip}
                             buttonLabel="Filter" />                  
+
+                            <FilterCard 
+                            show={showFilterModal}
+                            onHide={() => setShowFilterModal(false)}
+                            colour='#FFB968'
+                            buttonLogo={sliders_logo} />
+                                          
 
                         <CircleButton
                             className="history-button"
@@ -168,7 +179,7 @@ export default function LandingPage() {
                 
                 {showAdvancedSearch && <AdvancedSearch words={words}/>}
                 {showHistory && <HistoryPanel />}
-                {showFilter && <FilterCard />}
+            
                 
                 <InfoText className="info_text" />
             </div>

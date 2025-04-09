@@ -27,12 +27,12 @@ export default function SettingsCard(props) {
             <Modal {...props}
                 className="_settings-card" centered>
                 <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">Inställningar</Modal.Title>
+                    <Modal.Title id="contained-modal-title-vcenter">Filter</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {/* Results per page */}
                     <Form.Group className="mb-3">
-                        <Form.Label>RESULTAT PER SIDA:</Form.Label>
+                        <Form.Label>Resultat per sida:</Form.Label>
                         <Form.Select 
                             
                             onChange={(e) => {
@@ -49,10 +49,9 @@ export default function SettingsCard(props) {
 
                     {/* Sample size */}
                     <Form.Group className="mb-3">
-                        <Form.Label>PROV STORLEK:</Form.Label>
+                        <Form.Label>Provstorlek:</Form.Label>
                         <div className="d-flex gap-2">
                             <Form.Select defaultValue="Procent">
-                                <option>Procent</option>
                                 <option>Antal</option>
                             </Form.Select>
                             <Form.Control
@@ -65,7 +64,7 @@ export default function SettingsCard(props) {
                     </Form.Group>
                     {/* Context size */}
                     <Form.Group className="mb-3">
-                        <Form.Label>KONTEXT STORLEK:</Form.Label>
+                        <Form.Label>Meningsstorlek:</Form.Label>
                         <Form.Control
                             type="number"
                             value={settings.contextSize}
@@ -74,33 +73,8 @@ export default function SettingsCard(props) {
                         />
                     </Form.Group>
 
-                    {/* View selection */}
-                    <Form.Group className="mb-3 d-flex justify-content-between">
-                        <Form.Check
-                            type="checkbox"
-                            label="Wide View"
-                            checked={selectedView === "wide"}
-                            onChange={() => handleViewChange("wide")
-                            }
-                        />
-                        <Form.Check
-                            type="checkbox"
-                            label="Grid View"
-                            checked={selectedView === "grid"}
-                            onChange={() => handleViewChange("grid")
-                            }
-                        />
-                        <Form.Check
-                            type="checkbox"
-                            label="Zen View"
-                            checked={selectedView === "zen"}
-                            onChange={() => handleViewChange("zen")
-                            }
-                        />
-                    </Form.Group>
-
                     <Form.Group className="mb-3">
-                    <Form.Label>API:</Form.Label>
+                    <Form.Label>API (*gjort för utvecklare):</Form.Label>
                         <div className=" d-flex align-items-center justify-content-center">
                             {/* Toggle API, logic in ToggleAPI.jsx */}
                             <ToggleAPI />   
@@ -111,7 +85,7 @@ export default function SettingsCard(props) {
                 
                 {/* Close button */}
                 <Modal.Footer className="settingsFooter" onClick={props.onHide}>
-                        <Button variant="danger" className="w-50 settingsCloseButton">STÄNG</Button>
+                        <Button variant="danger" className="w-50 settingsCloseButton">Stäng</Button>
                 </Modal.Footer>
             </Modal>
     );
