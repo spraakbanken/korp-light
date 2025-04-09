@@ -63,10 +63,14 @@
       gap: 10px; 
   }
   
-  .corpus-button-container .corpus-button {
+  .corpus-button-div .corpus-button {
       min-width: unset; 
       padding: 8px 10px; 
-      font-size: 14px; 
+  }
+
+  .corpus-button-text {
+      font-size: 12px; 
+      font-weight: 700;
   }
   
   .landingpage__button_container {
