@@ -38,6 +38,7 @@ export default function LandingPage() {
     const [showHistory, setShowHistory] = useState(false);
     const [showAdvancedSearch, setShowAdvancedSearch] = useState(false);
     const [words, setWords] = useState([]);
+    const [wordsDict, setWordsDict] = useState({});
     const { corporas } = useContext(CorporaContext);
     const navigate = useNavigate();
     const { settings } = useContext(SettingsContext);
@@ -61,6 +62,10 @@ export default function LandingPage() {
             }, 500);
         }
     }, [location, startTour, navigate]);
+
+    useEffect(() => {
+        console.log("wordsDict in LandingPage", wordsDict);
+    }, [wordsDict])
 
     const toggleHistory = () => {
         setShowHistory((prev) => !prev);
@@ -107,6 +112,10 @@ export default function LandingPage() {
         //VET EJ HUR VI BYGGER URL QUERYN FÖR FLERA CORPUSAR.
         navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(Object.keys(corporas.corporas))}`);
     };
+
+    const handleAdvancedSearch = (e) => {
+        setWordsDict(e);
+    }
 
     const handleWords = (e) => {
         setWords(e)
@@ -176,7 +185,8 @@ export default function LandingPage() {
                 </div>
 
                 
-                {showAdvancedSearch && <AdvancedSearch words={words}/>}
+                {showAdvancedSearch && <AdvancedSearch words={words} 
+                    returnWordsDict={(e) => handleAdvancedSearch(e)}/>}
                 {showHistory && <HistoryPanel />}
             
                 
