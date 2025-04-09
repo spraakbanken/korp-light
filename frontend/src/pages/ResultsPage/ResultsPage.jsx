@@ -57,18 +57,21 @@ export default function ResultsPage() {
     };
 
     const handleCorpusQuery = () => {
-        let tempString = ""
-        if (typeof (corporas.corporas) == "object") {
-            for (let corpus in corporas.corporas) {
-                tempString += corporas.corporas[corpus]
-                if (corporas.corporas.length - 1 > corpus) {
+        let tempString = "";
+        if (corporas.corporas) {
+            const tempList = Object.keys(corporas.corporas);
+            console.log(tempList);
+            for (let val in tempList) {
+                tempString += tempList[val]
+                if (tempList.length - 1 > val) {
                     tempString += ","
                 }
             }
             setCorpusInput(tempString);
+            
         }
-        else if (typeof (corporas.corporas) == "string") {
-            setCorpusInput(corporas.corporas);
+        else{
+            console.log("darn");
         }
     };
 
@@ -99,7 +102,7 @@ export default function ResultsPage() {
 
     const handleSubmit = (event) => {
         setSearchWordInput(event)
-        setCorpusInput(handleCorpusQuery);
+        handleCorpusQuery();
         navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(corpusInput)}`);
     };
 

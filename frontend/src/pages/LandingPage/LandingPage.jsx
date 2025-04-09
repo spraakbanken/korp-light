@@ -23,7 +23,7 @@ import corpus_logo from '../../assets/book-open.svg';
 import history_logo from '../../assets/rotate-ccw.svg';
 import sliders_logo from '../../assets/sliders.svg';
 import advanced from '../../assets/advanced.svg';
-import KorpLight from '../../assets/korp.svg';
+import KorpLight from '../../assets/korpi.svg';
 import KorpDark from '../../assets/whiteKorp.svg';
 
 
@@ -105,7 +105,7 @@ export default function LandingPage() {
 
     const handleSubmit = (event) => {
         //VET EJ HUR VI BYGGER URL QUERYN FÖR FLERA CORPUSAR.
-        navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(corporas.corporas)}`);
+        navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(Object.keys(corporas.corporas))}`);
     };
 
     const handleWords = (e) => {
