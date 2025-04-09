@@ -134,7 +134,7 @@ export default function LandingPage() {
                     </div>
                     <div className="landingpage__button_container">
                         <CircleButton
-                            clasName="extended-search-button"
+                            className="extended-search-button"
                             buttonColour='#C9EEFF'
                             buttonImage={advanced}
                             buttonOnClick={toggleAdvancedSearch} 
