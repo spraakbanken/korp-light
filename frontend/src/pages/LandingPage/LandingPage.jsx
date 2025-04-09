@@ -17,7 +17,7 @@ import Button from 'react-bootstrap/Button';
 import { useTour } from "../../services/Tour/tour.js";
 import CorpusButton from "../../components/CorpusButton/CorpusButton.jsx";
 import AdvancedSearch from "../../components/AdvancedSearch/AdvancedSearch.jsx";
-
+import FilterCard from "../../components/FilterCard/FilterCard.jsx"
 //assets
 import corpus_logo from '../../assets/book-open.svg';
 import history_logo from '../../assets/rotate-ccw.svg';
@@ -42,6 +42,7 @@ export default function LandingPage() {
     const navigate = useNavigate();
     const { settings } = useContext(SettingsContext);
     const [showModal, setShowModal] = useState(false);
+    const [showFilter, setShowFilter] = useState(false);
     const { startTour } = useTour();
 
     const korpImage = settings.theme === "light" ? KorpLight : KorpDark;
@@ -62,6 +63,10 @@ export default function LandingPage() {
     const toggleHistory = () => {
         setShowHistory((prev) => !prev);
     };
+
+    const toggleFilter = () => {
+        setShowFilter((prev) => !prev);
+    }
 
     const toggleAdvancedSearch = () => {
         setShowAdvancedSearch((prev) => !prev);
@@ -144,7 +149,7 @@ export default function LandingPage() {
                             className="filter-button"
                             buttonColour='#FFB968'
                             buttonImage={sliders_logo}
-                            buttonOnClick={null}
+                            buttonOnClick={toggleFilter}
                             buttonToolTip={filter_tip} />                  
 
                         <CircleButton
@@ -159,7 +164,7 @@ export default function LandingPage() {
                 
                 {showAdvancedSearch && <AdvancedSearch words={words}/>}
                 {showHistory && <HistoryPanel />}
-                
+                {showFilter && <FilterCard />}
                 
                 <InfoText className="info_text" />
             </div>
