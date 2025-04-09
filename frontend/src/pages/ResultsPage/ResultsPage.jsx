@@ -188,7 +188,7 @@ export default function ResultsPage() {
                 }} />
 
                 <div className="landingpage__button_group">
-                    <div className="corpus-button-container">
+                    <div className="corpus-button-div">
                         <CorpusButton
                             buttonImage={corpus_logo}
                             buttonOnClick={toggleModal}

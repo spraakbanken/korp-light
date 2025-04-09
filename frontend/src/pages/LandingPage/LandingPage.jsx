@@ -134,7 +134,7 @@ export default function LandingPage() {
                             buttonImage={corpus_logo}
                             buttonOnClick={toggleModal}
                             buttonToolTip={corpus_tip}
-                            buttonLabel="Korpusar" />
+                            buttonLabel="     " />
                         <CorpusModal
                             show={showModal}
                             onHide={() => setShowModal(false)}
