@@ -54,15 +54,7 @@ export default function NavigationBar() {
   return (
     <Navbar className="main__navbar">
       <Container fluid className="d-flex justify-content-between">
-        <div>
-          {location.pathname !== "/" && (
-            <Link to={"/"}>
-              <img src={korpImage} alt="Korp Logo" />
-            </Link>
-          )}
-          <SideMenu onTourStart={startTour}/>
-        </div>
-
+        <SideMenu onTourStart={startTour}/>
         <Nav className="d-flex align-items-center">
           
           <span className="vr border-start border-1 border-dark rounded-3"></span>
