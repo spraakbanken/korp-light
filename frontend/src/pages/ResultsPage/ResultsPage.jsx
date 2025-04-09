@@ -202,21 +202,21 @@ export default function ResultsPage() {
                     <div className="landingpage__button_container">
                         <CircleButton
                             clasName="extended-search-button"
-                            buttonColour='#C9EEFF'
+                            buttonColour='#FF9F79'
                             buttonImage={advanced}
                             buttonOnClick={null}
                             buttonToolTip={advanced_tip} />
 
                         <CircleButton
                             className="filter-button"
-                            buttonColour='#97DEFF'
+                            buttonColour='#FFB968'
                             buttonImage={sliders_logo}
                             buttonOnClick={null}
                             buttonToolTip={filter_tip} />
 
                         <CircleButton
                             className="history-button"
-                            buttonColour='#62CDFF'
+                            buttonColour='#FFCE6D'
                             buttonImage={history_logo}
                             buttonOnClick={toggleHistory}
                             buttonToolTip={history_tip} />

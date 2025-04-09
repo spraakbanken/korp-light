@@ -3,7 +3,7 @@ import Image from "react-bootstrap/Image";
 import { useState } from "react";
 import "./CorpusButton.css";
 
-export default function CorpusButton({ buttonImage, buttonOnClick, buttonToolTip }) {
+export default function CorpusButton({ buttonImage, buttonOnClick, buttonToolTip, buttonLabel }) {
     const [selected, setSelected] = useState(false);
     
     function handleClick() {
@@ -29,6 +29,10 @@ export default function CorpusButton({ buttonImage, buttonOnClick, buttonToolTip
                     />
                 </div>
             </OverlayTrigger>
+
+            {buttonLabel && (
+                <div className="button-label">{buttonLabel}</div>
+            )}
         </div>
     );
 }

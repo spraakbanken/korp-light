@@ -128,11 +128,12 @@ export default function LandingPage() {
                 />
 
                 <div className="landingpage__button_group">
-                    <div className="corpus-button-container">
+                    <div className="corpus-button-div">
                         <CorpusButton
                             buttonImage={corpus_logo}
                             buttonOnClick={toggleModal}
-                            buttonToolTip={corpus_tip} />
+                            buttonToolTip={corpus_tip}
+                            buttonLabel="Korpusar" />
                         <CorpusModal
                             show={showModal}
                             onHide={() => setShowModal(false)}
@@ -145,7 +146,8 @@ export default function LandingPage() {
                             buttonColour='#FF9F79'
                             buttonImage={advanced}
                             buttonOnClick={toggleAdvancedSearch} 
-                            buttonToolTip={advanced_tip}/> 
+                            buttonToolTip={advanced_tip}
+                            buttonLabel="Utökad sökning"/> 
 
                         <CircleButton
                             className="filter-button"
@@ -153,6 +155,9 @@ export default function LandingPage() {
                             buttonImage={sliders_logo}
                             buttonOnClick={toggleFilterModal}
                             buttonToolTip={filter_tip} />  
+                            buttonOnClick={toggleFilter}
+                            buttonToolTip={filter_tip}
+                            buttonLabel="Filter" />                  
 
                             <FilterCard 
                             show={showFilterModal}
@@ -166,7 +171,8 @@ export default function LandingPage() {
                             buttonColour='#FFCE6D'
                             buttonImage={history_logo}
                             buttonOnClick={toggleHistory}
-                            buttonToolTip={history_tip} />
+                            buttonToolTip={history_tip} 
+                            buttonLabel="Historik"/>
                     </div>
                 </div>
 
