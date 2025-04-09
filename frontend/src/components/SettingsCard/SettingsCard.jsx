@@ -51,7 +51,7 @@ export default function SettingsCard(props) {
 
                     {/* Sample size */}
                     <Form.Group className="mb-3">
-                        <Form.Label>PROV STORLEK:</Form.Label>
+                        <Form.Label>PROVSTORLEK: <span className="settings__description"> antal resultat per korpus</span></Form.Label>
                         <div className="d-flex gap-2">
                             {/* <Form.Select defaultValue="Procent">
                                 <option>Procent</option>
@@ -68,7 +68,7 @@ export default function SettingsCard(props) {
 
                     {/* Context size */}
                     <Form.Group className="mb-3">
-                        <Form.Label>KONTEXT STORLEK:</Form.Label>
+                        <Form.Label>MENINGSLÄNGD: <span className="settings__description"> antal ord som omger resultatet</span></Form.Label>
                         <Form.Control
                             type="number"
                             value={settings.contextSize}
