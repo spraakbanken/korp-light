@@ -90,7 +90,7 @@ export default function LandingPage() {
 
     const corpus_tip = (
         <Tooltip id="corpus_tooltip">
-            <strong>Samlingar</strong>
+            <strong>Korpusar</strong>
         </Tooltip>
     );
 
@@ -140,21 +140,21 @@ export default function LandingPage() {
                     <div className="landingpage__button_container">
                         <CircleButton
                             className="extended-search-button"
-                            buttonColour='#C9EEFF'
+                            buttonColour='#FF9F79'
                             buttonImage={advanced}
                             buttonOnClick={toggleAdvancedSearch} 
                             buttonToolTip={advanced_tip}/> 
 
                         <CircleButton
                             className="filter-button"
-                            buttonColour='#97DEFF'
+                            buttonColour='#FFB968'
                             buttonImage={sliders_logo}
                             buttonOnClick={toggleFilter}
                             buttonToolTip={filter_tip} />                  
 
                         <CircleButton
                             className="history-button"
-                            buttonColour='#62CDFF'
+                            buttonColour='#FFCE6D'
                             buttonImage={history_logo}
                             buttonOnClick={toggleHistory}
                             buttonToolTip={history_tip} />
