@@ -4,6 +4,7 @@ import ResultCard from '../ResultCard/ResultCard.jsx';
 import ErrorPage from '../../pages/ErrorPage/ErrorPage.jsx';
 import SettingsContext from "../../services/SettingsContext.jsx";
 import { MoveLeft, MoveRight, ChevronDown, ChevronRight } from 'lucide-react';
+import CorporaContext from '../../services/CorporaContext.jsx';
 
 
 //This should all later be changed to use individual api calls for each corpus, so we get (hopefully) a quicker response.
@@ -16,6 +17,7 @@ const ResultsPanel = ({ response }) => {
   const [corpusOrder, setCorpusOrder] = useState([]);
   const [expandedCorpus, setExpandedCorpus] = useState({});
   const { settings, updateSettings } = useContext(SettingsContext);
+  const { corporas } = useContext(CorporaContext);
   
   const corpusPerPage = 3; // Should be swapped with resultsperpage.
   const [resultsPerCorpus, setResultsPerCorpus] = useState(settings.sampleSize);
@@ -162,7 +164,7 @@ const ResultsPanel = ({ response }) => {
                 onClick={() => toggleCorpusExpand(corpus)}
               >
                 {expandedCorpus[corpus] ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
-                <span className="corpus-name">{corpus}</span>
+                <span className="corpus-name">{corporas.corporas[corpus.toLowerCase()]}</span>
                 <span className="corpus-count">({corpusHitCount})</span>
               </div>
               {expandedCorpus[corpus] && (
