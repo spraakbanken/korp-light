@@ -98,7 +98,7 @@ export default function ResultCard({ response, n, extraData}) {
             <p>Titel: <span className='resultCard__match_info_entry'>{extraData.text_title }</span></p>
             <p>Datum: <span className='resultCard__match_info_entry'>{extraData.text_date}</span></p>
             <p>Författare: <span className='resultCard__match_info_entry'>{extraData.text_author}</span></p>
-            <p>Källa: <a href={extraData.text_url}><span className='resultCard__match_info_entry'>{extraData.text_url}</span></a></p>
+            <p>Källa: <a href={extraData.text_url} target="_blank" rel="noopener noreferrer"><span className='resultCard__match_info_entry'>{extraData.text_url}</span></a></p>
         </div>
         }
       </td>
