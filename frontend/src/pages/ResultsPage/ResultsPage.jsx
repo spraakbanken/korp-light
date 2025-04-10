@@ -187,12 +187,13 @@ export default function ResultsPage() {
         <div className="results-page">
             <NavigationBar />
             <div className="results-content">
-                <div className="resultpage__search_content">
+                <div className="resultpage__search_content">  
                     <div className="resultpage__corpus_button">
                         <CorpusButton
                             buttonImage={corpus_logo}
                             buttonOnClick={toggleModal}
-                            buttonToolTip={corpus_tip} />
+                            buttonToolTip={corpus_tip}
+                            buttonLabel="    " />
                         <CorpusModal
                             show={showModal}
                             onHide={() => setShowModal(false)}
@@ -210,21 +211,24 @@ export default function ResultsPage() {
                             buttonColour='#FF9F79'
                             buttonImage={advanced}
                             buttonOnClick={null}
-                            buttonToolTip={advanced_tip} />
+                            buttonToolTip={advanced_tip}
+                            buttonLabel="Utökad sökning" />
 
                         <CircleButton
                             className="filter-button"
                             buttonColour='#FFB968'
                             buttonImage={sliders_logo}
                             buttonOnClick={null}
-                            buttonToolTip={filter_tip} />
+                            buttonToolTip={filter_tip}
+                            buttonLabel="Filter" />
 
                         <CircleButton
                             className="history-button"
                             buttonColour='#FFCE6D'
                             buttonImage={history_logo}
                             buttonOnClick={toggleHistory}
-                            buttonToolTip={history_tip} />
+                            buttonToolTip={history_tip}
+                            buttonLabel="Historik" />
                     </div>
                 </div>
                 {showHistory && <HistoryPanel />}

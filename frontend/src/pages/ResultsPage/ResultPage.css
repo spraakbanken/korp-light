@@ -47,3 +47,33 @@
 .searchBarWrapper {
     width:100%
 }
+
+@media (max-width: 768px) {
+    .resultpage__search_content {
+        flex-direction: row;
+        flex-wrap: wrap; 
+        justify-content: space-between;
+        align-items: center;
+        width: 90%; 
+    }
+      
+    .results-content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .resultpage__search_bar {
+        order: 1; 
+        margin: 10px 0;
+        max-width: none;
+    }
+    
+    .resultpage__corpus_button,
+    .resultpage__button_container {
+        order: 2;
+        margin: 0;
+        gap:0px;
+    }
+}

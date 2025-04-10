@@ -77,6 +77,9 @@
       justify-content: space-between; 
       gap: 10px; 
   }
+  .landingpage__search_bar_container {
+    width: 75%
+  }
   
   .corpus-button-div .corpus-button {
       min-width: unset; 
