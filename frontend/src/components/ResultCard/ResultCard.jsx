@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import './ResultCard.css';
 import SettingsContext from "../../services/SettingsContext.jsx";
 
-export default function ResultCard({ response, n }) {
+export default function ResultCard({ response, n, extraData}) {
   const { settings, updateSettings } = useContext(SettingsContext);
   const [expandCard, setExpandCard] = useState(false);
 
@@ -94,13 +94,13 @@ export default function ResultCard({ response, n }) {
           </div>
         </div>
         
-        {expandCard && <div className='resultCard__match_info'>
-            <p>Title:</p>
-            <p>Datum:</p>
-            <p>Författare</p>
-            <p>URL:</p>
+        {extraData && expandCard && <div className='resultCard__match_info'>
+            <p>Titel: <span className='resultCard__match_info_entry'>{extraData.text_title }</span></p>
+            <p>Datum: <span className='resultCard__match_info_entry'>{extraData.text_date}</span></p>
+            <p>Författare: <span className='resultCard__match_info_entry'>{extraData.text_author}</span></p>
+            <p>Källa: <a href={extraData.text_url}><span className='resultCard__match_info_entry'>{extraData.text_url}</span></a></p>
         </div>
-  }
+        }
       </td>
     </tr>
   );
