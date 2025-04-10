@@ -35,3 +35,20 @@
 .special-char {
   margin-left: -4px;
 }
+
+.resultCard__match_info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 5px;
+  margin-left: 10px;
+  margin-bottom: 0px;
+  vertical-align: middle;
+}
+
+.resultCard__match_info p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-color);
+}
