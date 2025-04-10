@@ -30,7 +30,7 @@
 }
 
 .advanced__search__small__icon {
-    background-color: orange;
+    background-color: lime;
     color: gray;
     font-weight: bold;
     width: 25px;
@@ -43,4 +43,21 @@
     border: 1px solid transparent;
     background-color: darkorange;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+} 
+
+.advanced__search__append {
+    background-color: darkred;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 6px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease;
 }
+
+.advanced__search__append:hover {
+    cursor: pointer;
+    background-color: red;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+} 
