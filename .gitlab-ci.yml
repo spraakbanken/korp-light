@@ -4,14 +4,15 @@ pages:
   cache:
     key:
       files:
-        - package-lock.json
+        - frontend/package-lock.json
       prefix: npm
     paths:
-      - node_modules/
+      - frontend/node_modules/
   script:
+    - cd frontend
     - npm install
     - npm run build
-    - cp -a dist/. public/
+    - cp -a dist/. ../public/
   artifacts:
     paths:
       - public
