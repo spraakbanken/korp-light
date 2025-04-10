@@ -48,6 +48,16 @@
     width:100%
 }
 
+.resultpage__search_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
 @media (max-width: 768px) {
     .resultpage__search_content {
         flex-direction: row;
@@ -75,5 +85,14 @@
         order: 2;
         margin: 0;
         gap:0px;
+    }
+    .calenderIconSVG, .homeIconA {
+        display: none;
+    }
+    .resultpage__search_container {
+        justify-content: center;
+        margin-bottom: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
     }
 }

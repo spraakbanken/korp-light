@@ -22,7 +22,10 @@ import { getCorpusInfo, getCorpusQuery } from "../../services/api.js";
 import { getCorpusCollectionsList } from "../../services/api.js";
 //Assets
 import advanced from '../../assets/advanced.svg';
-
+import homeIconLight from '../../assets/homeIconLight.svg';
+import homeIconDark from '../../assets/homeIconDark.svg';
+import calenderIconLight from '../../assets/calenderIconLight.svg';
+import calenderIconDark from '../../assets/calenderIconDark.svg';
 
 //Corpus, history, advanced search
 import CorpusDropDown from "../../components/CorpusDropdown/CorpusDropdown.jsx";
@@ -134,6 +137,8 @@ export default function ResultsPage() {
         setShowHistory((prev) => !prev);
     };
 
+    const homeIcon = settings.theme === "light" ? homeIconLight : homeIconDark;
+    const calenderIcon = settings.theme === "light" ? calenderIconLight : calenderIconDark;
 
 
     function getCorpusData(data) {
