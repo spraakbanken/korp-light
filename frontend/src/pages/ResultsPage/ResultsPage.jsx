@@ -68,9 +68,9 @@ export default function ResultsPage() {
                 }
             }
             setCorpusInput(tempString);
-            
+
         }
-        else{
+        else {
             console.log("darn");
         }
     };
@@ -179,19 +179,16 @@ export default function ResultsPage() {
         }
     }, [searchCorpusData]);
 
-
-
+    const styleBar = {
+        'width': '100%',
+    }
 
     return (
         <div className="results-page">
             <NavigationBar />
             <div className="results-content">
-                <SearchBar returnSearchInput={(e) => {
-                    handleSubmit(e);
-                }} />
-
-                <div className="landingpage__button_group">
-                    <div className="corpus-button-div">
+                <div className="resultpage__search_content">
+                    <div className="resultpage__corpus_button">
                         <CorpusButton
                             buttonImage={corpus_logo}
                             buttonOnClick={toggleModal}
@@ -202,7 +199,12 @@ export default function ResultsPage() {
                             colour='#FFB968'
                             buttonLogo={corpus_logo} />
                     </div>
-                    <div className="landingpage__button_container">
+                    <div className="resultpage__search_bar" style={styleBar}>
+                        <SearchBar returnSearchInput={(e) => {
+                            handleSubmit(e);
+                        }} />
+                    </div>
+                    <div className="resultpage__button_container">
                         <CircleButton
                             clasName="extended-search-button"
                             buttonColour='#FF9F79'

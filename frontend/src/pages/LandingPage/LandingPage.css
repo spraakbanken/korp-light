@@ -43,8 +43,23 @@
   flex: 1;
 }
 
+.landingpage__search_bar_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 .landing-footer{
   margin-top: 5px;
+}
+
+.landingpage__search_bar_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%
 }
 
 @media (min-width: 2500px) {
