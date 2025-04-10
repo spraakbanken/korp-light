@@ -110,14 +110,14 @@ export default function LandingPage() {
 
     const handleSubmit = (event) => {
         //VET EJ HUR VI BYGGER URL QUERYN FÖR FLERA CORPUSAR.
-        
+
         let buildAdvancedQuery = '';
         Object.entries(wordsDict).map(([word, tag]) => {
-        
+
             if (tag === "Grundform") {
-            buildAdvancedQuery = buildAdvancedQuery + `[lemma contains "${word}"]`
-            
-        } else if (tag === "Ord") {
+                buildAdvancedQuery = buildAdvancedQuery + `[lemma contains "${word}"]`
+
+            } else if (tag === "Ord") {
                 buildAdvancedQuery = buildAdvancedQuery + `[word = "${word}"]`
             }
         })
@@ -139,16 +139,19 @@ export default function LandingPage() {
             <NavigationBar />
             <div className="landing-content">
                 <img className="korp-image" src={korpImage} alt="" />
-
-                <SearchBar 
-                returnSearchInput={(e) => {
-                    handleSubmit(e);
-                }} 
-                returnWords={(e) => {
-                    handleWords(e);
-                }}
-                />
-
+                <div className="landingpage__search_bar_wrapper">
+                    <div className="landingpage__search_bar_container">
+                        <SearchBar
+                            returnSearchInput={(e) => {
+                                handleSubmit(e);
+                            }}
+                            returnWords={(e) => {
+                                handleWords(e);
+                            }}
+                        />
+                    </div>
+                </div>
+                
                 <div className="landingpage__button_group">
                     <div className="corpus-button-div">
                         <CorpusButton
@@ -167,41 +170,41 @@ export default function LandingPage() {
                             className="extended-search-button"
                             buttonColour='#FF9F79'
                             buttonImage={advanced}
-                            buttonOnClick={toggleAdvancedSearch} 
+                            buttonOnClick={toggleAdvancedSearch}
                             buttonToolTip={advanced_tip}
-                            buttonLabel="Utökad sökning"/> 
+                            buttonLabel="Utökad sökning" />
 
                         <CircleButton
                             className="filter-button"
                             buttonColour='#FFB968'
                             buttonImage={sliders_logo}
                             buttonOnClick={toggleFilterModal}
-                            buttonToolTip={filter_tip}   
-                            buttonLabel="Filter"/>                  
+                            buttonToolTip={filter_tip}
+                            buttonLabel="Filter" />
 
-                            <FilterCard 
+                        <FilterCard
                             show={showFilterModal}
                             onHide={() => setShowFilterModal(false)}
                             colour='#FFB968'
                             buttonLogo={sliders_logo} />
-                                          
+
 
                         <CircleButton
                             className="history-button"
                             buttonColour='#FFCE6D'
                             buttonImage={history_logo}
                             buttonOnClick={toggleHistory}
-                            buttonToolTip={history_tip} 
-                            buttonLabel="Historik"/>
+                            buttonToolTip={history_tip}
+                            buttonLabel="Historik" />
                     </div>
                 </div>
 
-                
-                {showAdvancedSearch && <AdvancedSearch words={words} 
-                    returnWordsDict={(e) => handleAdvancedSearch(e)}/>}
+
+                {showAdvancedSearch && <AdvancedSearch words={words}
+                    returnWordsDict={(e) => handleAdvancedSearch(e)} />}
                 {showHistory && <HistoryPanel />}
-            
-                
+
+
                 <InfoText className="info_text" />
             </div>
             <Footer className="landing-footer" />
