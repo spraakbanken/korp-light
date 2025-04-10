@@ -22,7 +22,10 @@ import { getCorpusInfo, getCorpusQuery } from "../../services/api.js";
 import { getCorpusCollectionsList } from "../../services/api.js";
 //Assets
 import advanced from '../../assets/advanced.svg';
-
+import homeIconLight from '../../assets/homeIconLight.svg';
+import homeIconDark from '../../assets/homeIconDark.svg';
+import calenderIconLight from '../../assets/calenderIconLight.svg';
+import calenderIconDark from '../../assets/calenderIconDark.svg';
 
 //Corpus, history, advanced search
 import CorpusDropDown from "../../components/CorpusDropdown/CorpusDropdown.jsx";
@@ -42,6 +45,8 @@ export default function ResultsPage() {
     const { corporas } = useContext(CorporaContext);
 
     const isInitialMount = useRef(true);
+
+
 
 
     const { settings, updateSettings } = useContext(SettingsContext);
@@ -134,6 +139,9 @@ export default function ResultsPage() {
         setShowHistory((prev) => !prev);
     };
 
+    const homeIcon = settings.theme === "light" ? homeIconLight : homeIconDark;
+    const calenderIcon = settings.theme === "light" ? calenderIconLight : calenderIconDark;
+
 
 
     function getCorpusData(data) {
@@ -187,49 +195,55 @@ export default function ResultsPage() {
         <div className="results-page">
             <NavigationBar />
             <div className="results-content">
-                <div className="resultpage__search_content">  
-                    <div className="resultpage__corpus_button">
-                        <CorpusButton
-                            buttonImage={corpus_logo}
-                            buttonOnClick={toggleModal}
-                            buttonToolTip={corpus_tip}
-                            buttonLabel="    " />
-                        <CorpusModal
-                            show={showModal}
-                            onHide={() => setShowModal(false)}
-                            colour='#FFB968'
-                            buttonLogo={corpus_logo} />
-                    </div>
-                    <div className="resultpage__search_bar" style={styleBar}>
-                        <SearchBar returnSearchInput={(e) => {
-                            handleSubmit(e);
-                        }} />
-                    </div>
-                    <div className="resultpage__button_container">
-                        <CircleButton
-                            clasName="extended-search-button"
-                            buttonColour='#FF9F79'
-                            buttonImage={advanced}
-                            buttonOnClick={null}
-                            buttonToolTip={advanced_tip}
-                            buttonLabel="Utökad sökning" />
+                <div className="resultpage__search_container">
+                    <Link className="homeIconA" to="/">
+                        <img src={homeIcon} alt="Home icon" />
+                    </Link>
+                    <div className="resultpage__search_content">  
+                        <div className="resultpage__corpus_button">
+                            <CorpusButton
+                                buttonImage={corpus_logo}
+                                buttonOnClick={toggleModal}
+                                buttonToolTip={corpus_tip}
+                                buttonLabel="    " />
+                            <CorpusModal
+                                show={showModal}
+                                onHide={() => setShowModal(false)}
+                                colour='#FFB968'
+                                buttonLogo={corpus_logo} />
+                        </div>
+                        <div className="resultpage__search_bar" style={styleBar}>
+                            <SearchBar returnSearchInput={(e) => {
+                                handleSubmit(e);
+                            }} />
+                        </div>
+                        <div className="resultpage__button_container">
+                            <CircleButton
+                                clasName="extended-search-button"
+                                buttonColour='#FF9F79'
+                                buttonImage={advanced}
+                                buttonOnClick={null}
+                                buttonToolTip={advanced_tip}
+                                buttonLabel="Utökad sökning" />
 
-                        <CircleButton
-                            className="filter-button"
-                            buttonColour='#FFB968'
-                            buttonImage={sliders_logo}
-                            buttonOnClick={null}
-                            buttonToolTip={filter_tip}
-                            buttonLabel="Filter" />
+                            <CircleButton
+                                className="filter-button"
+                                buttonColour='#FFB968'
+                                buttonImage={sliders_logo}
+                                buttonOnClick={null}
+                                buttonToolTip={filter_tip}
+                                buttonLabel="Filter" />
 
-                        <CircleButton
-                            className="history-button"
-                            buttonColour='#FFCE6D'
-                            buttonImage={history_logo}
-                            buttonOnClick={toggleHistory}
-                            buttonToolTip={history_tip}
-                            buttonLabel="Historik" />
+                            <CircleButton
+                                className="history-button"
+                                buttonColour='#FFCE6D'
+                                buttonImage={history_logo}
+                                buttonOnClick={toggleHistory}
+                                buttonToolTip={history_tip}
+                                buttonLabel="Historik" />
+                        </div>
                     </div>
+                    <img className="calenderIconSVG" src={calenderIcon} alt="Calender icon" />
                 </div>
                 {showHistory && <HistoryPanel />}
                 <ProgressBar isLoading={searchQueryIsLoading} />

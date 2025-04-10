@@ -43,6 +43,7 @@
     border: 1px solid transparent;
     background-color: darkorange;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+<<<<<<< HEAD
 } 
 
 .advanced__search__append {
@@ -61,3 +62,12 @@
     background-color: red;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 } 
+=======
+}
+
+@media (max-width: 768px) {
+    .advanced__search__container {
+        width: 75%;
+    }
+}
+>>>>>>> fcf0d146727667c95741e3a89709dc723145e900

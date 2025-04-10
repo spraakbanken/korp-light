@@ -111,13 +111,13 @@
 }
 
 .no-results h2 {
-  color: #333;
+  color: var(--text-color);
   font-weight: 500;
   margin-bottom: 0.5rem;
 }
 
 .no-results p {
-  color: #777;
+  color: var(--text-color);
   font-size: 0.95rem;
 }
 
