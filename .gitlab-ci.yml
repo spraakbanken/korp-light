@@ -1,6 +1,13 @@
 image: node:23.6.0
 pages:
   stage: deploy
+  before_script:
+      - whoami
+      - pwd
+      - locate npm
+      - echo ${PATH}
+      - which npm
+      - ls -lh $(which npm)
   cache:
     key:
       files:
