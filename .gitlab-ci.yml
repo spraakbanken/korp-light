@@ -2,7 +2,7 @@ image: node:23.6.0
 pages:
   stage: deploy
   tags:
-    -docker
+    - docker
   before_script:
     - whoami
     - pwd
