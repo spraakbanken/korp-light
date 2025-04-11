@@ -1,11 +1,13 @@
 image: node:23.6.0
 pages:
   stage: deploy
+  tags:
+    -docker
   before_script:
-      - whoami
-      - pwd
-      - echo ${PATH}
-      - which npm
+    - whoami
+    - pwd
+    - echo ${PATH}
+    - which npm
   cache:
     key:
       files:
