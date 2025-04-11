@@ -1,13 +1,22 @@
 import { useEffect, useState } from 'react';
 import './AdvancedSearch.css'
 
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 export default function AdvancedSearchEntry({word, idx, returnWordTag}) {
     
-    
+    const {attributes, listeners, setNodeRef, 
+        transform, transition } = useSortable({idx});
+
     const [showOrdform, setShowOrdform] = useState(false);
     const [showGrundform, setShowGrundform] = useState(false);
+
+    const style = {
+        transition,
+        transform: CSS.Transform.toString(transform),
+    };
 
     function handleClick(word, e) {
         console.log("word is ", word);
@@ -26,7 +35,8 @@ export default function AdvancedSearchEntry({word, idx, returnWordTag}) {
         console.log('word ', word)
         if (word !== "") {
             return (
-                <div className='advanced__search__entry'>
+                <div ref={setNodeRef} style={style} {...attributes} {...listeners} 
+                    className='advanced__search__entry'>
                     <Dropdown key={idx}>
                         <Dropdown.Toggle className='advanced__search__word'>
                             {word}

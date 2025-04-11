@@ -1,9 +1,11 @@
-import { useActionState, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import './AdvancedSearch.css'
 
 import AdvancedSearchEntry from './AdvancedSearchEntry.jsx';
 
 import Dropdown from 'react-bootstrap/Dropdown';
+import { DndContext } from '@dnd-kit/core';
 
 export default function AdvancedSearch({words, returnWordsDict}) {
     
@@ -11,23 +13,24 @@ export default function AdvancedSearch({words, returnWordsDict}) {
     const [wordsDict, setWordsDict] = useState({});
 
     function handleClick(word, tag) {
-        console.log('tag ', tag)
+        
         setWordsDict({...wordsDict, [word]: tag})
     }
 
     useEffect(() => {
-        console.log("wordsDict", wordsDict);
         returnWordsDict(wordsDict);
     }, [wordsDict, returnWordsDict])
     
     const createComponent = (entryName) => {
-        console.log('creating component ', entryName)
         setWordStates([...wordStates, <p className='advanced__search__word'>{entryName}</p>])
     } 
 
 
     return(
+        <>
+        <DndContext>
         <div className='advanced__search__container'>
+            <SortableContext items={words} strategy={verticalListSortingStrategy}>
             {Object.values(words).map((word, idx) => {
                return <AdvancedSearchEntry word={word} idx={idx} returnWordTag={(tag) => {handleClick(word, tag)}}/>
             })}
@@ -45,6 +48,9 @@ export default function AdvancedSearch({words, returnWordsDict}) {
                         </Dropdown.Menu>
                 </Dropdown>
               </div>
+        </SortableContext>
         </div>
+        </DndContext>
+        </>
     );
 }
