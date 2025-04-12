@@ -9,7 +9,7 @@ import { DndContext } from '@dnd-kit/core';
 
 export default function AdvancedSearch({words, returnWordsDict}) {
     
-    const [wordStates, setWordStates] = useState([]);
+    const [wordElements, setWordElements] = useState([]);
     const [wordsDict, setWordsDict] = useState({});
 
     function handleClick(word, tag) {
@@ -22,23 +22,27 @@ export default function AdvancedSearch({words, returnWordsDict}) {
     }, [wordsDict, returnWordsDict])
     
     const createComponent = (entryName) => {
-        setWordStates([...wordStates, <p className='advanced__search__word'>{entryName}</p>])
+        setWordElements([...wordElements, <p className='advanced__search__word'>{entryName}</p>])
     } 
 
+    useEffect(() => {
+            setWordElements(
+                Object.values(words).map((word, idx) => {
+                   return <AdvancedSearchEntry word={word} idx={idx} returnWordTag={(tag) => {handleClick(word, tag)}}/>
+                })
+            )
+    }, [words, setWordElements])
+
+    useEffect(() => {
+        console.log('wordsElements are', wordElements);
+    }, [wordElements]);
 
     return(
         <>
         <DndContext>
         <div className='advanced__search__container'>
-            <SortableContext items={words} strategy={verticalListSortingStrategy}>
-            {Object.values(words).map((word, idx) => {
-               return <AdvancedSearchEntry word={word} idx={idx} returnWordTag={(tag) => {handleClick(word, tag)}}/>
-            })}
-
-            {Object.values(wordStates).map((word, idx) => {
-                return word;
-            })}
-
+            <SortableContext items={wordElements} strategy={verticalListSortingStrategy}>
+            {wordElements.map(w => w)}
             <div>
                     <Dropdown>
                         <Dropdown.Toggle className='advanced__search__append'>+</Dropdown.Toggle>
