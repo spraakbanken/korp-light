@@ -22,20 +22,17 @@ export default function AdvancedSearch({words, returnWordsDict}) {
     }, [wordsDict, returnWordsDict])
     
     const createComponent = (entryName) => {
-        setWordElements([...wordElements, <p className='advanced__search__word'>{entryName}</p>])
+        setWordElements([...wordElements, <AdvancedSearchEntry word={entryName} idx={0} returnWordTag={(tag) => {handleClick(entryName, tag)}}/>])
     } 
 
     useEffect(() => {
-            setWordElements(
-                Object.values(words).map((word, idx) => {
-                   return <AdvancedSearchEntry word={word} idx={idx} returnWordTag={(tag) => {handleClick(word, tag)}}/>
-                })
-            )
-    }, [words, setWordElements])
+        let lastWord = words[words.length - 1]; 
+        console.log('lastWord', lastWord);
+        
+        setWordElements([...wordElements, 
+            <AdvancedSearchEntry word={lastWord} idx={0} returnWordTag={(tag) => {handleClick(lastWord, tag)}}/>]);
 
-    useEffect(() => {
-        console.log('wordsElements are', wordElements);
-    }, [wordElements]);
+    }, [words]);
 
     return(
         <>
