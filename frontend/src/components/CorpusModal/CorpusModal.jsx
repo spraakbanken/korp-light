@@ -350,7 +350,7 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
         <Modal show={show} onHide={onHide} centered size="lg">
 
             <Modal.Header>
-                <Modal.Title>Välj corpus</Modal.Title>
+                <Modal.Title>Välj korpus</Modal.Title>
                 <div className="ms-auto">
                     <Button 
                     variant="danger" 
