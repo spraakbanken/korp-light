@@ -59,9 +59,6 @@ export default function NavigationBar() {
       <Container fluid className="d-flex justify-content-between">
         <SideMenu onTourStart={startTour} onResultTourStart={startResultTour}/>
         <Nav className="d-flex align-items-center">
-          
-          <span className="vr border-start border-1 border-dark rounded-3"></span>
-
           <OverlayTrigger placement="bottom" overlay={help_tip}>
             <Nav.Link className="circle__button" href="#" onClick={handleHelpClick}>
               <BadgeHelp size={28} className=" icon-hover text-dark hover:text-primary" color={iconColor} />
