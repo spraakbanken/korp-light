@@ -229,6 +229,26 @@ export default function ResultsPage() {
         setWordsDict(e);
     }
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const backToTopButton = document.querySelector('.results_page__back_to_top');
+            if (window.scrollY > 300) { 
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        };
+    
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+    
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
 
     return (
         <div id="top" className="results-page">
@@ -304,9 +324,7 @@ export default function ResultsPage() {
                 {showAdvancedSearch && <AdvancedSearch words={words}
                                     returnWordsDict={(e) => handleAdvancedSearch(e)} />}
                                 {showHistory && <HistoryPanel />}
-                <a href="#top">
-                    <button className="results_page__back_to_top">Till toppen</button>
-                </a>
+                <button className="results_page__back_to_top" onClick={scrollToTop}>Till toppen</button>
             </div>
             <Footer className="results-footer" />
         </div>
