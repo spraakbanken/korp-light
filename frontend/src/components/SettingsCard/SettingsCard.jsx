@@ -34,7 +34,7 @@ export default function SettingsCard(props) {
                 <Modal.Body>
                     {/* Results per page */}
                     <Form.Group className="mb-3">
-                        <Form.Label>RESULTAT PER SIDA:</Form.Label>
+                        <Form.Label>KORPUS PER SIDA: <span className="settings__description"> antal korpusar som visas per sida</span></Form.Label>
                         <Form.Select 
                             
                             onChange={(e) => {
