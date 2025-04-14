@@ -231,7 +231,7 @@ export default function ResultsPage() {
 
 
     return (
-        <div className="results-page">
+        <div id="top" className="results-page">
             <NavigationBar />
             <div className="results-content">
                 <div className="resultpage__search_container">
@@ -304,6 +304,9 @@ export default function ResultsPage() {
                 {showAdvancedSearch && <AdvancedSearch words={words}
                                     returnWordsDict={(e) => handleAdvancedSearch(e)} />}
                                 {showHistory && <HistoryPanel />}
+                <a href="#top">
+                    <button className="results_page__back_to_top">Till toppen</button>
+                </a>
             </div>
             <Footer className="results-footer" />
         </div>
