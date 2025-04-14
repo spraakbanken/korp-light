@@ -267,7 +267,8 @@ export default function ResultsPage() {
                                 buttonImage={corpus_logo}
                                 buttonOnClick={toggleModal}
                                 buttonToolTip={corpus_tip}
-                                buttonLabel="    " />
+                                buttonLabel="    " 
+                                inCorporas={corporas}/>
                             <CorpusModal
                                 show={showModal}
                                 onHide={() => setShowModal(false)}
