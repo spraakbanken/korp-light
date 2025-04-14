@@ -5,7 +5,7 @@ let _settings = {
     "contextSize": 10,
     "theme": "light",
     "selectedView": "wide",
-    "api": 1
+    "api": 0,
 }
 
 export function setLocalSettings(val) {
