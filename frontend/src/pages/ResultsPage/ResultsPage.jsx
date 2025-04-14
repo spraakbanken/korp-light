@@ -57,6 +57,8 @@ export default function ResultsPage() {
     const [queryData, setQueryData] = useState({});
     const [showModal, setShowModal] = useState(false);
 
+    const [isSticky, setIsSticky] = useState(false);
+
     const toggleModal = () => {
         setShowModal((prev) => !prev);
     };
@@ -187,9 +189,18 @@ export default function ResultsPage() {
         }
     }, [searchCorpusData]);
 
-    const styleBar = {
-        'width': '100%',
-    }
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.innerWidth > 768) {
+                setIsSticky(window.scrollY > 50);
+            } else {
+                setIsSticky(false); // Always non-sticky on mobile
+            }
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
 
     return (
         <div className="results-page">
@@ -212,10 +223,13 @@ export default function ResultsPage() {
                                 colour='#FFB968'
                                 buttonLogo={corpus_logo} />
                         </div>
-                        <div className="resultpage__search_bar" style={styleBar}>
-                            <SearchBar returnSearchInput={(e) => {
-                                handleSubmit(e);
-                            }} />
+                        <div className="resultpage__search_wrapper">
+                            <div className={`resultpage__search_bar ${isSticky ? 'sticky' : ''}`}>
+                                <SearchBar returnSearchInput={(e) => {
+                                    handleSubmit(e);
+                                }} />
+                                
+                            </div>
                         </div>
                         <div className="resultpage__button_container">
                             <CircleButton
