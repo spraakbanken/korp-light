@@ -18,6 +18,7 @@ import CircleButton from "../../components/CircleButton/CircleButton.jsx";
 import HistoryPanel from "../../components/HistoryPanel/HistoryPanel.jsx";
 import CorpusModal from "../../components/CorpusModal/CorpusModal.jsx";
 import CorpusButton from "../../components/CorpusButton/CorpusButton.jsx";
+import AdvancedSearch from "../../components/AdvancedSearch/AdvancedSearch.jsx";
 //Services
 import { getCorpusInfo, getCorpusQuery } from "../../services/api.js";
 import { getCorpusCollectionsList } from "../../services/api.js";
@@ -44,12 +45,11 @@ export default function ResultsPage() {
     const navigate = useNavigate();
     const [showHistory, setShowHistory] = useState(false);
     const { corporas } = useContext(CorporaContext);
-
     const isInitialMount = useRef(true);
-
-
-
-
+    
+    const [words, setWords] = useState([]);
+    const [showAdvancedSearch, setShowAdvancedSearch] = useState(false);
+    const [wordsDict, setWordsDict] = useState({});
     const { settings, updateSettings } = useContext(SettingsContext);
     const [corpus, setCorpus] = useState(corpusQueryTest);
     const [corpusInput, setCorpusInput] = useState(corpusQueryTest);
@@ -83,7 +83,9 @@ export default function ResultsPage() {
         }
     };
 
-
+    const toggleAdvancedSearch = () => {
+        setShowAdvancedSearch((prev) => !prev);
+    }
 
 
     const
@@ -109,9 +111,17 @@ export default function ResultsPage() {
 
 
     const handleSubmit = (event) => {
-        setSearchWordInput(event)
         handleCorpusQuery();
-        navigate(`/results?cqp=${encodeURIComponent(event)}&corpus=${encodeURIComponent(corpusInput)}`);
+        let res;
+                console.log(wordsDict);
+                if(wordsDict && Object.keys(wordsDict).length > 0){
+                    res = buildQuery(wordsDict);
+                }else{
+                    res = `[word = "${event}"]`;
+                }
+
+        setSearchWordInput(res);
+        navigate(`/results?corpus=${encodeURIComponent(Object.keys(corporas.corporas))}&cqp=${encodeURIComponent(res)}`);
     };
 
     const advanced_tip = (
@@ -215,6 +225,10 @@ export default function ResultsPage() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const handleAdvancedSearch = (e) => {
+        setWordsDict(e);
+    }
+
 
     return (
         <div className="results-page">
@@ -253,9 +267,10 @@ export default function ResultsPage() {
                                 className="extended-search-button"
                                 buttonColour='#FF9F79'
                                 buttonImage={advanced}
-                                buttonOnClick={null}
+                                buttonOnClick={toggleAdvancedSearch}
                                 buttonToolTip={advanced_tip}
-                                buttonLabel="Utökad sökning" />
+                                buttonLabel="Utökad sökning"
+                            />
 
                             <CircleButton
                                 className="filter-button"
@@ -286,6 +301,9 @@ export default function ResultsPage() {
                     {queryData.kwic === undefined ? <p>Laddar...</p> :
                         <ResultsPanel response={queryData} />}
                 </div>
+                {showAdvancedSearch && <AdvancedSearch words={words}
+                                    returnWordsDict={(e) => handleAdvancedSearch(e)} />}
+                                {showHistory && <HistoryPanel />}
             </div>
             <Footer className="results-footer" />
         </div>
