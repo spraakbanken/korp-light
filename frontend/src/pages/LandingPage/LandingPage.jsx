@@ -31,7 +31,7 @@ import KorpDark from '../../assets/whiteKorp.svg';
 import "./LandingPage.css"
 
 // services
-import { getCorpusCollectionsList } from "../../services/api.js";
+import { buildQuery, getCorpusCollectionsList } from "../../services/api.js";
 import CorporaContext from "../../services/CorporaContext.jsx";
 
 export default function LandingPage() {
@@ -95,19 +95,15 @@ export default function LandingPage() {
 
     const handleSubmit = (event) => {
         //VET EJ HUR VI BYGGER URL QUERYN FÖR FLERA CORPUSAR.
-
-        let buildAdvancedQuery = '';
-        Object.entries(wordsDict).map(([word, tag]) => {
-
-            if (tag === "Grundform") {
-                buildAdvancedQuery = buildAdvancedQuery + `[lemma contains "${word}"]`
-
-            } else if (tag === "Ord") {
-                buildAdvancedQuery = buildAdvancedQuery + `[word = "${word}"]`
-            }
-        })
-        console.log('final query', buildAdvancedQuery);
-        navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(Object.keys(corporas.corporas))}&cqp=${buildAdvancedQuery}`);
+        let res;
+        console.log(wordsDict);
+        if(wordsDict && Object.keys(wordsDict).length > 0){
+            res = buildQuery(wordsDict);
+        }else{
+            res = `[word = "${event}"]`;
+        }
+        
+        navigate(`/results?corpus=${encodeURIComponent(Object.keys(corporas.corporas))}&cqp=${encodeURIComponent(res)}`);
     };
 
     const handleAdvancedSearch = (e) => {

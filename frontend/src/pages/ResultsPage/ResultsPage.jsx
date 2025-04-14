@@ -39,7 +39,7 @@ export default function ResultsPage() {
 
     const location = useLocation(); //All this is first draft for routing.
     const queryParams = new URLSearchParams(location.search);
-    const searchQueryTest = queryParams.get('searchQueryTest');
+    const searchQueryTest = queryParams.get('cqp');
     const corpusQueryTest = queryParams.get('corpus');
     const navigate = useNavigate();
     const [showHistory, setShowHistory] = useState(false);
@@ -109,7 +109,7 @@ export default function ResultsPage() {
     const handleSubmit = (event) => {
         setSearchWordInput(event)
         handleCorpusQuery();
-        navigate(`/results?searchQueryTest=${encodeURIComponent(event)}&corpus=${encodeURIComponent(corpusInput)}`);
+        navigate(`/results?cqp=${encodeURIComponent(event)}&corpus=${encodeURIComponent(corpusInput)}`);
     };
 
     const advanced_tip = (

@@ -8,7 +8,7 @@ import server_config from './server_config.js';
 // Sample Axios Code
 // Using Promises, Write a function for each endpoint
 const axios_instance = axios.create({
-  baseURL: server_config.sb_korp_api,
+  baseURL: server_config.pl_korp_api,
 });
 
 
@@ -74,9 +74,8 @@ export function toggleAPI(which_server) {
 // We can build cqp here if we want or in the React component
 export async function getCorpusQuery(inQuery) {
 
-  console.log("inQuery", inQuery)
-  queryParams.cqp = buildQuery(inQuery);
-
+  // console.log("inQuery", inQuery)
+  queryParams.cqp = inQuery;
    
   try {
     const response = await axios_instance('/query', {params: queryParams});
@@ -92,14 +91,27 @@ export async function getCorpusQuery(inQuery) {
 
 export function buildQuery(params) {
   //Build the query here, assign it in the getCorpusQuery function.
-    // this doesnt work yet, we can only search one word for now.  
-    // const cqpParams = {
-    //     'word': String(params),
-    // }
-    // const result = qs.stringify(cqpParams);
-    console.log("params", params);
-    const result = `[word="${params}"]`;
-    return result;
+
+  let buildAdvancedQuery = '';
+  console.log("parm", params);
+  if (params !== null && typeof params === 'object'){
+    console.log("object type")
+    if (Object.keys(params).length > 0){
+      Object.entries(params).map(([word, tag]) => {
+      
+          if (tag === "Grundform") {
+          buildAdvancedQuery = buildAdvancedQuery + `[lemma contains "${word}"] `
+          
+      } else if (tag === "Ord") {
+              buildAdvancedQuery = buildAdvancedQuery + `[word = "${word}"] `
+          }
+      })
+      }
+  }else{
+    buildAdvancedQuery = `[word = "${params}"]`
+  }
+  const finalQuery = buildAdvancedQuery.trim(); // trims trailing space
+  return finalQuery;
 }
 
 // See korp web-api for complete api calls to implement and parse
