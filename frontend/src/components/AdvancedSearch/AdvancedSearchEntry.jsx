@@ -1,17 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './AdvancedSearch.css'
 
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 export default function AdvancedSearchEntry({word, idx, returnWordTag}) {
     
-    
+    const {attributes, listeners, setNodeRef, 
+        transform, transition } = useSortable({idx});
+
     const [showOrdform, setShowOrdform] = useState(false);
     const [showGrundform, setShowGrundform] = useState(false);
 
+    const style = {
+        transition,
+        transform: CSS.Transform.toString(transform),
+    };
+
     function handleClick(word, e) {
-        console.log("word is ", word);
         const targetText = e.target.text
+        console.log('attributes', listeners);
 
         if (targetText === 'Grundform') {
             setShowGrundform(true);
@@ -23,10 +32,11 @@ export default function AdvancedSearchEntry({word, idx, returnWordTag}) {
     }
 
     function generateEntry(word, idx) {
-        console.log('word ', word)
-        if (word !== "") {
+        if (word !== undefined) {
             return (
-                <div className='advanced__search__entry'>
+                <div ref={setNodeRef} {...attributes} {...listeners}
+                    style={style} 
+                    className='advanced__search__entry'>
                     <Dropdown key={idx}>
                         <Dropdown.Toggle className='advanced__search__word'>
                             {word}
@@ -35,9 +45,6 @@ export default function AdvancedSearchEntry({word, idx, returnWordTag}) {
                         <Dropdown.Menu>
                         <Dropdown.Item onClick={(e) => {handleClick(word, e); returnWordTag('Grundform');}}>Grundform</Dropdown.Item>
                         <Dropdown.Item onClick={(e) => {handleClick(word, e); returnWordTag('Ord');}}>Ord</Dropdown.Item>
-                        <Dropdown.Divider />
-                        <Dropdown.Item href="#/action-3">Substantiv</Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">Verb</Dropdown.Item>
                         </Dropdown.Menu>
                 </Dropdown>
                 {showOrdform && <p className='advanced__search__small__icon'>O</p>}

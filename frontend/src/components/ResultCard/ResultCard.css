@@ -5,6 +5,7 @@
   align-items: center;
   width: 100%;
   overflow: hidden;
+  
 }
 
 .prefix-container,
@@ -37,10 +38,8 @@
 }
 
 .resultCard__match_info {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  display: inline;
+  text-align: left;
   padding-top: 5px;
   margin-left: 10px;
   margin-bottom: 0px;
@@ -51,4 +50,14 @@
   margin: 0;
   font-size: 0.8rem;
   color: var(--text-color);
+  
+}
+
+.resultCard__match_info_entry {
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.tableD {
+    transition: all 3s ease;
 }

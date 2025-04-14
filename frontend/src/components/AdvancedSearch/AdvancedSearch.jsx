@@ -1,43 +1,57 @@
-import { useActionState, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { horizontalListSortingStrategy, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import './AdvancedSearch.css'
 
 import AdvancedSearchEntry from './AdvancedSearchEntry.jsx';
 
 import Dropdown from 'react-bootstrap/Dropdown';
+import { closestCorners, DndContext } from '@dnd-kit/core';
 
 export default function AdvancedSearch({words, returnWordsDict}) {
     
-    const [wordStates, setWordStates] = useState([]);
+    const [wordElements, setWordElements] = useState([{
+        id: 1, wordEntry: ""
+    }]);
     const [wordsDict, setWordsDict] = useState({});
 
     function handleClick(word, tag) {
-        console.log('tag ', tag)
         setWordsDict({...wordsDict, [word]: tag})
     }
 
     useEffect(() => {
-        console.log("wordsDict", wordsDict);
         returnWordsDict(wordsDict);
     }, [wordsDict, returnWordsDict])
     
     const createComponent = (entryName) => {
-        console.log('creating component ', entryName)
-        setWordStates([...wordStates, <p className='advanced__search__word'>{entryName}</p>])
+        setWordElements([...wordElements, {id: wordElements.length+1, 
+            wordEntry: entryName}])
     } 
 
+    useEffect(() => {
+        console.log('words are', words);
+        let lastWord = words[words.length - 1]; 
+        setWordElements((prev) => [...prev, {id: prev.length+1, 
+            wordEntry: lastWord}]);
+    }, [words]);
+
+    const onDragStart = (e) => {
+        console.log('onDragStart', e);
+    }
 
     return(
         <div className='advanced__search__container'>
-            {Object.values(words).map((word, idx) => {
-               return <AdvancedSearchEntry word={word} idx={idx} returnWordTag={(tag) => {handleClick(word, tag)}}/>
+            <DndContext collisionDetection={closestCorners} onDragEnd={onDragStart}>
+            <SortableContext items={wordElements} strategy={horizontalListSortingStrategy}>
+            {wordElements.map((w) => {
+                if (w.wordEntry) {
+                    return <AdvancedSearchEntry key={w.id} word={w.wordEntry} idx={w.id} 
+                        returnWordTag={(tag) => {handleClick(w.wordEntry, tag)}}/>
+                }
             })}
-
-            {Object.values(wordStates).map((word, idx) => {
-                return word;
-            })}
-
+            </SortableContext>
+            </DndContext>
             <div>
-                    <Dropdown>
+                    <Dropdown key={99999}>
                         <Dropdown.Toggle className='advanced__search__append'>+</Dropdown.Toggle>
                         <Dropdown.Menu>
                             <Dropdown.Item onClick={() => createComponent('Adverb')}>Adverb</Dropdown.Item>
@@ -45,6 +59,7 @@ export default function AdvancedSearch({words, returnWordsDict}) {
                         </Dropdown.Menu>
                 </Dropdown>
               </div>
+        
         </div>
     );
 }

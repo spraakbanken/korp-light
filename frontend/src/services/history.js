@@ -4,14 +4,22 @@
 const historyEntry = {};
 
 export function setHistory(word, value) {
-    historyEntry[word] = value;
-    console.log(historyEntry);
+    const date = new Date();
+    historyEntry[word] = {url: value, time: date.toLocaleString()};
+    console.log("current history ", historyEntry);
     try {
         window.localStorage.setItem("search_history", 
             JSON.stringify(historyEntry));
     } catch (e) {
         console.log("Error Localstorage: ", e);
     }
+}
+
+export function removeHistoryItem(item) {
+    const currentHistory = getHistory();
+    delete currentHistory[item];
+    window.localStorage.setItem('search_history', 
+        JSON.stringify(currentHistory));
 }
 
 export function getHistory() {

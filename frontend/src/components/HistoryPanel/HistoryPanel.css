@@ -47,17 +47,34 @@
     font-family: 'Arial', sans-serif;
 }
 
-.history-table tr:hover {
-    text-decoration: underline;
-}
-
 .history-table a {
     color: inherit; 
     text-decoration: none; 
 }
 
-.history-table a:hover {
+.history-single-entry-text:hover {
     text-decoration: underline; 
+}
+
+.history-single-entry {
+    display: flex;
+    justify-content: space-between;
+}
+
+.history-entry-delete-icon {
+    width: 25px;
+    filter: invert(50%);
+}
+
+.history-entry-delete-icon:hover{
+    width: 25px;
+    filter: none;
+    cursor: pointer;
+}
+
+.history-entry-time {
+    font-size: 0.8rem;
+    margin-top:10px;
 }
 
 @media (max-width: 768px) {

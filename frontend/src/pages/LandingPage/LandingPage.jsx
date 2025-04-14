@@ -138,72 +138,70 @@ export default function LandingPage() {
 
             <NavigationBar />
             <div className="landing-content">
-                <img className="korp-image" src={korpImage} alt="" />
-                <div className="landingpage__search_bar_wrapper">
-                    <div className="landingpage__search_bar_container">
-                        <SearchBar
-                            returnSearchInput={(e) => {
-                                handleSubmit(e);
-                            }}
-                            returnWords={(e) => {
-                                handleWords(e);
-                            }}
-                        />
-                    </div>
+                <div className="logo-container">
+                    <img className="korp-image" src={korpImage} alt="" />
                 </div>
-                
+                <div className="landingpage__search_bar_container">
+                    <SearchBar
+                        returnSearchInput={(e) => {
+                            handleSubmit(e);
+                        }}
+                        returnWords={(e) => {
+                            handleWords(e);
+                        }}
+                    />
+                </div>
                 <div className="landingpage__button_group">
                     <div className="corpus-button-div">
                         <CorpusButton
                             buttonImage={corpus_logo}
                             buttonOnClick={toggleModal}
                             buttonToolTip={corpus_tip}
-                            buttonLabel="     " />
+                            buttonLabel="    "
+                        />
                         <CorpusModal
                             show={showModal}
                             onHide={() => setShowModal(false)}
-                            colour='#FFB968'
-                            buttonLogo={corpus_logo} />
+                            colour="#FFB968"
+                            buttonLogo={corpus_logo}
+                        />
                     </div>
-                    <div className="landingpage__button_container">
+                    <div className="circle-button-div">
                         <CircleButton
                             className="extended-search-button"
                             buttonColour='#FF9F79'
                             buttonImage={advanced}
                             buttonOnClick={toggleAdvancedSearch}
                             buttonToolTip={advanced_tip}
-                            buttonLabel="Utökad sökning" />
-
+                            buttonLabel="Utökad sökning"
+                        />
                         <CircleButton
                             className="filter-button"
                             buttonColour='#FFB968'
                             buttonImage={sliders_logo}
                             buttonOnClick={toggleFilterModal}
                             buttonToolTip={filter_tip}
-                            buttonLabel="Filter" />
-
+                            buttonLabel="Filter"
+                        />
                         <FilterCard
                             show={showFilterModal}
                             onHide={() => setShowFilterModal(false)}
                             colour='#FFB968'
-                            buttonLogo={sliders_logo} />
-
-
+                            buttonLogo={sliders_logo}
+                        />
                         <CircleButton
                             className="history-button"
                             buttonColour='#FFCE6D'
                             buttonImage={history_logo}
                             buttonOnClick={toggleHistory}
                             buttonToolTip={history_tip}
-                            buttonLabel="Historik" />
+                            buttonLabel="Historik"
+                        />
                     </div>
                 </div>
-
-
                 {showAdvancedSearch && <AdvancedSearch words={words}
                     returnWordsDict={(e) => handleAdvancedSearch(e)} />}
                 {showHistory && <HistoryPanel />}
-
 
                 <InfoText className="info_text" />
             </div>
