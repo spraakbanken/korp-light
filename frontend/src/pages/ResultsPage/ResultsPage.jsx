@@ -314,6 +314,9 @@ export default function ResultsPage() {
                         <img className="calenderIconSVG" src={calenderIcon} alt="Calender icon" />
                     </OverlayTrigger>
                 </div>
+                
+                {showAdvancedSearch && <AdvancedSearch words={words}
+                                    returnWordsDict={(e) => handleAdvancedSearch(e)} />}
                 {showHistory && <HistoryPanel />}
                 <ProgressBar isLoading={searchQueryIsLoading} />
 
@@ -322,9 +325,6 @@ export default function ResultsPage() {
                     {queryData.kwic === undefined ? <p>Laddar...</p> :
                         <ResultsPanel response={queryData} />}
                 </div>
-                {showAdvancedSearch && <AdvancedSearch words={words}
-                                    returnWordsDict={(e) => handleAdvancedSearch(e)} />}
-                                {showHistory && <HistoryPanel />}
                 <button className="results_page__back_to_top" onClick={scrollToTop}>Till toppen</button>
             </div>
             <Footer className="results-footer" />
