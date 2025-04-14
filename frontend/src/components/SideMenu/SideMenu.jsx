@@ -7,7 +7,7 @@ import "./SideMenu.css";
 import { setHistory, getHistory } from "../../services/history";
 import { Link, NavLink } from "react-router-dom";
 
-export default function SideMenu({ onTourStart }) {
+export default function SideMenu({ onTourStart, onResultTourStart }) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -28,7 +28,7 @@ export default function SideMenu({ onTourStart }) {
         if (location.pathname === '/') {
             onTourStart();
         } else {
-            window.location.href = '/?startTour=true';
+            onResultTourStart(); 
         }
     };
 

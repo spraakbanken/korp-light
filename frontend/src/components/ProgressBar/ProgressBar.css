@@ -43,3 +43,17 @@
     0% { opacity: 0; }
     100% { opacity: 1; }
 }
+
+
+@media (max-width: 768px) {
+    .progress-bar-container {
+        width: 90%; 
+        left: 0; 
+        transform: translateX(0); 
+    }
+    .progress-finished {
+        width: 90%; 
+        left: 0;
+        transform: translateX(0); 
+    }
+}

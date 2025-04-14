@@ -177,6 +177,7 @@ const ResultsPanel = ({ response }) => {
                   <tbody>
                     {corpusResults.length > 0 ? (
                       corpusResults.map((line, index) => {
+                        
                         let resultIndex = 0;
                         for (let i = 0; i < corpusOrder.indexOf(corpus); i++) {
                           resultIndex += Math.min(
@@ -185,7 +186,8 @@ const ResultsPanel = ({ response }) => {
                           );
                         }
                         resultIndex += index;
-                        return <ResultCard key={`${corpus}-${index}`} response={line} n={resultIndex} />;
+                        
+                        return <ResultCard key={`${corpus}-${index}`} response={line} n={resultIndex} extraData={line.structs}/>;
                       })
                     ) : (
                       <tr>

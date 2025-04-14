@@ -4,35 +4,6 @@
   text-align: center;
 }
 
-.landingpage__button_group {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    width: 30%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.korp-image {
-  padding-top: 150px;
-  padding-bottom: 10px;
-}
-
-.corpus-button-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.landingpage__button_container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 20px;
-}
-
 .landing-page{
   display: flex;
   flex-direction: column;
@@ -41,14 +12,51 @@
 
 .landing-content{
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.landing-footer{
+.logo-container{
+  padding-top: 150px;
+  padding-bottom: 10px;
+}
+
+.landingpage__search_bar_container{
+  width: 30%;
+}
+
+.landingpage__button_group{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.corpus-button-div{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.circle-button-div{
+  display: flex;
+  justify-content: center;
+  align-self: flex-start;
+  gap: 20px;
+}
+
+.landing-footer {
   margin-top: 5px;
 }
 
 @media (min-width: 2500px) {
-  .landing-footer {
+  .landing-footer{
     position: absolute;
     bottom: 0;
     left: 0;
@@ -57,31 +65,34 @@
 }
 
 @media (max-width: 768px) {
-  .landingpage__button_group {
-      width: 75%; 
-      justify-content: space-between; 
-      gap: 10px; 
+  .landingpage__search_bar_container{
+    width: 75%;
   }
-  
-  .corpus-button-div .corpus-button {
-      min-width: unset; 
-      padding: 8px 10px; 
+
+  .landingpage__button_group{
+    width: 75%;
+    gap: 10px;
+  }
+
+  .corpus-button-div .corpus-button{
+    min-width: unset;
+    padding: 8px 10px;
   }
 
   .corpus-button-text {
-      font-size: 12px; 
-      font-weight: 700;
-  }
-  
-  .landingpage__button_container {
-      gap: 8px; 
-  }
-  
-  .circlebutton {
-      transform: scale(0.9);
+    font-size: 12px;
+    font-weight: 700;
   }
 
-  .history-button, .filter-button, .extented-search-button {
-      flex: 1; 
+  .circle-button-div{
+    gap: 8px;
+  }
+
+  .circlebutton{
+    transform: scale(0.9);
+  }
+
+  .history-button, .filter-button, .extended-search-button{
+    flex: 1;
   }
 }

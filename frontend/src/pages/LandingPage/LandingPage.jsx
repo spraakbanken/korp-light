@@ -45,23 +45,8 @@ export default function LandingPage() {
     const [showModal, setShowModal] = useState(false);
     const [showFilterModal, setShowFilterModal] = useState(false);
     const [showFilter, setShowFilter] = useState(false);
-    const { startTour } = useTour();
 
     const korpImage = settings.theme === "light" ? KorpLight : KorpDark;
-
-    useEffect(() => {
-        // Check if URL has startTour parameter and start tour if it does
-        const searchParams = new URLSearchParams(location.search);
-        if (searchParams.get('startTour') === 'true') {
-            // Slight delay to ensure all elements are rendered
-            setTimeout(() => {
-                startTour();
-                // Clean up URL without
-                //  refreshing the page
-                navigate('/', { replace: true });
-            }, 500);
-        }
-    }, [location, startTour, navigate]);
 
     useEffect(() => {
         console.log("wordsDict in LandingPage", wordsDict);
@@ -134,70 +119,71 @@ export default function LandingPage() {
 
             <NavigationBar />
             <div className="landing-content">
-                <img className="korp-image" src={korpImage} alt="" />
-
-                <SearchBar 
-                returnSearchInput={(e) => {
-                    handleSubmit(e);
-                }} 
-                returnWords={(e) => {
-                    handleWords(e);
-                }}
-                />
-
+                <div className="logo-container">
+                    <img className="korp-image" src={korpImage} alt="" />
+                </div>
+                <div className="landingpage__search_bar_container">
+                    <SearchBar
+                        returnSearchInput={(e) => {
+                            handleSubmit(e);
+                        }}
+                        returnWords={(e) => {
+                            handleWords(e);
+                        }}
+                    />
+                </div>
                 <div className="landingpage__button_group">
                     <div className="corpus-button-div">
                         <CorpusButton
                             buttonImage={corpus_logo}
                             buttonOnClick={toggleModal}
                             buttonToolTip={corpus_tip}
-                            buttonLabel="     " />
+                            buttonLabel="    "
+                        />
                         <CorpusModal
                             show={showModal}
                             onHide={() => setShowModal(false)}
-                            colour='#FFB968'
-                            buttonLogo={corpus_logo} />
+                            colour="#FFB968"
+                            buttonLogo={corpus_logo}
+                        />
                     </div>
-                    <div className="landingpage__button_container">
+                    <div className="circle-button-div">
                         <CircleButton
                             className="extended-search-button"
                             buttonColour='#FF9F79'
                             buttonImage={advanced}
-                            buttonOnClick={toggleAdvancedSearch} 
+                            buttonOnClick={toggleAdvancedSearch}
                             buttonToolTip={advanced_tip}
-                            buttonLabel="Utökad sökning"/> 
-
+                            buttonLabel="Utökad sökning"
+                        />
                         <CircleButton
                             className="filter-button"
                             buttonColour='#FFB968'
                             buttonImage={sliders_logo}
                             buttonOnClick={toggleFilterModal}
-                            buttonToolTip={filter_tip}   
-                            buttonLabel="Filter"/>                  
-
-                            <FilterCard 
+                            buttonToolTip={filter_tip}
+                            buttonLabel="Filter"
+                        />
+                        <FilterCard
                             show={showFilterModal}
                             onHide={() => setShowFilterModal(false)}
                             colour='#FFB968'
-                            buttonLogo={sliders_logo} />
-                                          
-
+                            buttonLogo={sliders_logo}
+                        />
                         <CircleButton
                             className="history-button"
                             buttonColour='#FFCE6D'
                             buttonImage={history_logo}
                             buttonOnClick={toggleHistory}
-                            buttonToolTip={history_tip} 
-                            buttonLabel="Historik"/>
+                            buttonToolTip={history_tip}
+                            buttonLabel="Historik"
+                        />
                     </div>
                 </div>
-
-                
-                {showAdvancedSearch && <AdvancedSearch words={words} 
-                    returnWordsDict={(e) => handleAdvancedSearch(e)}/>}
+                {showAdvancedSearch && <AdvancedSearch words={words}
+                    returnWordsDict={(e) => handleAdvancedSearch(e)} />}
                 {showHistory && <HistoryPanel />}
-            
-                
+
                 <InfoText className="info_text" />
             </div>
             <Footer className="landing-footer" />

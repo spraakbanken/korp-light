@@ -34,7 +34,7 @@ export default function SettingsCard(props) {
                 <Modal.Body>
                     {/* Results per page */}
                     <Form.Group className="mb-3">
-                        <Form.Label>RESULTAT PER SIDA:</Form.Label>
+                        <Form.Label>KORPUS PER SIDA: <span className="settings__description"> antal korpusar som visas per sida</span></Form.Label>
                         <Form.Select 
                             
                             onChange={(e) => {
@@ -109,7 +109,7 @@ export default function SettingsCard(props) {
                     </Form.Group>
 
                     {/* View selection */}
-                    <Form.Group className="mb-3 d-flex justify-content-between">
+                    <Form.Group className="mb-3 d-flex justify-content-around">
                         <Form.Check
                             type="checkbox"
                             label="Wide View"
@@ -122,13 +122,6 @@ export default function SettingsCard(props) {
                             label="Grid View"
                             checked={selectedView === "grid"}
                             onChange={() => handleViewChange("grid")
-                            }
-                        />
-                        <Form.Check
-                            type="checkbox"
-                            label="Zen View"
-                            checked={selectedView === "zen"}
-                            onChange={() => handleViewChange("zen")
                             }
                         />
                     </Form.Group>

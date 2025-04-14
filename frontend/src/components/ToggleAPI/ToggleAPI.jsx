@@ -12,12 +12,6 @@ export default function ToggleAPI() {
   const { corporas, updateCorporas } = useContext(CorporaContext);
   const { settings, updateSettings } = useContext(SettingsContext);
 
-  useEffect(() => {
-    console.log('settings api: ', settings.api)
-    toggleAPI(settings.api)
-  }, [])
-
-
   const handleChange = (value) => {
     toggleAPI(value)
     updateSettings({...settings, api:value})
@@ -32,7 +26,7 @@ export default function ToggleAPI() {
       <ToggleButtonGroup
         type="radio"
         name="options"
-        value={corporas.api}  
+        defaultValue={settings.api}  
         onChange={handleChange} 
       >
         <ToggleButton className="toggle-button me-2" id="api-toggle-button-1" value={1} >

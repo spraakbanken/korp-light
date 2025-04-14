@@ -36,7 +36,8 @@
     display: none; 
     height: 30px; 
     width: 100%; 
-    overflow: hidden; 
+    overflow: hidden;
+    color: var(--text-color);
 }
 
 /* Show on mobile screens */
