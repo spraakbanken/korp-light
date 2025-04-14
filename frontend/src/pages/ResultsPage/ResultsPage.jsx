@@ -1,6 +1,7 @@
 //React
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useRef, useContext, useEffect, useState } from "react";
+import { OverlayTrigger } from "react-bootstrap";
 //CSS
 import "./ResultPage.css"
 //Libs
@@ -135,6 +136,19 @@ export default function ResultsPage() {
         </Tooltip>
     );
 
+    const home_tip= (
+        <Tooltip id="home_tooltip">
+            <strong>Hem</strong>
+        </Tooltip>
+    )
+
+    const layout_tip = (
+        <Tooltip id="layout_tooltip">
+            <strong>Byt layout</strong>
+        </Tooltip>
+
+    )
+
     const toggleHistory = () => {
         setShowHistory((prev) => !prev);
     };
@@ -196,10 +210,13 @@ export default function ResultsPage() {
             <NavigationBar />
             <div className="results-content">
                 <div className="resultpage__search_container">
-                    <Link className="homeIconA" to="/">
-                        <img src={homeIcon} alt="Home icon" />
-                    </Link>
-                    <div className="resultpage__search_content">  
+                    <OverlayTrigger placement="bottom" overlay={home_tip}>
+                        <Link className="homeIconA" to="/">
+                            <img src={homeIcon} alt="Home icon" />
+                        </Link>
+                    </OverlayTrigger>
+
+                    <div className="resultpage__search_content">
                         <div className="resultpage__corpus_button">
                             <CorpusButton
                                 buttonImage={corpus_logo}
@@ -243,7 +260,9 @@ export default function ResultsPage() {
                                 buttonLabel="Historik" />
                         </div>
                     </div>
-                    <img className="calenderIconSVG" src={calenderIcon} alt="Calender icon" />
+                    <OverlayTrigger placement="bottom" overlay={layout_tip}>
+                        <img className="calenderIconSVG" src={calenderIcon} alt="Calender icon" />
+                    </OverlayTrigger>
                 </div>
                 {showHistory && <HistoryPanel />}
                 <ProgressBar isLoading={searchQueryIsLoading} />
