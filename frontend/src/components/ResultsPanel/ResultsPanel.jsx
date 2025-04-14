@@ -169,11 +169,6 @@ const ResultsPanel = ({ response }) => {
               </div>
               {expandedCorpus[corpus] && (
                 <table className="results-table">
-                  <thead>
-                    <tr>
-                      <th className="result-th">Matchningar</th>
-                    </tr>
-                  </thead>
                   <tbody>
                     {corpusResults.length > 0 ? (
                       corpusResults.map((line, index) => {
