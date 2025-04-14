@@ -387,8 +387,13 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
 
                 <div className="selected-corpora-bar">
                     {selectedCorpora ? (Object.keys(selectedCorpora).length > 0 ? (
-                        <div className="selected-count">
+                        <div>
+                            <span className="selected-count">
                             {Object.keys(selectedCorpora).length} valda
+                            </span>
+                            <div className="selected-values-container">
+                                {Object.values(selectedCorpora).map(corpus => <p className="selected-values">{corpus},</p>)}
+                            </div>
                             <Button 
                                 variant="link" 
                                 onClick={() => {

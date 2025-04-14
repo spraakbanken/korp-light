@@ -130,3 +130,15 @@
 .empty-selection {
     color: #757575;
 }
+
+.selected-values-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.selected-values {
+    margin: 5px;
+}
+
+.selected-count {
+    font-weight: bold;
+}
