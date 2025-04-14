@@ -24,6 +24,12 @@
     transition: box-shadow 0.3s ease;
 }
 
+#advanced__search__input{
+    border-radius: 10px;
+    flex-basis: 100%;
+    max-width: 500px;
+}
+
 .advanced__search__entry {
     display: flex;
     justify-content: center;

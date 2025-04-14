@@ -5,7 +5,7 @@ import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import Dropdown from 'react-bootstrap/Dropdown';
 
-export default function AdvancedSearchEntry({word, idx, returnWordTag}) {
+export default function AdvancedSearchEntry({word, idx, returnWordTag, handleDelete}) {
     
     const {attributes, listeners, setNodeRef, 
         transform, transition } = useSortable({idx});
@@ -20,8 +20,6 @@ export default function AdvancedSearchEntry({word, idx, returnWordTag}) {
 
     function handleClick(word, e) {
         const targetText = e.target.text
-        console.log('attributes', listeners);
-
         if (targetText === 'Grundform') {
             setShowGrundform(true);
             setShowOrdform(false);
@@ -45,6 +43,8 @@ export default function AdvancedSearchEntry({word, idx, returnWordTag}) {
                         <Dropdown.Menu>
                         <Dropdown.Item onClick={(e) => {handleClick(word, e); returnWordTag('Grundform');}}>Grundform</Dropdown.Item>
                         <Dropdown.Item onClick={(e) => {handleClick(word, e); returnWordTag('Ord');}}>Ord</Dropdown.Item>
+                        <Dropdown.Divider />
+                        <Dropdown.Item onClick={(e) => handleDelete(word, e)}>Radera</Dropdown.Item>
                         </Dropdown.Menu>
                 </Dropdown>
                 {showOrdform && <p className='advanced__search__small__icon'>O</p>}
