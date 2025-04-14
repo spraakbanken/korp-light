@@ -43,8 +43,10 @@ export default function SettingsCard(props) {
                                     resultsPerPage: e.target.value
                                 })}}
                                 value={settings.resultsPerPage} >
-                            {[10, 20, 50, 100].map((num) => (
-                                <option key={num} value={num}>{num} Resultat</option>
+                            {[1, 3, 5, 10].map((num) => (
+                                <option key={num} value={num}>
+                                    {num} {num === 1 ? "Korpus" : "Korpusar"}
+                                </option>
                             ))}
                         </Form.Select>
                     </Form.Group>
