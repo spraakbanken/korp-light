@@ -1,10 +1,13 @@
 import { OverlayTrigger } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
-import { useState } from "react";
+import { useState, useContext, use } from "react";
+import CorporaContext from "../../services/CorporaContext.jsx";
 import "./CorpusButton.css";
 
-export default function CorpusButton({ buttonImage, buttonOnClick, buttonToolTip, buttonLabel }) {
+export default function CorpusButton({ buttonImage, buttonOnClick, buttonToolTip, buttonLabel, inCorporas}) {
     const [selected, setSelected] = useState(false);
+    const { _corporas, updateCorporas } = useContext(CorporaContext);
+
     
     function handleClick() {
         setSelected((prev) => !prev);
@@ -33,6 +36,7 @@ export default function CorpusButton({ buttonImage, buttonOnClick, buttonToolTip
             {buttonLabel && (
                 <div className="button-label">{buttonLabel}</div>
             )}
+            {inCorporas.corporas ? <p>{Object.keys(inCorporas.corporas).length}</p>: null}
         </div>
     );
 }

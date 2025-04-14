@@ -139,6 +139,7 @@ export default function LandingPage() {
                             buttonOnClick={toggleModal}
                             buttonToolTip={corpus_tip}
                             buttonLabel="    "
+                            inCorporas = {corporas}
                         />
                         <CorpusModal
                             show={showModal}
