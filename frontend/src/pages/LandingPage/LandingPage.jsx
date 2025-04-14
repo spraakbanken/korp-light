@@ -45,23 +45,8 @@ export default function LandingPage() {
     const [showModal, setShowModal] = useState(false);
     const [showFilterModal, setShowFilterModal] = useState(false);
     const [showFilter, setShowFilter] = useState(false);
-    const { startTour } = useTour();
 
     const korpImage = settings.theme === "light" ? KorpLight : KorpDark;
-
-    useEffect(() => {
-        // Check if URL has startTour parameter and start tour if it does
-        const searchParams = new URLSearchParams(location.search);
-        if (searchParams.get('startTour') === 'true') {
-            // Slight delay to ensure all elements are rendered
-            setTimeout(() => {
-                startTour();
-                // Clean up URL without
-                //  refreshing the page
-                navigate('/', { replace: true });
-            }, 500);
-        }
-    }, [location, startTour, navigate]);
 
     useEffect(() => {
         console.log("wordsDict in LandingPage", wordsDict);

@@ -219,7 +219,7 @@ export default function ResultsPage() {
                         </div>
                         <div className="resultpage__button_container">
                             <CircleButton
-                                clasName="extended-search-button"
+                                className="extended-search-button"
                                 buttonColour='#FF9F79'
                                 buttonImage={advanced}
                                 buttonOnClick={null}
@@ -248,7 +248,7 @@ export default function ResultsPage() {
                 {showHistory && <HistoryPanel />}
                 <ProgressBar isLoading={searchQueryIsLoading} />
 
-                <div className="mt-2">
+                <div className="mt-2 results-panel">
                     {/*queryData.kwic == undefined ? <p>Loading...</p> : JSON.stringify(queryData) */}
                     {queryData.kwic === undefined ? <p>Laddar...</p> :
                         <ResultsPanel response={queryData} />}
