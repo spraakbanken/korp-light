@@ -10,7 +10,7 @@ export default function AdvancedSearchEntry({word, idx, returnWordTag}) {
     const {attributes, listeners, setNodeRef, 
         transform, transition } = useSortable({idx});
 
-    const [showOrdform, setShowOrdform] = useState(false);
+    const [showOrdform, setShowOrdform] = useState(true);
     const [showGrundform, setShowGrundform] = useState(false);
 
     const style = {
