@@ -10,6 +10,8 @@ export default function CorpusButton({ buttonImage, buttonOnClick, buttonToolTip
         setSelected((prev) => !prev);
         buttonOnClick();
     }
+
+    let numCorporas = inCorporas.corporas ? Object.keys(inCorporas.corporas).length : 0;
     
     return (
         <div className="corpus-button-container">
@@ -21,7 +23,7 @@ export default function CorpusButton({ buttonImage, buttonOnClick, buttonToolTip
                         cursor: 'pointer' 
                     }}
                 >
-                    <span className="corpus-button-text">Välj Korpus</span>
+                    <span className="corpus-button-text">Välj Korpus [{numCorporas}]</span>
                     <Image
                         className="corpus-button-icon"
                         src={buttonImage}
@@ -33,7 +35,6 @@ export default function CorpusButton({ buttonImage, buttonOnClick, buttonToolTip
             {buttonLabel && (
                 <div className="button-label">{buttonLabel}</div>
             )}
-            {inCorporas.corporas ? <p>{Object.keys(inCorporas.corporas).length}</p>: null}
         </div>
     );
 }
