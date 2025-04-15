@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
-import { Offcanvas, Nav, NavDropdown, OverlayTrigger } from "react-bootstrap";
-import Tooltip from 'react-bootstrap/Tooltip';
+import { Offcanvas, Button, Nav, NavDropdown } from "react-bootstrap";
 import { List } from "react-bootstrap-icons";
+import { useFloating, offset, flip, shift, autoUpdate } from "@floating-ui/react-dom";
 import "./SideMenu.css";
 import closeDark from '../../assets/closeDark.svg';
 import closeLight from '../../assets/closeLight.svg';
@@ -13,6 +13,13 @@ import { Link, NavLink } from "react-router-dom";
 
 export default function SideMenu({ onTourStart, onResultTourStart }) {
     const [show, setShow] = useState(false);
+    const [showTooltip, setShowTooltip] = useState(false);
+
+    const { x, y, refs, strategy } = useFloating({
+        placement: 'bottom',
+        middleware: [offset(8), flip(), shift()],
+        whileElementsMounted: autoUpdate,
+    });
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -21,12 +28,6 @@ export default function SideMenu({ onTourStart, onResultTourStart }) {
     const closeImage = settings.theme === "light" ? closeLight : closeDark;
 
     const history = getHistory();
-
-    const menu_tip = (
-        <Tooltip id="menu_tooltip">
-            <strong>Meny</strong>
-        </Tooltip>
-    );
 
     const handleUserGuideClick = (e) => {
         e.preventDefault();
@@ -41,9 +42,36 @@ export default function SideMenu({ onTourStart, onResultTourStart }) {
 
     return (
         <>
-            <OverlayTrigger placement="bottom" overlay={menu_tip}>
-                <List size={48} className="menu-button" onClick={handleShow} />
-            </OverlayTrigger>
+            <div ref={refs.setReference}>
+                <List 
+                    size={48} 
+                    className="menu-button" 
+                    onClick={handleShow}
+                    onMouseEnter={() => setShowTooltip(true)}
+                    onMouseLeave={() => setShowTooltip(false)}
+                />
+            </div>
+
+            {showTooltip && (
+                <div
+                    ref={refs.setFloating}
+                    style={{
+                        position: strategy,
+                        top: y ?? 0,
+                        left: x ?? 0,
+                        background: "black",
+                        color: "white",
+                        padding: "6px 10px",
+                        borderRadius: "4px",
+                        fontSize: "0.875rem",
+                        zIndex: 9999,
+                        pointerEvents: "none",
+                        whiteSpace: "nowrap",
+                    }}
+                >
+                    <strong>Meny</strong>
+                </div>
+            )}
 
             <Offcanvas show={show} onHide={handleClose} className="side-menu">
                 <Offcanvas.Header>

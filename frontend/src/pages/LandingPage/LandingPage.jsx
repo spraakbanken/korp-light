@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import Tooltip from 'react-bootstrap/Tooltip';
+// import Tooltip from 'react-bootstrap/Tooltip';
 import { useNavigate } from "react-router-dom";
 import SettingsContext from '../../services/SettingsContext';
 
@@ -23,8 +23,8 @@ import corpus_logo from '../../assets/book-open.svg';
 import history_logo from '../../assets/rotate-ccw.svg';
 import sliders_logo from '../../assets/sliders.svg';
 import advanced from '../../assets/advanced.svg';
-import KorpLight from '../../assets/korpi.svg';
-import KorpDark from '../../assets/whiteKorp.svg';
+import KorpLight from '../../assets/korpiLight.svg';
+import KorpDark from '../../assets/korpiDark.svg';
 
 
 // main style
@@ -70,27 +70,27 @@ export default function LandingPage() {
     };
 
     const advanced_tip = (
-        <Tooltip id="advanced_tooltip">
+        
             <strong>Utökad sökning</strong>
-        </Tooltip>
+       
     );
 
     const filter_tip = (
-        <Tooltip id="filter_tooltip">
+        
             <strong>Filtrera</strong>
-        </Tooltip>
+      
     );
 
     const corpus_tip = (
-        <Tooltip id="corpus_tooltip">
+       
             <strong>Korpusar</strong>
-        </Tooltip>
+        
     );
 
     const history_tip = (
-        <Tooltip id="help_tooltip">
+        
             <strong>Historik</strong>
-        </Tooltip>
+        
     );
 
     const handleSubmit = (event) => {

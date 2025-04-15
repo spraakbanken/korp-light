@@ -55,12 +55,12 @@
     max-width: 600px;
     z-index: 101;
     opacity: 1;
-    animation: fadeIn 0.3s ease-out;
+    animation: fadeIn 0.1s ease-out;
 }
 
 /* When removing sticky */
 .resultpage__search_bar:not(.sticky) {
-    animation: fadeOut 0.3s ease-out;
+    animation: fadeOut 0.1s ease-out;
 }
 
 
@@ -138,7 +138,7 @@
     .resultpage__search_content {
         flex-direction: row;
         flex-wrap: wrap; 
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         width: 90%; 
     }
@@ -156,13 +156,27 @@
         max-width: none;
     }
     
-    .resultpage__corpus_button,
+    .resultpage__corpus_button{
+        order: 2; 
+        margin: 0;
+    }
+
     .resultpage__button_container {
         order: 2;
         margin: 0;
-        gap:0px;
+        margin-left: 10px;
+        gap: 0px;
     }
-    .calenderIconSVG, .homeIconA {
+
+    .resultpage__search_wrapper {
+        width: 100%;
+    }
+
+    .logo-container {
+        padding-top: 0px;
+    }
+    
+    .calenderIconA, .homeIconA {
         display: none;
     }
     .resultpage__search_container {
