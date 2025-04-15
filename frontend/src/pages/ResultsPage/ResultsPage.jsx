@@ -118,6 +118,7 @@ export default function ResultsPage() {
 
 
     const handleSubmit = (event) => {
+        if (corporas.corporas != null){
         handleCorpusQuery();
         let res;
                 console.log(wordsDict);
@@ -129,6 +130,7 @@ export default function ResultsPage() {
 
         setSearchWordInput(res);
         navigate(`/results?corpus=${encodeURIComponent(Object.keys(corporas.corporas))}&cqp=${encodeURIComponent(res)}`);
+            }
     };
 
     const advanced_tip = (
