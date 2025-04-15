@@ -105,7 +105,7 @@
     right: 30px;
     z-index: 1000;
     padding: 10px 15px;
-    background-color: var(--primary-color, #4a90e2);
+    background-color: var(--primary-color);
     color: white;
     font-weight: 500;
     border: none;
@@ -118,7 +118,7 @@
 }
 
 .results_page__back_to_top:hover {
-    background-color: var(--primary-color-dark, #3a7bc8);
+    background-color: #f88f66dc;
 }
 
 .results_page__back_to_top.visible {
