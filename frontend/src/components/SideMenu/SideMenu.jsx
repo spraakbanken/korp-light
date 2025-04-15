@@ -1,8 +1,12 @@
-import { useState } from "react";
-import { Offcanvas, Button, Nav, NavDropdown, OverlayTrigger } from "react-bootstrap";
+import { useState, useContext } from "react";
+import { Offcanvas, Nav, NavDropdown, OverlayTrigger } from "react-bootstrap";
 import Tooltip from 'react-bootstrap/Tooltip';
 import { List } from "react-bootstrap-icons";
 import "./SideMenu.css";
+import closeDark from '../../assets/closeDark.svg';
+import closeLight from '../../assets/closeLight.svg';
+import SettingsContext from "../../services/SettingsContext";
+
 
 import { setHistory, getHistory } from "../../services/history";
 import { Link, NavLink } from "react-router-dom";
@@ -12,6 +16,9 @@ export default function SideMenu({ onTourStart, onResultTourStart }) {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const { settings } = useContext(SettingsContext);
+    const closeImage = settings.theme === "light" ? closeLight : closeDark;
 
     const history = getHistory();
 
@@ -39,13 +46,13 @@ export default function SideMenu({ onTourStart, onResultTourStart }) {
             </OverlayTrigger>
 
             <Offcanvas show={show} onHide={handleClose} className="side-menu">
-                <Offcanvas.Header closeButton>
+                <Offcanvas.Header>
                     <Offcanvas.Title>Meny</Offcanvas.Title>
+                    <img src={closeImage} onClick={handleClose} className="close_btn" alt="close" />
                 </Offcanvas.Header>
                 <Offcanvas.Body className="side-menu-body">
                     <Nav className="flex-column">
                         <Nav.Link className="first-row" href="/">Hem</Nav.Link>
-                        {/* TODO link to help/tour */}
 
                         <NavDropdown
                             title="Historik"

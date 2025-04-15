@@ -23,12 +23,13 @@ export default function CorpusButton({ buttonImage, buttonOnClick, buttonToolTip
                         cursor: 'pointer' 
                     }}
                 >
-                    <span className="corpus-button-text">Välj Korpus [{numCorporas}]</span>
+                    <span className="corpus-button-text">Välj Korpus</span>
                     <Image
                         className="corpus-button-icon"
                         src={buttonImage}
                         alt="Corpus icon"
                     />
+                    <p className="corpus-number">{numCorporas}</p>
                 </div>
             </OverlayTrigger>
 

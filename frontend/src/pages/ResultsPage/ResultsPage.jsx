@@ -321,7 +321,7 @@ export default function ResultsPage() {
                 {showHistory && <HistoryPanel />}
                 <ProgressBar isLoading={searchQueryIsLoading} />
 
-                <div className="mt-2 results-panel">
+                <div className="mt-2">
                     {/*queryData.kwic == undefined ? <p>Loading...</p> : JSON.stringify(queryData) */}
                     {queryData.kwic === undefined ? <p>Laddar...</p> :
                         <ResultsPanel response={queryData} />}
