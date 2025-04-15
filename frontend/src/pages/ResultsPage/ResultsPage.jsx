@@ -57,6 +57,7 @@ export default function ResultsPage() {
     const [corpus, setCorpus] = useState(corpusQueryTest);
     const [corpusInput, setCorpusInput] = useState(corpusQueryTest);
     const [searchWordInput, setSearchWordInput] = useState(searchQueryTest); // IDK if we use this
+    const [rawSearchInput, setRawSearchInput] = useState("");
 
     const [queryData, setQueryData] = useState({});
     const [showModal, setShowModal] = useState(false);
@@ -111,7 +112,7 @@ export default function ResultsPage() {
             refetch: searchQueryRefetch,
         } = useQuery({
             queryKey: [searchWordInput],
-            queryFn: () => getCorpusQuery(searchWordInput),
+            queryFn: () => getCorpusQuery(searchWordInput, rawSearchInput),
             enabled: false,
         });
 
@@ -126,6 +127,7 @@ export default function ResultsPage() {
                     res = `[word = "${event}"]`;
                 }
 
+        setRawSearchInput(event);
         setSearchWordInput(res);
         navigate(`/results?corpus=${encodeURIComponent(Object.keys(corporas.corporas))}&cqp=${encodeURIComponent(res)}`);
     };
