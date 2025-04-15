@@ -1,0 +1,24 @@
+.defintion__container {
+    background-color: gray;
+    text-align: left;
+    padding:10px;
+}
+.defintion__label {
+    background-color: var(--primary-color);
+}
+
+.defintion__defintion {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 0px;
+}
+
+.defintion__number {
+    font-size: 0.9rem;
+}
+
+.defintion__example {
+    padding-left: 50px;
+    font-weight: 400;
+}
