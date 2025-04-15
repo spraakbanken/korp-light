@@ -92,11 +92,18 @@
 }
 
 .results-table tbody tr:nth-child(even) {
-  background-color: rgba(242, 242, 242, 0.8);
+  background-color: color-mix(in srgb, var(--bg-color), black 10%);
+  color: var(--text-color);
+}
+
+[theme="dark"] .results-table tbody tr:nth-child(even) {
+  background-color: color-mix(in srgb, var(--bg-color), white 10%);
+  color: var(--text-color);
 }
 
 .results-table tbody tr:nth-child(odd) {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 .results-table tbody tr:hover {

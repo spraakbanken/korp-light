@@ -47,7 +47,7 @@
 .circle-button-div{
   display: flex;
   justify-content: center;
-  align-self: flex-start;
+  align-self: flex-end;
   gap: 20px;
 }
 
@@ -85,7 +85,7 @@
   }
 
   .circle-button-div{
-    gap: 8px;
+    gap: 5px;
   }
 
   .circlebutton{
