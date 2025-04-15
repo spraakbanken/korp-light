@@ -43,15 +43,15 @@
 .resultpage__search_bar {
     width: 100%;
     max-width: 400px;
-    z-index: 101;
-    transition: opacity 1s ease; 
+    
+    
     opacity: 1; 
 }
 
 .resultpage__search_bar.sticky {
     position: fixed;
     top: -10px; 
-    width: 40%; 
+    
 
     max-width: 600px;
     z-index: 101;
