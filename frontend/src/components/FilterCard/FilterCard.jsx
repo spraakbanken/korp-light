@@ -8,12 +8,6 @@ import "./FilterCard.css";
 export default function SettingsCard(props) {
     const {settings, updateSettings} = useContext(SettingsContext);
 
-    const [selectedView, setSelectedView] = useState("wide");
-      
-    const handleViewChange = (view) => {
-        setSelectedView(view);
-    };
-
     useEffect(() => {
         // We have to move this out somewhere else, maybe App?
         // Move when we store settings in 
@@ -25,11 +19,11 @@ export default function SettingsCard(props) {
     return (
        
             <Modal {...props}
-                className="_settings-card" centered>
-                <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">Filter</Modal.Title>
+                className="_filter_card" centered>
+                <Modal.Header className="header" closeButton>
+                    <Modal.Title className="title">Filter</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body classname="modal-body">
                     {/* Results per page */}
                     <Form.Group className="filter_button">
                         <Form.Label>Resultat per sida:</Form.Label>

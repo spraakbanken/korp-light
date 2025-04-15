@@ -22,6 +22,21 @@
     color: black;
 }
 
+.offcanvas-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close_btn{
+    cursor: pointer;
+    transition: transform 0.2s ease; 
+}
+
+.close_btn:hover {
+    transform: scale(1.15);
+}
+
 .side-menu-body {
     padding: 0;
 }
@@ -31,11 +46,11 @@
 }
 
 .first-row {
-    background-color: #f6f6f6;
+    background-color: var(--bg-color);
     padding-left: 5px;
 }
 
 .second-row {
-    background-color: #FFFFFF;
+    background-color: color-mix(in srgb, var(--bg-color), black 15%);
     padding-left: 5px;
 }
