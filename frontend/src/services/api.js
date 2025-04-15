@@ -8,7 +8,7 @@ import server_config from './server_config.js';
 // Sample Axios Code
 // Using Promises, Write a function for each endpoint
 const axios_instance = axios.create({
-  baseURL: server_config.sb_korp_api,
+  baseURL: server_config.pl_korp_api,
 });
 
 
@@ -74,14 +74,15 @@ export function toggleAPI(which_server) {
 // We can build cqp here if we want or in the React component
 export async function getCorpusQuery(inQuery) {
 
-  // console.log("inQuery", inQuery)
+  console.log("inQuery", inQuery)
   queryParams.cqp = inQuery;
-   
+
+  const inputWords = inQuery.match(/"(.*?)"/g)
   try {
     const response = await axios_instance('/query', {params: queryParams});
     const currentUrl = window.location.search; 
     
-    setHistory(inQuery, currentUrl);
+    setHistory(inputWords, currentUrl);
     return response.data;
   } catch (error) {
     console.log("getCorpusQuery ERROR: ", error);

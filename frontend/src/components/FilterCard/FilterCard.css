@@ -1,75 +1,38 @@
-.filter-overlay {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.2);
-}
 
-.filter-card {
-    width: 50%;
-    align-items: center;
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+.header {
+    background-color: var(--bg-color);
 }
-
-.card-body {
-    width: 50%
-}
-
-.theme-toggle {
-    display: flex;
-    justify-content: space-around;
-    gap: 10px;
-    padding:10px;
-}
-
-.filter button {
-    background-color: #f0f0f0;
-    border: 2px solid #ccc;
-    border-radius: 50%;  
-    padding: 10px;
-    width: 50px; 
-    height: 50px; 
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    outline: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.filter button[active="true"] {
-    background-color: #007bff; 
-    color: white;
-    border-color: #007bff;
-}
-
-.filter button:hover {
-    background-color: #007bff;
-}
-
-.filterFooter{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.title{
+    color: var(--text-color);
 }
 
 .filterCloseButton {
-    width: 100%;
+    width: 30%;
+    justify-content: center;
+    background-color: var(--primary-color);
+    border: var(--primary-color);
+   
 }
 
-.light-mode-button {
-    color: #f39c12;
+.filterCloseButton:hover {
+    background-color: color-mix(in srgb, var(--primary-color), red 20%);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.dark-mode-button {
-    color: #2c3e50; 
+.filter_card{
+    color: var(--bg-color);
 }
+
+.modal-body{
+    background-color: var(--bg-color);
+}
+
+.filter_button{
+    color: var(--text-color);
+}
+
+.filterFooter{
+    background-color: var(--bg-color);
+}
+
+

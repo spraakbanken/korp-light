@@ -19,15 +19,15 @@ import HistoryPanel from "../../components/HistoryPanel/HistoryPanel.jsx";
 import CorpusModal from "../../components/CorpusModal/CorpusModal.jsx";
 import CorpusButton from "../../components/CorpusButton/CorpusButton.jsx";
 import AdvancedSearch from "../../components/AdvancedSearch/AdvancedSearch.jsx";
+import FilterCard from "../../components/FilterCard/FilterCard.jsx";
 //Services
 import { getCorpusInfo, getCorpusQuery } from "../../services/api.js";
-import { getCorpusCollectionsList } from "../../services/api.js";
+
 //Assets
 import advanced from '../../assets/advanced.svg';
 import homeIconLight from '../../assets/homeIconLight.svg';
 import homeIconDark from '../../assets/homeIconDark.svg';
-import calenderIconLight from '../../assets/calenderIconLight.svg';
-import calenderIconDark from '../../assets/calenderIconDark.svg';
+
 
 //Corpus, history, advanced search
 import CorpusDropDown from "../../components/CorpusDropdown/CorpusDropdown.jsx";
@@ -35,6 +35,9 @@ import corpus_logo from '../../assets/book-open.svg';
 import history_logo from '../../assets/rotate-ccw.svg';
 import sliders_logo from '../../assets/sliders.svg';
 import CorporaContext from "../../services/CorporaContext.jsx";
+import { buildQuery } from "../../services/api.js";
+import HomeButton from "../../components/HomeButton/HomeButton.jsx";
+import CalenderButton from "../../components/CalenderButton/CalenderButton.jsx";
 
 export default function ResultsPage() {
 
@@ -49,6 +52,7 @@ export default function ResultsPage() {
     
     const [words, setWords] = useState([]);
     const [showAdvancedSearch, setShowAdvancedSearch] = useState(false);
+    const [showFilterModal, setShowFilterModal] = useState(false);
     const [wordsDict, setWordsDict] = useState({});
     const { settings, updateSettings } = useContext(SettingsContext);
     const [corpus, setCorpus] = useState(corpusQueryTest);
@@ -87,6 +91,9 @@ export default function ResultsPage() {
         setShowAdvancedSearch((prev) => !prev);
     }
 
+    const toggleFilterModal = () => {
+        setShowFilterModal((prev) => !prev);
+    };
 
     const
         { data: searchCorpusData = [],
@@ -111,6 +118,7 @@ export default function ResultsPage() {
 
 
     const handleSubmit = (event) => {
+        if (corporas.corporas != null){
         handleCorpusQuery();
         let res;
                 console.log(wordsDict);
@@ -122,51 +130,41 @@ export default function ResultsPage() {
 
         setSearchWordInput(res);
         navigate(`/results?corpus=${encodeURIComponent(Object.keys(corporas.corporas))}&cqp=${encodeURIComponent(res)}`);
+            }
     };
 
     const advanced_tip = (
-        <Tooltip id="settings_tooltip">
-            <strong>Utökad Sökning</strong>
-        </Tooltip>
-    );
+        
+        <strong>Utökad sökning</strong>
+   
+);
 
-    const corpus_tip = (
-        <Tooltip id="corpus_tooltip">
-            <strong>Samlingar</strong>
-        </Tooltip>
-    );
+const filter_tip = (
+    
+        <strong>Filtrera</strong>
+  
+);
 
-    const history_tip = (
-        <Tooltip id="help_tooltip">
-            <strong>Historik</strong>
-        </Tooltip>
-    );
+const corpus_tip = (
+   
+        <strong>Korpusar</strong>
+    
+);
 
-    const filter_tip = (
-        <Tooltip id="help_tooltip">
-            <strong>Filtrera</strong>
-        </Tooltip>
-    );
+const history_tip = (
+    
+        <strong>Historik</strong>
+    
+);
 
-    const home_tip= (
-        <Tooltip id="home_tooltip">
-            <strong>Hem</strong>
-        </Tooltip>
-    )
 
-    const layout_tip = (
-        <Tooltip id="layout_tooltip">
-            <strong>Byt layout</strong>
-        </Tooltip>
-
-    )
 
     const toggleHistory = () => {
         setShowHistory((prev) => !prev);
     };
 
     const homeIcon = settings.theme === "light" ? homeIconLight : homeIconDark;
-    const calenderIcon = settings.theme === "light" ? calenderIconLight : calenderIconDark;
+
 
 
 
@@ -255,11 +253,7 @@ export default function ResultsPage() {
             <NavigationBar />
             <div className="results-content">
                 <div className="resultpage__search_container">
-                    <OverlayTrigger placement="bottom" overlay={home_tip}>
-                        <Link className="homeIconA" to="/">
-                            <img src={homeIcon} alt="Home icon" />
-                        </Link>
-                    </OverlayTrigger>
+                    <HomeButton/>
 
                     <div className="resultpage__search_content">
                         <div className="resultpage__corpus_button">
@@ -297,9 +291,15 @@ export default function ResultsPage() {
                                 className="filter-button"
                                 buttonColour='#FFB968'
                                 buttonImage={sliders_logo}
-                                buttonOnClick={null}
+                                buttonOnClick={toggleFilterModal}
                                 buttonToolTip={filter_tip}
                                 buttonLabel="Filter" />
+                             <FilterCard
+                                show={showFilterModal}
+                                onHide={() => setShowFilterModal(false)}
+                                colour='#FFB968'
+                                buttonLogo={sliders_logo}
+                                                    />
 
                             <CircleButton
                                 className="history-button"
@@ -310,17 +310,16 @@ export default function ResultsPage() {
                                 buttonLabel="Historik" />
                         </div>
                     </div>
-                    <OverlayTrigger placement="bottom" overlay={layout_tip}>
-                        <img className="calenderIconSVG" src={calenderIcon} alt="Calender icon" />
-                    </OverlayTrigger>
+                    <CalenderButton/>
                 </div>
                 
                 {showAdvancedSearch && <AdvancedSearch words={words}
                                     returnWordsDict={(e) => handleAdvancedSearch(e)} />}
                 {showHistory && <HistoryPanel />}
+                
                 <ProgressBar isLoading={searchQueryIsLoading} />
 
-                <div className="mt-2 results-panel">
+                <div className="mt-2">
                     {/*queryData.kwic == undefined ? <p>Loading...</p> : JSON.stringify(queryData) */}
                     {queryData.kwic === undefined ? <p>Laddar...</p> :
                         <ResultsPanel response={queryData} />}
