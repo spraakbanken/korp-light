@@ -208,7 +208,6 @@
   background-color: var(--primary-color);
   cursor: pointer;
   font-weight: 600;
-  border-bottom: 1px solid #e0e0e0;
 }
 
 .corpus-header:hover {

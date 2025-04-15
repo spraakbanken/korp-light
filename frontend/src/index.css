@@ -38,6 +38,7 @@ body, html {
 [theme="light"] {
   --bg-color: #FFFFFF;
   --primary-color: #F89066;
+  --secondary-color: #898989;
   --navbar-color: #EFEFEF;
   --tertiary-color: #FDDBBB;
   --quaternary-color: #FFCEBA;

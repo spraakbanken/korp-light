@@ -5,10 +5,11 @@ import ErrorPage from '../../pages/ErrorPage/ErrorPage.jsx';
 import SettingsContext from "../../services/SettingsContext.jsx";
 import { MoveLeft, MoveRight, ChevronDown, ChevronRight } from 'lucide-react';
 import CorporaContext from '../../services/CorporaContext.jsx';
+import Definition from '../Definition/Definition.jsx';
 
 
 //This should all later be changed to use individual api calls for each corpus, so we get (hopefully) a quicker response.
-const ResultsPanel = ({ response }) => {
+const ResultsPanel = ({ response, wordToDef }) => {
   const [hits, setHits] = useState(0);
   const [startHit, setStartHit] = useState(0);
   const [endHit, setEndHit] = useState(0);
@@ -143,6 +144,7 @@ const ResultsPanel = ({ response }) => {
 
   return (
     <div className="results-panel">
+      <Definition wordEntry={wordToDef}></Definition>  
       <div className="results-header">
         <div className="results-stats">
           <span className="results-count">Totala matchningar: <strong>{hits}</strong></span>

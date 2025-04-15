@@ -59,6 +59,8 @@ export default function ResultsPage() {
     const [corpusInput, setCorpusInput] = useState(corpusQueryTest);
     const [searchWordInput, setSearchWordInput] = useState(searchQueryTest); // IDK if we use this
 
+    const [rawSearchInput, setRawSearchInput] = useState("");
+
     const [queryData, setQueryData] = useState({});
     const [showModal, setShowModal] = useState(false);
 
@@ -129,6 +131,7 @@ export default function ResultsPage() {
                 }
 
         setSearchWordInput(res);
+        setRawSearchInput(event);
         navigate(`/results?corpus=${encodeURIComponent(Object.keys(corporas.corporas))}&cqp=${encodeURIComponent(res)}`);
             }
     };
@@ -322,7 +325,7 @@ const history_tip = (
                 <div className="mt-2">
                     {/*queryData.kwic == undefined ? <p>Loading...</p> : JSON.stringify(queryData) */}
                     {queryData.kwic === undefined ? <p>Laddar...</p> :
-                        <ResultsPanel response={queryData} />}
+                        <ResultsPanel response={queryData} wordToDef={rawSearchInput} />}
                 </div>
                 <button className="results_page__back_to_top" onClick={scrollToTop}>Till toppen</button>
             </div>

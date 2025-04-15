@@ -1,21 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getDefintion } from '../../services/getDefinition';
 import './Definition.css'
-import { Button } from 'react-bootstrap';
+//import { Button } from 'react-bootstrap';
 import { ChevronDown, ChevronRight } from 'lucide-react'
 
-export default function Definition() {
+export default function Definition({wordEntry}) {
 
     const [wordData, setWordData] = useState([{}]);
-    const [wordInput, setWordInput] = useState("");
     const [expandDef, setExpandDef] = useState(true);
+    //const [wordInput, setWordInput] = useState("");
 
     const toggleDefExpand = () => {
         setExpandDef(prev => !prev);
     }
 
-    const handleClick = (entry) => {
-        getDefintion(entry)
+    useEffect(() => {
+        getDefintion(wordEntry)
             .then(r => {
                 //console.log('Full Response', r);
                 // We can add ordklass and stuff if we want to, it's a bit harder to parse.
@@ -41,7 +41,7 @@ export default function Definition() {
                     finalArray.push(
                         {
                             id: i,
-                            word: entry,
+                            word: wordEntry,
                             definition: defEntry,
                             examples: swedishExamples
                         }
@@ -51,7 +51,7 @@ export default function Definition() {
                 setWordData(finalArray);
             })
             .catch(e => console.log('error', e));
-    }
+    }, [wordEntry]);
 
     const getExamples = (examples) => {
         if(examples) {
@@ -63,15 +63,15 @@ export default function Definition() {
 
     return (
         <>
-            <p>Dictionary Test</p>
+            {/* <p>Dictionary Test</p>
             <input type="text" 
                 onChange={(e) => setWordInput(e.target.value)}/>
-            <Button onClick={() => handleClick(wordInput)}>Search</Button>
-
+            <Button onClick={() => handleClick(wordInput)}>Search</Button> */}
+            <div className="corpus-group">
             <div className="corpus-header" 
                 onClick={toggleDefExpand}>
             {expandDef ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
-                <span className="corpus-name">Defintion</span>
+                <span className="corpus-name">Defintion: {wordEntry}</span>
                 <span className="corpus-count"></span>
             </div>
             {expandDef && <div className="results-table">
@@ -92,6 +92,7 @@ export default function Definition() {
                   </div>
             </div>
             }
+            </div>
         </>
     );
 }

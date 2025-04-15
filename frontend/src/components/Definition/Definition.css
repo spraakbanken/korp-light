@@ -1,21 +1,25 @@
 .defintion__container {
-    background-color: gray;
+    background-color: var(--navbar-color);
     text-align: left;
     padding:10px;
 }
+
 .defintion__label {
-    background-color: var(--primary-color);
+    background-color: color-mix(in srgb, var(--bg-color), black 10%);
+    color: var(--text-color);
+    margin: 5px;
+    padding: 10px;
 }
 
 .defintion__defintion {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: bold;
-    color: black;
+    color: var(--text-color);
     margin-bottom: 0px;
 }
 
 .defintion__number {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
 }
 
 .defintion__example {
