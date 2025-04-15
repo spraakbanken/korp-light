@@ -200,7 +200,7 @@
 }
 
 .corpus-header:hover {
-  background-color: #ff7139;
+  background-color: color-mix(in srgb, var(--primary-color), black 10%);
 }
 
 .corpus-name {
