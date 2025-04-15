@@ -21,7 +21,7 @@ import CorpusButton from "../../components/CorpusButton/CorpusButton.jsx";
 import AdvancedSearch from "../../components/AdvancedSearch/AdvancedSearch.jsx";
 //Services
 import { getCorpusInfo, getCorpusQuery } from "../../services/api.js";
-import { getCorpusCollectionsList } from "../../services/api.js";
+
 //Assets
 import advanced from '../../assets/advanced.svg';
 import homeIconLight from '../../assets/homeIconLight.svg';
@@ -35,6 +35,7 @@ import corpus_logo from '../../assets/book-open.svg';
 import history_logo from '../../assets/rotate-ccw.svg';
 import sliders_logo from '../../assets/sliders.svg';
 import CorporaContext from "../../services/CorporaContext.jsx";
+import { buildQuery } from "../../services/api.js";
 
 export default function ResultsPage() {
 
