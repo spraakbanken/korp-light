@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { CircleArrowRight, CircleArrowDown, X } from "lucide-react";
+import { CircleArrowRight, CircleArrowDown, X, Check } from "lucide-react";
 import "./CorpusModal.css";
 import peterCorpra from '../../services/peterCorpora.json';
 import sbCorpra from '../../services/testdata.json';
@@ -358,11 +358,11 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
                 <Modal.Title>Välj korpus</Modal.Title>
                 <div className="ms-auto">
                     <Button 
-                    variant="danger" 
+                    variant="success" 
                     onClick={onHide}
                     className="p-0"
                     >
-                    <X size={24} />
+                    <Check size={24} />
                     </Button>
                 </div>
                 </Modal.Header>
