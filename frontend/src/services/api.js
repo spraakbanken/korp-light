@@ -72,16 +72,17 @@ export function toggleAPI(which_server) {
 
 // Parse all queries from react to send to server
 // We can build cqp here if we want or in the React component
-export async function getCorpusQuery(inQuery, word) {
+export async function getCorpusQuery(inQuery) {
 
   console.log("inQuery", inQuery)
   queryParams.cqp = inQuery;
-   
+
+  const inputWords = inQuery.match(/"(.*?)"/g)
   try {
     const response = await axios_instance('/query', {params: queryParams});
     const currentUrl = window.location.search; 
     
-    setHistory(word, currentUrl);
+    setHistory(inputWords, currentUrl);
     return response.data;
   } catch (error) {
     console.log("getCorpusQuery ERROR: ", error);
