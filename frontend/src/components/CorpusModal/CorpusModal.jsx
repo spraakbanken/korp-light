@@ -3,9 +3,11 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { CircleArrowRight, CircleArrowDown, X } from "lucide-react";
 import "./CorpusModal.css";
-import testdata from '../../services/testdata.json';
+import peterCorpra from '../../services/peterCorpora.json';
+import sbCorpra from '../../services/testdata.json';
 import CorporaContext from "../../services/CorporaContext.jsx";
 import { Search } from 'lucide-react';
+import SettingsContext from "../../services/SettingsContext.jsx";
 
 
 export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
@@ -14,6 +16,9 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
     const [expanded, setExpanded] = useState({});
     const [searchQuery, setSearchQuery] = useState('');
     const [subcorporaIds, setSubcorporaIds] = useState({}); // Store UUIDs for subcorpora
+    
+    const {settings, _ } = useContext(SettingsContext);
+    const testdata = settings.api === 1 ? sbCorpra : peterCorpra;
 
     // Generate random UUIDs for all subcorpora on first render
     useEffect(() => {
