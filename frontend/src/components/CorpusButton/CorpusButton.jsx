@@ -31,13 +31,14 @@ export default function CorpusButton({ buttonImage, buttonOnClick, buttonToolTip
                 style={{ cursor: "pointer" }}
             >
                 <span className="corpus-button-text">
-                    Välj Korpus [{numCorporas}]
+                    Välj Korpus
                 </span>
                 <Image
                     className="corpus-button-icon"
                     src={buttonImage}
                     alt="Corpus icon"
                 />
+                <p className="corpus-number">{numCorporas}</p>
             </div>
 
             {showTooltip && (
