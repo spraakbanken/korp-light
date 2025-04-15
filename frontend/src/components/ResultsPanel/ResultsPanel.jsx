@@ -16,6 +16,7 @@ const ResultsPanel = ({ response }) => {
   const [groupedResults, setGroupedResults] = useState({});
   const [corpusOrder, setCorpusOrder] = useState([]);
   const [expandedCorpus, setExpandedCorpus] = useState({});
+  const [activeCorporas, setActiveCorporas] = useState({});
   const { settings, updateSettings } = useContext(SettingsContext);
   const { corporas } = useContext(CorporaContext);
   
@@ -29,6 +30,7 @@ const ResultsPanel = ({ response }) => {
       } else {
         setHits(response.hits || 0);
         setPage(0);
+        setActiveCorporas(corporas.corporas);
         
         // Set corpus order from response
         if (response.corpus_order) {
@@ -40,6 +42,7 @@ const ResultsPanel = ({ response }) => {
             initialExpandState[corpus] = true;
           });
           setExpandedCorpus(initialExpandState);
+
         }
       }
     }
@@ -164,7 +167,7 @@ const ResultsPanel = ({ response }) => {
                 onClick={() => toggleCorpusExpand(corpus)}
               >
                 {expandedCorpus[corpus] ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
-                <span className="corpus-name">{corporas.corporas[corpus.toLowerCase()]}</span>
+                <span className="corpus-name">{activeCorporas[corpus.toLowerCase()]}</span>
                 <span className="corpus-count">({corpusHitCount})</span>
               </div>
               {expandedCorpus[corpus] && (
