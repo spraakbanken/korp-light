@@ -4,11 +4,11 @@
     border: none;
     padding: 10px;
     cursor: pointer;
-    color: #F89066;    
+    color: var(--primary-color);    
 }
 
 .menu-button:hover {
-    color: #FF7840;
+    color: color-mix(in srgb, var(--primary-color) 100%, white 20%);
 }
 
 .side-menu{
