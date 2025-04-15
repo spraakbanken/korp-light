@@ -19,6 +19,7 @@ import HistoryPanel from "../../components/HistoryPanel/HistoryPanel.jsx";
 import CorpusModal from "../../components/CorpusModal/CorpusModal.jsx";
 import CorpusButton from "../../components/CorpusButton/CorpusButton.jsx";
 import AdvancedSearch from "../../components/AdvancedSearch/AdvancedSearch.jsx";
+import FilterCard from "../../components/FilterCard/FilterCard.jsx";
 //Services
 import { getCorpusInfo, getCorpusQuery } from "../../services/api.js";
 
@@ -50,6 +51,7 @@ export default function ResultsPage() {
     
     const [words, setWords] = useState([]);
     const [showAdvancedSearch, setShowAdvancedSearch] = useState(false);
+    const [showFilterModal, setShowFilterModal] = useState(false);
     const [wordsDict, setWordsDict] = useState({});
     const { settings, updateSettings } = useContext(SettingsContext);
     const [corpus, setCorpus] = useState(corpusQueryTest);
@@ -88,6 +90,9 @@ export default function ResultsPage() {
         setShowAdvancedSearch((prev) => !prev);
     }
 
+    const toggleFilterModal = () => {
+        setShowFilterModal((prev) => !prev);
+    };
 
     const
         { data: searchCorpusData = [],
@@ -298,9 +303,15 @@ export default function ResultsPage() {
                                 className="filter-button"
                                 buttonColour='#FFB968'
                                 buttonImage={sliders_logo}
-                                buttonOnClick={null}
+                                buttonOnClick={toggleFilterModal}
                                 buttonToolTip={filter_tip}
                                 buttonLabel="Filter" />
+                             <FilterCard
+                                show={showFilterModal}
+                                onHide={() => setShowFilterModal(false)}
+                                colour='#FFB968'
+                                buttonLogo={sliders_logo}
+                                                    />
 
                             <CircleButton
                                 className="history-button"
@@ -319,6 +330,7 @@ export default function ResultsPage() {
                 {showAdvancedSearch && <AdvancedSearch words={words}
                                     returnWordsDict={(e) => handleAdvancedSearch(e)} />}
                 {showHistory && <HistoryPanel />}
+                
                 <ProgressBar isLoading={searchQueryIsLoading} />
 
                 <div className="mt-2">
