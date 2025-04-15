@@ -31,21 +31,23 @@ export default function Definition({wordEntry}) {
 
                 let finalArray = [];
                 for (let i = 0; i < 3; i++) {
-                    let firstEntry = r.hits[i];
-                    let defObj = firstEntry.entry.sense
-                    let defEntry = defObj.definition ? defObj.definition.text : 'Meningen saknas i ordboken!'
-                    let exampleObj = defObj.examples;
-                    let swedishExamples = exampleObj?.filter(ex => 
-                    ex.type === "example" && ex.lang === "swe");
-                    
-                    finalArray.push(
-                        {
-                            id: i,
-                            word: wordEntry,
-                            definition: defEntry,
-                            examples: swedishExamples
-                        }
-                    )
+                    if (r.hits[i]){
+                        let firstEntry = r.hits[i];
+                        let defObj = firstEntry.entry.sense
+                        let defEntry = defObj.definition ? defObj.definition.text : 'Meningen saknas i ordboken!'
+                        let exampleObj = defObj.examples;
+                        let swedishExamples = exampleObj?.filter(ex => 
+                            ex.type === "example" && ex.lang === "swe");
+                        
+                        finalArray.push(
+                            {
+                                id: i,
+                                word: wordEntry,
+                                definition: defEntry,
+                                examples: swedishExamples
+                            }
+                        )
+                    }
                 }
 
                 setWordData(finalArray);
@@ -85,7 +87,7 @@ export default function Definition({wordEntry}) {
                         {getExamples(w.examples)}
                         </div>)
                         } else {
-                            return <p key={0} >Inga Resultat!</p>;
+                            return <p key={0} className='defintion__defintion'>Inga Resultat!</p>;
                         }
                     })}
                 
