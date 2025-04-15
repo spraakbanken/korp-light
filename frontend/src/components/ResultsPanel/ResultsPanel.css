@@ -134,7 +134,7 @@
   gap: 0.5rem;
   padding: 0.5rem 1rem;
   border: none;
-  background-color: var(--primary-color, #4a6fa5);
+  background-color: var(--primary-color);
   color: white;
   border-radius: 6px;
   font-weight: 500;
@@ -145,7 +145,7 @@
 }
 
 .pagination-button:hover:not(.disabled) {
-  background-color: var(--primary-color-dark, #3a5982);
+  background-color: color-mix(in srgb, var(--primary-color), black 10%);
   transform: translateY(-2px);
 }
 
