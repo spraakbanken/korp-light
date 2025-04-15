@@ -4,8 +4,7 @@ import { BadgeHelp } from 'lucide-react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Tooltip from 'react-bootstrap/Tooltip';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import { useFloating, offset, flip, shift, autoUpdate } from "@floating-ui/react-dom";
 import ToggleAPI from "../ToggleAPI/ToggleAPI";
 import SideMenu from "../SideMenu/SideMenu";
 import { useState } from "react";
@@ -23,27 +22,29 @@ import { useResultTour } from "../../services/Tour/resultTour";
 export default function NavigationBar() {
   //Settings Modal
   const [settingsModal, setSettingsModal] = useState(false);
+  const [showSettingsTooltip, setShowSettingsTooltip] = useState(false);
+  const [showHelpTooltip, setShowHelpTooltip] = useState(false);
   const { settings } = useContext(SettingsContext);
   const location = useLocation();
-  const {startTour} = useTour()
-  const {startResultTour} = useResultTour() // Import the startResultTour function from the useResultTour hook
-  ;
+  const {startTour} = useTour();
+  const {startResultTour} = useResultTour(); // Import the startResultTour function from the useResultTour hook
 
   const iconColor = settings.theme === "light" ? "black" : "white";
   const korpImage = settings.theme === "light" ? KorpLight : KorpDark;
 
+  // Floating UI for settings tooltip
+  const { x: settingsX, y: settingsY, refs: settingsRefs, strategy: settingsStrategy } = useFloating({
+    placement: 'bottom',
+    middleware: [offset(8), flip(), shift()],
+    whileElementsMounted: autoUpdate,
+  });
 
-  const settings_tip = (
-    <Tooltip id="settings_tooltip">
-      <strong>Inställningar</strong>
-    </Tooltip>
-  );
-
-  const help_tip = (
-    <Tooltip id="help_tooltip">
-      <strong>Hjälp</strong>
-    </Tooltip>
-  );
+  // Floating UI for help tooltip
+  const { x: helpX, y: helpY, refs: helpRefs, strategy: helpStrategy } = useFloating({
+    placement: 'bottom',
+    middleware: [offset(8), flip(), shift()],
+    whileElementsMounted: autoUpdate,
+  });
 
   const handleHelpClick = (e) => {
     e.preventDefault();
@@ -59,21 +60,71 @@ export default function NavigationBar() {
       <Container fluid className="d-flex justify-content-between">
         <SideMenu onTourStart={startTour} onResultTourStart={startResultTour}/>
         <Nav className="d-flex align-items-center">
-          <OverlayTrigger placement="bottom" overlay={help_tip}>
-            <Nav.Link className="circle__button" href="#" onClick={handleHelpClick}>
-              <BadgeHelp size={28} className=" icon-hover text-dark hover:text-primary" color={iconColor} />
+          <div ref={helpRefs.setReference}>
+            <Nav.Link 
+              className="circle__button" 
+              href="#" 
+              onClick={handleHelpClick}
+              onMouseEnter={() => setShowHelpTooltip(true)}
+              onMouseLeave={() => setShowHelpTooltip(false)}
+            >
+              <BadgeHelp size={28} className="icon-hover text-dark hover:text-primary" color={iconColor} />
             </Nav.Link>
-          </OverlayTrigger>
+          </div>
 
-          <OverlayTrigger placement="bottom" overlay={settings_tip}>
+          {showHelpTooltip && (
+            <div
+              ref={helpRefs.setFloating}
+              style={{
+                position: helpStrategy,
+                top: helpY ?? 0,
+                left: helpX ?? 0,
+                background: "black",
+                color: "white",
+                padding: "6px 10px",
+                borderRadius: "4px",
+                fontSize: "0.875rem",
+                zIndex: 9999,
+                pointerEvents: "none",
+                whiteSpace: "nowrap",
+              }}
+            >
+              <strong>Hjälp</strong>
+            </div>
+          )}
+
+          <div ref={settingsRefs.setReference}>
             <Nav.Link
               className="circle__button"
               href={null}
               onClick={() => setSettingsModal(true)}
+              onMouseEnter={() => setShowSettingsTooltip(true)}
+              onMouseLeave={() => setShowSettingsTooltip(false)}
             >
               <Settings size={28} className="icon icon-hover text-dark hover:text-primary" color={iconColor} />
             </Nav.Link>
-          </OverlayTrigger>
+          </div>
+          
+          {showSettingsTooltip && (
+            <div
+              ref={settingsRefs.setFloating}
+              style={{
+                position: settingsStrategy,
+                top: settingsY ?? 0,
+                left: settingsX ?? 0,
+                background: "black",
+                color: "white",
+                padding: "6px 10px",
+                borderRadius: "4px",
+                fontSize: "0.875rem",
+                zIndex: 9999,
+                pointerEvents: "none",
+                whiteSpace: "nowrap",
+              }}
+            >
+              <strong>Inställningar</strong>
+            </div>
+          )}
         </Nav>
       </Container>
 
