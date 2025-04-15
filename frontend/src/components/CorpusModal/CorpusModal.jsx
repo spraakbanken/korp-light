@@ -8,6 +8,7 @@ import sbCorpra from '../../services/testdata.json';
 import CorporaContext from "../../services/CorporaContext.jsx";
 import { Search } from 'lucide-react';
 import SettingsContext from "../../services/SettingsContext.jsx";
+import Form from 'react-bootstrap/Form';
 
 
 export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
@@ -226,8 +227,11 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
         return (
             <div key={title} className="corpus-section">
                 <div className="section-header" onClick={() => toggleExpanded(title)}>
-                    {isExpanded ? <CircleArrowDown size={16} /> : <CircleArrowRight size={16} />}
-                    <h5>{highlightSearchMatch(title)}</h5>
+                    <div className="section-title">
+                        {isExpanded ? <CircleArrowDown size={16} /> : <CircleArrowRight size={16} />}
+                        <h5>{highlightSearchMatch(title)}</h5>
+                    </div>
+                    <Form.Check className="section-checkbox"></Form.Check>
                 </div>
                 {/*If we expand we should show description if there is one, as well as all subcorps*/}
                 {isExpanded && (
