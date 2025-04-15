@@ -31,7 +31,7 @@ export default function SettingsCard(props) {
                 </Modal.Header>
                 <Modal.Body>
                     {/* Results per page */}
-                    <Form.Group className="mb-3">
+                    <Form.Group className="filter_button">
                         <Form.Label>Resultat per sida:</Form.Label>
                         <Form.Select 
                             
@@ -48,7 +48,7 @@ export default function SettingsCard(props) {
                     </Form.Group>
 
                     {/* Sample size */}
-                    <Form.Group className="mb-3">
+                    <Form.Group className="filter_button">
                         <Form.Label>Provstorlek:</Form.Label>
                         <div className="d-flex gap-2">
                             <Form.Select defaultValue="Procent">
@@ -63,7 +63,7 @@ export default function SettingsCard(props) {
                         </div>
                     </Form.Group>
                     {/* Context size */}
-                    <Form.Group className="mb-3">
+                    <Form.Group className="filter_button">
                         <Form.Label>Meningsstorlek:</Form.Label>
                         <Form.Control
                             type="number"
@@ -73,7 +73,7 @@ export default function SettingsCard(props) {
                         />
                     </Form.Group>
 
-                    <Form.Group className="mb-3">
+                    <Form.Group className="filter_button">
                     <Form.Label>API (*gjort för utvecklare):</Form.Label>
                         <div className=" d-flex align-items-center justify-content-center">
                             {/* Toggle API, logic in ToggleAPI.jsx */}
@@ -84,8 +84,8 @@ export default function SettingsCard(props) {
                 </Modal.Body>
                 
                 {/* Close button */}
-                <Modal.Footer className="settingsFooter" onClick={props.onHide}>
-                        <Button variant="danger" className="w-50 settingsCloseButton">Stäng</Button>
+                <Modal.Footer className="filterFooter" onClick={props.onHide}>
+                        <Button className="filterCloseButton">Stäng</Button>
                 </Modal.Footer>
             </Modal>
     );
