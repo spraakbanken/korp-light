@@ -8,12 +8,6 @@ import "./FilterCard.css";
 export default function SettingsCard(props) {
     const {settings, updateSettings} = useContext(SettingsContext);
 
-    const [selectedView, setSelectedView] = useState("wide");
-      
-    const handleViewChange = (view) => {
-        setSelectedView(view);
-    };
-
     useEffect(() => {
         // We have to move this out somewhere else, maybe App?
         // Move when we store settings in 
@@ -25,13 +19,13 @@ export default function SettingsCard(props) {
     return (
        
             <Modal {...props}
-                className="_settings-card" centered>
-                <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">Filter</Modal.Title>
+                className="_filter_card" centered>
+                <Modal.Header className="header" closeButton>
+                    <Modal.Title className="title">Filter</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body classname="modal-body">
                     {/* Results per page */}
-                    <Form.Group className="mb-3">
+                    <Form.Group className="filter_button">
                         <Form.Label>Resultat per sida:</Form.Label>
                         <Form.Select 
                             
@@ -48,7 +42,7 @@ export default function SettingsCard(props) {
                     </Form.Group>
 
                     {/* Sample size */}
-                    <Form.Group className="mb-3">
+                    <Form.Group className="filter_button">
                         <Form.Label>Provstorlek:</Form.Label>
                         <div className="d-flex gap-2">
                             <Form.Select defaultValue="Procent">
@@ -63,7 +57,7 @@ export default function SettingsCard(props) {
                         </div>
                     </Form.Group>
                     {/* Context size */}
-                    <Form.Group className="mb-3">
+                    <Form.Group className="filter_button">
                         <Form.Label>Meningsstorlek:</Form.Label>
                         <Form.Control
                             type="number"
@@ -73,7 +67,7 @@ export default function SettingsCard(props) {
                         />
                     </Form.Group>
 
-                    <Form.Group className="mb-3">
+                    <Form.Group className="filter_button">
                     <Form.Label>API (*gjort för utvecklare):</Form.Label>
                         <div className=" d-flex align-items-center justify-content-center">
                             {/* Toggle API, logic in ToggleAPI.jsx */}
@@ -84,8 +78,8 @@ export default function SettingsCard(props) {
                 </Modal.Body>
                 
                 {/* Close button */}
-                <Modal.Footer className="settingsFooter" onClick={props.onHide}>
-                        <Button variant="danger" className="w-50 settingsCloseButton">Stäng</Button>
+                <Modal.Footer className="filterFooter" onClick={props.onHide}>
+                        <Button className="filterCloseButton">Stäng</Button>
                 </Modal.Footer>
             </Modal>
     );

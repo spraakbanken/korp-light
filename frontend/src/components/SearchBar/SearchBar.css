@@ -4,33 +4,23 @@
     align-items: center;
     width: 100%;
     padding: 20px 0;
-
-
 }
-
-
 
 .searchBarWrapper {
     position: relative;
     display: flex;
     align-items: center;
     width: 100%;
-
-
 }
-
 
 .searchBar {
     padding: 10px 40px 10px 15px;
-    border: 1px solid #f0581a;
+    border: 1px solid var(--primary-color);
     border-radius: 30px;
     background-color: #f6f6f6;
     width: 100%;
-
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-
-
 
 .searchBarButton {
     position: absolute;
@@ -38,12 +28,9 @@
     background: none;
     border: none;
     cursor: pointer;
-    color: #f0581a;
+    color: var(--primary-color);
     transition: all 0.3s ease;
 }
-
-
-
 
 /* @media (max-width: 768px) {
     .searchBarContainer {

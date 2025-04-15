@@ -44,3 +44,14 @@ body, html {
   --text-color: #000000;
   --resultpanel-bg-color: rgba(255, 255, 255, 0.911);
 }
+
+[theme="test"] {
+  --bg-color: #ededed;
+  --navbar-color: red;
+  --primary-color: #F89066;
+  --secondary-color: #898989;
+  --text-color: black;
+  --label-color: gray;
+  --label-value-color: black;
+  --advanced-search-word: green;
+}

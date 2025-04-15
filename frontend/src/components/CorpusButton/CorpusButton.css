@@ -1,5 +1,6 @@
 .corpus-button {
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: space-between;
     background-color: #FFD98A;
@@ -27,5 +28,22 @@
 
 .corpus-button:hover {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    filter: brightness(80%);
+    filter: brightness(90%);
+}
+
+.corpus-number {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: var(--primary-color); 
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
