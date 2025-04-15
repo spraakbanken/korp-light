@@ -11,10 +11,12 @@
     justify-content: center;
     background-color: var(--primary-color);
     border: var(--primary-color);
+   
 }
 
 .filterCloseButton:hover {
     background-color: color-mix(in srgb, var(--primary-color), red 20%);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .filter_card{
@@ -26,7 +28,6 @@
 }
 
 .filter_button{
-    background-color: var(--bg-color);
     color: var(--text-color);
 }
 
@@ -34,9 +35,4 @@
     background-color: var(--bg-color);
 }
 
-.form-select:focus {
-    border-color: var(--bg-color) !important;
-    outline: 0;
-    box-shadow: none;
-}
 
