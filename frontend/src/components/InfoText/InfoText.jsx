@@ -14,6 +14,7 @@ export default function InfoText() {
                     Textsamlingarna, korpusarna, är annoterade med språkliga
                     och andra attribut.
                 </p>
+                <p>Last Updated: 2025-04-16 11:16</p>
             </div>
         </div>
     )
