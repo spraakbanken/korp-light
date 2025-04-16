@@ -3,9 +3,11 @@ import { horizontalListSortingStrategy, SortableContext, verticalListSortingStra
 import './AdvancedSearch.css'
 
 import AdvancedSearchEntry from './AdvancedSearchEntry.jsx';
+import SearchBar from '../SearchBar/SearchBar.jsx';
 
 import Dropdown from 'react-bootstrap/Dropdown';
 import { closestCorners, DndContext } from '@dnd-kit/core';
+import addbutton from '../../assets/addbutton.svg';
 
 export default function AdvancedSearch({words, returnWordsDict}) {
     
@@ -47,32 +49,35 @@ export default function AdvancedSearch({words, returnWordsDict}) {
     }
 
     return(
-        <div className='advanced__search__container'>
-            <input id='advanced__search__input' type='text'
-                placeholder='Ord...'
-                onChange={null}
-                onKeyDown={(e) => handleEnterKey(e)}></input>
-            <DndContext collisionDetection={closestCorners} onDragEnd={onDragStart}>
-            <SortableContext items={wordElements} strategy={horizontalListSortingStrategy}>
-            {wordElements.map((w) => {
-                if (w.wordEntry) {
-                    return <AdvancedSearchEntry key={w.id} word={w.wordEntry} idx={w.id} 
-                        returnWordTag={(tag) => {handleClick(w.wordEntry, tag)}}
-                        handleDelete={(word) => {handleDelete(word)}}/>
-                }
-            })}
-            </SortableContext>
-            </DndContext>
-            <div>
-                    <Dropdown key={99999}>
-                        <Dropdown.Toggle className='advanced__search__append'>+</Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            <Dropdown.Item onClick={() => createComponent('Adverb')}>Adverb</Dropdown.Item>
-                            <Dropdown.Item onClick={() => createComponent('Substantiv')}>Substantiv</Dropdown.Item>
-                        </Dropdown.Menu>
-                </Dropdown>
-              </div>
-        
-        </div>
+        <>
+            <SearchBar></SearchBar>
+            <div className='advanced__search__container'>
+                {/* <input id='advanced__search__input' type='text'
+                    placeholder='Ord...'
+                    onChange={null}
+                    onKeyDown={(e) => handleEnterKey(e)}></input> */}
+                <DndContext collisionDetection={closestCorners} onDragEnd={onDragStart}>
+                <SortableContext items={wordElements} strategy={horizontalListSortingStrategy}>
+                {wordElements.map((w) => {
+                    if (w.wordEntry) {
+                        return <AdvancedSearchEntry key={w.id} word={w.wordEntry} idx={w.id} 
+                            returnWordTag={(tag) => {handleClick(w.wordEntry, tag)}}
+                            handleDelete={(word) => {handleDelete(word)}}/>
+                    }
+                })}
+                </SortableContext>
+                </DndContext>
+                <div>
+                        <Dropdown key={99999}>
+                            <Dropdown.Toggle className='advanced__search__append'><img src={addbutton} alt='addbutton'></img></Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Dropdown.Item onClick={() => createComponent('Adverb')}>Adverb</Dropdown.Item>
+                                <Dropdown.Item onClick={() => createComponent('Substantiv')}>Substantiv</Dropdown.Item>
+                            </Dropdown.Menu>
+                    </Dropdown>
+                </div>
+            
+            </div>
+        </>
     );
 }

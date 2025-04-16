@@ -35,20 +35,23 @@ export default function AdvancedSearchEntry({word, idx, returnWordTag, handleDel
                 <div ref={setNodeRef} {...attributes} {...listeners}
                     style={style} 
                     className='advanced__search__entry'>
-                    <Dropdown key={idx}>
-                        <Dropdown.Toggle className='advanced__search__word'>
-                            {word}
-                        </Dropdown.Toggle>
-            
-                        <Dropdown.Menu>
-                        <Dropdown.Item onClick={(e) => {handleClick(word, e); returnWordTag('Grundform');}}>Grundform</Dropdown.Item>
-                        <Dropdown.Item onClick={(e) => {handleClick(word, e); returnWordTag('Ord');}}>Ord</Dropdown.Item>
-                        <Dropdown.Divider />
-                        <Dropdown.Item onClick={(e) => handleDelete(word, e)}>Radera</Dropdown.Item>
-                        </Dropdown.Menu>
-                </Dropdown>
-                {showOrdform && <p className='advanced__search__small__icon'>O</p>}
-                {showGrundform && <p className='advanced__search__small__icon'>G</p>}
+                    <div className='advanced__search__entry__wrapper'>
+                        <Dropdown key={idx}>
+                            <Dropdown.Toggle className='advanced__search__word'>
+                                {word}
+                            </Dropdown.Toggle>
+                
+                            <Dropdown.Menu>
+                            <Dropdown.Item onClick={(e) => {handleClick(word, e); returnWordTag('Grundform');}}>Grundform</Dropdown.Item>
+                            <Dropdown.Item onClick={(e) => {handleClick(word, e); returnWordTag('Ord');}}>Ord</Dropdown.Item>
+                            <Dropdown.Divider />
+                            <Dropdown.Item onClick={(e) => handleDelete(word, e)}>Radera</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                        {showOrdform && <p className='advanced__search__small__icon'>O</p>}
+                        {showGrundform && <p className='advanced__search__small__icon'>G</p>}
+                    </div>
+
               </div>
             );        
         }

@@ -70,7 +70,7 @@ export default function Definition({wordEntry}) {
                 onChange={(e) => setWordInput(e.target.value)}/>
             <Button onClick={() => handleClick(wordInput)}>Search</Button> */}
             <div className="corpus-group">
-            <div className="corpus-header" 
+            <div className="corpus-header-defintion" 
                 onClick={toggleDefExpand}>
             {expandDef ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
                 <span className="corpus-name">Lexin Ordbok: {wordEntry}</span>
