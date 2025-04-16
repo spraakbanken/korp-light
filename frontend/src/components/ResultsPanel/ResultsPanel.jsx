@@ -23,6 +23,8 @@ const ResultsPanel = ({ response, wordToDef }) => {
   
   const corpusPerPage = 3; // Should be swapped with resultsperpage.
   const [resultsPerCorpus, setResultsPerCorpus] = useState(settings.sampleSize);
+
+  
   
   useEffect(() => {
     if (response) {
@@ -149,7 +151,7 @@ const ResultsPanel = ({ response, wordToDef }) => {
         <div className="results-stats">
           <span className="results-count">Totala matchningar: <strong>{hits}</strong></span>
           {/*Should probably say the total of the corpuses from that page, not current endhit */}
-          <span className="results-showing">Visar <strong>{startHit + 1}–{endHit}</strong></span>
+          <span className="results-showing">Visar <strong>{startHit + 1}–{resultsPerCorpus}</strong></span>
         </div>
       </div>
       

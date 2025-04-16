@@ -75,9 +75,9 @@ export default function LandingPage() {
        
     );
 
-    const filter_tip = (
+    const search_settings_tip = (
         
-            <strong>Filtrera</strong>
+            <strong>Sök inställningar</strong>
       
     );
 
@@ -164,8 +164,8 @@ export default function LandingPage() {
                             buttonColour='#FFB968'
                             buttonImage={sliders_logo}
                             buttonOnClick={toggleFilterModal}
-                            buttonToolTip={filter_tip}
-                            buttonLabel="Filter"
+                            buttonToolTip={search_settings_tip}
+                            buttonLabel="Sök inställningar"
                         />
                         <FilterCard
                             show={showFilterModal}
