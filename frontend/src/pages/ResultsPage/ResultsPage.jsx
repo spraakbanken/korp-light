@@ -21,7 +21,7 @@ import CorpusButton from "../../components/CorpusButton/CorpusButton.jsx";
 import AdvancedSearch from "../../components/AdvancedSearch/AdvancedSearch.jsx";
 import FilterCard from "../../components/FilterCard/FilterCard.jsx";
 //Services
-import { getCorpusInfo, getCorpusQuery } from "../../services/api.js";
+import { getCorpusInfo, getCorpusQuery, getStatisticsOverTime } from "../../services/api.js";
 
 //Assets
 import advanced from '../../assets/advanced.svg';
@@ -120,6 +120,15 @@ export default function ResultsPage() {
             enabled: false,
         });
 
+    const
+        { data: statisticsData = [],
+            isLoading: statisticsDataIsLoading,
+            refetch: statisticsDataRefetch,
+        } = useQuery({
+            queryKey: [rawSearchInput],
+            queryFn: () => getStatisticsOverTime(rawSearchInput, 'vb'),
+            enabled: false,
+        });
 
     const handleSubmit = (event) => {
         if (corporas.corporas){
@@ -191,6 +200,8 @@ const history_tip = (
                 setQueryData(res.data);
             });
             console.log("Triggered new fetch for: ", searchWordInput, "in", corpusInput);
+            statisticsDataRefetch().then((res) => {console.log('stats', res.data)});
+
         }
     }, [searchWordInput, corpusInput]);
     
