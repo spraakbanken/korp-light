@@ -144,7 +144,7 @@
 }
 
 .empty-selection {
-    color: var(--resultpanel-bg-color);
+    color: var(--text-color);
 }
 
 .selected-values-container {

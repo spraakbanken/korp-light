@@ -395,31 +395,29 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
                     </div>
                 </div>
 
-                <div className="selected-corpora-bar">
-                    {selectedCorpora ? (Object.keys(selectedCorpora).length > 0 ? (
-                        <div>
-                            <span className="selected-count">
-                            {Object.keys(selectedCorpora).length} {Object.keys(selectedCorpora).length === 1 ? "Vald" : "Valda"}
-                            </span>
-                            <div className="selected-values-container">
-                                {Object.values(selectedCorpora).map(corpus => <p className="selected-values">{corpus},</p>)}
-                            </div>
-                            <Button 
-                                variant="link" 
-                                onClick={() => {
-                                    setSelectedCorpora([]);
-                                    setExpanded({});
-                                    updateCorporas({ ...corporas, corporas: null });
-                                }}
-                                size="sm"
-                            >
-                                Avmarkera alla
-                            </Button>
+                {selectedCorpora ? (Object.keys(selectedCorpora).length > 0 ? (
+                    <div>
+                        <span className="selected-count">
+                        {Object.keys(selectedCorpora).length} {Object.keys(selectedCorpora).length === 1 ? "Vald" : "Valda"}
+                        </span>
+                        <div className="selected-values-container">
+                            {Object.values(selectedCorpora).map(corpus => <p className="selected-values">{corpus},</p>)}
                         </div>
-                    ) : (
-                        <div className="empty-selection">Ingen vald korpus</div>
-                    )): (<div className="empty-selection">Ingen vald korpus</div>)}
-                </div>
+                        <Button 
+                            variant="link" 
+                            onClick={() => {
+                                setSelectedCorpora([]);
+                                setExpanded({});
+                                updateCorporas({ ...corporas, corporas: null });
+                            }}
+                            size="sm"
+                        >
+                            Avmarkera alla
+                        </Button>
+                    </div>
+                ) : (
+                    <div className="empty-selection">Ingen vald korpus</div>
+                )): (<div className="empty-selection">Ingen vald korpus</div>)}
                 
                 <div className="corpus-container">
                     {Object.values(testdata).map(renderCorpusSection)}
