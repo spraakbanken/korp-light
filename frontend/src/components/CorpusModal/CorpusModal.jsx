@@ -227,11 +227,12 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
         return (
             <div key={title} className="corpus-section">
                 <div className="section-header" onClick={() => toggleExpanded(title)}>
-                    <div className="section-title">
-                        {isExpanded ? <CircleArrowDown size={16} /> : <CircleArrowRight size={16} />}
-                        <h5>{highlightSearchMatch(title)}</h5>
-                    </div>
-                    <Form.Check className="section-checkbox"></Form.Check>
+                    <Form.Check 
+                        className="section-checkbox"
+                        onClick={(e) => e.stopPropagation()}>
+                    </Form.Check>
+                    {isExpanded ? <CircleArrowDown size={16} /> : <CircleArrowRight size={16} />}
+                    <h5>{highlightSearchMatch(title)}</h5>
                 </div>
                 {/*If we expand we should show description if there is one, as well as all subcorps*/}
                 {isExpanded && (
