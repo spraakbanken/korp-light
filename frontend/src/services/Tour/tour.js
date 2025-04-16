@@ -49,7 +49,11 @@ export const useTour = () => {
       
       <p>För utökad funktionalitet kan du använda 
       <a href="https://spraakbanken.gu.se/korp/" target="_blank">Korp</a>, 
-      vilket är <a href="https://sprakbanken.se/" target="_blank">Språkbankens</a> ordforskningsplattform.</p>`,      
+      vilket är <a href="https://sprakbanken.se/" target="_blank">Språkbankens</a> ordforskningsplattform.</p>`,
+      attachTo: {
+        element: '.logo-container',
+        on: 'bottom'
+      },   
       modalOverlayOpeningPadding: 8,
       canClickTarget: false,
       buttons: [
