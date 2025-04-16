@@ -4,8 +4,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border-radius: 20px;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-    background-color: #ffffff;
-    color: #333333;
+    background-color: var(--bg-color);
     z-index: 9999;
     margin-top: 12px;
 }
@@ -13,7 +12,7 @@
 /* Header of the step */
 .shepherd-theme-custom .shepherd-header {
     padding: 16px 16px 0;
-    background: transparent;
+    background: color-mix(in srgb, var(--bg-color), black 20%) !important;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 }
@@ -23,6 +22,7 @@
     padding: 16px;
     font-size: 16px;
     line-height: 1.5;
+    color: var(--text-color);
 }
 
 /* Step title */
@@ -30,7 +30,7 @@
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 8px;
-    color: #222222;
+    color: var(--text-color);
 }
 
 /* Button container at the bottom */
