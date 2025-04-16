@@ -1,11 +1,17 @@
-import CorpusSelector from "../../components/CorpusSelector/CorpusSelector";
-import Definition from "../../components/Definition/Definition";
-import NavigationBar from "../../components/NavigationBar/NavigationBar";
+import { getStatisticsOverTime } from "../../services/api";
 
 export default function SettingsPage() {
+
+    const handleClick = () => {
+        getStatisticsOverTime('bil', 'nn')
+            .then(e => console.log(e))
+            .catch(error => console.log(error));
+    }
+
     return (
         <div>
-            <Definition />
+            <p>Test</p>
+            <button onClick={handleClick}>Click</button>
         </div>
     );
 }

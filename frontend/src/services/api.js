@@ -115,4 +115,20 @@ export function buildQuery(params) {
   return finalQuery;
 }
 
+export async function getStatisticsOverTime(word, wordClass) {
+    console.log('Getting statistics for ', word, wordClass);
+    
+    queryParams.cqp = `[lex contains "${word}\\.\\.${wordClass}\\.1"]`
+    
+    try {
+        const response = await axios_instance('/count_time', {params: queryParams});
+        console.log('statistics response', response.data);
+        return response.data;
+    } catch(error) {
+        console.log("getStatisticsOverTime ERROR: ", error);
+        return `ERROR: statistics: ${word} not found!`;
+    }
+
+}
+
 // See korp web-api for complete api calls to implement and parse
