@@ -38,7 +38,7 @@ export const useTour = () => {
 // För utökad funktionalitet kan du använda Korp, vilket är Språkbankens ordforskningsplattform.
     tour.addStep({
       id: 'info-text',
-      title: `Information <div class="step-counter">1/${totalSteps}</div>`,
+      title: `Allmänt om Korpi <div class="step-counter">1/${totalSteps}</div>`,
       text: `<p>I Korpi kan du söka på ord i store textsamlingar, så kallade korpusar. 
       Texterna kommer bland annat från nyheter, romaner och sociala medier.</p>
       
@@ -49,7 +49,7 @@ export const useTour = () => {
       
       <p>För utökad funktionalitet kan du använda 
       <a href="https://spraakbanken.gu.se/korp/" target="_blank">Korp</a>, 
-      vilket är Språkbankens ordforskningsplattform.</p>`,      
+      vilket är <a href="https://sprakbanken.se/" target="_blank">Språkbankens</a> ordforskningsplattform.</p>`,      
       modalOverlayOpeningPadding: 8,
       canClickTarget: false,
       buttons: [
@@ -94,8 +94,8 @@ export const useTour = () => {
     // Step 3: Corpus Button
     tour.addStep({
       id: 'corpus-button',
-      title: `Textsamlingar <div class="step-counter">3/${totalSteps}</div>`,
-      text: 'Klicka här för att välja vilka korpusar du vill söka i, tex Nyhetstexter',
+      title: `Välj korpus <div class="step-counter">3/${totalSteps}</div>`,
+      text: 'Klicka här för att välja vilka korpusar (textsamlingar) du vill söka i, t.ex. "Nyheter".',
       attachTo: {
         element: '.corpus-button',
         on: 'bottom'
@@ -119,7 +119,7 @@ export const useTour = () => {
      tour.addStep({
       id: 'extended-search',
       title: `Utökad sökning <div class="step-counter">4/${totalSteps}</div>`,
-      text: 'Utökad sökning låter dig använda mer avancerade sökfunktioner, tex grundform eller ordklass',
+      text: 'Utökad sökning låter dig använda mer avancerade sökfunktioner, t.ex. grundform eller ordklass.',
       attachTo: {
         element: '.extended-search-button',
         on: 'bottom'
@@ -142,8 +142,8 @@ export const useTour = () => {
     // Step 5: Filter Button
     tour.addStep({
       id: 'filter-button',
-      title: `Filter <div class="step-counter">5/${totalSteps}</div>`,
-      text: 'Filtrera på hur många resultat du vill ha, eller hur många ord som ska visas i varje resultat',
+      title: `Sökinställningar <div class="step-counter">5/${totalSteps}</div>`,
+      text: 'Välj hur resultat ska presenteras, t.ex. hur många resultat per korpus som du vill se.',
       attachTo: {
         element: '.filter-button',
         on: 'bottom'
@@ -167,7 +167,7 @@ export const useTour = () => {
     tour.addStep({
       id: 'history-button',
       title: `Historik <div class="step-counter">6/${totalSteps}</div>`,
-      text: 'Här kan du se din sökhistorik, tryck på ett ord för att gå till den sökningen',
+      text: 'Här kan du se din sökhistorik, tryck på ett ord för att gå till den sökningen.',
       attachTo: {
         element: '.history-button',
         on: 'bottom'
