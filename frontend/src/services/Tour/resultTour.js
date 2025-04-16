@@ -217,7 +217,7 @@ export const useResultTour = () => {
     // Step 8: Result Panel
     resultTour.addStep({
         id: 'results-panel',
-        title: `Resultat panelen <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
+        title: `Resultatpanelen <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
         text: 'Här kan du se alla dina sökresultat.',
         attachTo: {
           element: '.results-panel',
