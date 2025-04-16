@@ -325,7 +325,7 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
                 {/*If we expand we should show description if there is one, as well as all subcorps*/}
                 {isExpanded && (
                     <div className="section-content">
-                        {desc !== "No description" && <p className="section-description">{desc}</p>}
+                        {desc !== "Ingen beskrivning" && <p className="section-description">{desc}</p>}
                         
                         {Object.keys(testDict).length > 0 && (
                             <div className="corpus-grid">
@@ -404,7 +404,7 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
                     
                     {isExpanded && (
                         <div className="subcorpus-content">
-                            {subDesc !== "No description" && <p className="section-description">{subDesc}</p>}
+                            {subDesc !== "Ingen beskrivning" && <p className="section-description">{subDesc}</p>}
                             <div className="corpus-grid">
                                 {Object.entries(subCorporaDict).map(([id, label]) => (
                                     <div
@@ -486,10 +486,10 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
                 {selectedCorpora ? (Object.keys(selectedCorpora).length > 0 ? (
                     <div>
                         <span className="selected-count">
-                        {Object.keys(selectedCorpora).length} {Object.keys(selectedCorpora).length === 1 ? "Vald" : "Valda"}
+                        {Object.keys(selectedCorpora).length} {Object.keys(selectedCorpora).length === 1 ? "vald" : "valda"}
                         </span>
                         <div className="selected-values-container">
-                            {Object.values(selectedCorpora).map(corpus => <p className="selected-values">{corpus},</p>)}
+                            {Object.values(selectedCorpora).map(corpus => <p className="selected-values">{corpus} |</p>)}
                         </div>
                         <Button 
                             variant="link" 
