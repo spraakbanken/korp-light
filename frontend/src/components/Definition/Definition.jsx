@@ -24,7 +24,7 @@ export default function Definition({wordEntry}) {
                     setWordData([{
                             id: 0,
                             word: "",
-                            definition: "Ordet hittas inte i ordboken",
+                            definition: "Ordet finns inte i ordboken",
                             examples: ""
                     }]);
                 } 
@@ -73,7 +73,7 @@ export default function Definition({wordEntry}) {
             <div className="corpus-header" 
                 onClick={toggleDefExpand}>
             {expandDef ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
-                <span className="corpus-name">Defintion: {wordEntry}</span>
+                <span className="corpus-name">Lexin Ordbok: {wordEntry}</span>
                 <span className="corpus-count"></span>
             </div>
             {expandDef && <div className="results-table">
