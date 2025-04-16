@@ -15,7 +15,7 @@ export default function ToggleAPI() {
   const handleChange = (value) => {
     toggleAPI(value)
     updateSettings({...settings, api:value})
-    corporas.corporas = {'attasidor': '8 Sidor', 'svt-2006': 'SVT news 2006'}
+    corporas.corporas = {'attasidor': '8 Sidor', 'svt-2006': 'SVT Nyheter 2006'}
     updateCorporas({
       ...corporas,
       api: value
