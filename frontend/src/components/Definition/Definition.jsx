@@ -73,7 +73,7 @@ export default function Definition({wordEntry}) {
             <div className="corpus-header-defintion" 
                 onClick={toggleDefExpand}>
             {expandDef ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
-                <span className="corpus-name">Lexin Ordbok: {wordEntry}</span>
+                <span className="corpus-name">Lexin ordbok: {wordEntry}</span>
                 <span className="corpus-count"></span>
             </div>
             {expandDef && <div className="results-table">
