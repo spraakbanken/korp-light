@@ -113,7 +113,7 @@ export default function ResultsPage() {
             isLoading: searchQueryIsLoading,
             refetch: searchQueryRefetch,
         } = useQuery({
-            queryKey: [searchWordInput],
+            queryKey: [searchWordInput, corpusInput],
             queryFn: () => getCorpusQuery(searchWordInput),
             enabled: false,
         });
@@ -121,7 +121,6 @@ export default function ResultsPage() {
 
     const handleSubmit = (event) => {
         if (corporas.corporas != null){
-        handleCorpusQuery();
         let res;
                 console.log(wordsDict);
                 if(wordsDict && Object.keys(wordsDict).length > 0){
@@ -129,8 +128,8 @@ export default function ResultsPage() {
                 }else{
                     res = `[word = "${event}"]`;
                 }
-
         setSearchWordInput(res);
+        handleCorpusQuery();
         setRawSearchInput(event);
         navigate(`/results?corpus=${encodeURIComponent(Object.keys(corporas.corporas))}&cqp=${encodeURIComponent(res)}`);
             }
@@ -182,21 +181,14 @@ const history_tip = (
     }
 
     useEffect(() => {
-        if (searchWordInput) {
-
-
-
+        if (searchWordInput && corpusInput) {
             searchQueryRefetch().then((res) => {
                 setQueryData(res.data);
-
             });
-
-
-
-            console.log("CHANGED: ", searchWordInput)
+            console.log("Triggered new fetch for: ", searchWordInput, "in", corpusInput);
         }
-
-    }, [searchWordInput, searchQueryRefetch])
+    }, [searchWordInput, corpusInput]);
+    
 
     useEffect(() => {
         setSearchWordInput(searchQueryTest || '');

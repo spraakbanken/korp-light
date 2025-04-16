@@ -29,8 +29,10 @@ export default function SearchBar({ returnSearchInput, returnWords }) {
                             returnWords(words);
                         }
                     }}
+
                     onKeyDown={(e) => {
                         if (e.key === 'Enter') {
+                            console.log("searchinput", searchInput);
                             returnSearchInput(searchInput);
                         }
                     }}
