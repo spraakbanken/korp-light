@@ -22,6 +22,7 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
     const testdata = settings.api === 1 ? sbCorpra : peterCorpra;
 
     // Generate random UUIDs for all subcorpora on first render
+    //!IMPORTANT: Probably need to overlook these keys, they could break, if 2 subcorporas has the same name (I think).
     useEffect(() => {
         const ids = {};
         Object.values(testdata).forEach(category => {
@@ -33,7 +34,7 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
             }
         });
         setSubcorporaIds(ids);
-    }, []);
+    }, [settings.api]);
 
     //Trying to expand categories when searching, kinda hard
     useEffect(() => {
@@ -197,13 +198,60 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
 
     };
 
-    const handleSelectAllCorpora = (e, title) => {
-        console.log('title', title);
+    const handleSelectAllCorpora = (e, sectionTitle) => {
+        e.stopPropagation(); // Prevent toggle on header click
+    
+        const category = Object.values(testdata).find(cat => cat[0] === sectionTitle);
+        if (!category) return;
+    
+        const sectionCorpora = {};
+    
+    //Here we retrieve all main corporas    
+        if (category[2]) {
+            Object.entries(category[2]).forEach(([id, value]) => {
+                const label = Array.isArray(value) ? value[0] : value;
+                sectionCorpora[id] = label;
+            });
+        }
+        
 
-        Object.entries(title).forEach(([key, values]) => {
-            console.log('key, value', key, values);
-        })
-    }
+        // This is for subcorporas, we currently dont have this in the structure but it should (hopefully) work if we add it.
+        if (category[3]?.subcorpora) {
+            Object.values(category[3].subcorpora).forEach(sub => {
+                if (sub[2]) {
+                    Object.entries(sub[2]).forEach(([id, value]) => {
+                        const label = Array.isArray(value) ? value[0] : value;
+                        sectionCorpora[id] = label;
+                    });
+                }
+            });
+        }
+
+        // We check if all are selected within the category/title, so it works like a toggle button.
+        const allSelected = Object.keys(sectionCorpora).every(id => id in selectedCorpora);
+    
+        let newSelection;
+        //This is the "toggle statement" so you can also unselect all within a category/title.
+        if (allSelected) {
+            newSelection = { ...selectedCorpora };
+            Object.keys(sectionCorpora).forEach(id => {
+                delete newSelection[id];
+            });
+        } else {
+            newSelection = {
+                ...selectedCorpora,
+                ...sectionCorpora
+            };
+        }
+    
+        setSelectedCorpora(newSelection);
+        updateCorporas({
+            ...corporas,
+            corporas: newSelection
+        });
+    };
+    
+    
 
     const renderCorpusSection = (e) => {
         const title = e[0];
@@ -230,16 +278,47 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
         // Force expand if searching and has visible content
         const shouldForceExpand = searchQuery && hasVisibleContent;
         const isExpanded = shouldForceExpand || expanded[title];
+
+
+        //All below is so the toggle button(Form.check) relies on state rather than clicking.
+        const allCorporaIdsInSection = [];
+
+        //All main corpora ids
+        if (e[2]) {
+            for (const id in e[2]) {
+                allCorporaIdsInSection.push(id);
+            }
+        }
+
+        // All subcorpora ids, if there is any
+        if (e[3] && e[3].subcorpora) {
+            const subcorpora = Object.values(e[3].subcorpora); // array of subcorpora (this is the subcategory, a collection of corporas if u will)
+
+            for (const sub of subcorpora) {
+                if (sub[2]) { // sub[2] is the list of corporas in the subcorpora.
+                    for (const id in sub[2]) {
+                        allCorporaIdsInSection.push(id); // push each subcorpora in to the list.
+                    }
+                }
+            }
+        }
+
+        // Check if all are selected
+        const allSelected = allCorporaIdsInSection.length > 0 &&
+            allCorporaIdsInSection.every(id => id in selectedCorpora);
+
     
         {/*Each main corpora*/}
         return (
             <div key={title} className="corpus-section">
                 <div className="section-header" onClick={() => toggleExpanded(title)}>
                     <Form.Check 
-                        className="section-checkbox"
-                        onClick={(e) => e.stopPropagation()}
-                        onChange={(e) => handleSelectAllCorpora(e, title)}>
-                    </Form.Check>
+                    className="section-checkbox"
+                    checked={allSelected}
+                    onClick={(e) => e.stopPropagation()}
+                    onChange={(e) => handleSelectAllCorpora(e, title)}
+                    />
+
                     {isExpanded ? <CircleArrowDown size={16} /> : <CircleArrowRight size={16} />}
                     <h5>{highlightSearchMatch(title)}</h5>
                 </div>
