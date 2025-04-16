@@ -123,14 +123,16 @@ export default function LandingPage() {
                     <img className="korp-image" src={korpImage} alt="" />
                 </div>
                 <div className="landingpage__search_bar_container">
-                    <SearchBar
+                    {showAdvancedSearch && <AdvancedSearch words={words}
+                        returnWordsDict={(e) => handleAdvancedSearch(e)} />}
+                    {!showAdvancedSearch && <SearchBar
                         returnSearchInput={(e) => {
                             handleSubmit(e);
                         }}
                         returnWords={(e) => {
                             handleWords(e);
                         }}
-                    />
+                    />}
                 </div>
                 <div className="landingpage__button_group">
                     <div className="corpus-button-div">
@@ -181,8 +183,7 @@ export default function LandingPage() {
                         />
                     </div>
                 </div>
-                {showAdvancedSearch && <AdvancedSearch words={words}
-                    returnWordsDict={(e) => handleAdvancedSearch(e)} />}
+                
                 {showHistory && <HistoryPanel />}
 
                 <InfoText className="info_text" />
