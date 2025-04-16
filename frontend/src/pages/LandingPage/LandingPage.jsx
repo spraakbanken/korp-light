@@ -45,6 +45,7 @@ export default function LandingPage() {
     const [showModal, setShowModal] = useState(false);
     const [showFilterModal, setShowFilterModal] = useState(false);
     const [showFilter, setShowFilter] = useState(false);
+    const [showErrorCorpus, setShowErrorCorpus] = useState(false);
 
     const korpImage = settings.theme === "light" ? KorpLight : KorpDark;
 
@@ -94,16 +95,23 @@ export default function LandingPage() {
     );
 
     const handleSubmit = (event) => {
-        //VET EJ HUR VI BYGGER URL QUERYN FÖR FLERA CORPUSAR.
-        let res;
-        console.log(wordsDict);
-        if(wordsDict && Object.keys(wordsDict).length > 0){
-            res = buildQuery(wordsDict);
-        }else{
-            res = `[word = "${event}"]`;
-        }
+
+        if (corporas.corporas) {
+            //VET EJ HUR VI BYGGER URL QUERYN FÖR FLERA CORPUSAR.
+            setShowErrorCorpus(false);
+            let res;
+            console.log(wordsDict);
+            if(wordsDict && Object.keys(wordsDict).length > 0){
+                res = buildQuery(wordsDict);
+            }else{
+                res = `[word = "${event}"]`;
+            }
+
         
-        navigate(`/results?corpus=${encodeURIComponent(Object.keys(corporas.corporas))}&cqp=${encodeURIComponent(res)}`);
+                navigate(`/results?corpus=${encodeURIComponent(Object.keys(corporas.corporas))}&cqp=${encodeURIComponent(res)}`);
+        } else {
+            setShowErrorCorpus(true);
+        }
     };
 
     const handleAdvancedSearch = (e) => {
@@ -135,6 +143,7 @@ export default function LandingPage() {
                         }}
                     />}
                 </div>
+                {showErrorCorpus && <p className="landingpage__select__corpus__error">Välj korpus innan du söker!</p>}
                 <div className="landingpage__button_group">
                     <div className="corpus-button-div">
                         <CorpusButton

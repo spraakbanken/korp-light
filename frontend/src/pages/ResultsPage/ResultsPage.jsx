@@ -59,6 +59,8 @@ export default function ResultsPage() {
     const [corpusInput, setCorpusInput] = useState(corpusQueryTest);
     const [searchWordInput, setSearchWordInput] = useState(searchQueryTest); // IDK if we use this
 
+    const [showErrorCorpus, setShowErrorCorpus] = useState(false);
+    
     const [rawSearchInput, setRawSearchInput] = useState("");
 
     const [queryData, setQueryData] = useState({});
@@ -120,7 +122,8 @@ export default function ResultsPage() {
 
 
     const handleSubmit = (event) => {
-        if (corporas.corporas != null){
+        if (corporas.corporas){
+            setShowErrorCorpus(false);
         let res;
                 console.log(wordsDict);
                 if(wordsDict && Object.keys(wordsDict).length > 0){
@@ -132,7 +135,9 @@ export default function ResultsPage() {
         handleCorpusQuery();
         setRawSearchInput(event);
         navigate(`/results?corpus=${encodeURIComponent(Object.keys(corporas.corporas))}&cqp=${encodeURIComponent(res)}`);
-            }
+        } else {
+            setShowErrorCorpus(true);
+        }
     };
 
     const advanced_tip = (
@@ -269,10 +274,10 @@ const history_tip = (
                                 <SearchBar returnSearchInput={(e) => {
                                     handleSubmit(e);
                                 }} />
-                                
                             </div>
                         </div>
                         <div className="resultpage__button_container">
+                        
                             <CircleButton
                                 className="extended-search-button"
                                 buttonColour='#FF9F79'
@@ -307,6 +312,10 @@ const history_tip = (
                     </div>
                     <CalenderButton/>
                 </div>
+                {showErrorCorpus && 
+                        <p className="landingpage__select__corpus__error">
+                                Välj korpus innan du söker!
+                        </p>}
                 
                 {showAdvancedSearch && <AdvancedSearch words={words}
                                     returnWordsDict={(e) => handleAdvancedSearch(e)} />}
