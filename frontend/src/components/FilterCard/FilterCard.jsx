@@ -21,60 +21,48 @@ export default function SettingsCard(props) {
             <Modal {...props}
                 className="_filter_card" centered>
                 <Modal.Header className="header" closeButton>
-                    <Modal.Title className="title">Filter</Modal.Title>
+                    <Modal.Title className="title">Sökinställningar</Modal.Title>
                 </Modal.Header>
                 <Modal.Body classname="modal-body">
-                    {/* Results per page */}
+                    {/* Corpora per page */}
                     <Form.Group className="filter_button">
-                        <Form.Label>Resultat per sida:</Form.Label>
+                        <Form.Label>KORPUS PER SIDA: <span className="settings__description"> antal korpusar som visas per sida</span></Form.Label>
                         <Form.Select 
-                            
                             onChange={(e) => {
                                 updateSettings({
                                     ...settings,
                                     resultsPerPage: e.target.value
                                 })}}
                                 value={settings.resultsPerPage} >
-                            {[10, 20, 50, 100].map((num) => (
-                                <option key={num} value={num}>{num} Resultat</option>
+                            {[1, 3, 5, 10].map((num) => (
+                                <option key={num} value={num}>
+                                    {num} {num === 1 ? "Korpus" : "Korpusar"}
+                                </option>
                             ))}
                         </Form.Select>
                     </Form.Group>
 
                     {/* Sample size */}
                     <Form.Group className="filter_button">
-                        <Form.Label>Provstorlek:</Form.Label>
-                        <div className="d-flex gap-2">
-                            <Form.Select defaultValue="Procent">
-                                <option>Antal</option>
-                            </Form.Select>
+                        <Form.Label>PROVSTORLEK: <span className="settings__description"> antal resultat per korpus</span></Form.Label>
+                    <div className="d-flex gap-2">
                             <Form.Control
                                 type="number"
                                 value={settings.sampleSize}
-                                
                                 onChange={(e) => updateSettings({...settings, sampleSize : e.target.value})}
                             />
                         </div>
                     </Form.Group>
+
                     {/* Context size */}
                     <Form.Group className="filter_button">
-                        <Form.Label>Meningsstorlek:</Form.Label>
+                        <Form.Label>MENINGSLÄNGD: <span className="settings__description"> antal ord som omger resultatet</span></Form.Label>
                         <Form.Control
                             type="number"
                             value={settings.contextSize}
-                            
                             onChange={(e) => updateSettings({...settings, contextSize : e.target.value})}
                         />
                     </Form.Group>
-
-                    <Form.Group className="filter_button">
-                    <Form.Label>API (*gjort för utvecklare):</Form.Label>
-                        <div className=" d-flex align-items-center justify-content-center">
-                            {/* Toggle API, logic in ToggleAPI.jsx */}
-                            <ToggleAPI />   
-                        </div>
-                    </Form.Group>
-
                 </Modal.Body>
                 
                 {/* Close button */}
