@@ -32,7 +32,7 @@ export default function ToggleAPI() {
         onChange={handleChange} 
       >
         <ToggleButton className="toggle-button me-2" id="api-toggle-button-1" value={1} >
-          Språkbanken
+          Språkbanken API
         </ToggleButton>
           <span className="vr border-start border-1 border-dark rounded-3"></span>
         <ToggleButton className="toggle-button ms-2" id="api-toggle-button-2" value={0}>
