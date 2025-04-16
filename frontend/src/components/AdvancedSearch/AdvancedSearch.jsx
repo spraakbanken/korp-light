@@ -12,7 +12,7 @@ import addbutton from '../../assets/addbutton.svg';
 export default function AdvancedSearch({words, returnWordsDict}) {
     
     const [wordElements, setWordElements] = useState([{
-        id: 1, wordEntry: ""
+        id: 0, wordEntry: "", tag: ""
     }]);
     const [wordsDict, setWordsDict] = useState({});
 
@@ -24,15 +24,25 @@ export default function AdvancedSearch({words, returnWordsDict}) {
     function handleEnterKey(e) {
         let w = e.target.value;
         if (e.key === 'Enter' && w) {
-            setWordElements((prev) => [...prev, {id: prev.length+1, 
-                wordEntry: w}]);
+            setWordElements((prev) => [...prev, 
+            {
+                id: prev.length+1, 
+                wordEntry: w,
+                tag: 'Ordform'
+            }]);
             setWordsDict({...wordsDict, [w] : 'Ordform'});
             e.target.value='';
         }
+
+        console.log('Dictionary', wordElements);
     }
 
-    function handleDelete(word) {
-        console.log('deleting', word);
+    function handleDelete(id) {
+        setWordElements(wordElements.filter( w => w.id !== id));
+
+        const temp = _old.find((w) => w.id === id);
+        console.log('entry', temp);
+        
     }
 
     useEffect(() => {

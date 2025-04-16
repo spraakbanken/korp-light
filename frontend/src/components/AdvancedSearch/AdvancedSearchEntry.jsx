@@ -18,7 +18,7 @@ export default function AdvancedSearchEntry({word, idx, returnWordTag, handleDel
         transform: CSS.Transform.toString(transform),
     };
 
-    function handleClick(word, e) {
+    function handleClick(id, e) {
         const targetText = e.target.text
         if (targetText === 'Grundform') {
             setShowGrundform(true);

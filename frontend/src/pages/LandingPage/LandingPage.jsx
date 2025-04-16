@@ -45,6 +45,7 @@ export default function LandingPage() {
     const [showModal, setShowModal] = useState(false);
     const [showFilterModal, setShowFilterModal] = useState(false);
     const [showFilter, setShowFilter] = useState(false);
+    const [showErrorCorpus, setShowErrorCorpus] = useState(false);
 
     const korpImage = settings.theme === "light" ? KorpLight : KorpDark;
 
@@ -77,7 +78,7 @@ export default function LandingPage() {
 
     const search_settings_tip = (
         
-            <strong>Sök inställningar</strong>
+            <strong>Sökinställningar</strong>
       
     );
 
@@ -94,16 +95,23 @@ export default function LandingPage() {
     );
 
     const handleSubmit = (event) => {
-        //VET EJ HUR VI BYGGER URL QUERYN FÖR FLERA CORPUSAR.
-        let res;
-        console.log(wordsDict);
-        if(wordsDict && Object.keys(wordsDict).length > 0){
-            res = buildQuery(wordsDict);
-        }else{
-            res = `[word = "${event}"]`;
-        }
+
+        if (corporas.corporas) {
+            //VET EJ HUR VI BYGGER URL QUERYN FÖR FLERA CORPUSAR.
+            setShowErrorCorpus(false);
+            let res;
+            console.log(wordsDict);
+            if(wordsDict && Object.keys(wordsDict).length > 0){
+                res = buildQuery(wordsDict);
+            }else{
+                res = `[word = "${event}"]`;
+            }
+
         
-        navigate(`/results?corpus=${encodeURIComponent(Object.keys(corporas.corporas))}&cqp=${encodeURIComponent(res)}`);
+                navigate(`/results?corpus=${encodeURIComponent(Object.keys(corporas.corporas))}&cqp=${encodeURIComponent(res)}`);
+        } else {
+            setShowErrorCorpus(true);
+        }
     };
 
     const handleAdvancedSearch = (e) => {
@@ -122,7 +130,7 @@ export default function LandingPage() {
                 <div className="logo-container">
                     <img className="korp-image" src={korpImage} alt="" />
                 </div>
-                <p className="landingpage__slogan">Sök <span className="landingpage__orange_i">i</span> Korpusar</p>
+                <p className="landingpage__slogan">Sök <span className="landingpage__orange_i">i</span> korpusar</p>
                 <div className="landingpage__search_bar_container">
                     {showAdvancedSearch && <AdvancedSearch words={words}
                         returnWordsDict={(e) => handleAdvancedSearch(e)} />}
@@ -135,6 +143,7 @@ export default function LandingPage() {
                         }}
                     />}
                 </div>
+                {showErrorCorpus && <p className="landingpage__select__corpus__error">Välj korpus innan du söker!</p>}
                 <div className="landingpage__button_group">
                     <div className="corpus-button-div">
                         <CorpusButton
@@ -166,7 +175,7 @@ export default function LandingPage() {
                             buttonImage={sliders_logo}
                             buttonOnClick={toggleFilterModal}
                             buttonToolTip={search_settings_tip}
-                            buttonLabel="Sök inställningar"
+                            buttonLabel="Sökinställningar"
                         />
                         <FilterCard
                             show={showFilterModal}
