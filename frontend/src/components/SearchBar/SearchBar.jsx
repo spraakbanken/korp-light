@@ -22,6 +22,7 @@ export default function SearchBar({ returnSearchInput, returnWords }) {
                     id="searchBar"
                     className="searchBar"
                     type="search"
+                    enterKeyHint="search"
                     placeholder="Sök"
                     onChange={(e) => {
                         setSearchInput(e.target.value);
