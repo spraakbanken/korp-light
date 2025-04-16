@@ -69,13 +69,15 @@
 }
 
 .history-single-entry-text:hover {
+    text-decoration: underline;
+    color: #fd7e14;;
     text-decoration: underline; 
 }
 
 .history-single-entry {
     display: flex;
     justify-content: space-between;
-}
+    }
 
 .history-entry-delete-icon {
     width: 25px;
