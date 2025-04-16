@@ -39,7 +39,7 @@ export const useTour = () => {
     tour.addStep({
       id: 'info-text',
       title: `Allmänt om Korpi <div class="step-counter">1/${totalSteps}</div>`,
-      text: `<p>I Korpi kan du söka på ord i store textsamlingar, så kallade korpusar. 
+      text: `<p>I Korpi kan du söka på ord i stora textsamlingar, så kallade korpusar. 
       Texterna kommer bland annat från nyheter, romaner och sociala medier.</p>
       
       <p>Se exempel på hur ord används eller jämför antalet sökresultat för 
