@@ -1,11 +1,11 @@
 .advanced__search__container {
     background-color: var(--navbar-color);
     padding: 20px;
-    width: 30%;
+    
     text-align: center;
-    margin: 0px auto;
+    
     border: 1px solid var(--primary-color);
-    border-radius: 25px;
+    border-radius: 15px;
 
     display: flex;
     flex-wrap: wrap;
