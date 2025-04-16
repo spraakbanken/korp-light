@@ -18,7 +18,7 @@ export default function AdvancedSearchEntry({word, idx, returnWordTag, handleDel
         transform: CSS.Transform.toString(transform),
     };
 
-    function handleClick(word, e) {
+    function handleClick(id, e) {
         const targetText = e.target.text
         if (targetText === 'Grundform') {
             setShowGrundform(true);
@@ -41,10 +41,10 @@ export default function AdvancedSearchEntry({word, idx, returnWordTag, handleDel
                         </Dropdown.Toggle>
             
                         <Dropdown.Menu>
-                        <Dropdown.Item onClick={(e) => {handleClick(word, e); returnWordTag('Grundform');}}>Grundform</Dropdown.Item>
-                        <Dropdown.Item onClick={(e) => {handleClick(word, e); returnWordTag('Ord');}}>Ord</Dropdown.Item>
+                        <Dropdown.Item onClick={(e) => {handleClick(idx, e); returnWordTag('Grundform');}}>Grundform</Dropdown.Item>
+                        <Dropdown.Item onClick={(e) => {handleClick(idx, e); returnWordTag('Ord');}}>Ord</Dropdown.Item>
                         <Dropdown.Divider />
-                        <Dropdown.Item onClick={(e) => handleDelete(word, e)}>Radera</Dropdown.Item>
+                        <Dropdown.Item onClick={(e) => handleDelete(idx, e)}>Radera</Dropdown.Item>
                         </Dropdown.Menu>
                 </Dropdown>
                 {showOrdform && <p className='advanced__search__small__icon'>O</p>}
