@@ -81,7 +81,7 @@ export default function CorpusDropDown({ colour, buttonLogo }) {
                 {expanded[title] && (
                     <>
                     {/*Kinda ugly with "No description displayed"?*/}
-                        {desc !== "Ingen beskrivning" && <div className="corpdesc px-3">{desc}</div>}
+                        {desc !== "No description" && <div className="corpdesc px-3">{desc}</div>}
         
                         {Object.entries(testDict).map(([id, label]) => (
                             <Dropdown.Item
