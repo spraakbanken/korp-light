@@ -26,7 +26,7 @@ export default function SettingsCard(props) {
                 <Modal.Body className="modal-body">
                     {/* Corpora per page */}
                     <Form.Group className="filter_button">
-                        <Form.Label>KORPUS PER SIDA: <span className="settings__description"> antal korpusar som visas per sida</span></Form.Label>
+                        <Form.Label>ANTAL KORPUSAR PER SIDA: <span className="settings__description"></span></Form.Label>
                         <Form.Select 
                             onChange={(e) => {
                                 updateSettings({
@@ -36,7 +36,7 @@ export default function SettingsCard(props) {
                                 value={settings.resultsPerPage} >
                             {[1, 3, 5, 10].map((num) => (
                                 <option key={num} value={num}>
-                                    {num} {num === 1 ? "Korpus" : "Korpusar"}
+                                    {num} {num === 1 ? "korpus" : "korpusar"}
                                 </option>
                             ))}
                         </Form.Select>
@@ -44,7 +44,7 @@ export default function SettingsCard(props) {
 
                     {/* Sample size */}
                     <Form.Group className="filter_button">
-                        <Form.Label>PROVSTORLEK: <span className="settings__description"> antal resultat per korpus</span></Form.Label>
+                        <Form.Label>ANTAL RESULTAT PER KORPUS: <span className="settings__description"></span></Form.Label>
                     <div className="d-flex gap-2">
                             <Form.Control
                                 type="number"
@@ -56,7 +56,7 @@ export default function SettingsCard(props) {
 
                     {/* Context size */}
                     <Form.Group className="filter_button">
-                        <Form.Label>MENINGSLÄNGD: <span className="settings__description"> antal ord som omger resultatet</span></Form.Label>
+                        <Form.Label>ANTAL ORD SOM VISAS PER SÖKTRÄFF: <span className="settings__description"></span></Form.Label>
                         <Form.Control
                             type="number"
                             value={settings.contextSize}
