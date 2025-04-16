@@ -35,4 +35,20 @@
     background-color: var(--bg-color);
 }
 
+/* Add this to your CSS files */
+._settings-card .modal-dialog,
+._filter_card .modal-dialog {
+  height: auto;
+}
 
+._settings-card .modal-content,
+._filter_card .modal-content {
+  height: auto;
+  overflow: visible;
+}
+
+._settings-card .modal-body,
+._filter_card .modal-body {
+  overflow: visible;
+  max-height: none;
+}

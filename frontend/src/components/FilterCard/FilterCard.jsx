@@ -23,7 +23,7 @@ export default function SettingsCard(props) {
                 <Modal.Header className="header" closeButton>
                     <Modal.Title className="title">Sökinställningar</Modal.Title>
                 </Modal.Header>
-                <Modal.Body classname="modal-body">
+                <Modal.Body className="modal-body">
                     {/* Corpora per page */}
                     <Form.Group className="filter_button">
                         <Form.Label>KORPUS PER SIDA: <span className="settings__description"> antal korpusar som visas per sida</span></Form.Label>
