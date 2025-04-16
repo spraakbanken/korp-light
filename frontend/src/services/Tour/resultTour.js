@@ -195,7 +195,7 @@ export const useResultTour = () => {
           title: `Layout <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
           text: 'Här kan du ändra layouten av resultatet, tryck för att byta mellan lista och rutnät.',
           attachTo: {
-            element: '.calenderIconSVG',
+            element: '.calenderIconA',
             on: 'left'
           },
           canClickTarget: false,
