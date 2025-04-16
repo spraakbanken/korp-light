@@ -78,7 +78,7 @@ export default function LandingPage() {
 
     const search_settings_tip = (
         
-            <strong>Sök inställningar</strong>
+            <strong>Sökinställningar</strong>
       
     );
 
