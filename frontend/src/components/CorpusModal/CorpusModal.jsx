@@ -29,12 +29,15 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
             if (category[3]?.subcorpora) {
                 Object.values(category[3].subcorpora).forEach(subcategory => {
                     const subTitle = subcategory[0];
-                    ids[subTitle] = crypto.randomUUID(); // Using crypto.randomUUID() like in CorpusSelector
+                    ids[subTitle] = crypto.randomUUID();
                 });
             }
         });
         setSubcorporaIds(ids);
+        setSelectedCorpora(corporas.corporas || {});
+        setSearchQuery('');
     }, [settings.api]);
+    
 
     //Trying to expand categories when searching, kinda hard
     useEffect(() => {
@@ -165,7 +168,7 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
             }
         }
         
-    }, [show, corporas.corporas]);
+    }, [show]);
 
     const matchesSearch = (text) => {
         if (!searchQuery) return true;
