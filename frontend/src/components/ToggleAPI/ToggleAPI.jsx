@@ -36,7 +36,7 @@ export default function ToggleAPI() {
         </ToggleButton>
           <span className="vr border-start border-1 border-dark rounded-3"></span>
         <ToggleButton className="toggle-button ms-2" id="api-toggle-button-2" value={0}>
-          Peter-API
+          Ny API
         </ToggleButton>
       </ToggleButtonGroup>
     </>
