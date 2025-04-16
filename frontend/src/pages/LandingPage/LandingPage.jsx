@@ -122,6 +122,7 @@ export default function LandingPage() {
                 <div className="logo-container">
                     <img className="korp-image" src={korpImage} alt="" />
                 </div>
+                <p className="landingpage__slogan">Sök <span className="landingpage__orange_i">i</span> Korpusar</p>
                 <div className="landingpage__search_bar_container">
                     {showAdvancedSearch && <AdvancedSearch words={words}
                         returnWordsDict={(e) => handleAdvancedSearch(e)} />}

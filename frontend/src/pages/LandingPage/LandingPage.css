@@ -20,11 +20,26 @@
 
 .logo-container{
   padding-top: 85px;
-  padding-bottom: 10px;
+
 }
 
 .landingpage__search_bar_container{
   width: 30%;
+}
+
+.landingpage__orange_i {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.landingpage__slogan {
+  font-size: 1rem;
+  padding-top: 0;
+  margin-top: 0;
+  margin-right: 70px;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+  color: var(--text-color);
 }
 
 .landingpage__button_group{
