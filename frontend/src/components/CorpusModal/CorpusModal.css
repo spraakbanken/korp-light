@@ -80,7 +80,6 @@
 
 .section-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     width: 100%;
     gap: 8px;
@@ -94,16 +93,9 @@
     font-size: 1.1rem;
 }
 
-.section-title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.section-checkbox {
-    margin-left: auto;
-    padding-right: 10px;
-}
+.section-checkbox .form-check-input {
+    border-color: var(--text-color); 
+  }
 
 .section-description {
     color: #666;
