@@ -197,6 +197,14 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
 
     };
 
+    const handleSelectAllCorpora = (e, title) => {
+        console.log('title', title);
+
+        Object.entries(title).forEach(([key, values]) => {
+            console.log('key, value', key, values);
+        })
+    }
+
     const renderCorpusSection = (e) => {
         const title = e[0];
         const desc = e[1]?.swe || e[1] || ''; //In some corporas there swedish text with .swe
@@ -229,7 +237,8 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
                 <div className="section-header" onClick={() => toggleExpanded(title)}>
                     <Form.Check 
                         className="section-checkbox"
-                        onClick={(e) => e.stopPropagation()}>
+                        onClick={(e) => e.stopPropagation()}
+                        onChange={(e) => handleSelectAllCorpora(e, title)}>
                     </Form.Check>
                     {isExpanded ? <CircleArrowDown size={16} /> : <CircleArrowRight size={16} />}
                     <h5>{highlightSearchMatch(title)}</h5>
