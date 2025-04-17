@@ -1,16 +1,31 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { ChevronDown, ChevronRight } from 'lucide-react'
 
+import { Chart as ChartJS } from 'chart.js/auto';
+import { Bar } from 'react-chartjs-2';
 
 import { getStatisticsOverTime } from '../../services/api';
 import './BarChart.css'
+import SettingsContext from '../../services/SettingsContext';
 
 
 export default function BarChart({word}) {
 
     const [expandStat, setExpandStat] = useState(true);
     const [statData, setStatData] = useState({});
+    const [wordClass, setWordClass] = useState('nn');
+    const {settings} = useContext(SettingsContext);
+
+    const [sbAPI, setSbAPI] = useState(settings.api === 1 ? true : false);
+
+    useEffect(() => {
+        if (settings.api === 1) {
+            setSbAPI(true);
+        } else {
+            setSbAPI(false);
+        }
+    },[settings])
 
     const toggleStatExpand = () => {
         setExpandStat(prev => !prev);
@@ -22,7 +37,7 @@ export default function BarChart({word}) {
         refetch: statisticsDataRefetch,
     } = useQuery({
         queryKey: [word],
-        queryFn: () => getStatisticsOverTime(word, 'nn'),
+        queryFn: () => getStatisticsOverTime(word, wordClass || 'nn'),
         enabled: false,
     });
 
@@ -46,11 +61,20 @@ export default function BarChart({word}) {
                 </div>
                 {expandStat && <div className='results-table'>
                     <div className="statistics-container">
-                        <button onClick={handleClick}>Fetch Stats</button>
-                        {console.log('statData', statData.absolute)}
-                        {statData.absolute ? Object.entries(statData.absolute).map(([year, value]) => {
-                            return <p key={year}>{year}:{value}</p>
-                        }): <p>No Data Found</p>}
+                        <button disabled={!sbAPI} onClick={handleClick}>Fetch Stats for {word}, {wordClass}</button>
+                        <input type='text' placeholder='type ordklass... nn, vb' 
+                            onChange={(e) => (setWordClass(e.target.value))} />
+                        {statData.absolute ? <Bar
+                            data={{
+                                labels: Object.keys(statData.absolute).map(e => e),
+                                datasets: [
+                                    {
+                                        label: "Occurances",
+                                        data: Object.values(statData.absolute).map(e => e)
+                                    }
+                                ]
+                            }}
+                        /> : <p>Cannot Draw Graph, Check Log and API</p> }
                     </div>
                 </div>
                 }

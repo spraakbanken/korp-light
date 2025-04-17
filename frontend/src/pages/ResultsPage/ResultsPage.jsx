@@ -120,16 +120,6 @@ export default function ResultsPage() {
             enabled: false,
         });
 
-    const
-        { data: statisticsData = [],
-            isLoading: statisticsDataIsLoading,
-            refetch: statisticsDataRefetch,
-        } = useQuery({
-            queryKey: [rawSearchInput],
-            queryFn: () => getStatisticsOverTime(rawSearchInput, 'vb'),
-            enabled: false,
-        });
-
     const handleSubmit = (event) => {
         if (corporas.corporas){
             setShowErrorCorpus(false);
@@ -200,8 +190,6 @@ const history_tip = (
                 setQueryData(res.data);
             });
             console.log("Triggered new fetch for: ", searchWordInput, "in", corpusInput);
-            statisticsDataRefetch().then((res) => {console.log('stats', res.data)});
-
         }
     }, [searchWordInput, corpusInput]);
     
