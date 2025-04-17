@@ -6,6 +6,7 @@ import SettingsContext from "../../services/SettingsContext.jsx";
 import { MoveLeft, MoveRight, ChevronDown, ChevronRight } from 'lucide-react';
 import CorporaContext from '../../services/CorporaContext.jsx';
 import Definition from '../Definition/Definition.jsx';
+import BarChart from '../Statistics/BarChart.jsx';
 
 
 //This should all later be changed to use individual api calls for each corpus, so we get (hopefully) a quicker response.
@@ -146,7 +147,8 @@ const ResultsPanel = ({ response, wordToDef }) => {
 
   return (
     <div className="results-panel">
-      <Definition wordEntry={wordToDef}></Definition>  
+      <Definition wordEntry={wordToDef}></Definition>
+      <BarChart word={wordToDef}></BarChart>
       <div className="results-header">
         <div className="results-stats">
           <span className="results-count">Totala matchningar: <strong>{hits}</strong></span>
