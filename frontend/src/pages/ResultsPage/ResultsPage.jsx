@@ -21,7 +21,7 @@ import CorpusButton from "../../components/CorpusButton/CorpusButton.jsx";
 import AdvancedSearch from "../../components/AdvancedSearch/AdvancedSearch.jsx";
 import FilterCard from "../../components/FilterCard/FilterCard.jsx";
 //Services
-import { getCorpusInfo, getCorpusQuery, getStatisticsOverTime } from "../../services/api.js";
+import { getCorpusInfo, getCorpusQuery } from "../../services/api.js";
 
 //Assets
 import advanced from '../../assets/advanced.svg';
