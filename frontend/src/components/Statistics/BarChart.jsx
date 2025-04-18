@@ -47,9 +47,8 @@ export default function BarChart({word}) {
 
     const handleClick = () => {
 
-
-
         statisticsDataRefetch().then(e => {
+
             setStatDataCombined(e.data.combined);
             setStatDataCorporas(e.data.corpora);
 
@@ -57,34 +56,31 @@ export default function BarChart({word}) {
 
             const allDataSets = []
             Object.entries(e.data.corpora).map(([corpusLabel, values]) => {
-                let temp = {
+                allDataSets.push({
                     label: corpusLabel,
-                    data: values.absolute,
+                    data: Object.entries(values.absolute).map(([k, v]) => {
+                        return {x: k, y: v}
+                    }),
                     backgroundColor: "#" + Math.floor(Math.random()*16777215).toString(16),
-                };
-                allDataSets.push(temp);
+                });
             });
 
-            console.log('labels', labels);
-            console.log('allDatasets', allDataSets);
+            let combinedData = {
+                label: "Alla",
+                data: Object.values(statDataCombined.absolute).map(e => e),
+                backgroundColor: "#FFA500",
+            }
+
+            allDataSets.push(combinedData);
 
             const allData = {
                 labels: labels,
-                datasets: allDataSets
+                datasets: allDataSets,
+                spanGaps: true,
             }
             console.log('allData', allData);
 
-            let inData = {
-                labels: Object.keys(statDataCombined.absolute).map(e => e),
-                datasets: [
-                    {
-                        label: "Hits",
-                        data: Object.values(statDataCombined.absolute).map(e => e),
-                    }
-                ]
-            }
-
-            setStatData(inData);
+            setStatData(allData);
         }
         ).catch(error => console.log('error barchart', error))
     }
@@ -114,10 +110,9 @@ export default function BarChart({word}) {
     }
 
     const generateGraph = (inData) => {
-        if(inData) {
-            return <Bar data={inData}
-        />
-
+        console.log('inData', inData);
+        if(Object.keys(inData).length !== 0) {
+            return <Bar data={inData} />
         } else {
             return <p>Cannot Draw Graph, Check Log and API</p>
         }
