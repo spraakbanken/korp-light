@@ -4,12 +4,13 @@ import { ChevronDown, ChevronRight } from 'lucide-react'
 
 import { ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 
-import { Chart as ChartJS } from 'chart.js/auto';
+import { Chart as ChartJS, plugins } from 'chart.js/auto';
 import { Bar } from 'react-chartjs-2';
 
 import { getStatisticsOverTime } from '../../services/api';
 import './BarChart.css'
 import SettingsContext from '../../services/SettingsContext';
+import { BorderBottom } from 'react-bootstrap-icons';
 
 
 export default function BarChart({word}) {
@@ -67,8 +68,10 @@ export default function BarChart({word}) {
 
             let combinedData = {
                 label: "Alla",
-                data: Object.values(statDataCombined.absolute).map(e => e),
-                backgroundColor: "#FFA500",
+                data: Object.entries(statDataCombined.absolute).map(([k, v]) => {
+                    return {x: k, y: v}
+                }),
+                backgroundColor: "#000000",
             }
 
             allDataSets.push(combinedData);
@@ -109,27 +112,38 @@ export default function BarChart({word}) {
         }
     }
 
+
+    const chartOptions = {
+        plugins: {
+            title: {
+                display: true,
+                text: `Användning av ${word.toUpperCase()} i valda korpusar över tid`,
+                font: {
+                    size: 20,
+                }
+            },
+
+            legend: {
+                labels: {
+                    font: {
+                        size: 15,
+                    }
+                },
+                position: 'right',
+                align: 'center',
+            }
+        }
+    }
+
     const generateGraph = (inData) => {
         console.log('inData', inData);
         if(Object.keys(inData).length !== 0) {
-            return <Bar data={inData} />
+            return <Bar options={chartOptions} data={inData} />
         } else {
             return <p>Cannot Draw Graph, Check Log and API</p>
         }
     }
 
-/*
-data={{
-                labels: Object.keys(statDataCombined.absolute).map(e => e),
-                datasets: [
-                    {
-                        label: "Occurances",
-                        data: allData
-                    }
-                ]
-            }}
-
-*/
     return(
         <>
             <div className='corpus-group'>
@@ -145,8 +159,8 @@ data={{
                             onChange={(e) => (setWordClass(e.target.value))} />
                         
                         <div className='statistics-main-content'>
+                        {statisticsDataIsLoading ? <p>Laddar graf</p> : null}
                         {generateGraph(statData)}
-                        {generateSelectCorpus()}
                         </div>
 
                     </div>
