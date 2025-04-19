@@ -26,7 +26,7 @@ export default function SettingsCard(props) {
                 <Modal.Body className="modal-body">
                     {/* Corpora per page */}
                     <Form.Group className="filter_button">
-                        <Form.Label>ANTAL KORPUSAR PER SIDA: <span className="settings__description"></span></Form.Label>
+                        <Form.Label>Antal Korpusar per sida: <span className="settings__description"></span></Form.Label>
                         <Form.Select 
                             onChange={(e) => {
                                 updateSettings({
@@ -44,7 +44,7 @@ export default function SettingsCard(props) {
 
                     {/* Sample size */}
                     <Form.Group className="filter_button">
-                        <Form.Label>ANTAL RESULTAT PER KORPUS: <span className="settings__description"></span></Form.Label>
+                        <Form.Label>Antal resultat per korpus: <span className="settings__description"></span></Form.Label>
                     <div className="d-flex gap-2">
                             <Form.Control
                                 type="number"
@@ -56,7 +56,7 @@ export default function SettingsCard(props) {
 
                     {/* Context size */}
                     <Form.Group className="filter_button">
-                        <Form.Label>ANTAL ORD SOM VISAS PER SÖKTRÄFF: <span className="settings__description"></span></Form.Label>
+                        <Form.Label>Antal ord som visas per sökträff: <span className="settings__description"></span></Form.Label>
                         <Form.Control
                             type="number"
                             value={settings.contextSize}
