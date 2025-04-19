@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { horizontalListSortingStrategy, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import { horizontalListSortingStrategy, SortableContext } from '@dnd-kit/sortable';
 import './AdvancedSearch.css'
 
 import AdvancedSearchEntry from './AdvancedSearchEntry.jsx';
@@ -70,12 +70,25 @@ export default function AdvancedSearch({words, returnWordsDict}) {
     }, [wordsDict, returnWordsDict])
     
     const createComponent = (entryName) => {
-        setWordElements([...wordElements, {id: wordElements.length+1, 
+        setWordElements([...wordElements, {
+            id: wordElements.length+1,
+            pos: wordElements.length+1,
+            tag: '', 
             wordEntry: entryName}])
     } 
 
     const onDragStart = (e) => {
         console.log('onDragStart', e);
+    }
+
+    const handleChevron = (id, dir) => {
+        setWordElements(wordElements.map(w => {
+            if (w.id === id) {
+                return {...w, pos: w.pos+dir};
+            } else {
+                return w;
+            }
+        }))
     }
 
     return(
@@ -92,7 +105,8 @@ export default function AdvancedSearch({words, returnWordsDict}) {
                     if (w.wordEntry) {
                         return <AdvancedSearchEntry key={w.id} word={w.wordEntry} idx={w.id} 
                             returnWordTag={(tag) => {handleClick(w.wordEntry, tag)}}
-                            handleDelete={(word) => {handleDelete(word)}}/>
+                            handleDelete={(word) => {handleDelete(word)}}
+                            handleChevronClick={(id, dir) => {handleChevron(id, dir)}}/>
                     }
                 })}
                 </SortableContext>

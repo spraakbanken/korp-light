@@ -4,8 +4,9 @@ import './AdvancedSearch.css'
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import Dropdown from 'react-bootstrap/Dropdown';
+import { Button } from 'react-bootstrap';
 
-export default function AdvancedSearchEntry({word, idx, returnWordTag, handleDelete}) {
+export default function AdvancedSearchEntry({word, idx, returnWordTag, handleDelete, handleChevronClick}) {
     
     const {attributes, listeners, setNodeRef, 
         transform, transition } = useSortable({idx});
@@ -36,10 +37,12 @@ export default function AdvancedSearchEntry({word, idx, returnWordTag, handleDel
                     style={style} 
                     className='advanced__search__entry'>
                     <div className='advanced__search__entry__wrapper'>
-                        <Dropdown key={idx}>
-                            <Dropdown.Toggle className='advanced__search__word'>
-                                {word}
-                            </Dropdown.Toggle>
+                        <Dropdown key={idx} className='advanced__search__word'>
+                                <Button onClick={(e) => handleChevronClick(idx, -1)} className='advanced__search__chevron'>{'<'}</Button>
+                                    <Dropdown.Toggle className='advanced__search__word'>
+                                        {word}
+                                    </Dropdown.Toggle>
+                                <Button onClick={(e) => handleChevronClick(idx, 1)} className='advanced__search__chevron'>{'>'}</Button>
                 
                             <Dropdown.Menu>
                             <Dropdown.Item onClick={(e) => {handleClick(word, e); returnWordTag('Grundform');}}>Grundform</Dropdown.Item>
