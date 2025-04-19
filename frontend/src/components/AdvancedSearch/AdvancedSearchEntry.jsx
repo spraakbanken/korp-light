@@ -1,23 +1,13 @@
 import { useState } from 'react';
 import './AdvancedSearch.css'
 
-import { useSortable } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { Button } from 'react-bootstrap';
 
 export default function AdvancedSearchEntry({word, idx, returnWordTag, handleDelete, handleChevronClick}) {
-    
-    const {attributes, listeners, setNodeRef, 
-        transform, transition } = useSortable({idx});
 
     const [showOrdform, setShowOrdform] = useState(true);
     const [showGrundform, setShowGrundform] = useState(false);
-
-    const style = {
-        transition: transition,
-        transform: CSS.Transform.toString(transform),
-    };
 
     function handleClick(id, e) {
         const targetText = e.target.text
@@ -33,9 +23,7 @@ export default function AdvancedSearchEntry({word, idx, returnWordTag, handleDel
     function generateEntry(word, idx) {
         if (word !== undefined) {
             return (
-                <div ref={setNodeRef} {...attributes} {...listeners}
-                    style={style} 
-                    className='advanced__search__entry'>
+                <div className='advanced__search__entry'>
                     <div className='advanced__search__entry__wrapper'>
                         <Dropdown key={idx} className='advanced__search__word'>
                                 <Button onClick={(e) => handleChevronClick(idx, -1)} className='advanced__search__chevron'>{'<'}</Button>

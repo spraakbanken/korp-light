@@ -7,6 +7,8 @@
     border: 1px solid var(--primary-color);
     border-radius: 15px;
 
+    width: 100%;
+
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -92,6 +94,6 @@
 
 @media (max-width: 768px) {
     .advanced__search__container {
-        width: 75%;
+        width: 100%;
     }
 }

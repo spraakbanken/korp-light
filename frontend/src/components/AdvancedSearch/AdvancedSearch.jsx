@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
-import { horizontalListSortingStrategy, SortableContext } from '@dnd-kit/sortable';
 import './AdvancedSearch.css'
 
 import AdvancedSearchEntry from './AdvancedSearchEntry.jsx';
 import SearchBar from '../SearchBar/SearchBar.jsx';
 
 import Dropdown from 'react-bootstrap/Dropdown';
-import { closestCorners, DndContext } from '@dnd-kit/core';
+
 import addbutton from '../../assets/addbutton.svg';
 
 export default function AdvancedSearch({words, returnWordsDict}) {
@@ -126,8 +125,6 @@ export default function AdvancedSearch({words, returnWordsDict}) {
                     placeholder='Ord...'
                     onChange={null}
                     onKeyDown={(e) => handleEnterKey(e)}></input> */}
-                <DndContext collisionDetection={closestCorners} onDragEnd={onDragStart}>
-                <SortableContext items={wordElements} strategy={horizontalListSortingStrategy}>
                 {wordElements.map((w) => {
                     if (w.wordEntry) {
                         return <AdvancedSearchEntry key={w.id} word={w.wordEntry} idx={w.id} 
@@ -136,8 +133,6 @@ export default function AdvancedSearch({words, returnWordsDict}) {
                             handleChevronClick={(id, dir) => {handleChevron(id, dir)}}/>
                     }
                 })}
-                </SortableContext>
-                </DndContext>
                 <div>
                         <Dropdown key={99999}>
                             <Dropdown.Toggle className='advanced__search__append'><img src={addbutton} alt='addbutton'></img></Dropdown.Toggle>
