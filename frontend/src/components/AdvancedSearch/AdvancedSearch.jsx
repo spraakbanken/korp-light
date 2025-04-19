@@ -12,10 +12,10 @@ import addbutton from '../../assets/addbutton.svg';
 export default function AdvancedSearch({words, returnWordsDict}) {
     
     const [wordElements, setWordElements] = useState([{
-        id: 0, pos:0, wordEntry: "", tag: ""
+        id: -1, pos:0, wordEntry: "", tag: ""
     }]);
     const [wordsDict, setWordsDict] = useState({});
-
+    const [counter, setCounter] = useState(0);
 
     function handleClick(word, tag) {
         setWordsDict({...wordsDict, [word]: tag})
@@ -43,13 +43,14 @@ export default function AdvancedSearch({words, returnWordsDict}) {
         if(w){
             setWordElements((prev) => [...prev, 
                 {
-                    id: prev.length+1,
-                    pos: prev.length+1, 
+                    id: counter,
+                    pos: counter, 
                     wordEntry: w,
                     tag: 'Ordform'
                 }]);
             setWordsDict({...wordsDict, [w] : 'Ordform'});
-        } 
+        }
+        setCounter(counter+1);
     }
 
     useEffect(() => {
@@ -71,10 +72,12 @@ export default function AdvancedSearch({words, returnWordsDict}) {
     
     const createComponent = (entryName) => {
         setWordElements([...wordElements, {
-            id: wordElements.length+1,
-            pos: wordElements.length+1,
+            id: counter,
+            pos: counter,
             tag: '', 
-            wordEntry: entryName}])
+            wordEntry: entryName}]);
+        
+        setCounter(counter+1);
     } 
 
     const onDragStart = (e) => {
@@ -82,9 +85,11 @@ export default function AdvancedSearch({words, returnWordsDict}) {
     }
 
     const handleChevron = (id, dir) => {
-        setWordElements(wordElements.map(w => {
+
+        setWordElements(wordElements.map((w,i) => {
             if (w.id === id) {
-                return {...w, pos: w.pos+dir};
+                const nextPos = w.pos+dir;
+                return {...w, pos: nextPos};
             } else {
                 return w;
             }
@@ -101,7 +106,7 @@ export default function AdvancedSearch({words, returnWordsDict}) {
                     onKeyDown={(e) => handleEnterKey(e)}></input> */}
                 <DndContext collisionDetection={closestCorners} onDragEnd={onDragStart}>
                 <SortableContext items={wordElements} strategy={horizontalListSortingStrategy}>
-                {wordElements.map((w) => {
+                {wordElements.sort((a,b) => a.pos - b.pos).map((w) => {
                     if (w.wordEntry) {
                         return <AdvancedSearchEntry key={w.id} word={w.wordEntry} idx={w.id} 
                             returnWordTag={(tag) => {handleClick(w.wordEntry, tag)}}
