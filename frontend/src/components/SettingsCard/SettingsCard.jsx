@@ -29,7 +29,7 @@ export default function SettingsCard(props) {
             <Modal {...props}
                 className="_settings-card" centered>
                 <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">Inställningar</Modal.Title>
+                    <Modal.Title className="inst" id="contained-modal-title-vcenter">Inställningar</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {/* Theme selection */}
@@ -93,7 +93,7 @@ export default function SettingsCard(props) {
                 
                 {/* Close button */}
                 <Modal.Footer className="settingsFooter" onClick={props.onHide}>
-                        <Button variant="danger" className="w-50 settingsCloseButton">STÄNG</Button>
+                        <Button className="settingClose">Stäng</Button>
                 </Modal.Footer>
             </Modal>
     );
