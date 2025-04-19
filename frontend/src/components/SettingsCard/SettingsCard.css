@@ -93,6 +93,12 @@
   height: auto;
 }
 
+.form-label{
+ color: var(--text-color);
+}
+.form-check-label{
+    color: var(--text-color);
+}
 ._settings-card .modal-content{
   height: auto;
   overflow: visible;
