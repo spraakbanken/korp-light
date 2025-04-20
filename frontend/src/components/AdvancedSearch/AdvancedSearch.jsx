@@ -8,7 +8,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 import addbutton from '../../assets/addbutton.svg';
 
-export default function AdvancedSearch({words, returnWordsDict}) {
+export default function AdvancedSearch({submitResult, returnWordsDict}) {
     
     const [wordElements, setWordElements] = useState([{
         id: -1, wordEntry: "", tag: ""
@@ -16,8 +16,15 @@ export default function AdvancedSearch({words, returnWordsDict}) {
     const [wordsDict, setWordsDict] = useState({});
     const [counter, setCounter] = useState(0);
 
-    function handleClick(word, tag) {
-        setWordsDict({...wordsDict, [word]: tag})
+    function handleClick(id, tag) {
+        setWordsDict({...wordsDict, [id]: tag});
+        setWordElements(wordElements.map(w => {
+            if (w.id === id) {
+                return {...w, tag: tag};
+            } else {
+                return w;
+            }
+        }));
     }
 
     /* function handleEnterKey(e) {
@@ -51,22 +58,14 @@ export default function AdvancedSearch({words, returnWordsDict}) {
         setCounter(counter+1);
     }
 
-    useEffect(() => {
-        console.log('wordsDict in adv search', wordsDict);
-        console.log('wordElements in adv search', wordElements);
-    }, [wordsDict, wordElements])
-
     function handleDelete(id) {
-        console.log('handling id', id);
         setWordElements(wordElements.filter( w => w.id !== id));
-        //const _old = wordElements;
-        //const temp = _old.find((w) => w.id === id);
-        //console.log('entry', temp); 
     }
 
+
     useEffect(() => {
-        returnWordsDict(wordsDict);
-    }, [wordsDict, returnWordsDict])
+        returnWordsDict(wordElements);
+    }, [wordElements])
     
     const createComponent = (entryName) => {
         setWordElements([...wordElements, {
@@ -77,11 +76,7 @@ export default function AdvancedSearch({words, returnWordsDict}) {
         setCounter(counter+1);
     } 
 
-    const onDragStart = (e) => {
-        console.log('onDragStart', e);
-    }
-
-    const handleChevron = (id, dir) => {
+    const handleChevron = (id, dir) => {        
 
         let _old = wordElements;
         let elemIdx = wordElements.findIndex((w) => w.id === id);
@@ -119,7 +114,7 @@ export default function AdvancedSearch({words, returnWordsDict}) {
 
     return(
         <>
-            <SearchBar returnSearchInput={null} returnWords={handleReturn}></SearchBar>
+            <SearchBar returnSearchInput={submitResult} returnWords={handleReturn}></SearchBar>
             <div className='advanced__search__container'>
                 {/* <input id='advanced__search__input' type='text'
                     placeholder='Ord...'
@@ -128,7 +123,7 @@ export default function AdvancedSearch({words, returnWordsDict}) {
                 {wordElements.map((w) => {
                     if (w.wordEntry) {
                         return <AdvancedSearchEntry key={w.id} word={w.wordEntry} idx={w.id} 
-                            returnWordTag={(tag) => {handleClick(w.wordEntry, tag)}}
+                            returnWordTag={(id, tag) => {handleClick(id, tag)}}
                             handleDelete={(word) => {handleDelete(word)}}
                             handleChevronClick={(id, dir) => {handleChevron(id, dir)}}/>
                     }

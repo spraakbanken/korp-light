@@ -100,8 +100,8 @@ export default function LandingPage() {
             //VET EJ HUR VI BYGGER URL QUERYN FÖR FLERA CORPUSAR.
             setShowErrorCorpus(false);
             let res;
-            console.log(wordsDict);
-            if(wordsDict && Object.keys(wordsDict).length > 0){
+            console.log('wordsDict in handleSubmit', event);
+            if(wordsDict && wordsDict.length > 0){
                 res = buildQuery(wordsDict);
             }else{
                 res = `[word = "${event}"]`;
@@ -116,6 +116,7 @@ export default function LandingPage() {
 
     const handleAdvancedSearch = (e) => {
         setWordsDict(e);
+        console.log('wordDict in landing page', e);
     }
 
     const handleWords = (e) => {
@@ -132,8 +133,9 @@ export default function LandingPage() {
                 </div>
                 <p className="landingpage__slogan">Sök <span className="landingpage__orange_i">i</span> korpusar</p>
                 <div className="landingpage__search_bar_container">
-                    {showAdvancedSearch && <AdvancedSearch words={words}
-                        returnWordsDict={(e) => handleAdvancedSearch(e)} />}
+                    {showAdvancedSearch && <AdvancedSearch 
+                        returnWordsDict={(e) => handleAdvancedSearch(e)} 
+                        submitResult={(e) => handleSubmit(wordsDict)} />}
                     {!showAdvancedSearch && <SearchBar
                         returnSearchInput={(e) => {
                             handleSubmit(e);

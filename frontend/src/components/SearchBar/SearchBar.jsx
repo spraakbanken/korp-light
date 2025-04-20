@@ -10,7 +10,6 @@ export default function SearchBar({ returnSearchInput, returnWords }) {
 
     useEffect(() => {
         setWords(searchInput.split(' '));
-        console.log(words);
     }, [searchInput]);
 
 
@@ -33,7 +32,6 @@ export default function SearchBar({ returnSearchInput, returnWords }) {
 
                     onKeyDown={(e) => {
                         if (e.key === 'Enter') {
-                            console.log("searchinput", searchInput);
                             returnSearchInput(searchInput);
                         }
                     }}

@@ -94,24 +94,40 @@ export function buildQuery(params) {
   //Build the query here, assign it in the getCorpusQuery function.
 
   let buildAdvancedQuery = '';
-  console.log("parm", params);
-  if (params !== null && typeof params === 'object'){
-    console.log("object type")
-    if (Object.keys(params).length > 0){
-      Object.entries(params).map(([word, tag]) => {
+
+  console.log("parms to buildQuery", params);
+  
+  params.forEach((w) => {
+    console.log('w', w.tag);
+    console.log('w', w.wordEntry);
+    if (w.tag === "Grundform") {
+      buildAdvancedQuery = buildAdvancedQuery + `[lemma contains "${w.wordEntry}"] `
       
-          if (tag === "Grundform") {
-          buildAdvancedQuery = buildAdvancedQuery + `[lemma contains "${word}"] `
+  } else if (w.tag === "Ordform") {
+          buildAdvancedQuery = buildAdvancedQuery + `[word = "${w.wordEntry}"] `
+      }
+  })
+  
+
+
+  /* if (params !== null && typeof params === 'object'){
+    if (Object.keys(params).length > 0){
+      params.map((w) => {
+          if (w.tag === "Grundform") {
+          buildAdvancedQuery = buildAdvancedQuery + `[lemma contains "${w.wordEntry}"] `
           
-      } else if (tag === "Ord") {
-              buildAdvancedQuery = buildAdvancedQuery + `[word = "${word}"] `
+      } else if (w.tag === "Ord") {
+              buildAdvancedQuery = buildAdvancedQuery + `[word = "${w.wordEntry}"] `
           }
       })
       }
   }else{
     buildAdvancedQuery = `[word = "${params}"]`
-  }
+  } */
   const finalQuery = buildAdvancedQuery.trim(); // trims trailing space
+
+
+  console.log('finalQuery from buildQuery', finalQuery);
   return finalQuery;
 }
 
