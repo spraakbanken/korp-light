@@ -94,12 +94,10 @@ export function buildQuery(params) {
   //Build the query here, assign it in the getCorpusQuery function.
 
   let buildAdvancedQuery = '';
-
-  console.log("parms to buildQuery", params);
+  queryParams.default_within='sentence';
+  console.log("params to buildQuery", params);
   
   params.forEach((w) => {
-    console.log('w', w.tag);
-    console.log('w', w.wordEntry);
     if (w.tag === "Grundform") {
       buildAdvancedQuery = buildAdvancedQuery + `[lemma contains "${w.wordEntry}"] `
       
@@ -126,7 +124,7 @@ export function buildQuery(params) {
   } */
   const finalQuery = buildAdvancedQuery.trim(); // trims trailing space
 
-
+  
   console.log('finalQuery from buildQuery', finalQuery);
   return finalQuery;
 }

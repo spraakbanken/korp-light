@@ -100,7 +100,6 @@ export default function LandingPage() {
             //VET EJ HUR VI BYGGER URL QUERYN FÖR FLERA CORPUSAR.
             setShowErrorCorpus(false);
             let res;
-            console.log('wordsDict in handleSubmit', event);
             if(wordsDict && wordsDict.length > 0){
                 res = buildQuery(wordsDict);
             }else{

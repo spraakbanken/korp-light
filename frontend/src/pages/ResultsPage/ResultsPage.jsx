@@ -87,7 +87,7 @@ export default function ResultsPage() {
 
         }
         else {
-            console.log("darn");
+            console.log("error results page handleCorpusQuery");
         }
     };
 
@@ -124,8 +124,8 @@ export default function ResultsPage() {
         if (corporas.corporas){
             setShowErrorCorpus(false);
         let res;
-                console.log(wordsDict);
-                if(wordsDict && Object.keys(wordsDict).length > 0){
+                console.log('wordsDict in results page', wordsDict);
+                if(wordsDict && wordsDict.length > 0){
                     res = buildQuery(wordsDict);
                 }else{
                     res = `[word = "${event}"]`;
@@ -224,6 +224,7 @@ const history_tip = (
 
     const handleAdvancedSearch = (e) => {
         setWordsDict(e);
+        console.log('wordDict in results page', e);
     }
 
     useEffect(() => {
@@ -316,8 +317,9 @@ const history_tip = (
                                 Välj korpus innan du söker!
                         </p>}
                 
-                {showAdvancedSearch && <AdvancedSearch words={words}
-                                    returnWordsDict={(e) => handleAdvancedSearch(e)} />}
+                {showAdvancedSearch && <AdvancedSearch 
+                    returnWordsDict={(e) => handleAdvancedSearch(e)} 
+                    submitResult={(e) => handleSubmit(wordsDict)} />}
                 {showHistory && <HistoryPanel />}
                 
                 <ProgressBar isLoading={searchQueryIsLoading} />

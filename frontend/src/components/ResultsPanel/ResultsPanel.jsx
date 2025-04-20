@@ -145,10 +145,40 @@ const ResultsPanel = ({ response, wordToDef }) => {
   const visibleCorpora = getVisibleCorpora();
   const totalPages = Math.ceil(corpusOrder.length / corpusPerPage);
 
+  const generateDefintions = (wordToDef) => {
+    console.log('defs', wordToDef);
+    let elemArr = [];
+    if (Array.isArray(wordToDef)) {
+      wordToDef.forEach((w) => {
+        if (w.wordEntry !== "") {
+          console.log('w in genDef', w)
+        elemArr.push(<Definition wordEntry={w.wordEntry}></Definition>)}})
+    } else {
+      elemArr.push(<Definition wordEntry={wordToDef}></Definition>)
+    }
+
+    return elemArr;
+  }
+
+  const generateStatistics = (wordToDef) => {
+    
+      let elemArr = [];
+      if (Array.isArray(wordToDef)) {
+        console.log('stats is array', wordToDef);
+        wordToDef.forEach(w => {
+          if (w.wordEntry !== "") {
+          elemArr.push(<BarChart word={w.wordEntry}></BarChart>)}})
+      } else {
+          elemArr.push(<BarChart word={wordToDef}></BarChart>)
+      }
+
+      return elemArr;
+  }
+
   return (
     <div className="results-panel">
-      <Definition wordEntry={wordToDef}></Definition>
-      <BarChart word={wordToDef}></BarChart>
+      {wordToDef ? generateDefintions(wordToDef).map(w => w) : null}
+      {wordToDef ? generateStatistics(wordToDef).map(w => w): null}
       <div className="results-header">
         <div className="results-stats">
           <span className="results-count">Totala matchningar: <strong>{hits}</strong></span>
