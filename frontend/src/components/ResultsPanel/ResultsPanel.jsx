@@ -150,12 +150,12 @@ const ResultsPanel = ({ response, wordToDef }) => {
     let elemArr = [];
     if (Array.isArray(wordToDef)) {
       wordToDef.forEach((w) => {
-        if (w.wordEntry !== "") {
-          console.log('w in genDef', w)
-        elemArr.push(<Definition wordEntry={w.wordEntry}></Definition>)}})
-    } else {
-      elemArr.push(<Definition wordEntry={wordToDef}></Definition>)
-    }
+        if (w.wordEntry !== "" && !w.pos) {
+            console.log('w in genDef', w);
+            elemArr.push(<Definition wordEntry={w.wordEntry}></Definition>)}})
+        } else {
+            elemArr.push(<Definition wordEntry={wordToDef}></Definition>)
+        }
 
     return elemArr;
   }
@@ -166,7 +166,7 @@ const ResultsPanel = ({ response, wordToDef }) => {
       if (Array.isArray(wordToDef)) {
         console.log('stats is array', wordToDef);
         wordToDef.forEach(w => {
-          if (w.wordEntry !== "") {
+          if (w.wordEntry !== "" && !w.pos) {
           elemArr.push(<BarChart word={w.wordEntry}></BarChart>)}})
       } else {
           elemArr.push(<BarChart word={wordToDef}></BarChart>)
