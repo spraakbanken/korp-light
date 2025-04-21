@@ -7,11 +7,13 @@ import SearchBar from '../SearchBar/SearchBar.jsx';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 import addbutton from '../../assets/addbutton.svg';
+import AdvancedSearchPOSEntry from './AdvancedSearchPOSEntry.jsx';
+import pos_list from '../../services/part-of-speech-list.js';
 
 export default function AdvancedSearch({submitResult, returnWordsDict}) {
     
     const [wordElements, setWordElements] = useState([{
-        id: -1, wordEntry: "", tag: ""
+        id: -1, wordEntry: "", tag: "", pos: false,
     }]);
     const [wordsDict, setWordsDict] = useState({});
     const [counter, setCounter] = useState(0);
@@ -51,7 +53,8 @@ export default function AdvancedSearch({submitResult, returnWordsDict}) {
                 {
                     id: counter,
                     wordEntry: w,
-                    tag: 'Ordform'
+                    tag: 'Ordform',
+                    pos: false,
                 }]);
             setWordsDict({...wordsDict, [w] : 'Ordform'});
         }
@@ -71,7 +74,9 @@ export default function AdvancedSearch({submitResult, returnWordsDict}) {
         setWordElements([...wordElements, {
             id: counter,
             tag: '', 
-            wordEntry: entryName}]);
+            wordEntry: entryName,
+            pos: true,
+        }]);
         
         setCounter(counter+1);
     } 
@@ -122,18 +127,26 @@ export default function AdvancedSearch({submitResult, returnWordsDict}) {
                     onKeyDown={(e) => handleEnterKey(e)}></input> */}
                 {wordElements.map((w) => {
                     if (w.wordEntry) {
+                        if (w.pos) {
+                            return <AdvancedSearchPOSEntry key={w.id} word={w.wordEntry} idx={w.id} 
+                            handleDelete={(word) => {handleDelete(word)}}
+                            handleChevronClick={(id, dir) => {handleChevron(id, dir)}}/>
+                        } else {
                         return <AdvancedSearchEntry key={w.id} word={w.wordEntry} idx={w.id} 
                             returnWordTag={(id, tag) => {handleClick(id, tag)}}
                             handleDelete={(word) => {handleDelete(word)}}
                             handleChevronClick={(id, dir) => {handleChevron(id, dir)}}/>
-                    }
+                    }}
                 })}
                 <div>
                         <Dropdown key={99999}>
                             <Dropdown.Toggle className='advanced__search__append'><img src={addbutton} alt='addbutton'></img></Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item onClick={() => createComponent('Adverb')}>Adverb</Dropdown.Item>
-                                <Dropdown.Item onClick={() => createComponent('Substantiv')}>Substantiv</Dropdown.Item>
+                                {
+                                    Object.keys(pos_list).map(label => 
+                                        <Dropdown.Item key={label}onClick={() => createComponent(`${label}`)}>{label}</Dropdown.Item>
+                                    )
+                                }
                             </Dropdown.Menu>
                     </Dropdown>
                 </div>

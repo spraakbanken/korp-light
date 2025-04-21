@@ -4,6 +4,7 @@ import axios from 'axios';
 import { setHistory } from './history.js';
 import queryParams from './queryParams.js';
 import server_config from './server_config.js';
+import pos_list from './part-of-speech-list.js';
 
 // Sample Axios Code
 // Using Promises, Write a function for each endpoint
@@ -97,13 +98,16 @@ export function buildQuery(params) {
   queryParams.default_within='sentence';
   console.log("params to buildQuery", params);
   
+  // does there need to be a space between these?
   params.forEach((w) => {
     if (w.tag === "Grundform") {
-      buildAdvancedQuery = buildAdvancedQuery + `[lemma contains "${w.wordEntry}"] `
+      buildAdvancedQuery = buildAdvancedQuery + `[lemma contains "${w.wordEntry}"]`
       
-  } else if (w.tag === "Ordform") {
-          buildAdvancedQuery = buildAdvancedQuery + `[word = "${w.wordEntry}"] `
-      }
+    } else if (w.tag === "Ordform") {
+          buildAdvancedQuery = buildAdvancedQuery + `[word = "${w.wordEntry}"]`
+    } else if (w.pos) {
+        buildAdvancedQuery = buildAdvancedQuery + `[pos = "${pos_list[w.wordEntry]}"]`
+    }
   })
   
 
