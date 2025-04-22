@@ -293,7 +293,7 @@ const history_tip = (
                                 buttonImage={sliders_logo}
                                 buttonOnClick={toggleFilterModal}
                                 buttonToolTip={filter_tip}
-                                buttonLabel="Filter" />
+                                buttonLabel="Anpassa sökning" />
                              <FilterCard
                                 show={showFilterModal}
                                 onHide={() => setShowFilterModal(false)}
