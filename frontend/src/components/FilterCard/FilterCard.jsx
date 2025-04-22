@@ -22,9 +22,6 @@ export default function SettingsCard(props) {
                 className="_filter_card" centered>
                 <Modal.Header className="header" closeButton>
                     <Modal.Title className="title">Sökinställningar</Modal.Title>
-                    <div className="ms-auto">
-                        <Button onClick={props.onHide} className="filterCloseButton">Spara och stäng</Button>
-                    </div>
                 </Modal.Header>
                 <Modal.Body className="modal-body">
                     {/* Corpora per page */}
@@ -68,7 +65,10 @@ export default function SettingsCard(props) {
                     </Form.Group>
                 </Modal.Body>
                 
-               
+               {/* Close button */}
+               <Modal.Footer className="filterFooter" onClick={props.onHide}>
+                    <Button className="filterCloseButton">Spara och stäng</Button>
+                </Modal.Footer>
             </Modal>
     );
 }
