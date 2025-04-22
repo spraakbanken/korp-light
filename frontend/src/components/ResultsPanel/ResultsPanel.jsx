@@ -155,6 +155,7 @@ const ResultsPanel = ({ response, wordToDef, isFetching, corpusHits }) => {
   };
 
   const generateStatistics = (wordToDef) => {
+    console.log('stats', wordToDef);
     let elemArr = [];
     if (Array.isArray(wordToDef)) {
       wordToDef.forEach(w => {

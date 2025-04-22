@@ -18,10 +18,6 @@ export default function HistoryPanel() {
         removeHistoryItem(item);
     }
 
-    useEffect(() => {
-        console.log('history is', history)
-    }, [history])
-
     if (!hasHistory) {
         return null;
     }
@@ -34,7 +30,12 @@ export default function HistoryPanel() {
                         <tr key={item} className={index % 2 === 0 ? "even-row" : "odd-row"}>
                             <td className='history-single-entry'>
                                 <div className='history-info-container'>
-                                    <Link className='history-single-entry-text' to={`/results${history[item].url}`}>
+                                    <Link className='history-single-entry-text' 
+                                        to={{
+                                            pathname: '/results',
+                                            search: `/${history[item].url}`,
+                                            }} 
+                                        state={{ wordFromLP: JSON.parse(history[item].word) }}>
                                         {item}
                                     </Link>
                                     <p className='history-entry-time'>{history[item].time}</p>
