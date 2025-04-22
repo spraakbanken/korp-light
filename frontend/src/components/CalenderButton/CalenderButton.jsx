@@ -26,6 +26,7 @@ export default function CalenderButton() {
   return (
         <div className='calender-button-'>
         <img src={calenderIcon}
+        ref={refs.setReference}
         alt="Calender icon"
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
@@ -33,6 +34,7 @@ export default function CalenderButton() {
 
     {showTooltip && (
         <div
+            ref={refs.setFloating}
             style={{
                 position: strategy,
                 top: y ?? 0,
