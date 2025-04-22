@@ -1,0 +1,12 @@
+.examples{
+    background-color: var(--bg-color);
+    color: var(--text-color); 
+    border: none;
+    font-weight: 500; 
+    display: flex;
+     flex-direction: column;
+}
+.examples:hover{
+    color: var(--primary-color);
+    background-color: var(--bg-color);
+}
