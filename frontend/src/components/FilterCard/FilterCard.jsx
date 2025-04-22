@@ -27,7 +27,7 @@ export default function SettingsCard(props) {
                     {/* Corpora per page */}
                     <Form.Group className="filter_button">
                         <Form.Label>Antal Korpusar per sida: <span className="settings__description"></span></Form.Label>
-                        <Form.Select 
+                        <Form.Select disabled
                             onChange={(e) => {
                                 updateSettings({
                                     ...settings,
