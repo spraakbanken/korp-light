@@ -197,7 +197,7 @@ const history_tip = (
         setCorpus(`[ ${current_corpora} ]`)
     }
 
-    function buildStartEndMap(corpusOrder, corpusHits, pageSize = 10) {
+    function buildStartEndMap(corpusOrder, corpusHits, pageSize) {
         const startEndMap = {};
         let currentStart = 0;
     
@@ -225,7 +225,7 @@ const history_tip = (
                 if (data?.corpus_hits && data?.corpus_order) {
                     setCorpusHits(data.corpus_hits);
             
-                    const startEndMap = buildStartEndMap(data.corpus_order, data.corpus_hits);
+                    const startEndMap = buildStartEndMap(data.corpus_order, data.corpus_hits, settings.sampleSize);
                    
                     Object.entries(startEndMap).forEach(([corpusName, { start, end }]) => {
                        fetchCorpusResults(corpusName, start, end, searchWordInput);
@@ -235,7 +235,7 @@ const history_tip = (
             });            
             
         }
-    }, [searchWordInput, corpusInput]);
+    }, [searchWordInput, corpusInput, settings.sampleSize]);
 
 
     const fetchCorpusResults = async (corpusName, start, end, query) => {
