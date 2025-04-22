@@ -33,9 +33,9 @@ export default function HistoryPanel() {
                                     <Link className='history-single-entry-text' 
                                         to={{
                                             pathname: '/results',
-                                            search: `/${history[item].url}`,
+                                            search: `${history[item].url}`,
                                             }} 
-                                        state={{ wordFromLP: JSON.parse(history[item].word) }}>
+                                        state={{ wordFromLP: JSON.parse(JSON.stringify(history[item].word))}}>
                                         {item}
                                     </Link>
                                     <p className='history-entry-time'>{history[item].time}</p>
