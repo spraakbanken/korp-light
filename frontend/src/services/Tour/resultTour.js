@@ -265,8 +265,8 @@ export const useResultTour = () => {
     // Step 10: Result Card
     resultTour.addStep({
         id: 'result-card',
-        title: `Individuellt sökresultat <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
-        text: 'Här ser du ett individuellt sökresultat, klicka för mer information.',
+        title: `Enskilt sökresultat <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
+        text: 'Här ser du ett enskilt sökresultat, klicka för mer information.',
         attachTo: {
           element: '.resultRow',
           on: 'bottom'
