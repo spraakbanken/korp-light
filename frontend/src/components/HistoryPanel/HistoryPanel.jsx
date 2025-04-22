@@ -11,7 +11,7 @@ export default function HistoryPanel() {
     const hasHistory = historyItems.length > 0;
 
     const handleDelete = (item) => {
-        const newHistory = {...history};
+        const newHistory = { ...history };
         delete newHistory[item];
         setHistory(newHistory);
 
@@ -20,8 +20,8 @@ export default function HistoryPanel() {
 
     useEffect(() => {
         console.log('history is', history)
-    }, [history])   
-    
+    }, [history])
+
     if (!hasHistory) {
         return null;
     }
@@ -32,11 +32,14 @@ export default function HistoryPanel() {
                 <tbody>
                     {Object.keys(history ?? {}).slice().reverse().map((item, index) => (
                         <tr key={item} className={index % 2 === 0 ? "even-row" : "odd-row"}>
-                            <td className='history-single-entry'>   
-                                <Link className='history-single-entry-text' to={`/results${history[item].url}`}>
-                                    {item}
-                                </Link>
-                                <p className='history-entry-time'>{history[item].time}</p>
+                            <td className='history-single-entry'>
+                                <div className='history-info-container'>
+                                    <Link className='history-single-entry-text' to={`/results${history[item].url}`}>
+                                        {item}
+                                    </Link>
+                                    <p className='history-entry-time'>{history[item].time}</p>
+                                </div>
+
                                 <img onClick={() => handleDelete(item)} className='history-entry-delete-icon' src={crossLogo} alt="" />
                             </td>
                         </tr>
