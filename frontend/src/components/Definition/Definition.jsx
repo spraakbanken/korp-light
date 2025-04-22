@@ -91,7 +91,7 @@ export default function Definition({wordEntry}) {
                         }
                     })}
                     <a href={`https://lexin.nada.kth.se/lexin/#searchinfo=both,swe_swe,${wordEntry};`} 
-                        target="_blank" rel="noopener noreferrer">Länk till Lexin Ordbok för flera betydelse och exemplar.</a>
+                        target="_blank" rel="noopener noreferrer">Länk till Lexin ordbok för fler betydelser och exempel.</a>
                   </div>
             </div>
             }
