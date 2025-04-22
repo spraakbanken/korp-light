@@ -70,7 +70,7 @@
 
 .history-single-entry-text:hover {
     text-decoration: underline;
-    color: #fd7e14;;
+    color: var(--primary-color);
     text-decoration: underline; 
 }
 
