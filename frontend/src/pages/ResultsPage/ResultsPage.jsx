@@ -53,6 +53,7 @@ export default function ResultsPage() {
     const [perCorpusResults, setPerCorpusResults] = useState({});
     const [corpusHits, setCorpusHits] = useState({});
 
+    const [queryCounter, setQueryCounter] = useState(0);
     
     const [words, setWords] = useState([]);
     const [showAdvancedSearch, setShowAdvancedSearch] = useState(false);
@@ -118,6 +119,7 @@ export default function ResultsPage() {
         { data: searchQueryData = [],
             isLoading: searchQueryIsLoading,
             refetch: searchQueryRefetch,
+            isRefetching: isSearchQueryRefetching
         } = useQuery({
             queryKey: [searchWordInput, corpusInput],
             queryFn: () => getCorpusQuery(searchWordInput),
@@ -211,6 +213,8 @@ const history_tip = (
                 currentStart += hits;
             }
         }
+
+        console.log('building map for ', corpusOrder, corpusHits, pageSize);
     
         return startEndMap;
     }
@@ -221,32 +225,39 @@ const history_tip = (
             searchQueryRefetch().then((res) => {
                 const data = res.data;
                 
-            
                 if (data?.corpus_hits && data?.corpus_order) {
                     setCorpusHits(data.corpus_hits);
             
                     const startEndMap = buildStartEndMap(data.corpus_order, data.corpus_hits, settings.sampleSize);
                    
                     Object.entries(startEndMap).forEach(([corpusName, { start, end }]) => {
+                        console.log('fetching for', corpusName, start, end);
+                        setQueryCounter(queryCounter+1);
+
                        fetchCorpusResults(corpusName, start, end, searchWordInput);
                     });
-                     
+                    
                 }
-            });            
+            }).then(console.log('fetching done'));            
             
         }
     }, [searchWordInput, corpusInput, settings.sampleSize]);
 
+    useEffect(() => {
+        console.log('queryCounter', queryCounter);
+        console.log('corpushits', corpusHits);
+    }, [queryCounter, corpusHits])
 
     const fetchCorpusResults = async (corpusName, start, end, query) => {
         try {
             const responseFromQuery = await getCorpusQuery(query, start, end);
-            let corpLower = corpusName.toLowerCase()
+            let corpLower = corpusName.toLowerCase();
             setPerCorpusResults(prev => {
                 const updatedResults = {
                     ...prev,
                     [corpLower]: responseFromQuery
                 };
+                
                 // Use the updated value immediately
                 setQueryData(updatedResults);
                 return updatedResults;
@@ -394,7 +405,10 @@ const history_tip = (
                 <div className="mt-2">
                     {/*queryData.kwic == undefined ? <p>Loading...</p> : JSON.stringify(queryData) */}
                     {queryData === undefined ? <p>Laddar...</p> :
-                        <ResultsPanel response={queryData} wordToDef={rawSearchInput} />}
+                        <ResultsPanel response={queryData} 
+                            wordToDef={rawSearchInput} 
+                            isFetching={searchQueryIsLoading}
+                            corpusHits={corpusHits}/>}
                 </div>
                 <button className="results_page__back_to_top" onClick={scrollToTop}>Till toppen</button>
             </div>

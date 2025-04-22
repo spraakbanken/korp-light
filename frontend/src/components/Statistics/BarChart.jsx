@@ -136,7 +136,6 @@ export default function BarChart({word}) {
     }
 
     const generateGraph = (inData) => {
-        console.log('inData', inData);
         if(Object.keys(inData).length !== 0) {
             return <Bar options={chartOptions} data={inData} />
         } else {

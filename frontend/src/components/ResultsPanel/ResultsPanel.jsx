@@ -10,7 +10,7 @@ import BarChart from '../Statistics/BarChart.jsx';
 import { ChevronsDown } from 'lucide-react';
 import { ChevronsUp } from 'lucide-react';
 
-const ResultsPanel = ({ response, wordToDef }) => {
+const ResultsPanel = ({ response, wordToDef, isFetching, corpusHits }) => {
   const [hits, setHits] = useState(0);
   const [startHit, setStartHit] = useState(0);
   const [endHit, setEndHit] = useState(0);
@@ -30,6 +30,10 @@ const ResultsPanel = ({ response, wordToDef }) => {
       key => key.toLowerCase() === corpusName.toLowerCase()
     ) || corpusName;
   };
+
+  useEffect(() => {
+    console.log('ResultsPanel fetching for', wordToDef, isFetching, corpusHits);
+  }, [isFetching, corpusHits])
 
   useEffect(() => {
     setResultsPerCorpus(settings.sampleSize);
@@ -154,7 +158,7 @@ const ResultsPanel = ({ response, wordToDef }) => {
     return elemArr;
   };
 
-  if (hits === 0) {
+  if (corpusHits === 0 && !isFetching) {
     return (
       <div className="results-panel results-panel-empty">
         <div className="no-results">
@@ -245,7 +249,7 @@ const ResultsPanel = ({ response, wordToDef }) => {
           );
         })}
 
-        {visibleCorpora.length === 0 && (
+        {!isFetching && visibleCorpora.length === 0 && (
           <div className="no-results">
             <p>Inga fler korpusar att visa</p>
           </div>
