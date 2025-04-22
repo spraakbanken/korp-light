@@ -23,7 +23,7 @@ export default function HistoryPanel() {
         <div className="history-panel">
             <table className="history-table">
                 <tbody>
-                    {Object.keys(history ?? {}).map((item, index) => (
+                    {Object.keys(history ?? {}).slice().reverse().map((item, index) => (
                         <tr key={item} className={index % 2 === 0 ? "even-row" : "odd-row"}>
                             <td className='history-single-entry'>   
                                 <Link className='history-single-entry-text' to={`/results${history[item].url}`}>
