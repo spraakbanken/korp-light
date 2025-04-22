@@ -251,7 +251,7 @@ const ResultsPanel = ({ response, wordToDef, isFetching, corpusHits }) => {
 
         {!isFetching && visibleCorpora.length === 0 && (
           <div className="no-results">
-            <p>Inga fler korpusar att visa</p>
+            <p></p>
           </div>
         )}
       </div>
