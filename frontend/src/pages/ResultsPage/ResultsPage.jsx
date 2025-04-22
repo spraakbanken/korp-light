@@ -124,8 +124,8 @@ export default function ResultsPage() {
         if (corporas.corporas){
             setShowErrorCorpus(false);
         let res;
-                console.log('wordsDict in results page', wordsDict);
-                if(wordsDict && wordsDict.length > 0){
+                console.log('wordsDict in results page', wordsDict.length);
+                if(wordsDict && wordsDict.length > 1){
                     res = buildQuery(wordsDict);
                 }else{
                     res = `[word = "${event}"]`;
