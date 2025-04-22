@@ -89,15 +89,14 @@
     text-align: left;
 }
 
-.history-single-entry-text {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    word-break: break-word;
-    max-width: 100%;
-    display: block;
-    text-align: left;
+.history-info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    max-width: calc(100% - 35px);
+    width: 100%; /* Add this to make the container take full available width */
 }
-
 
 .history-entry-delete-icon {
     width: 25px;

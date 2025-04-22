@@ -67,7 +67,7 @@ export default function SettingsCard(props) {
                 
                 {/* Close button */}
                 <Modal.Footer className="filterFooter" onClick={props.onHide}>
-                        <Button className="filterCloseButton">Stäng</Button>
+                        <Button className="filterCloseButton">Spara och stäng</Button>
                 </Modal.Footer>
             </Modal>
     );
