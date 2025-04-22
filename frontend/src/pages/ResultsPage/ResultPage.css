@@ -172,7 +172,7 @@
         order: 2; 
         margin: 0;
         flex: 1;
-        justify-content: flex-end;
+        justify-content: center;
     }
 
     .resultpage__button_container {

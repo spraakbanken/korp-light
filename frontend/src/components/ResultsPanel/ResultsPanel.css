@@ -275,5 +275,9 @@
   .pagination-text {
     display: none;
   }
+
+  .token {
+    font-size: 0.9rem;
+  }
 }
 
