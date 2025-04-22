@@ -39,7 +39,7 @@ export const useResultTour = () => {
         resultTour.addStep({
           id: 'HomeIcon',
           title: `Hem <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
-          text: 'Här kan du klicka för att navigera till startasidan.',
+          text: 'Här kan du klicka för att navigera till startsidan.',
           attachTo: {
             element: '.homeIconA',
             on: 'right'
@@ -71,7 +71,7 @@ export const useResultTour = () => {
     resultTour.addStep({
       id: 'corpus-button',
       title: `Välj korpus <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
-      text: 'Klicka här för att välja vilka korpusar du vill söka i, tex Nyhetstexter.',
+      text: 'Klicka här för att välja vilka korpusar (textsamlingar) du vill söka i, t.ex. "Nyheter".',
       attachTo: {
         element: '.corpus-button',
         on: 'bottom'
@@ -189,11 +189,11 @@ export const useResultTour = () => {
     });
 
     // Step 7: Layout Button
-    /*if (!isMobile) {
+    if (!isMobile) {
         resultTour.addStep({
           id: 'layout-button',
           title: `Layout <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
-          text: 'Här kan du ändra layouten av resultatet, tryck för att byta mellan lista och rutnät.',
+          text: 'Här kan du ändra layouten av resultatet, tryck för att byta mellan lista och rutnät. (To be Developed)',
           attachTo: {
             element: '.calender-button',
             on: 'left'
@@ -212,13 +212,13 @@ export const useResultTour = () => {
             }
           ]
         });
-      }*/
+      }
 
     // Step 8: Result Panel
     resultTour.addStep({
         id: 'results-panel',
         title: `Resultatpanel <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
-        text: 'Här kan du se antalet sökresultat.',
+        text: 'Här kan du se alla sökresultat.',
         attachTo: {
           element: '.results-panel',
           on: 'bottom'
@@ -242,7 +242,7 @@ export const useResultTour = () => {
       resultTour.addStep({
         id: 'corpus-header',
         title: `Resultat från en korpus <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
-        text: 'Här kan du se antalet sökresultat från en specifik korpus, klicka för att se alla individuella resultat från den korpusen.',
+        text: 'Här kan du se alla sökresultat från en specifik korpus.',
         attachTo: {
           element: '.corpus-header',
           on: 'bottom'
@@ -265,8 +265,8 @@ export const useResultTour = () => {
     // Step 10: Result Card
     resultTour.addStep({
         id: 'result-card',
-        title: `Individuellt sökresultat <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
-        text: 'Här ser du ett individuellt sökresultat, klicka för mer information.',
+        title: `Enskilt sökresultat <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
+        text: 'Här ser du ett enskilt sökresultat, klicka för mer information.',
         attachTo: {
           element: '.resultRow',
           on: 'bottom'

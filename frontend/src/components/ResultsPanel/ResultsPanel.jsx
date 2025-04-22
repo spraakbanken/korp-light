@@ -7,9 +7,9 @@ import { MoveLeft, MoveRight, ChevronDown, ChevronRight } from 'lucide-react';
 import CorporaContext from '../../services/CorporaContext.jsx';
 import Definition from '../Definition/Definition.jsx';
 import BarChart from '../Statistics/BarChart.jsx';
+import { ChevronsDown } from 'lucide-react';
+import { ChevronsUp } from 'lucide-react';
 
-
-//This should all later be changed to use individual api calls for each corpus, so we get (hopefully) a quicker response.
 const ResultsPanel = ({ response, wordToDef }) => {
   const [hits, setHits] = useState(0);
   const [startHit, setStartHit] = useState(0);
@@ -19,110 +19,74 @@ const ResultsPanel = ({ response, wordToDef }) => {
   const [corpusOrder, setCorpusOrder] = useState([]);
   const [expandedCorpus, setExpandedCorpus] = useState({});
   const [activeCorporas, setActiveCorporas] = useState({});
-  const { settings, updateSettings } = useContext(SettingsContext);
+  const [resultsPerCorpus, setResultsPerCorpus] = useState(0);
+  const { settings } = useContext(SettingsContext);
   const { corporas } = useContext(CorporaContext);
+  const corpusPerPage = 5;
 
-  const corpusPerPage = 3; // Should be swapped with resultsperpage.
-  const [resultsPerCorpus, setResultsPerCorpus] = useState(settings.sampleSize);
-  const [showAllResults, setShowAllResults] = useState({});
-
-
+  const findMatchingCorpusKey = (corpusName) => {
+    if (!response) return corpusName;
+    return Object.keys(response).find(
+      key => key.toLowerCase() === corpusName.toLowerCase()
+    ) || corpusName;
+  };
 
   useEffect(() => {
-    if (response) {
-      if (response.error) {
-        setError(true); // API response has error
-      } else {
-        setHits(response.hits || 0);
-        setPage(0);
-        setActiveCorporas(corporas.corporas);
+    setResultsPerCorpus(settings.sampleSize);
+  }, [settings.sampleSize]);
 
-        //Reset showAllResults to false for all corpora
-        setShowAllResults({});
+  useEffect(() => {
+    if (!response || response.error) return;
 
-        // Set corpus order from response
-        if (response.corpus_order) {
-          setCorpusOrder(response.corpus_order);
+    const firstCorpusKey = Object.keys(response)[0];
+    const order = (response[firstCorpusKey]?.corpus_order || [])
+      .map(c => c.toLowerCase());
 
-          // Initialize all corpora as expanded
-          const initialExpandState = {};
-          response.corpus_order.forEach(corpus => {
-            initialExpandState[corpus] = true;
-          });
-          setExpandedCorpus(initialExpandState);
+    setCorpusOrder(order);
+    setHits(calculateTotalHits());
+    setPage(0);
+    setActiveCorporas(corporas.corporas);
 
-        }
-      }
-    }
+    const initialExpandState = {};
+    order.forEach(corpus => {
+      initialExpandState[corpus] = true;
+    });
+    setExpandedCorpus(initialExpandState);
+
+    const grouped = {};
+    order.forEach(corpus => {
+      const responseKey = findMatchingCorpusKey(corpus);
+      const corpusResults = response[responseKey]?.kwic || [];
+      grouped[corpus] = corpusResults.slice(0, settings.sampleSize);
+    });
+    setGroupedResults(grouped);
   }, [response]);
 
   useEffect(() => {
-    if (response && response.kwic) {
-      if (response.error) {
-        setError(true); // API response has error
-      } else {
-        setResultsPerCorpus(settings.sampleSize);
-        const grouped = {};
-        corpusOrder.forEach(corpus => {
-          const corpusResults = response.kwic.filter(result => result.corpus === corpus);
-          // If showAllResults is true, show all results for this corpus
-          const resultsToShow = showAllResults[corpus]
-            ? corpusResults
-            : corpusResults.slice(0, settings.sampleSize);
-          grouped[corpus] = resultsToShow;
-        });
-
-        setGroupedResults(grouped);
-        calculateResultRange();
-      }
-    }
-  }, [response, corpusOrder, settings.sampleSize, showAllResults]);
-
-
-  useEffect(() => {
     calculateResultRange();
-  }, [page]);
+  }, [page, groupedResults]);
 
-
-  /*   const calculateResultRange = () => {
-      if (!response || !response.corpus_order) return;
-  
-      const start = page * corpusPerPage;
-      const displayedCorpora = response.corpus_order.slice(start, start + corpusPerPage);
-  
-      let totalPrevResults = 0;
-      let currentPageResults = 0;
-  
-      response.corpus_order.forEach((corpus, index) => {
-        const count = Math.min(resultsPerCorpus, response.kwic.filter(r => r.corpus === corpus).length); // This should probably just be the kwic.filter, but im not 100% sure.
-        //Or it shouldnt show hits here at all, and just in each corpus.
-  
-        if (index < start) { //We add all the corpuses from previous pages hits, so we know were we should start.
-          totalPrevResults += count; // All hits from the pages before.
-        } else if (displayedCorpora.includes(corpus)) {
-          currentPageResults += count;
-        }
-      });
-      console.log(totalPrevResults + currentPageResults);
-      setStartHit(totalPrevResults);
-      setEndHit(totalPrevResults + currentPageResults);
-    }; */
+  const calculateTotalHits = () => {
+    if (!response) return 0;
+    return Object.keys(response).reduce((total, corpus) => {
+      const corpusHits = response[corpus]?.corpus_hits || {};
+      return total + Object.values(corpusHits).reduce((sum, hits) => sum + (hits || 0), 0);
+    }, 0);
+  };
 
   const calculateResultRange = () => {
-    if (!response || !response.corpus_order) return;
+    if (!response || !corpusOrder.length) return;
 
     const start = page * corpusPerPage;
-    const displayedCorpora = response.corpus_order.slice(start, start + corpusPerPage);
+    const displayedCorpora = corpusOrder.slice(start, start + corpusPerPage);
 
     let totalPrevResults = 0;
     let currentPageResults = 0;
 
-    response.corpus_order.forEach((corpus, index) => {
-      const corpusResults = response.kwic.filter(r => r.corpus === corpus);
-      const count = showAllResults[corpus]
-        ? corpusResults.length
-        : Math.min(resultsPerCorpus, corpusResults.length);
-
+    corpusOrder.forEach((corpus, index) => {
+      const responseKey = findMatchingCorpusKey(corpus);
+      const corpusResults = response[responseKey]?.kwic || [];
+      const count = Math.min(resultsPerCorpus, corpusResults.length);
       if (index < start) {
         totalPrevResults += count;
       } else if (displayedCorpora.includes(corpus)) {
@@ -133,19 +97,6 @@ const ResultsPanel = ({ response, wordToDef }) => {
     setStartHit(totalPrevResults);
     setEndHit(totalPrevResults + currentPageResults);
   };
-
-
-
-  if (hits === 0) {
-    return (
-      <div className="results-panel results-panel-empty">
-        <div className="no-results">
-          <h2>Inga resultat hittades</h2>
-          <p>Försök med en annan sökning</p>
-        </div>
-      </div>
-    );
-  }
 
   const handleNextPage = () => {
     const totalPages = Math.ceil(corpusOrder.length / corpusPerPage);
@@ -167,18 +118,6 @@ const ResultsPanel = ({ response, wordToDef }) => {
     }));
   };
 
-  const toggleShowAllResults = (e, corpus) => {
-    e.stopPropagation();
-    setShowAllResults(prev => {
-      const newState = {
-        ...prev,
-        [corpus]: !prev[corpus]
-      };
-      return newState;
-    });
-  };
-
-
   const getVisibleCorpora = () => {
     const start = page * corpusPerPage;
     return corpusOrder.slice(start, start + corpusPerPage);
@@ -192,53 +131,81 @@ const ResultsPanel = ({ response, wordToDef }) => {
     if (Array.isArray(wordToDef)) {
       wordToDef.forEach((w) => {
         if (w.wordEntry !== "" && !w.pos) {
-          //console.log('w in genDef', w);
-          elemArr.push(<Definition wordEntry={w.wordEntry}></Definition>)
+          elemArr.push(<Definition key={w.wordEntry} wordEntry={w.wordEntry} />);
         }
-      })
+      });
     } else {
-      elemArr.push(<Definition wordEntry={wordToDef}></Definition>)
+      elemArr.push(<Definition wordEntry={wordToDef} />);
     }
-
     return elemArr;
-  }
+  };
 
   const generateStatistics = (wordToDef) => {
-
     let elemArr = [];
     if (Array.isArray(wordToDef)) {
-      //console.log('stats is array', wordToDef);
       wordToDef.forEach(w => {
         if (w.wordEntry !== "" && !w.pos) {
-          elemArr.push(<BarChart word={w.wordEntry}></BarChart>)
+          elemArr.push(<BarChart key={w.wordEntry} word={w.wordEntry} />);
         }
-      })
+      });
     } else {
-      elemArr.push(<BarChart word={wordToDef}></BarChart>)
+      elemArr.push(<BarChart word={wordToDef} />);
     }
-
     return elemArr;
+  };
+
+  if (hits === 0) {
+    return (
+      <div className="results-panel results-panel-empty">
+        <div className="no-results">
+          <h2>Inga resultat hittades</h2>
+          <p>Försök med en annan sökning</p>
+        </div>
+      </div>
+    );
   }
+
+  const allCollapsed = Object.values(expandedCorpus).every(value => !value);
 
   return (
     <div className="results-panel">
-      {wordToDef ? generateDefintions(wordToDef).map(w => w) : null}
-      {wordToDef ? generateStatistics(wordToDef).map(w => w) : null}
+      {wordToDef && generateDefintions(wordToDef)}
+      {wordToDef && generateStatistics(wordToDef)}
       <div className="results-header">
         <div className="results-stats">
           <span className="results-count">Totala matchningar: <strong>{hits}</strong></span>
-          {/*Should probably say the total of the corpuses from that page, not current endhit */}
-          <span className="results-showing">Visar <strong>{startHit + 1}–{resultsPerCorpus}</strong></span>
+        </div>
+        <div>
+        <button className="collapse-button" onClick={() => {
+            const newState = {};
+            corpusOrder.forEach(corpus => {
+              newState[corpus] = allCollapsed; 
+            });
+            setExpandedCorpus(newState);
+            }}>
+              {allCollapsed ? 
+              <>
+                <ChevronsDown className='collapse-chevron' size={18} />
+                <p>Expandera alla</p>
+              </>
+              : 
+              <> 
+                <ChevronsUp className='collapse-chevron' size={18} />
+                <p>Kollapsa alla</p>
+              </>}
+          </button>
         </div>
       </div>
 
       <div className="results-table-container">
         {visibleCorpora.map((corpus) => {
           const corpusResults = groupedResults[corpus] || [];
-          const corpusHitCount = response?.corpus_hits?.[corpus] || 0;
+          const responseKey = findMatchingCorpusKey(corpus);
+          const corpusHitCount =
+            response[responseKey]?.corpus_hits?.[corpus.toUpperCase()] ||
+            response[responseKey]?.corpus_hits?.[corpus.toLowerCase()] ||
+            0;
 
-          // Skip if no results for this corpus
-          //Maybe still show corpus and just say no results, idk whats best.
           if (corpusHitCount === 0) return null;
 
           return (
@@ -252,39 +219,23 @@ const ResultsPanel = ({ response, wordToDef }) => {
                   <span className="corpus-name">{activeCorporas[corpus.toLowerCase()]}</span>
                   <span className="corpus-count">({corpusHitCount})</span>
                 </div>
-                <div className="show-all-results-container">
-                  <button
-                    className='show-all-button'
-                    onClick={(e) => toggleShowAllResults(e, corpus)}
-                  >
-                    {showAllResults[corpus]
-                      ? `Visa ${Math.min(settings.sampleSize, response.kwic.filter(r => r.corpus === corpus).length)} resultat` 
-                      : "Visa alla resultat"}
-                  </button>
-                </div>
               </div>
               {expandedCorpus[corpus] && (
                 <table className="results-table">
                   <tbody>
                     {corpusResults.length > 0 ? (
-                      corpusResults.map((line, index) => {
+                      corpusResults.map((line, index) => (
+                        <ResultCard
+                          key={`${corpus}-${index}`}
+                          response={line}
+                          n={index}
+                          extraData={line.structs}
+                        />
+                      ))
 
-                        let resultIndex = 0;
-                        for (let i = 0; i < corpusOrder.indexOf(corpus); i++) {
-                          resultIndex += Math.min(
-                            resultsPerCorpus,
-                            response.kwic.filter(r => r.corpus === corpusOrder[i]).length
-                          );
-                        }
-                        resultIndex += index;
-
-                        return <ResultCard key={`${corpus}-${index}`} response={line} n={resultIndex} extraData={line.structs} />;
-                      })
                     ) : (
                       <tr>
-                        <td className="no-corpus-results">
-                          Inga resultat från denna korpus
-                        </td>
+                        <td className="no-corpus-results">Inga resultat från denna korpus</td>
                       </tr>
                     )}
                   </tbody>
@@ -294,7 +245,6 @@ const ResultsPanel = ({ response, wordToDef }) => {
           );
         })}
 
-        {/* Idk if its needed, just a thought if we implement page in the url, and someone were to tweak the url to next page even tho button doesnt allow.*/}
         {visibleCorpora.length === 0 && (
           <div className="no-results">
             <p>Inga fler korpusar att visa</p>

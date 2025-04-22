@@ -453,13 +453,7 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
             <Modal.Header>
                 <Modal.Title>Välj korpus</Modal.Title>
                 <div className="ms-auto">
-                    <Button 
-                    variant="success" 
-                    onClick={onHide}
-                    className="p-0"
-                    >
-                    <Check size={24} />
-                    </Button>
+                    <Button onClick={onHide} className="corpusCloseButton">Spara och stäng</Button>
                 </div>
                 </Modal.Header>
 

@@ -254,6 +254,29 @@
   font-style: italic;
 }
 
+.collapse-button {
+  display: flex;
+  text-align: left;
+  width: 170px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFD98A;
+  border-radius: 50px;
+  padding: 8px 25px;
+  height: 40px; 
+  transition: all 0.2s ease-in-out;
+  border: transparent;
+  font-size: 0.9rem;
+}
+
+.collapse-button p {
+  margin: 0;
+}
+
+.collapse-chevron {
+  margin-right: 10px;
+}
 
 @media (max-width: 768px) {
   .results-panel {
@@ -278,6 +301,17 @@
 
   .token {
     font-size: 0.9rem;
+  }
+
+  .collapse-button p {
+    display: none;
+  }
+  .collapse-button {
+    width: 100px;
+  }
+  .collapse-chevron {
+    margin-right: 0;
+    margin: 1px;
   }
 }
 

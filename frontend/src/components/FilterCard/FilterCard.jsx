@@ -27,14 +27,14 @@ export default function SettingsCard(props) {
                     {/* Corpora per page */}
                     <Form.Group className="filter_button">
                         <Form.Label>Antal Korpusar per sida: <span className="settings__description"></span></Form.Label>
-                        <Form.Select 
+                        <Form.Select disabled
                             onChange={(e) => {
                                 updateSettings({
                                     ...settings,
                                     resultsPerPage: e.target.value
                                 })}}
                                 value={settings.resultsPerPage} >
-                            {[1, 3, 5, 10].map((num) => (
+                            {[1, 3, 5].map((num) => (
                                 <option key={num} value={num}>
                                     {num} {num === 1 ? "korpus" : "korpusar"}
                                 </option>
@@ -67,7 +67,7 @@ export default function SettingsCard(props) {
                 
                 {/* Close button */}
                 <Modal.Footer className="filterFooter" onClick={props.onHide}>
-                        <Button className="filterCloseButton">Stäng</Button>
+                        <Button className="filterCloseButton">Spara och stäng</Button>
                 </Modal.Footer>
             </Modal>
     );
