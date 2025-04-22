@@ -1,15 +1,20 @@
 import axios from 'axios';
 //import qs from 'qs';
 
-import { setHistory } from './history.js';
+import { getHistory, setHistory } from './history.js';
 import queryParams from './queryParams.js';
 import server_config from './server_config.js';
 import pos_list from './part-of-speech-list.js';
+import { useContext } from 'react';
+import SettingsContext from './SettingsContext.jsx';
 
 // Sample Axios Code
 // Using Promises, Write a function for each endpoint
+let {settings} = useContext(SettingsContext);
+let currApi = settings.api ? server_config.sb_korp_api : server_config.pl_korp_api; 
+
 const axios_instance = axios.create({
-  baseURL: server_config.pl_korp_api,
+  baseURL: currApi,
 });
 
 
