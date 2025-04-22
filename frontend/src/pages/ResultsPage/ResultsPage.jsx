@@ -201,21 +201,20 @@ const history_tip = (
 
     function buildStartEndMap(corpusOrder, corpusHits, pageSize) {
         const startEndMap = {};
-        let currentStart = 0;
+        let currentStart = 0; 
     
         for (const corpus of corpusOrder) {
-            const hits = corpusHits[corpus] || 0;
+            const hits = Number(corpusHits[corpus]) || 0; 
             if (hits > 0) {
                 startEndMap[corpus] = {
                     start: currentStart,
-                    end: currentStart + pageSize,
+                    end: currentStart + Number(pageSize), 
                 };
-                currentStart += hits;
+                currentStart += hits; 
             }
         }
-
-        console.log('building map for ', corpusOrder, corpusHits, pageSize);
     
+        console.log('building map for ', corpusOrder, corpusHits, pageSize);
         return startEndMap;
     }
     
