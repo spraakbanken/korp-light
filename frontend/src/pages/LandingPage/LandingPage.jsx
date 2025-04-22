@@ -176,7 +176,7 @@ export default function LandingPage() {
                             buttonImage={sliders_logo}
                             buttonOnClick={toggleFilterModal}
                             buttonToolTip={search_settings_tip}
-                            buttonLabel="Sökinställningar"
+                            buttonLabel="Anpassa sökning"
                         />
                         <FilterCard
                             show={showFilterModal}
