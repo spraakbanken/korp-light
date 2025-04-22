@@ -78,10 +78,12 @@ export function toggleAPI(which_server) {
 
 // Parse all queries from react to send to server
 // We can build cqp here if we want or in the React component
-export async function getCorpusQuery(inQuery) {
+export async function getCorpusQuery(inQuery, start, end) {
 
   console.log("inQuery", inQuery)
   queryParams.cqp = inQuery;
+  queryParams.start = start;
+  queryParams.end = end;
 
   const inputWords = inQuery.match(/"(.*?)"/g)
   try {
