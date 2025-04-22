@@ -7,14 +7,18 @@ import server_config from './server_config.js';
 import pos_list from './part-of-speech-list.js';
 import { useContext } from 'react';
 import SettingsContext from './SettingsContext.jsx';
+import { getLocalSettings } from './initialSettings.js';
 
 // Sample Axios Code
 // Using Promises, Write a function for each endpoint
 /* let {settings} = useContext(SettingsContext);
 let currApi = settings.api ? server_config.sb_korp_api : server_config.pl_korp_api;  */
 
+let _settings = getLocalSettings();
+let currApi = _settings.api ? server_config.sb_korp_api : server_config.pl_korp_api; 
+
 const axios_instance = axios.create({
-  baseURL: server_config.sb_korp_api,
+  baseURL: currApi,
 });
 
 
