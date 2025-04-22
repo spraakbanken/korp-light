@@ -34,7 +34,7 @@ export default function SettingsCard(props) {
                                     resultsPerPage: e.target.value
                                 })}}
                                 value={settings.resultsPerPage} >
-                            {[1, 3, 5, 10].map((num) => (
+                            {[1, 3, 5].map((num) => (
                                 <option key={num} value={num}>
                                     {num} {num === 1 ? "korpus" : "korpusar"}
                                 </option>
