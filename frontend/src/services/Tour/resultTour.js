@@ -242,7 +242,7 @@ export const useResultTour = () => {
       resultTour.addStep({
         id: 'corpus-header',
         title: `Resultat från en korpus <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
-        text: 'Här kan du se antalet sökresultat från en specifik korpus, klicka för att se alla individuella resultat från den korpusen.',
+        text: 'Här kan du se alla sökresultat från en specifik korpus.',
         attachTo: {
           element: '.corpus-header',
           on: 'bottom'
