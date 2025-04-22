@@ -470,7 +470,7 @@ export default function CorpusModal({ colour, buttonLogo, show, onHide }) {
                         <Search size={18} className="search-icon" />
                         <input
                             type="text"
-                            placeholder="Sök korpus..."
+                            placeholder="Filtrera Korpusar..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             className="search-input"

@@ -1,6 +1,6 @@
 const pos_list = {
-    "Adjektiv": "JJ",
-    "Adverb": "AB",
+    "Adjektiv": ["JJ", "orange"],
+    "Adverb": ["AB", "green"],
     "Determinerare": "DT",
     "Egennamn": "PM",
     "Grundtal": "RG",
@@ -13,8 +13,8 @@ const pos_list = {
     "Preposition": "PP",
     "Pronomen": "PN",
     "Subjunktion": "SN",
-    "Substantiv": "NN",
-    "Verb": "VB",  
+    "Substantiv": ["NN", "hotpink"],
+    "Verb": ["VB", "yellow"],  
 };
 
 export default pos_list;

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import SettingsContext from '../../services/SettingsContext';
 
 // React Components
+import ExampleSearches from "../../components/ExampleSearches/ExampleSearches.jsx";
 import HelloKorpi from "../../components/HelloKorpi/HelloKorpi.jsx";
 import NavigationBar from "../../components/NavigationBar/NavigationBar.jsx";
 import SearchBar from "../../components/SearchBar/SearchBar.jsx";
@@ -78,7 +79,7 @@ export default function LandingPage() {
 
     const search_settings_tip = (
         
-            <strong>Sökinställningar</strong>
+            <strong>Anpassa sökning</strong>
       
     );
 
@@ -192,12 +193,15 @@ export default function LandingPage() {
                             buttonToolTip={history_tip}
                             buttonLabel="Historik"
                         />
+
                     </div>
                 </div>
                 
                 {showHistory && <HistoryPanel />}
+                < ExampleSearches />
 
                 <InfoText className="info_text" />
+               
             </div>
             <Footer className="landing-footer" />
         </div>
