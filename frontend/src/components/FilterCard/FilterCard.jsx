@@ -22,11 +22,14 @@ export default function SettingsCard(props) {
                 className="_filter_card" centered>
                 <Modal.Header className="header" closeButton>
                     <Modal.Title className="title">Sökinställningar</Modal.Title>
+                    <div className="ms-auto">
+                        <Button onClick={props.onHide} className="filterCloseButton">Spara och stäng</Button>
+                    </div>
                 </Modal.Header>
                 <Modal.Body className="modal-body">
                     {/* Corpora per page */}
                     <Form.Group className="filter_button">
-                        <Form.Label>Antal Korpusar per sida: <span className="settings__description"></span></Form.Label>
+                        <Form.Label>Antal korpusar per sida: <span className="settings__description"></span></Form.Label>
                         <Form.Select disabled
                             onChange={(e) => {
                                 updateSettings({
@@ -65,10 +68,7 @@ export default function SettingsCard(props) {
                     </Form.Group>
                 </Modal.Body>
                 
-                {/* Close button */}
-                <Modal.Footer className="filterFooter" onClick={props.onHide}>
-                        <Button className="filterCloseButton">Spara och stäng</Button>
-                </Modal.Footer>
+               
             </Modal>
     );
 }
