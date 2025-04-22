@@ -117,7 +117,7 @@ export function buildQuery(params) {
     } else if (w.tag === "Ordform") {
           buildAdvancedQuery = buildAdvancedQuery + `[word = "${w.wordEntry}"]`
     } else if (w.pos) {
-        buildAdvancedQuery = buildAdvancedQuery + `[pos = "${pos_list[w.wordEntry]}"]`
+        buildAdvancedQuery = buildAdvancedQuery + `[pos = "${pos_list[w.wordEntry][0]}"]`
     }
   })
   
