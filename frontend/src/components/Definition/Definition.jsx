@@ -90,7 +90,8 @@ export default function Definition({wordEntry}) {
                             return <p key={0} className='defintion__defintion'>Inga Resultat!</p>;
                         }
                     })}
-                
+                    <a href={`https://lexin.nada.kth.se/lexin/#searchinfo=both,swe_swe,${wordEntry};`} 
+                        target="_blank" rel="noopener noreferrer">Länk till Lexin Ordbok för flera betydelse och exemplar.</a>
                   </div>
             </div>
             }
