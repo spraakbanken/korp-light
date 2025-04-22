@@ -16,6 +16,14 @@
     --adv-button-bgc: var(--primary-color);
 }
 
+.advanced__info__text {
+
+}
+
+.advanced__info__text p {
+    color: var(--text-color);
+}
+
 .advanced__search__word {
     border-radius: 5px;
     padding: 4px 8px;

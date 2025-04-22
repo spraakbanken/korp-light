@@ -9,7 +9,6 @@ import Definition from '../Definition/Definition.jsx';
 import BarChart from '../Statistics/BarChart.jsx';
 
 const ResultsPanel = ({ response, wordToDef }) => {
-  const [showAllResults, setShowAllResults] = useState({});
   const [hits, setHits] = useState(0);
   const [startHit, setStartHit] = useState(0);
   const [endHit, setEndHit] = useState(0);
@@ -21,9 +20,8 @@ const ResultsPanel = ({ response, wordToDef }) => {
   const [resultsPerCorpus, setResultsPerCorpus] = useState(0);
   const { settings } = useContext(SettingsContext);
   const { corporas } = useContext(CorporaContext);
-  const corpusPerPage = 3;
+  const corpusPerPage = 5;
 
-  // Helper function to find matching corpus key case-insensitively
   const findMatchingCorpusKey = (corpusName) => {
     if (!response) return corpusName;
     return Object.keys(response).find(
@@ -45,7 +43,6 @@ const ResultsPanel = ({ response, wordToDef }) => {
     setCorpusOrder(order);
     setHits(calculateTotalHits());
     setPage(0);
-    setShowAllResults({});
     setActiveCorporas(corporas.corporas);
 
     const initialExpandState = {};
@@ -86,11 +83,8 @@ const ResultsPanel = ({ response, wordToDef }) => {
 
     corpusOrder.forEach((corpus, index) => {
       const responseKey = findMatchingCorpusKey(corpus);
-      const count = Math.min(
-        resultsPerCorpus,
-        (response[responseKey]?.kwic || []).length
-      );
-
+      const corpusResults = response[responseKey]?.kwic || [];
+      const count = Math.min(resultsPerCorpus, corpusResults.length);
       if (index < start) {
         totalPrevResults += count;
       } else if (displayedCorpora.includes(corpus)) {
@@ -183,9 +177,9 @@ const ResultsPanel = ({ response, wordToDef }) => {
         {visibleCorpora.map((corpus) => {
           const corpusResults = groupedResults[corpus] || [];
           const responseKey = findMatchingCorpusKey(corpus);
-          const corpusHitCount = 
-            response[responseKey]?.corpus_hits?.[corpus.toUpperCase()] || 
-            response[responseKey]?.corpus_hits?.[corpus.toLowerCase()] || 
+          const corpusHitCount =
+            response[responseKey]?.corpus_hits?.[corpus.toUpperCase()] ||
+            response[responseKey]?.corpus_hits?.[corpus.toLowerCase()] ||
             0;
 
           if (corpusHitCount === 0) return null;
@@ -201,35 +195,20 @@ const ResultsPanel = ({ response, wordToDef }) => {
                   <span className="corpus-name">{activeCorporas[corpus.toLowerCase()]}</span>
                   <span className="corpus-count">({corpusHitCount})</span>
                 </div>
-                <div className="show-all-results-container">
-                  <button
-                    className='show-all-button'
-                    onClick={(e) => toggleShowAllResults(e, corpus)}
-                  >
-                    {showAllResults[corpus]
-                      ? `Visa ${resultsPerCorpus} resultat` 
-                      : "Visa alla resultat"}
-                  </button>
-                </div>
               </div>
               {expandedCorpus[corpus] && (
                 <table className="results-table">
                   <tbody>
                     {corpusResults.length > 0 ? (
-                      corpusResults.map((line, index) => {
+                      corpusResults.map((line, index) => (
+                        <ResultCard
+                          key={`${corpus}-${index}`}
+                          response={line}
+                          n={index}
+                          extraData={line.structs}
+                        />
+                      ))
 
-                        let resultIndex = 0;
-                        for (let i = 0; i < corpusOrder.indexOf(corpus); i++) {
-                          resultIndex += Math.min(
-                            resultsPerCorpus,
-                            // response.kwic.filter(r => r.corpus === corpusOrder[i]).length
-                            10
-                          );
-                        }
-                        resultIndex += index;
-
-                        return <ResultCard key={`${corpus}-${index}`} response={line} n={resultIndex} extraData={line.structs} />;
-                      })
                     ) : (
                       <tr>
                         <td className="no-corpus-results">Inga resultat från denna korpus</td>
