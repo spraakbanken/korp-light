@@ -39,7 +39,7 @@ export const useResultTour = () => {
         resultTour.addStep({
           id: 'HomeIcon',
           title: `Hem <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
-          text: 'Här kan du klicka för att navigera till startasidan.',
+          text: 'Här kan du klicka för att navigera till startsidan.',
           attachTo: {
             element: '.homeIconA',
             on: 'right'
@@ -71,7 +71,7 @@ export const useResultTour = () => {
     resultTour.addStep({
       id: 'corpus-button',
       title: `Välj korpus <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
-      text: 'Klicka här för att välja vilka korpusar du vill söka i, tex Nyhetstexter.',
+      text: 'Klicka här för att välja vilka korpusar (textsamlingar) du vill söka i, t.ex. "Nyheter".',
       attachTo: {
         element: '.corpus-button',
         on: 'bottom'
