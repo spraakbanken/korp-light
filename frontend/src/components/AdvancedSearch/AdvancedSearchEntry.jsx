@@ -39,8 +39,8 @@ export default function AdvancedSearchEntry({word, idx, returnWordTag, handleDel
                             <Dropdown.Item onClick={(e) => handleDelete(idx, e)}>Radera</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
-                        {showOrdform && <p className='advanced__search__small__icon'>O</p>}
-                        {showGrundform && <p className='advanced__search__small__icon'>G</p>}
+                        {showOrdform && <p className='advanced__search__small__icon_O'>O</p>}
+                        {showGrundform && <p className='advanced__search__small__icon_G'>G</p>}
                     </div>
 
               </div>

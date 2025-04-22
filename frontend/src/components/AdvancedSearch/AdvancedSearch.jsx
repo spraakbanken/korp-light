@@ -122,7 +122,8 @@ export default function AdvancedSearch({submitResult, returnWordsDict}) {
 
     const generateInfoText = () => {
         if (wordElements.length > 1) {
-            return <p>Klicka på orden för att ändra ordattribut. Tryck på plusset för att lägga till olika ordklasser!</p>
+            return <p>Klicka på orden för att ändra ordattribut, <span className='advanced__search__small__icon_tutorial_O'>O</span> = Ordform,
+            <span className='advanced__search__small__icon_tutorial_G'>G</span> = Grundform. Tryck på plusset för att lägga till olika ordklasser!</p>
         } else {
             return <p>Skriv ord i sökrutan separerade med ett mellanslag för att göra utökade sökningar.</p>
         }
@@ -166,7 +167,6 @@ export default function AdvancedSearch({submitResult, returnWordsDict}) {
                             </Dropdown.Menu>
                     </Dropdown>
                 </div>
-            
             </div>
         </>
     );
