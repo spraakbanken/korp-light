@@ -1,14 +1,14 @@
-.infoTextContainer {
+.dateContainer {
    width: 30%;
    margin: 0 auto;
    color: var(--text-color);
-   font-size: 13px;
+   font-size: 11px;
    padding-top: 15px;
 }
 
 
 @media (max-width: 768px) {
-   .infoTextContainer {
+   .dateContainer {
       width: 75%;
    }
 }
