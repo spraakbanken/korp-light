@@ -62,25 +62,6 @@ export default function SettingsCard(props) {
                             </button>
                         </div>
                     </Form.Group>
-
-                    {/* View selection */}
-                    <Form.Group className="mb-3 d-flex justify-content-around">
-                        <Form.Check
-                            type="checkbox"
-                            label="Wide View"
-                            checked={selectedView === "wide"}
-                            onChange={() => handleViewChange("wide")
-                            }
-                        />
-                        <Form.Check
-                            type="checkbox"
-                            label="Grid View"
-                            checked={selectedView === "grid"}
-                            onChange={() => handleViewChange("grid")
-                            }
-                        />
-                    </Form.Group>
-
                     <Form.Group className="mb-3">
                     <Form.Label>API:</Form.Label>
                         <div className=" d-flex align-items-center justify-content-center">
