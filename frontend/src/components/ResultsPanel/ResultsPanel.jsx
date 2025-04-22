@@ -7,6 +7,8 @@ import { MoveLeft, MoveRight, ChevronDown, ChevronRight } from 'lucide-react';
 import CorporaContext from '../../services/CorporaContext.jsx';
 import Definition from '../Definition/Definition.jsx';
 import BarChart from '../Statistics/BarChart.jsx';
+import { ChevronsDown } from 'lucide-react';
+import { ChevronsUp } from 'lucide-react';
 
 const ResultsPanel = ({ response, wordToDef }) => {
   const [hits, setHits] = useState(0);
@@ -163,6 +165,8 @@ const ResultsPanel = ({ response, wordToDef }) => {
     );
   }
 
+  const allCollapsed = Object.values(expandedCorpus).every(value => !value);
+
   return (
     <div className="results-panel">
       {wordToDef && generateDefintions(wordToDef)}
@@ -170,6 +174,26 @@ const ResultsPanel = ({ response, wordToDef }) => {
       <div className="results-header">
         <div className="results-stats">
           <span className="results-count">Totala matchningar: <strong>{hits}</strong></span>
+        </div>
+        <div>
+        <button className="collapse-button" onClick={() => {
+            const newState = {};
+            corpusOrder.forEach(corpus => {
+              newState[corpus] = allCollapsed; 
+            });
+            setExpandedCorpus(newState);
+            }}>
+              {allCollapsed ? 
+              <>
+                <ChevronsDown className='collapse-chevron' size={18} />
+                <p>Expandera alla</p>
+              </>
+              : 
+              <> 
+                <ChevronsUp className='collapse-chevron' size={18} />
+                <p>Kollapsa alla</p>
+              </>}
+          </button>
         </div>
       </div>
 
