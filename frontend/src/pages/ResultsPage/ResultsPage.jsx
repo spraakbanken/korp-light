@@ -271,7 +271,7 @@ const history_tip = (
                         </div>
                         <div className="resultpage__search_wrapper">
                             <div className={`resultpage__search_bar ${isSticky ? 'sticky' : ''}`}>
-                                <SearchBar returnSearchInput={(e) => {
+                                <SearchBar disableBar={showAdvancedSearch} returnSearchInput={(e) => {
                                     handleSubmit(e);
                                 }} />
                             </div>
