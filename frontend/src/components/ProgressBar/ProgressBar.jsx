@@ -2,7 +2,6 @@ import { ProgressBar } from 'react-bootstrap';
 import { CheckAll } from 'react-bootstrap-icons';
 import { useState, useEffect, use } from 'react';
 import "./ProgressBar.css";
-import { Timer } from 'lucide-react';
 
 export default function LoadingProgressBar({ isLoading, percentLoaded}) {
     const [isComplete, setIsComplete] = useState(false);
