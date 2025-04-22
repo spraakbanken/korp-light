@@ -147,7 +147,7 @@ export default function ResultsPage() {
 
 const filter_tip = (
     
-        <strong>Filtrera</strong>
+        <strong>Anpassa Sökning</strong>
   
 );
 
