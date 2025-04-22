@@ -62,7 +62,6 @@ export default function LandingPage() {
         setShowFilterModal((prev) => !prev);
     };
 
-
     const toggleAdvancedSearch = () => {
         setShowAdvancedSearch((prev) => !prev);
     }
@@ -145,6 +144,7 @@ export default function LandingPage() {
                         }}
                     />}
                 </div>
+                {!showAdvancedSearch &&< ExampleSearches />}
                 {showErrorCorpus && <p className="landingpage__select__corpus__error">Välj korpus innan du söker!</p>}
                 <div className="landingpage__button_group">
                     <div className="corpus-button-div">
@@ -198,7 +198,6 @@ export default function LandingPage() {
                 </div>
                 
                 {showHistory && <HistoryPanel />}
-                < ExampleSearches />
 
                 <InfoText className="info_text" />
                

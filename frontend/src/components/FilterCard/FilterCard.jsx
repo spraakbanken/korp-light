@@ -59,7 +59,7 @@ export default function SettingsCard(props) {
 
                     {/* Context size */}
                     <Form.Group className="filter_button">
-                        <Form.Label>Antal ord som visas per sökträff: <span className="settings__description"></span></Form.Label>
+                        <Form.Label>Meningslängd (antal ord i varje resultat): <span className="settings__description"></span></Form.Label>
                         <Form.Control
                             type="number"
                             value={settings.contextSize}

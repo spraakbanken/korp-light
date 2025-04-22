@@ -29,7 +29,7 @@ export const useResultTour = () => {
   const resultTour = new Shepherd.Tour(resultTourOptions);
 
   const setupResultTour = () => {
-    const totalSteps = 9;
+    const totalSteps = 10;
     let currentStepNumber = 1;
 
     const isMobile = window.innerWidth <= 768;
@@ -189,11 +189,11 @@ export const useResultTour = () => {
     });
 
     // Step 7: Layout Button
-    /*if (!isMobile) {
+    if (!isMobile) {
         resultTour.addStep({
           id: 'layout-button',
           title: `Layout <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
-          text: 'Här kan du ändra layouten av resultatet, tryck för att byta mellan lista och rutnät.',
+          text: 'Här kan du ändra layouten av resultatet, tryck för att byta mellan lista och rutnät. (To be Developed)',
           attachTo: {
             element: '.calender-button',
             on: 'left'
@@ -212,7 +212,7 @@ export const useResultTour = () => {
             }
           ]
         });
-      }*/
+      }
 
     // Step 8: Result Panel
     resultTour.addStep({
