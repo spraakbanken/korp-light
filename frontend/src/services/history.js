@@ -5,7 +5,7 @@ const historyEntry = {};
 
 export function setHistory(word, value) {
     const date = new Date();
-    historyEntry[word] = {url: value, time: date.toLocaleString()};
+    historyEntry[word] = {word: word, url: value, time: date.toLocaleString()};
     try {
         window.localStorage.setItem("search_history", 
             JSON.stringify(historyEntry));

@@ -157,6 +157,14 @@ export default function ResultsPage() {
         };
         
 
+        useEffect(() => {
+            if(location.state === null) {
+                console.log('state is null....')
+                navigate(`/results?corpus=${encodeURIComponent(corpusInputStr)}&cqp=${encodeURIComponent(query)}`
+                , {state: {wordFromLP : rawSearchInput}});
+                }
+        }, [location])
+
     const advanced_tip = (
         
         <strong>Utökad sökning</strong>
