@@ -77,11 +77,34 @@
 .history-single-entry {
     display: flex;
     justify-content: space-between;
-    }
+    align-items: flex-start;
+}
+
+.history-single-entry-text {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
+    display: block;
+    text-align: left;
+}
+
+.history-single-entry-text {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
+    display: block;
+    text-align: left;
+}
+
 
 .history-entry-delete-icon {
     width: 25px;
     filter: invert(50%);
+    flex-shrink: 0;
+    margin-left: 10px;
+    align-self: flex-start;
 }
 
 .history-entry-delete-icon:hover{
