@@ -200,17 +200,15 @@ const ResultsPanel = ({ response, wordToDef }) => {
                 <table className="results-table">
                   <tbody>
                     {corpusResults.length > 0 ? (
-                      corpusResults.map((line, index) => {
-                        let resultIndex = 0;
-                        for (let i = 0; i < corpusOrder.indexOf(corpus); i++) {
-                          const prevCorpus = corpusOrder[i];
-                          const prevResponseKey = findMatchingCorpusKey(prevCorpus);
-                          const prevCorpusResults = response[prevResponseKey]?.kwic || [];
-                          resultIndex += Math.min(resultsPerCorpus, prevCorpusResults.length);
-                        }
-                        resultIndex += index;
-                        return <ResultCard key={`${corpus}-${index}`} response={line} n={resultIndex} extraData={line.structs} />;
-                      })
+                      corpusResults.map((line, index) => (
+                        <ResultCard
+                          key={`${corpus}-${index}`}
+                          response={line}
+                          n={index}
+                          extraData={line.structs}
+                        />
+                      ))
+
                     ) : (
                       <tr>
                         <td className="no-corpus-results">Inga resultat från denna korpus</td>
