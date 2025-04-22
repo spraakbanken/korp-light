@@ -34,7 +34,7 @@ export default function AdvancedSearchEntry({word, idx, returnWordTag, handleDel
                 
                             <Dropdown.Menu>
                             <Dropdown.Item onClick={(e) => {handleClick(e); returnWordTag(idx, 'Grundform');}}>Grundform</Dropdown.Item>
-                            <Dropdown.Item onClick={(e) => {handleClick(e); returnWordTag(idx, 'Ordform');}}>Ord</Dropdown.Item>
+                            <Dropdown.Item onClick={(e) => {handleClick(e); returnWordTag(idx, 'Ordform');}}>Ordform</Dropdown.Item>
                             <Dropdown.Divider />
                             <Dropdown.Item onClick={(e) => handleDelete(idx, e)}>Radera</Dropdown.Item>
                             </Dropdown.Menu>
