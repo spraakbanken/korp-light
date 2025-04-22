@@ -71,6 +71,8 @@ export default function ResultsPage() {
     const [queryData, setQueryData] = useState({});
     const [showModal, setShowModal] = useState(false);
 
+    const {state} = useLocation();
+
     const [isSticky, setIsSticky] = useState(false);
 
     const toggleModal = () => {
@@ -150,7 +152,8 @@ export default function ResultsPage() {
             setCorpusInput(corpusInputStr);
         
             // Navigate URL (for reload/bookmark)
-            navigate(`/results?corpus=${encodeURIComponent(corpusInputStr)}&cqp=${encodeURIComponent(query)}`);
+            navigate(`/results?corpus=${encodeURIComponent(corpusInputStr)}&cqp=${encodeURIComponent(query)}`
+                , {state: {wordFromLP : event}});
         };
         
 
@@ -405,7 +408,7 @@ const history_tip = (
                     {/*queryData.kwic == undefined ? <p>Loading...</p> : JSON.stringify(queryData) */}
                     {queryData === undefined ? <p>Laddar...</p> :
                         <ResultsPanel response={queryData} 
-                            wordToDef={rawSearchInput} 
+                            wordToDef={state.wordFromLP} 
                             isFetching={searchQueryIsLoading}
                             corpusHits={corpusHits}/>}
                 </div>

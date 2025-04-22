@@ -107,7 +107,8 @@ export default function LandingPage() {
             }
 
         
-                navigate(`/results?corpus=${encodeURIComponent(Object.keys(corporas.corporas))}&cqp=${encodeURIComponent(res)}`);
+                navigate(`/results?corpus=${encodeURIComponent(Object.keys(corporas.corporas))}&cqp=${encodeURIComponent(res)}`
+                        , {state: {wordFromLP : event}});
         } else {
             setShowErrorCorpus(true);
         }
