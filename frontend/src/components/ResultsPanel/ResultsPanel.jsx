@@ -37,6 +37,9 @@ const ResultsPanel = ({ response, wordToDef }) => {
         setPage(0);
         setActiveCorporas(corporas.corporas);
 
+        //Reset showAllResults to false for all corpora
+        setShowAllResults({});
+
         // Set corpus order from response
         if (response.corpus_order) {
           setCorpusOrder(response.corpus_order);
@@ -81,52 +84,52 @@ const ResultsPanel = ({ response, wordToDef }) => {
   }, [page]);
 
 
-/*   const calculateResultRange = () => {
-    if (!response || !response.corpus_order) return;
-
-    const start = page * corpusPerPage;
-    const displayedCorpora = response.corpus_order.slice(start, start + corpusPerPage);
-
-    let totalPrevResults = 0;
-    let currentPageResults = 0;
-
-    response.corpus_order.forEach((corpus, index) => {
-      const count = Math.min(resultsPerCorpus, response.kwic.filter(r => r.corpus === corpus).length); // This should probably just be the kwic.filter, but im not 100% sure.
-      //Or it shouldnt show hits here at all, and just in each corpus.
-
-      if (index < start) { //We add all the corpuses from previous pages hits, so we know were we should start.
-        totalPrevResults += count; // All hits from the pages before.
-      } else if (displayedCorpora.includes(corpus)) {
-        currentPageResults += count;
-      }
-    });
-    console.log(totalPrevResults + currentPageResults);
-    setStartHit(totalPrevResults);
-    setEndHit(totalPrevResults + currentPageResults);
-  }; */
+  /*   const calculateResultRange = () => {
+      if (!response || !response.corpus_order) return;
+  
+      const start = page * corpusPerPage;
+      const displayedCorpora = response.corpus_order.slice(start, start + corpusPerPage);
+  
+      let totalPrevResults = 0;
+      let currentPageResults = 0;
+  
+      response.corpus_order.forEach((corpus, index) => {
+        const count = Math.min(resultsPerCorpus, response.kwic.filter(r => r.corpus === corpus).length); // This should probably just be the kwic.filter, but im not 100% sure.
+        //Or it shouldnt show hits here at all, and just in each corpus.
+  
+        if (index < start) { //We add all the corpuses from previous pages hits, so we know were we should start.
+          totalPrevResults += count; // All hits from the pages before.
+        } else if (displayedCorpora.includes(corpus)) {
+          currentPageResults += count;
+        }
+      });
+      console.log(totalPrevResults + currentPageResults);
+      setStartHit(totalPrevResults);
+      setEndHit(totalPrevResults + currentPageResults);
+    }; */
 
   const calculateResultRange = () => {
     if (!response || !response.corpus_order) return;
-  
+
     const start = page * corpusPerPage;
     const displayedCorpora = response.corpus_order.slice(start, start + corpusPerPage);
-  
+
     let totalPrevResults = 0;
     let currentPageResults = 0;
-  
+
     response.corpus_order.forEach((corpus, index) => {
       const corpusResults = response.kwic.filter(r => r.corpus === corpus);
-      const count = showAllResults[corpus] 
-        ? corpusResults.length 
+      const count = showAllResults[corpus]
+        ? corpusResults.length
         : Math.min(resultsPerCorpus, corpusResults.length);
-  
+
       if (index < start) {
         totalPrevResults += count;
       } else if (displayedCorpora.includes(corpus)) {
         currentPageResults += count;
       }
     });
-  
+
     setStartHit(totalPrevResults);
     setEndHit(totalPrevResults + currentPageResults);
   };
@@ -254,7 +257,9 @@ const ResultsPanel = ({ response, wordToDef }) => {
                     className='show-all-button'
                     onClick={(e) => toggleShowAllResults(e, corpus)}
                   >
-                    {showAllResults[corpus] ? "Visa färre resultat" : "Visa alla resultat"}
+                    {showAllResults[corpus]
+                      ? `Visa ${Math.min(settings.sampleSize, response.kwic.filter(r => r.corpus === corpus).length)} resultat` 
+                      : "Visa alla resultat"}
                   </button>
                 </div>
               </div>
