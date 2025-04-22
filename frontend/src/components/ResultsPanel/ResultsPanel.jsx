@@ -103,11 +103,21 @@ const ResultsPanel = ({ response, wordToDef, isFetching, corpusHits }) => {
   };
 
   const handleNextPage = () => {
-    const totalPages = Math.ceil(corpusOrder.length / corpusPerPage);
+    const totalPages = totalPages();
     if (page < totalPages - 1) {
       setPage((prevPage) => prevPage + 1);
     }
   };
+
+  function totalPages (number) {
+    if (Math.ceil(corpusOrder.length / corpusPerPage)>=1) {
+      totalPages = Math.ceil(corpusOrder.length / corpusPerPage);
+    }
+    else {
+      totalPages = 1;
+    }
+    return totalPages; 
+  }
 
   const handlePrevPage = () => {
     if (page > 0) {
@@ -128,7 +138,7 @@ const ResultsPanel = ({ response, wordToDef, isFetching, corpusHits }) => {
   };
 
   const visibleCorpora = getVisibleCorpora();
-  const totalPages = Math.ceil(corpusOrder.length / corpusPerPage);
+  //const totalPages = Math.ceil(corpusOrder.length / corpusPerPage);
 
   const generateDefintions = (wordToDef) => {
     let elemArr = [];
@@ -251,7 +261,7 @@ const ResultsPanel = ({ response, wordToDef, isFetching, corpusHits }) => {
 
         {!isFetching && visibleCorpora.length === 0 && (
           <div className="no-results">
-            <p>Inga fler korpusar att visa</p>
+            <p></p>
           </div>
         )}
       </div>
@@ -270,7 +280,7 @@ const ResultsPanel = ({ response, wordToDef, isFetching, corpusHits }) => {
         </div>
 
         <div className="pagination-info">
-          Sida {page + 1} av {totalPages}
+          Sida {page + 1} av {totalPages()}
         </div>
 
         <div className="pagination-button-container">
