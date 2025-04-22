@@ -37,7 +37,7 @@ import sliders_logo from '../../assets/sliders.svg';
 import CorporaContext from "../../services/CorporaContext.jsx";
 import { buildQuery } from "../../services/api.js";
 import HomeButton from "../../components/HomeButton/HomeButton.jsx";
-import CalenderButton from "../../components/CalenderButton/CalenderButton.jsx";
+//import CalenderButton from "../../components/CalenderButton/CalenderButton.jsx";
 
 export default function ResultsPage() {
 
@@ -374,8 +374,8 @@ const history_tip = (
                                 buttonLabel="Historik" />
                         </div>
                     </div>
-                    <CalenderButton/>
-                </div>
+                    {//<CalenderButton/>//
+}</div>
                 {showErrorCorpus && 
                         <p className="landingpage__select__corpus__error">
                                 Välj korpus innan du söker!
