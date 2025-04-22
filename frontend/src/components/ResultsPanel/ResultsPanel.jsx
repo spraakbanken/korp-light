@@ -103,7 +103,7 @@ const ResultsPanel = ({ response, wordToDef, isFetching, corpusHits }) => {
   };
 
   const handleNextPage = () => {
-    const totalPages = totalPages();
+    const totalPages = Math.ceil(corpusOrder.length / corpusPerPage);;
     if (page < totalPages - 1) {
       setPage((prevPage) => prevPage + 1);
     }
