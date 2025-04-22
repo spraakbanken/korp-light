@@ -133,6 +133,17 @@
     visibility: visible;
 }
 
+.resultpage_advanced_search_container {
+    width: 30%;
+}
+
+.advanced_search_master_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 
 @media (max-width: 768px) {
     .resultpage__search_content {
@@ -194,4 +205,8 @@
         min-width: unset;
         padding: 8px 10px;
       }
+
+    .resultpage_advanced_search_container {
+        width: 90%;
+    }
 }

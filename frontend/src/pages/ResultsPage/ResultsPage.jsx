@@ -316,10 +316,13 @@ const history_tip = (
                         <p className="landingpage__select__corpus__error">
                                 Välj korpus innan du söker!
                         </p>}
-                
-                {showAdvancedSearch && <AdvancedSearch 
-                    returnWordsDict={(e) => handleAdvancedSearch(e)} 
-                    submitResult={(e) => handleSubmit(wordsDict)} />}
+                <div className="advanced_search_master_container">
+                    <div className="resultpage_advanced_search_container">
+                        {showAdvancedSearch && <AdvancedSearch 
+                            returnWordsDict={(e) => handleAdvancedSearch(e)} 
+                            submitResult={(e) => handleSubmit(wordsDict)} />}
+                    </div>
+                </div>
                 {showHistory && <HistoryPanel />}
                 
                 <ProgressBar isLoading={searchQueryIsLoading} />
