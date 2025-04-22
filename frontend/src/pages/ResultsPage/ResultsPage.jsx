@@ -49,6 +49,10 @@ export default function ResultsPage() {
     const [showHistory, setShowHistory] = useState(false);
     const { corporas } = useContext(CorporaContext);
     const isInitialMount = useRef(true);
+
+    const [perCorpusResults, setPerCorpusResults] = useState({});
+    const [corpusHits, setCorpusHits] = useState({});
+
     
     const [words, setWords] = useState([]);
     const [showAdvancedSearch, setShowAdvancedSearch] = useState(false);
@@ -120,24 +124,33 @@ export default function ResultsPage() {
             enabled: false,
         });
 
-    const handleSubmit = (event) => {
-        if (corporas.corporas){
+        const handleSubmit = (event) => {
+            if (!corporas.corporas) {
+                setShowErrorCorpus(true);
+                return;
+            }
+        
             setShowErrorCorpus(false);
-        let res;
-                console.log('wordsDict in results page', wordsDict.length);
-                if(wordsDict && wordsDict.length > 1){
-                    res = buildQuery(wordsDict);
-                }else{
-                    res = `[word = "${event}"]`;
-                }
-        setSearchWordInput(res);
-        handleCorpusQuery();
-        setRawSearchInput(event);
-        navigate(`/results?corpus=${encodeURIComponent(Object.keys(corporas.corporas))}&cqp=${encodeURIComponent(res)}`);
-        } else {
-            setShowErrorCorpus(true);
-        }
-    };
+        
+            let query;
+            if (wordsDict && Object.keys(wordsDict).length > 0) {
+                query = buildQuery(wordsDict);
+            } else {
+                query = `[word = "${event}"]`;
+            }
+        
+            setSearchWordInput(query);        // Set CQP query
+            setRawSearchInput(event);         // Set original user input
+        
+            // Set corpora input based on selected corpora
+            const selectedCorpora = Object.keys(corporas.corporas);
+            const corpusInputStr = selectedCorpora.join(",");
+            setCorpusInput(corpusInputStr);
+        
+            // Navigate URL (for reload/bookmark)
+            navigate(`/results?corpus=${encodeURIComponent(corpusInputStr)}&cqp=${encodeURIComponent(query)}`);
+        };
+        
 
     const advanced_tip = (
         
@@ -184,14 +197,65 @@ const history_tip = (
         setCorpus(`[ ${current_corpora} ]`)
     }
 
+    function buildStartEndMap(corpusOrder, corpusHits, pageSize = 10) {
+        const startEndMap = {};
+        let currentStart = 0;
+    
+        for (const corpus of corpusOrder) {
+            const hits = corpusHits[corpus] || 0;
+            if (hits > 0) {
+                startEndMap[corpus] = {
+                    start: currentStart,
+                    end: currentStart + pageSize,
+                };
+                currentStart += hits;
+            }
+        }
+    
+        return startEndMap;
+    }
+    
+
     useEffect(() => {
         if (searchWordInput && corpusInput) {
             searchQueryRefetch().then((res) => {
-                setQueryData(res.data);
-            });
-            console.log("Triggered new fetch for: ", searchWordInput, "in", corpusInput);
+                const data = res.data;
+                
+            
+                if (data?.corpus_hits && data?.corpus_order) {
+                    setCorpusHits(data.corpus_hits);
+            
+                    const startEndMap = buildStartEndMap(data.corpus_order, data.corpus_hits);
+                   
+                    Object.entries(startEndMap).forEach(([corpusName, { start, end }]) => {
+                       fetchCorpusResults(corpusName, start, end, searchWordInput);
+                    });
+                     
+                }
+            });            
+            
         }
     }, [searchWordInput, corpusInput]);
+
+
+    const fetchCorpusResults = async (corpusName, start, end, query) => {
+        try {
+            const responseFromQuery = await getCorpusQuery(query, start, end);
+            let corpLower = corpusName.toLowerCase()
+            setPerCorpusResults(prev => {
+                const updatedResults = {
+                    ...prev,
+                    [corpLower]: responseFromQuery
+                };
+                // Use the updated value immediately
+                setQueryData(updatedResults);
+                return updatedResults;
+            });
+        } catch (error) {
+            console.error(`Failed to fetch results for ${corpusName}:`, error);
+        }
+    };
+    
     
 
     useEffect(() => {
@@ -329,7 +393,7 @@ const history_tip = (
 
                 <div className="mt-2">
                     {/*queryData.kwic == undefined ? <p>Loading...</p> : JSON.stringify(queryData) */}
-                    {queryData.kwic === undefined ? <p>Laddar...</p> :
+                    {queryData === undefined ? <p>Laddar...</p> :
                         <ResultsPanel response={queryData} wordToDef={rawSearchInput} />}
                 </div>
                 <button className="results_page__back_to_top" onClick={scrollToTop}>Till toppen</button>
