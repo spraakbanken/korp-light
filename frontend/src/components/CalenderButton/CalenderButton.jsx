@@ -5,6 +5,7 @@ import calenderIconLight from '../../assets/calenderIconLight.svg';
 import calenderIconDark from '../../assets/calenderIconDark.svg';
 import SettingsContext from "../../services/SettingsContext.jsx";
 import { useFloating, offset, flip, shift, autoUpdate } from '@floating-ui/react-dom';
+import "./CalenderButton.css"
 
 export default function CalenderButton() {
     const [showTooltip, setShowTooltip] = useState(false);
@@ -24,7 +25,7 @@ export default function CalenderButton() {
 <img className="calenderIconSVG" src={calenderIcon} alt="Calender icon" />
 
   return (
-        <div className='calender-button-'>
+        <div className='calender-button'>
         <img src={calenderIcon}
         ref={refs.setReference}
         alt="Calender icon"
