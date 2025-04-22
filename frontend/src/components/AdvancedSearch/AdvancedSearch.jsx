@@ -76,6 +76,7 @@ export default function AdvancedSearch({submitResult, returnWordsDict}) {
             tag: '', 
             wordEntry: entryName,
             pos: true,
+            color: pos_list[entryName][1]
         }]);
         
         setCounter(counter+1);
@@ -130,7 +131,8 @@ export default function AdvancedSearch({submitResult, returnWordsDict}) {
                         if (w.pos) {
                             return <AdvancedSearchPOSEntry key={w.id} word={w.wordEntry} idx={w.id} 
                             handleDelete={(word) => {handleDelete(word)}}
-                            handleChevronClick={(id, dir) => {handleChevron(id, dir)}}/>
+                            handleChevronClick={(id, dir) => {handleChevron(id, dir)}}
+                            advButtonColour={w.color}/>
                         } else {
                         return <AdvancedSearchEntry key={w.id} word={w.wordEntry} idx={w.id} 
                             returnWordTag={(id, tag) => {handleClick(id, tag)}}
@@ -144,7 +146,7 @@ export default function AdvancedSearch({submitResult, returnWordsDict}) {
                             <Dropdown.Menu>
                                 {
                                     Object.keys(pos_list).map(label => 
-                                        <Dropdown.Item key={label}onClick={() => createComponent(`${label}`)}>{label}</Dropdown.Item>
+                                        <Dropdown.Item key={label} onClick={() => createComponent(`${label}`)}>{label}</Dropdown.Item>
                                     )
                                 }
                             </Dropdown.Menu>

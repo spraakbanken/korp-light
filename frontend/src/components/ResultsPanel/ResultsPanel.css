@@ -214,6 +214,7 @@
 .corpus-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0.75rem 1rem;
   background-color: var(--primary-color);
   cursor: pointer;
@@ -222,6 +223,18 @@
 
 .corpus-header:hover {
   background-color: color-mix(in srgb, var(--primary-color), black 10%);
+}
+
+.show-all-button{
+  background-color: transparent;
+  border-radius: 25px;
+  border: 2px solid black;
+}
+
+.show-all-button:hover {
+  background-color: color-mix(in srgb, var(--primary-color), black 10%);
+  transform: translateY(-2px);
+  font-weight: 600;
 }
 
 .corpus-name {
@@ -261,6 +274,10 @@
   
   .pagination-text {
     display: none;
+  }
+
+  .token {
+    font-size: 0.9rem;
   }
 }
 

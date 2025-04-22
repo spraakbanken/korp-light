@@ -7,6 +7,9 @@ import { Link } from 'react-router-dom';
 export default function HistoryPanel() {
     const [history, setHistory] = useState(getHistory());
 
+    const historyItems = Object.keys(history ?? {});
+    const hasHistory = historyItems.length > 0;
+
     const handleDelete = (item) => {
         const newHistory = {...history};
         delete newHistory[item];
@@ -17,7 +20,11 @@ export default function HistoryPanel() {
 
     useEffect(() => {
         console.log('history is', history)
-    }, [history])
+    }, [history])   
+    
+    if (!hasHistory) {
+        return null;
+    }
 
     return (
         <div className="history-panel">

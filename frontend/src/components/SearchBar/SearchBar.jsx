@@ -3,7 +3,7 @@ import "./SearchBar.css";
 import Form from 'react-bootstrap/Form';
 import { Search } from "react-bootstrap-icons";
 
-export default function SearchBar({ returnSearchInput, returnWords }) {
+export default function SearchBar({ returnSearchInput, returnWords, disableBar}) {
     const [searchInput, setSearchInput] = useState("");
     const [words, setWords] = useState([]);
 
@@ -23,6 +23,7 @@ export default function SearchBar({ returnSearchInput, returnWords }) {
                     type="search"
                     enterKeyHint="search"
                     placeholder="Sök"
+                    disabled={disableBar}
                     onChange={(e) => {
                         setSearchInput(e.target.value);
                         if(e.nativeEvent.data === ' ') {

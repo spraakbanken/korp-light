@@ -124,8 +124,8 @@ export default function ResultsPage() {
         if (corporas.corporas){
             setShowErrorCorpus(false);
         let res;
-                console.log('wordsDict in results page', wordsDict);
-                if(wordsDict && wordsDict.length > 0){
+                console.log('wordsDict in results page', wordsDict.length);
+                if(wordsDict && wordsDict.length > 1){
                     res = buildQuery(wordsDict);
                 }else{
                     res = `[word = "${event}"]`;
@@ -271,7 +271,7 @@ const history_tip = (
                         </div>
                         <div className="resultpage__search_wrapper">
                             <div className={`resultpage__search_bar ${isSticky ? 'sticky' : ''}`}>
-                                <SearchBar returnSearchInput={(e) => {
+                                <SearchBar disableBar={showAdvancedSearch} returnSearchInput={(e) => {
                                     handleSubmit(e);
                                 }} />
                             </div>
@@ -316,10 +316,13 @@ const history_tip = (
                         <p className="landingpage__select__corpus__error">
                                 Välj korpus innan du söker!
                         </p>}
-                
-                {showAdvancedSearch && <AdvancedSearch 
-                    returnWordsDict={(e) => handleAdvancedSearch(e)} 
-                    submitResult={(e) => handleSubmit(wordsDict)} />}
+                <div className="advanced_search_master_container">
+                    <div className="resultpage_advanced_search_container">
+                        {showAdvancedSearch && <AdvancedSearch 
+                            returnWordsDict={(e) => handleAdvancedSearch(e)} 
+                            submitResult={(e) => handleSubmit(wordsDict)} />}
+                    </div>
+                </div>
                 {showHistory && <HistoryPanel />}
                 
                 <ProgressBar isLoading={searchQueryIsLoading} />
