@@ -29,7 +29,7 @@ export const useResultTour = () => {
   const resultTour = new Shepherd.Tour(resultTourOptions);
 
   const setupResultTour = () => {
-    const totalSteps = 10;
+    const totalSteps = 9;
     let currentStepNumber = 1;
 
     const isMobile = window.innerWidth <= 768;
