@@ -135,7 +135,7 @@ export default function ResultsPage() {
             setShowErrorCorpus(false);
         
             let query;
-            if (wordsDict && Object.keys(wordsDict).length > 0) {
+            if (wordsDict && Object.keys(wordsDict).length > 1) {
                 query = buildQuery(wordsDict);
             } else {
                 query = `[word = "${event}"]`;
