@@ -20,7 +20,7 @@ const ResultsPanel = ({ response, wordToDef }) => {
   const [resultsPerCorpus, setResultsPerCorpus] = useState(0);
   const { settings } = useContext(SettingsContext);
   const { corporas } = useContext(CorporaContext);
-  const corpusPerPage = 3;
+  const corpusPerPage = 5;
 
   const findMatchingCorpusKey = (corpusName) => {
     if (!response) return corpusName;

@@ -37,7 +37,10 @@ export default function SearchBar({ returnSearchInput, returnWords, disableBar})
                         }
                     }}
                 />
-                <button className="searchBarButton" type="button" onClick={() => returnSearchInput(searchInput)}>
+                <button 
+                    className="searchBarButton" 
+                    type="button" disabled={disableBar} 
+                    onClick={() => returnSearchInput(searchInput)}>
                     <Search />
                 </button>
             </div>

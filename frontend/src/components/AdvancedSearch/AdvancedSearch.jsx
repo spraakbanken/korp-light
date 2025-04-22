@@ -10,6 +10,8 @@ import addbutton from '../../assets/addbutton.svg';
 import AdvancedSearchPOSEntry from './AdvancedSearchPOSEntry.jsx';
 import pos_list from '../../services/part-of-speech-list.js';
 
+import Paragraph from '../Paragraph/Paragraph.jsx';
+
 export default function AdvancedSearch({submitResult, returnWordsDict}) {
     
     const [wordElements, setWordElements] = useState([{
@@ -118,7 +120,15 @@ export default function AdvancedSearch({submitResult, returnWordsDict}) {
         })) */
     }
 
-    return(
+    const generateInfoText = () => {
+        if (wordElements.length > 1) {
+            return <p>Klicka på orden för att ändra ordattribut. Tryck på plusset för att lägga till olika ordklasser!</p>
+        } else {
+            return <p>Skriv ord i sökrutan separerade med ett mellanslag för att göra utökade sökningar.</p>
+        }
+    }
+
+     return(
         <>
             <SearchBar returnSearchInput={submitResult} returnWords={handleReturn}></SearchBar>
             <div className='advanced__search__container'>
@@ -126,6 +136,10 @@ export default function AdvancedSearch({submitResult, returnWordsDict}) {
                     placeholder='Ord...'
                     onChange={null}
                     onKeyDown={(e) => handleEnterKey(e)}></input> */}
+
+                <div className="advanced__info__text">
+                    {generateInfoText()}    
+                </div>
                 {wordElements.map((w) => {
                     if (w.wordEntry) {
                         if (w.pos) {
