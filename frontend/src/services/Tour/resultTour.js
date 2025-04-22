@@ -29,7 +29,7 @@ export const useResultTour = () => {
   const resultTour = new Shepherd.Tour(resultTourOptions);
 
   const setupResultTour = () => {
-    const totalSteps = 10;
+    const totalSteps = 9;
     let currentStepNumber = 1;
 
     const isMobile = window.innerWidth <= 768;
@@ -218,7 +218,7 @@ export const useResultTour = () => {
     resultTour.addStep({
         id: 'results-panel',
         title: `Resultatpanel <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
-        text: 'Här kan du se antalet sökresultat.',
+        text: 'Här kan du se alla sökresultat.',
         attachTo: {
           element: '.results-panel',
           on: 'bottom'
@@ -242,7 +242,7 @@ export const useResultTour = () => {
       resultTour.addStep({
         id: 'corpus-header',
         title: `Resultat från en korpus <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
-        text: 'Här kan du se antalet sökresultat från en specifik korpus, klicka för att se alla individuella resultat från den korpusen.',
+        text: 'Här kan du se alla sökresultat från en specifik korpus.',
         attachTo: {
           element: '.corpus-header',
           on: 'bottom'
@@ -265,8 +265,8 @@ export const useResultTour = () => {
     // Step 10: Result Card
     resultTour.addStep({
         id: 'result-card',
-        title: `Individuellt sökresultat <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
-        text: 'Här ser du ett individuellt sökresultat, klicka för mer information.',
+        title: `Enskilt sökresultat <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
+        text: 'Här ser du ett enskilt sökresultat, klicka för mer information.',
         attachTo: {
           element: '.resultRow',
           on: 'bottom'
