@@ -41,30 +41,31 @@ const ResultsPanel = ({ response, wordToDef, isFetching, corpusHits, hits }) => 
 
   useEffect(() => {
     if (!response || response.error) return;
-
-    const firstCorpusKey = Object.keys(response)[0];
-    const order = (response[firstCorpusKey]?.corpus_order || [])
-      .map(c => c.toLowerCase());
-
+    console.log(response);
+    // Get ALL corpus keys from response (not just first one)
+    const allCorpusKeys = Object.keys(response);
+    const order = allCorpusKeys.map(c => c.toLowerCase());
+    
     setCorpusOrder(order);
 
     setPage(0);
     setActiveCorporas(corporas.corporas);
 
     const initialExpandState = {};
-    order.forEach(corpus => {
-      initialExpandState[corpus] = true;
-    });
-    setExpandedCorpus(initialExpandState);
-
     const grouped = {};
-    order.forEach(corpus => {
-      const responseKey = findMatchingCorpusKey(corpus);
-      const corpusResults = response[responseKey]?.kwic || [];
-      grouped[corpus] = corpusResults.slice(0, settings.sampleSize);
+    
+    // Process ALL corpora in response
+    allCorpusKeys.forEach(corpusKey => {
+        const corpusName = corpusKey.toLowerCase();
+        initialExpandState[corpusName] = true;
+        
+        const corpusResults = response[corpusKey]?.kwic || [];
+        grouped[corpusName] = corpusResults.slice(0, settings.sampleSize);
     });
+    
+    setExpandedCorpus(initialExpandState);
     setGroupedResults(grouped);
-  }, [response]);
+}, [response]);
 
   useEffect(() => {
     calculateResultRange();
@@ -84,23 +85,15 @@ const ResultsPanel = ({ response, wordToDef, isFetching, corpusHits, hits }) => 
     const start = page * corpusPerPage;
     const displayedCorpora = corpusOrder.slice(start, start + corpusPerPage);
 
-    let totalPrevResults = 0;
-    let currentPageResults = 0;
-
-    corpusOrder.forEach((corpus, index) => {
-      const responseKey = findMatchingCorpusKey(corpus);
-      const corpusResults = response[responseKey]?.kwic || [];
-      const count = Math.min(resultsPerCorpus, corpusResults.length);
-      if (index < start) {
-        totalPrevResults += count;
-      } else if (displayedCorpora.includes(corpus)) {
-        currentPageResults += count;
-      }
+    let totalHits = 0;
+    displayedCorpora.forEach(corpus => {
+        const responseKey = findMatchingCorpusKey(corpus);
+        totalHits += response[responseKey]?.hits || 0;
     });
 
-    setStartHit(totalPrevResults);
-    setEndHit(totalPrevResults + currentPageResults);
-  };
+    setStartHit(start * resultsPerCorpus + 1);
+    setEndHit(start * resultsPerCorpus + totalHits);
+};
 
   const handleNextPage = () => {
     const totalPages = Math.ceil(corpusOrder.length / corpusPerPage);;
@@ -109,15 +102,9 @@ const ResultsPanel = ({ response, wordToDef, isFetching, corpusHits, hits }) => 
     }
   };
 
-  function totalPages (number) {
-    if (Math.ceil(corpusOrder.length / corpusPerPage)>=1) {
-      totalPages = Math.ceil(corpusOrder.length / corpusPerPage);
-    }
-    else {
-      totalPages = 1;
-    }
-    return totalPages; 
-  }
+  const totalPages = () => {
+    return Math.max(1, Math.ceil(corpusOrder.length / corpusPerPage));
+};
 
   const handlePrevPage = () => {
     if (page > 0) {

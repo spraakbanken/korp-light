@@ -117,7 +117,7 @@ export default function BarChart({word}) {
         plugins: {
             title: {
                 display: true,
-                text: `Användning av ${word.toUpperCase()} i valda korpusar över tid`,
+                text: `Användning av ordet i valda korpusar över tid`, //Detta var ${word.toUpperCase()} istället för ordet.
                 font: {
                     size: 20,
                 }
