@@ -124,7 +124,7 @@ export default function ResultsPage() {
             isRefetching: isSearchQueryRefetching
         } = useQuery({
             queryKey: [searchWordInput, corpusInput],
-            queryFn: () => getCorpusQuery(searchWordInput),
+            queryFn: () => getCorpusQuery(searchWordInput, 0, 1, true, "sentence"),
             enabled: false,
         });
 
