@@ -29,7 +29,7 @@ export const useResultTour = () => {
   const resultTour = new Shepherd.Tour(resultTourOptions);
 
   const setupResultTour = () => {
-    const totalSteps = 10;
+    const totalSteps = 9;
     let currentStepNumber = 1;
 
     const isMobile = window.innerWidth <= 768;
@@ -38,7 +38,7 @@ export const useResultTour = () => {
     if (!isMobile) {
         resultTour.addStep({
           id: 'HomeIcon',
-          title: `Hem <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
+          title: `Hem <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 1 : 0)}</div>`,
           text: 'Här kan du klicka för att navigera till startsidan.',
           attachTo: {
             element: '.homeIconA',
@@ -70,7 +70,7 @@ export const useResultTour = () => {
     // Step 2: Corpus Button
     resultTour.addStep({
       id: 'corpus-button',
-      title: `Välj korpus <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
+      title: `Välj korpus <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 1 : 0)}</div>`,
       text: 'Klicka här för att välja vilka korpusar (textsamlingar) du vill söka i, t.ex. "Nyheter".',
       attachTo: {
         element: '.corpus-button',
@@ -94,7 +94,7 @@ export const useResultTour = () => {
     // Step 3: Search Bar
     resultTour.addStep({
         id: 'search-bar',
-        title: `Sökfält <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
+        title: `Sökfält <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 1 : 0)}</div>`,
         text: 'Här kan du söka efter ord i våra korpusar.',
         attachTo: {
           element: '.searchBarWrapper',
@@ -119,7 +119,7 @@ export const useResultTour = () => {
      // Step 4: Extended Search Button
      resultTour.addStep({
       id: 'extended-search',
-      title: `Utökad sökning <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
+      title: `Utökad sökning <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 1 : 0)}</div>`,
       text: 'Utökad sökning låter dig använda mer avancerade sökfunktioner, t.ex. grundform eller ordklass.',
       attachTo: {
         element: '.extended-search-button',
@@ -143,7 +143,7 @@ export const useResultTour = () => {
     // Step 5: Filter Button
     resultTour.addStep({
       id: 'filter-button',
-      title: `Sökinställningar <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
+      title: `Sökinställningar <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 1 : 0)}</div>`,
       text: 'Välj hur resultat ska presenteras, t.ex. hur många resultat per korpus som du vill se.',
       attachTo: {
         element: '.filter-button',
@@ -167,7 +167,7 @@ export const useResultTour = () => {
     // Step 6: History Button
     resultTour.addStep({
       id: 'history-button',
-      title: `Historik <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
+      title: `Historik <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 1 : 0)}</div>`,
       text: 'Här kan du se din sökhistorik, tryck på ett ord för att gå till den sökningen.',
       attachTo: {
         element: '.history-button',
@@ -189,7 +189,7 @@ export const useResultTour = () => {
     });
 
     // Step 7: Layout Button
-    if (!isMobile) {
+/*     if (!isMobile) {
         resultTour.addStep({
           id: 'layout-button',
           title: `Layout <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
@@ -212,12 +212,12 @@ export const useResultTour = () => {
             }
           ]
         });
-      }
+      } */
 
     // Step 8: Result Panel
     resultTour.addStep({
         id: 'results-panel',
-        title: `Resultatpanel <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
+        title: `Resultatpanel <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 1 : 0)}</div>`,
         text: 'Här kan du se alla sökresultat.',
         attachTo: {
           element: '.results-panel',
@@ -241,7 +241,7 @@ export const useResultTour = () => {
       // Step 9: Result corpus
       resultTour.addStep({
         id: 'corpus-header',
-        title: `Resultat från en korpus <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
+        title: `Resultat från en korpus <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 1 : 0)}</div>`,
         text: 'Här kan du se alla sökresultat från en specifik korpus.',
         attachTo: {
           element: '.corpus-header',
@@ -265,7 +265,7 @@ export const useResultTour = () => {
     // Step 10: Result Card
     resultTour.addStep({
         id: 'result-card',
-        title: `Enskilt sökresultat <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 2 : 0)}</div>`,
+        title: `Enskilt sökresultat <div class="step-counter">${currentStepNumber++}/${totalSteps - (isMobile ? 1 : 0)}</div>`,
         text: 'Här ser du ett enskilt sökresultat, klicka för mer information.',
         attachTo: {
           element: '.resultRow',
