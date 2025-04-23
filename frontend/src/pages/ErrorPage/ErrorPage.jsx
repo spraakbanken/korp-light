@@ -1,22 +1,22 @@
-import React from "react";
 import './ErrorPage.css';
 import deadkorp from '../../assets/deadkorp.svg';
 import { Button } from "react-bootstrap"; // Bootstrap button for styling
-import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-const ErrorPage = () => {
-  const navigate = useNavigate();
-
+export default function ErrorPage() {
+  
   return (
     <div className="error-container">
       <h1 className="error-title">ERROR</h1>
-      <p className="error-message">No results found, try something else!</p>
+      <p className="error-message">Nåt gick fel...</p>
       <img src={deadkorp} className="error-image" />
-      <Button className="back-home-btn" onClick={() => navigate("/")}>
-        Go Back Home
-      </Button>
+      <Link to={"/"}>
+                <Button className="simple-button" 
+                    variant="danger" 
+                    size="sm">
+                    Hem
+                </Button>
+            </Link>
     </div>
   );
 };
-
-export default ErrorPage;

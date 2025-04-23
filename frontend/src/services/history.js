@@ -30,7 +30,7 @@ export function getHistory() {
     }
 }
 
-function getLastSearched() {
+export function getLastSearched() {
     try {
         const searches = window.localStorage.getItem("last_searched");
         return searches ? JSON.parse(searches) : undefined;

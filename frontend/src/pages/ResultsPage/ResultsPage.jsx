@@ -37,6 +37,7 @@ import sliders_logo from '../../assets/sliders.svg';
 import CorporaContext from "../../services/CorporaContext.jsx";
 import { buildQuery } from "../../services/api.js";
 import HomeButton from "../../components/HomeButton/HomeButton.jsx";
+import { getLastSearched } from "../../services/history.js";
 //import CalenderButton from "../../components/CalenderButton/CalenderButton.jsx";
 
 export default function ResultsPage() {
@@ -169,10 +170,8 @@ export default function ResultsPage() {
             console.log('checking window state')
             if(location.state === null) {
                 console.log('state is null....')
-                navigate(`/results?corpus=${encodeURIComponent(corpusInputStr)}&cqp=${encodeURIComponent(query)}`
-                , {state: {wordFromLP : rawSearchInput}});
-                }
-        }, [])
+                navigate('/error')
+        }}, [])
 
     const advanced_tip = (
         
@@ -279,6 +278,7 @@ const history_tip = (
                 
                 // Use the updated value immediately
                 setQueryData(updatedResults);
+                console.log('updatedResults', updatedResults);
                 return updatedResults;
             });
         } catch (error) {
@@ -425,7 +425,7 @@ const history_tip = (
                     {/*queryData.kwic == undefined ? <p>Loading...</p> : JSON.stringify(queryData) */}
                     {queryData === undefined ? <p>Laddar...</p> :
                         <ResultsPanel response={queryData} 
-                            wordToDef={state.wordFromLP} 
+                            wordToDef={state?.wordFromLP} 
                             isFetching={searchQueryIsLoading}
                             corpusHits={corpusHits}
                             hits={hits}/>}
