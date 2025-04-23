@@ -41,6 +41,7 @@ import HomeButton from "../../components/HomeButton/HomeButton.jsx";
 
 export default function ResultsPage() {
 
+    const [hits, setHits] = useState();
     const location = useLocation(); //All this is first draft for routing.
     const queryParams = new URLSearchParams(location.search);
     const searchQueryTest = queryParams.get('cqp');
@@ -124,7 +125,7 @@ export default function ResultsPage() {
             isRefetching: isSearchQueryRefetching
         } = useQuery({
             queryKey: [searchWordInput, corpusInput],
-            queryFn: () => getCorpusQuery(searchWordInput, 0, 1, true, "sentence"),
+            queryFn: () => getCorpusQuery(searchWordInput, 0, 0, true, "sentence"),
             enabled: false,
         });
 
@@ -237,7 +238,7 @@ const history_tip = (
                 
                 if (data?.corpus_hits && data?.corpus_order) {
                     setCorpusHits(data.corpus_hits);
-            
+                    setHits(data.hits);
                     const startEndMap = buildStartEndMap(data.corpus_order, data.corpus_hits, settings.sampleSize);
                    
                     Object.entries(startEndMap).forEach(([corpusName, { start, end }]) => {
@@ -418,7 +419,8 @@ const history_tip = (
                         <ResultsPanel response={queryData} 
                             wordToDef={state.wordFromLP} 
                             isFetching={searchQueryIsLoading}
-                            corpusHits={corpusHits}/>}
+                            corpusHits={corpusHits}
+                            hits={hits}/>}
                 </div>
                 <button className="results_page__back_to_top" onClick={scrollToTop}>Till toppen</button>
             </div>

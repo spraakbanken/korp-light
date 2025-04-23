@@ -15,7 +15,7 @@ let queryParams = {
     "cut": Number(),
     //"cqp#": String(),
     "expand_prequeries": Boolean(),
-    "incremental": true,
+    "incremental": Boolean(),
     "query_data": String(),
 }
 

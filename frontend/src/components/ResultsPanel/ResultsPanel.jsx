@@ -10,8 +10,8 @@ import BarChart from '../Statistics/BarChart.jsx';
 import { ChevronsDown } from 'lucide-react';
 import { ChevronsUp } from 'lucide-react';
 
-const ResultsPanel = ({ response, wordToDef, isFetching, corpusHits }) => {
-  const [hits, setHits] = useState(0);
+const ResultsPanel = ({ response, wordToDef, isFetching, corpusHits, hits }) => {
+  const [totHits, setHits] = useState(hits);
   const [startHit, setStartHit] = useState(0);
   const [endHit, setEndHit] = useState(0);
   const [page, setPage] = useState(0);
@@ -47,7 +47,7 @@ const ResultsPanel = ({ response, wordToDef, isFetching, corpusHits }) => {
       .map(c => c.toLowerCase());
 
     setCorpusOrder(order);
-    setHits(calculateTotalHits());
+
     setPage(0);
     setActiveCorporas(corporas.corporas);
 
