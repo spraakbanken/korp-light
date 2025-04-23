@@ -143,15 +143,16 @@ const ResultsPanel = ({ response, wordToDef, isFetching, corpusHits, hits }) => 
 
   const generateStatistics = (wordToDef) => {
     console.log('stats', wordToDef);
+    console.log('corporas in genStats', corporas.corporas)
     let elemArr = [];
     if (Array.isArray(wordToDef)) {
       wordToDef.forEach(w => {
         if (w.wordEntry !== "" && !w.pos) {
-          elemArr.push(<BarChart key={w.wordEntry} word={w.wordEntry} />);
+          elemArr.push(<BarChart key={w.wordEntry} word={w.wordEntry} corporasForStats={corporas.corporas}/>);
         }
       });
     } else {
-      elemArr.push(<BarChart word={wordToDef} />);
+      elemArr.push(<BarChart word={wordToDef} corporasForStats={corporas.corporas}/>);
     }
     return elemArr;
   };

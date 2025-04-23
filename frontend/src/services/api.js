@@ -157,13 +157,16 @@ export function buildQuery(params) {
   return finalQuery;
 }
 
-export async function getStatisticsOverTime(word, wordClass) {
-    console.log('Getting statistics for ', word, wordClass);
+export async function getStatisticsOverTime(word, corporasStats, wordClass) {
+    console.log('Getting statistics for ', word, wordClass, corporasStats);
     
-    queryParams.cqp = `[lex contains "${word}\\.\\.${wordClass}\\.1"]`
+    let tempParams = {};
+    tempParams.cqp = `[lex contains "${word}\\.\\.${wordClass}\\.1"]`
+    tempParams.corpus = String(Object.keys(corporasStats));
+    tempParams.default_within='sentence'
     
     try {
-        const response = await axios_instance('/count_time', {params: queryParams});
+        const response = await axios_instance('/count_time', {params: tempParams});
         console.log('statistics response', response.data);
         return response.data;
     } catch(error) {
