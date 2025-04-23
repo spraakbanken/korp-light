@@ -183,7 +183,7 @@
 
 .pagination-info {
   font-size: 0.9rem;
-  color: #666;
+  color: var(--text-color);
   text-align: center;
   flex: 1;
   max-width: 33%;
@@ -277,6 +277,8 @@
 .collapse-chevron {
   margin-right: 10px;
 }
+
+
 
 @media (max-width: 768px) {
   .results-panel {
