@@ -145,7 +145,7 @@ export default function BarChart({word}) {
 
     return(
         <>
-            <div className='corpus-group'>
+            {sbAPI && <div className='corpus-group'>
                 <div className="corpus-header-statistics"
                     onClick={toggleStatExpand}>
                     {expandStat ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
@@ -161,12 +161,10 @@ export default function BarChart({word}) {
                         {statisticsDataIsLoading ? <p>Laddar graf</p> : null}
                         {generateGraph(statData)}
                         </div>
-
                     </div>
                 </div>
                 }
-
-            </div>
+            </div>}
         </>
     );
 }
