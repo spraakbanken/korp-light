@@ -107,9 +107,16 @@ export default function LandingPage() {
                 res = `[word = "${event}"]`;
             }
 
+
+            try {
+                window.localStorage.setItem("last_searched", 
+                    JSON.stringify(event));
+            } catch (e) {
+                console.log("Error Localstorage: ", e);
+            }
         
-                navigate(`/results?corpus=${encodeURIComponent(Object.keys(corporas.corporas))}&cqp=${encodeURIComponent(res)}`
-                        , {state: {wordFromLP : event}});
+            navigate(`/results?corpus=${encodeURIComponent(Object.keys(corporas.corporas))}&cqp=${encodeURIComponent(res)}`
+                , {state: {wordFromLP : event}});
         } else {
             setShowErrorCorpus(true);
         }
