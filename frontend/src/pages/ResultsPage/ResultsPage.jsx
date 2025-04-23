@@ -147,6 +147,13 @@ export default function ResultsPage() {
             setSearchWordInput(query);        // Set CQP query
             setRawSearchInput(event);         // Set original user input
         
+            try {
+                window.localStorage.setItem("last_searched", 
+                    JSON.stringify(event));
+            } catch (e) {
+                console.log("Error Localstorage: ", e);
+            }
+
             // Set corpora input based on selected corpora
             const selectedCorpora = Object.keys(corporas.corporas);
             const corpusInputStr = selectedCorpora.join(",");
@@ -159,12 +166,13 @@ export default function ResultsPage() {
         
 
         useEffect(() => {
+            console.log('checking window state')
             if(location.state === null) {
                 console.log('state is null....')
                 navigate(`/results?corpus=${encodeURIComponent(corpusInputStr)}&cqp=${encodeURIComponent(query)}`
                 , {state: {wordFromLP : rawSearchInput}});
                 }
-        }, [location])
+        }, [])
 
     const advanced_tip = (
         
