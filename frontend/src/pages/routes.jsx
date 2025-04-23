@@ -9,8 +9,8 @@ const routes = [
     {path: '/', element: <LandingPage />},
     {path: '/results', element: <ResultsPage />},
     {path: '/help', element: <HelpPage />},
-    {path: '/settings', element: <SettingsPage />},
-    { path: '*', element: <ErrorPage /> } //catch all!
+    {path: '/error', element: <ErrorPage />},
+    {path: '*', element: <ErrorPage /> } //catch all!
 ];
 
 export default routes;

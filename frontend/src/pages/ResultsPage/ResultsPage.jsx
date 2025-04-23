@@ -37,6 +37,7 @@ import sliders_logo from '../../assets/sliders.svg';
 import CorporaContext from "../../services/CorporaContext.jsx";
 import { buildQuery } from "../../services/api.js";
 import HomeButton from "../../components/HomeButton/HomeButton.jsx";
+import { getLastSearched } from "../../services/history.js";
 //import CalenderButton from "../../components/CalenderButton/CalenderButton.jsx";
 
 export default function ResultsPage() {
@@ -151,6 +152,13 @@ export default function ResultsPage() {
             setSearchWordInput(query);        // Set CQP query
             setRawSearchInput(event);         // Set original user input
         
+            try {
+                window.localStorage.setItem("last_searched", 
+                    JSON.stringify(event));
+            } catch (e) {
+                console.log("Error Localstorage: ", e);
+            }
+
             // Set corpora input based on selected corpora
             const selectedCorpora = Object.keys(corporas.corporas);
             const corpusInputStr = selectedCorpora.join(",");
@@ -165,12 +173,11 @@ export default function ResultsPage() {
         
 
         useEffect(() => {
+            console.log('checking window state')
             if(location.state === null) {
                 console.log('state is null....')
-                navigate(`/results?corpus=${encodeURIComponent(corpusInputStr)}&cqp=${encodeURIComponent(query)}`
-                , {state: {wordFromLP : rawSearchInput}});
-                }
-        }, [location])
+                navigate('/error')
+        }}, [])
 
     const advanced_tip = (
         
@@ -286,7 +293,7 @@ const history_tip = (
                 setHits(totalHits); // Update total hits
                 // Use the updated value immediately
                 setQueryData(updatedResults);
-                
+                console.log('updatedResults', updatedResults);
                 return updatedResults;
             });
         } catch (error) {
@@ -438,8 +445,8 @@ const history_tip = (
                     {/*queryData.kwic == undefined ? <p>Loading...</p> : JSON.stringify(queryData) */}
                     {queryData === undefined ? <p>Laddar...</p> :
                         <ResultsPanel response={queryData} 
-                            wordToDef={state.wordFromLP} 
-                            isFetching={isFetching} //IDK
+                            wordToDef={state?.wordFromLP} 
+                            isFetching={null}
                             corpusHits={corpusHits}
                             hits={hits}/>}
                 </div>

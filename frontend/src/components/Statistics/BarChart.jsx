@@ -119,7 +119,7 @@ export default function BarChart({word}) {
                 display: true,
                 text: `Användning av ordet i valda korpusar över tid`, //Detta var ${word.toUpperCase()} istället för ordet.
                 font: {
-                    size: 20,
+                    size: 18,
                 }
             },
 
@@ -131,7 +131,8 @@ export default function BarChart({word}) {
                 },
                 position: 'right',
                 align: 'center',
-            }
+            },
+
         }
     }
 
@@ -139,13 +140,13 @@ export default function BarChart({word}) {
         if(Object.keys(inData).length !== 0) {
             return <Bar options={chartOptions} data={inData} />
         } else {
-            return <p>Cannot Draw Graph, Check Log and API</p>
+            return <p>Kan inte visa graf, klicka på knappen igen!</p>
         }
     }
 
     return(
         <>
-            <div className='corpus-group'>
+            {sbAPI && <div className='corpus-group'>
                 <div className="corpus-header-statistics"
                     onClick={toggleStatExpand}>
                     {expandStat ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
@@ -153,7 +154,7 @@ export default function BarChart({word}) {
                 </div>
                 {expandStat && <div className='results-table'>
                     <div className="statistics-container">
-                        <button disabled={!sbAPI} onClick={handleClick}>Fetch Stats for {word}, {wordClass}</button>
+                        <button disabled={!sbAPI} onClick={handleClick} className='statistics-fetch-button'>Hämta statistik för {word}, {wordClass}</button>
                         <input type='text' placeholder='type ordklass... nn, vb' 
                             onChange={(e) => (setWordClass(e.target.value))} />
                         
@@ -161,12 +162,10 @@ export default function BarChart({word}) {
                         {statisticsDataIsLoading ? <p>Laddar graf</p> : null}
                         {generateGraph(statData)}
                         </div>
-
                     </div>
                 </div>
                 }
-
-            </div>
+            </div>}
         </>
     );
 }
