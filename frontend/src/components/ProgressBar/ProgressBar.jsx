@@ -25,20 +25,17 @@ export default function LoadingProgressBar({ isLoading, percentLoaded}) {
             {isLoading && hasSearched && (
                 <div className="progress-bar-container">
                     <div className="progress-bar">
-                        <ProgressBar animated now={percentLoaded} />
+                        <ProgressBar variant='warning' animated now={percentLoaded} />
                     </div>
                 </div>
             )}
 
             {!isLoading && isComplete && (
-                <div className='progress-finished'>
-                    <div className="progress-bar">
-                        <ProgressBar animated now={percentLoaded} />
-                    </div>
+                
                     <div className="check-all-icon">
-                        <CheckAll size={24} />
+                        <CheckAll size={25} />
                     </div>
-                </div>
+            
             )}
         </>
     );

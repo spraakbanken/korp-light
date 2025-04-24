@@ -43,6 +43,7 @@ import { getLastSearched } from "../../services/history.js";
 export default function ResultsPage() {
 
     const [pendingRequests, setPendingRequests] = useState(0);
+    const [percentLoaded, setPercentLoaded] = useState(0);
     const [isFetching, setIsFetching] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -305,13 +306,18 @@ const history_tip = (
     };
     
     useEffect(() => {
+        const totalCorporas = Object.keys(corporas.corporas).length;
+        console.log("total corporas", totalCorporas);
         console.log("pending", pendingRequests);
+
+        let _percentLoaded = Math.round(((pendingRequests-1) / totalCorporas) * 100);
+        setPercentLoaded(_percentLoaded);
+
         if (pendingRequests === 0) {
             setIsLoading(false); // All requests completed
             
         }
     }, [pendingRequests]);
-    
 
     useEffect(() => {
         setSearchWordInput(searchQueryTest || '');
@@ -439,7 +445,7 @@ const history_tip = (
                 </div>
                 {showHistory && <HistoryPanel />}
                 
-                <ProgressBar isLoading={isLoading} />
+                <ProgressBar isLoading={isLoading} percentLoaded={100 - percentLoaded}/>
 
                 <div className="mt-2">
                     {/*queryData.kwic == undefined ? <p>Loading...</p> : JSON.stringify(queryData) */}

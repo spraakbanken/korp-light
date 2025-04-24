@@ -68,12 +68,6 @@
     text-decoration: none; 
 }
 
-.history-single-entry-text:hover {
-    text-decoration: underline;
-    color: var(--primary-color);
-    text-decoration: underline; 
-}
-
 .history-single-entry {
     display: flex;
     justify-content: space-between;
@@ -84,9 +78,16 @@
     word-wrap: break-word;
     overflow-wrap: break-word;
     word-break: break-word;
+    background-color: var(--primary-color);
+    border: 1px solid transparent;
     max-width: 100%;
     display: block;
     text-align: left;
+}
+
+.history-single-entry-text:hover {
+    color: var(--primary-color);
+    text-decoration: underline; 
 }
 
 .history-info-container {
