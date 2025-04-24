@@ -174,7 +174,7 @@ const ResultsPanel = ({ response, wordToDef, isFetching, corpusHits, hits }) => 
     <div className="results-panel">
       {wordToDef && generateDefintions(wordToDef)}
       {wordToDef && generateStatistics(wordToDef)}
-      <div className="results-header">
+      <div className="results-header" id="results-header-id">
         <div className="results-stats">
           <span className="results-count">Totala matchningar: <strong>{hits}</strong></span>
         </div>

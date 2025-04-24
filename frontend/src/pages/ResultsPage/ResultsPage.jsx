@@ -56,6 +56,7 @@ export default function ResultsPage() {
     const [showHistory, setShowHistory] = useState(false);
     const { corporas } = useContext(CorporaContext);
     const isInitialMount = useRef(true);
+    const resultsHeaderRef = useRef(null);
 
     const [perCorpusResults, setPerCorpusResults] = useState({});
     const [corpusHits, setCorpusHits] = useState({});
@@ -315,7 +316,10 @@ const history_tip = (
 
         if (pendingRequests === 0) {
             setIsLoading(false); // All requests completed
-            
+            const header = document.getElementById('results-header-id');
+                header?.scrollIntoView({
+                    behavior: 'smooth'
+                }); 
         }
     }, [pendingRequests]);
 
