@@ -316,10 +316,10 @@ const history_tip = (
 
         if (pendingRequests === 0) {
             setIsLoading(false); // All requests completed
-            const header = document.getElementById('results-header-id');
-                header?.scrollIntoView({
-                    behavior: 'smooth'
-                }); 
+            const header = document.getElementById('collapse-button-id');
+            header?.scrollIntoView({
+                behavior: 'smooth'
+            }); 
         }
     }, [pendingRequests]);
 

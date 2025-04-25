@@ -99,6 +99,10 @@ const ResultsPanel = ({ response, wordToDef, isFetching, corpusHits, hits }) => 
     const totalPages = Math.ceil(corpusOrder.length / corpusPerPage);;
     if (page < totalPages - 1) {
       setPage((prevPage) => prevPage + 1);
+      const header = document.getElementById('collapse-button-id');
+            header?.scrollIntoView({
+                behavior: 'smooth'
+            });
     }
   };
 
@@ -174,12 +178,12 @@ const ResultsPanel = ({ response, wordToDef, isFetching, corpusHits, hits }) => 
     <div className="results-panel">
       {wordToDef && generateDefintions(wordToDef)}
       {wordToDef && generateStatistics(wordToDef)}
-      <div className="results-header" id="results-header-id">
+      <div className="results-header">
         <div className="results-stats">
           <span className="results-count">Totala matchningar: <strong>{hits}</strong></span>
         </div>
         <div>
-        <button className="collapse-button" onClick={() => {
+        <button className="collapse-button" id="collapse-button-id" onClick={() => {
             const newState = {};
             corpusOrder.forEach(corpus => {
               newState[corpus] = allCollapsed; 
