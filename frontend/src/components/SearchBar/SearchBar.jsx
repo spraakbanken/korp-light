@@ -24,6 +24,8 @@ export default function SearchBar({ returnSearchInput, returnWords, disableBar})
                     enterKeyHint="search"
                     placeholder="Sök"
                     disabled={disableBar}
+                    spellCheck="true"
+                    autoCapitalize="off"
                     onChange={(e) => {
                         setSearchInput(e.target.value);
                         if(e.nativeEvent.data === ' ') {
