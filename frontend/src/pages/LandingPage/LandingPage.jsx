@@ -11,7 +11,6 @@ import SearchBar from "../../components/SearchBar/SearchBar.jsx";
 import CorpusDropDown from "../../components/CorpusDropdown/CorpusDropdown.jsx";
 import CircleButton from "../../components/CircleButton/CircleButton.jsx";
 import InfoText from "../../components/InfoText/InfoText.jsx";
-import Date from "../../components/InfoText/Date.jsx";
 import HistoryPanel from "../../components/HistoryPanel/HistoryPanel.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
 import CorpusModal from "../../components/CorpusModal/CorpusModal.jsx";
@@ -208,9 +207,7 @@ export default function LandingPage() {
                 
                 {showHistory && <HistoryPanel />}
 
-                <InfoText className="info_text" />
-                <Date className="date_text" />
-               
+                <InfoText className="info_text" />               
             </div>
             <Footer className="landing-footer" />
         </div>

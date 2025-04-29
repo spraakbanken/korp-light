@@ -21,3 +21,14 @@
 .results-footer {
     margin-top: 5px;
 }
+
+.footer-image {
+    width: 50%;
+    padding-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .footer-image {
+        width: 100%;
+    }
+}
