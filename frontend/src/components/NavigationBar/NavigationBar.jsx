@@ -17,6 +17,7 @@ import KorpDark from '../../assets/whiteKorp.svg';
 import { useLocation } from "react-router-dom";
 import { useTour } from "../../services/Tour/tour";
 import { useResultTour } from "../../services/Tour/resultTour";
+import HomeButton from "../../components/HomeButton/HomeButton.jsx";
 
 
 export default function NavigationBar() {
@@ -26,11 +27,11 @@ export default function NavigationBar() {
   const [showHelpTooltip, setShowHelpTooltip] = useState(false);
   const { settings } = useContext(SettingsContext);
   const location = useLocation();
-  const {startTour} = useTour();
+  const isOnLandingPage = location.pathname === "/";
+    const {startTour} = useTour();
   const {startResultTour} = useResultTour(); // Import the startResultTour function from the useResultTour hook
 
   const iconColor = settings.theme === "light" ? "black" : "white";
-  const korpImage = settings.theme === "light" ? KorpLight : KorpDark;
 
   // Floating UI for settings tooltip
   const { x: settingsX, y: settingsY, refs: settingsRefs, strategy: settingsStrategy } = useFloating({
@@ -58,7 +59,7 @@ export default function NavigationBar() {
   return (
     <Navbar className="main__navbar">
       <Container fluid className="d-flex justify-content-between">
-        <SideMenu onTourStart={startTour} onResultTourStart={startResultTour}/>
+      { isOnLandingPage ? <SideMenu onTourStart={startTour} onResultTourStart={startResultTour}/> : <HomeButton /> }
         <Nav className="d-flex align-items-center">
           <div ref={helpRefs.setReference}>
             <Nav.Link 

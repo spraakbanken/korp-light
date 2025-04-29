@@ -25,9 +25,6 @@ import { getCorpusInfo, getCorpusQuery, setHistoryAPI } from "../../services/api
 
 //Assets
 import advanced from '../../assets/advanced.svg';
-import homeIconLight from '../../assets/homeIconLight.svg';
-import homeIconDark from '../../assets/homeIconDark.svg';
-
 
 //Corpus, history, advanced search
 import CorpusDropDown from "../../components/CorpusDropdown/CorpusDropdown.jsx";
@@ -36,7 +33,6 @@ import history_logo from '../../assets/rotate-ccw.svg';
 import sliders_logo from '../../assets/sliders.svg';
 import CorporaContext from "../../services/CorporaContext.jsx";
 import { buildQuery } from "../../services/api.js";
-import HomeButton from "../../components/HomeButton/HomeButton.jsx";
 import { getLastSearched } from "../../services/history.js";
 //import CalenderButton from "../../components/CalenderButton/CalenderButton.jsx";
 
@@ -205,16 +201,9 @@ const history_tip = (
     
 );
 
-
-
     const toggleHistory = () => {
         setShowHistory((prev) => !prev);
     };
-
-    const homeIcon = settings.theme === "light" ? homeIconLight : homeIconDark;
-
-
-
 
     function getCorpusData(data) {
         const langs = data.corpora
@@ -377,8 +366,6 @@ const history_tip = (
             <NavigationBar />
             <div className="results-content">
                 <div className="resultpage__search_container">
-                    <HomeButton/>
-
                     <div className="resultpage__search_content">
                         <div className="resultpage__corpus_button">
                             <CorpusButton

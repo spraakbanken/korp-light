@@ -32,6 +32,8 @@ export default function HomeButton() {
         ref={refs.setReference}
         src={homeIcon}
         alt="Home icon"
+        width={28}
+        height={28}
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
         />
