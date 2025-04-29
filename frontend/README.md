@@ -5,9 +5,40 @@ See README.md in root directory for more information on building and running.
 ## node_modules
 All files and libraries needed by node (i.e. React, Bootstrap). Leave this folder alone. Change package.json if needed.
 Added:
-- 
-- Axios library for server requests.
-- react-router-dom for client side routing.
+### Dependency Summaries
+
+- **@dnd-kit/core**: Core library for building accessible drag-and-drop experiences in React with full control over sensors and events.
+- **@dnd-kit/sortable**: Provides utilities for making sortable lists using the `@dnd-kit/core` system.
+- **@dnd-kit/utilities**: Helper functions and utilities to support drag-and-drop logic, especially for collision detection and transformations.
+
+- **@floating-ui/react**: Powerful positioning library for tooltips, popovers, and dropdowns in React, supporting dynamic placement and flipping.
+
+- **@tanstack/react-query**: Server-state management library for React that simplifies data fetching, caching, and syncing with APIs.
+
+- **axios**: Promise-based HTTP client for making API requests from the browser or Node.js.
+
+- **bootstrap**: Popular CSS framework that offers prebuilt UI components and responsive grid layout styles.
+
+- **chart.js**: Simple yet flexible JavaScript charting library for creating responsive, interactive visualizations.
+
+- **lucide-react**: Collection of clean, consistent, and customizable open-source SVG icons for React, based on Lucide icons.
+
+- **react**: Core library for building user interfaces with a component-based architecture and declarative rendering.
+
+- **react-bootstrap**: React components built using Bootstrap styles and behaviors without relying on jQuery.
+
+- **react-bootstrap-icons**: React wrapper for Bootstrap Icons, allowing easy integration of SVG-based icons in React apps.
+
+- **react-chartjs-2**: React wrapper for Chart.js that provides declarative chart components compatible with React.
+
+- **react-dom**: Package that provides DOM-specific methods to render React components in the browser.
+
+- **react-icons**: Flexible icon library for React supporting many popular icon packs like FontAwesome, Material Icons, and more.
+
+- **react-router-dom**: Declarative routing library for React apps, enabling dynamic navigation and nested routes.
+
+- **shepherd.js**: Guide and tour library for web applications, used to walk users through features step by step.
+
 
 ## public
 See if we need this towards deployment. Static assets.
