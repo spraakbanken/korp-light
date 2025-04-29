@@ -119,6 +119,7 @@
 .results-table tbody tr:hover {
   background-color: rgba(225, 235, 245, 0.7);
   transform: translateY(-1px);
+  cursor: pointer;
 }
 
 .results-table td {
