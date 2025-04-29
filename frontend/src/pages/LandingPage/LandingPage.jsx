@@ -21,7 +21,7 @@ import AdvancedSearch from "../../components/AdvancedSearch/AdvancedSearch.jsx";
 import FilterCard from "../../components/FilterCard/FilterCard.jsx"
 //assets
 import corpus_logo from '../../assets/book-open.svg';
-import history_logo from '../../assets/rotate-ccw.svg';
+import history_logo from '../../assets/history.svg';
 import sliders_logo from '../../assets/sliders.svg';
 import advanced from '../../assets/advanced.svg';
 import KorpLight from '../../assets/korpiLight.svg';

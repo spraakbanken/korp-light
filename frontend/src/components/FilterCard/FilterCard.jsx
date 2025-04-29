@@ -21,7 +21,7 @@ export default function SettingsCard(props) {
             <Modal {...props}
                 className="_filter_card" centered>
                 <Modal.Header className="header" closeButton>
-                    <Modal.Title className="title">Sökinställningar</Modal.Title>
+                    <Modal.Title className="title">Anpassa Sökning</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="modal-body">
                     {/* Corpora per page */}
