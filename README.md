@@ -1,5 +1,12 @@
 # Korpi
+
 A linguistic search engine built on [korp](https://spraakbanken.gu.se/korp/) and [korpsearch](https://github.com/heatherleaf/korpsearch)
+
+> [!NOTE]
+> This is a partial copy of <https://git.chalmers.se/pomesh/korpi> (does not contain the folder `backend`).
+> The original repo is a bachelor thesis at Chalmers written by <INSERT NAMES HERE>.
+
+A demo of this repo is running at <https://korpi.netlify.app>.
 
 ## Getting Started with Korpi
 Coming Soon!
