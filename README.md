@@ -8,6 +8,8 @@ A linguistic search engine built on [korp](https://spraakbanken.gu.se/korp/) and
 
 A demo of this repo is running at <https://korpi.netlify.app>.
 
+You can find screenshots of the app running in a browser in the [screenshots](screenshots/) directory.
+
 ## Getting Started with Korpi
 
 Coming Soon!
