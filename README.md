@@ -5,7 +5,7 @@ A linguistic search engine built on [korp](https://spraakbanken.gu.se/korp/) and
 > [!NOTE]
 > This is a partial copy of <https://git.chalmers.se/pomesh/korpi> (does not contain the folder `backend`).
 > The original repo is a bachelor thesis at Chalmers written by Ludwig Alexandersson, Erik Dreifeldt, Pomesh Kumar, Lisa Wadenbrant, Ida Åberg.
-> The bachelor thesis is called **Korpi - Developing a User-Friendly and Useful Frontend for a Corpus Search Engine**.
+> The bachelor thesis is called **Korpi - Developing a User-Friendly and Useful Frontend for a Corpus Search Engine** [read it here](./Korpi___Bachelor_Thesis.pdf).
 
 A demo of this repo is running at <https://korpi.netlify.app>.
 
