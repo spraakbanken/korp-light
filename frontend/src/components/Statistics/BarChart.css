@@ -1,0 +1,34 @@
+.corpus-header-statistics {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background-color: var(--primary-color);
+    cursor: pointer;
+    font-weight: 600; 
+}
+
+.statistics-container {
+    
+}
+
+.statistics-main-content {
+    
+}
+
+.statistics-corpus-selector {
+    max-height: 300px;
+    overflow-y: scroll;
+    padding: 10px;
+}
+
+.statistics-fetch-button {
+    margin: 10px;
+    padding: 10px 15px;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}

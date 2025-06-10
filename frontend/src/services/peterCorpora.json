@@ -1,0 +1,58 @@
+{
+    "nyheter": [
+        "Nyheter",
+        "Nyheter beskrivning",
+        {
+            "attasidor": "8 Sidor",
+            "svt-2005": "SVT 2005",
+            "svt-2006": "SVT 2006",
+            "svt-2007": "SVT 2007",
+            "svt-2008": "SVT 2008",
+            "svt-2009": "SVT 2009",
+            "svt-2010": "SVT 2010",
+            "svt-2011": "SVT 2011",
+            "svt-2012": "SVT 2012",
+            "svt-2013": "SVT 2013",
+            "svt-2014": "SVT 2014",
+            "svt-2015": "SVT 2015",
+            "svt-2016": "SVT 2016",
+            "svt-2017": "SVT 2017",
+            "svt-2018": "SVT 2018",
+            "svt-2019": "SVT 2019",
+            "svt-2020": "SVT 2020",
+            "svt-2021": "SVT 2021",
+            "svt-2022": "SVT 2022",
+            "svt-2023": "SVT 2023"
+        }
+    ],
+    "sociala-medier": [
+        "Sociala medier",
+        "Sociala medier beskrivning",
+        {
+            "familjeliv-allmanna-ekonomi": "Ekonomi",
+            "familjeliv-allmanna-familjeliv": "Allmänn",
+            "familjeliv-allmanna-fritid": "Fritid",
+            "familjeliv-allmanna-husdjur": "Husdjur",
+            "familjeliv-allmanna-hushem": "Hus och Hem",
+            "familjeliv-allmanna-noje": "Nöje"
+            
+        }
+    ],
+    "romaner": [
+        "Romaner",
+        "Romaner beskrivning",
+        {
+            "romi": "Romaner I",
+            "romii": "Romaner II",
+            "rom99": "Romaner 99",
+            "storsuc": "Stockholm-Umeå Romaner"
+        }
+    ],
+    "faktatext": [
+        "Faktatext",
+        "Faktatext beskrivning",
+        {
+            "wikipedia-sv": "Svenska Wikipedia"
+        }
+    ]
+}

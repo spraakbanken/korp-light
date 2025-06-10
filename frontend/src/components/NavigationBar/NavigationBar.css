@@ -1,25 +1,20 @@
 .main__navbar {
-    background-color: #faf9fb;
-    border-bottom: 1px solid #eaeaea;
+    background-color: var(--navbar-color);
     padding: 10px;
+    width: 100%;
+    position: sticky;
+    z-index: 100;
+    top: 0;
 }
 
-.circle__button {
-    background-color: #fd7e14;
-    border: 1px solid gray;
-    border-radius: 50%;
-    margin: 10px;
-}
-
-.circle__button:hover{
-    background-color: #d2691e;
-}
-
-.circle__button:hover img{
-    filter: invert(0%);
-}
-
-.circle__button img {
-    padding: 2px;
-    filter: invert(100%);
-}
+.icon-hover {
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .icon-hover:hover {
+    transform: scale(1.1); 
+  }
+  
+  .icon-hover:active {
+    transform: scale(0.95); 
+  }

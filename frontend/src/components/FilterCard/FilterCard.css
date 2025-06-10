@@ -1,0 +1,53 @@
+
+.header {
+    background-color: var(--bg-color);
+}
+.title{
+    color: var(--text-color);
+}
+
+.filterCloseButton {
+    justify-content: center;
+    background-color: var(--primary-color);
+    border: var(--primary-color);
+   
+}
+
+.filterCloseButton:hover {
+    background-color: color-mix(in srgb, var(--primary-color), red 20%);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.filter_card{
+    color: var(--bg-color);
+}
+
+.modal-body{
+    background-color: var(--bg-color);
+}
+
+.filter_button{
+    color: var(--text-color);
+}
+
+.filterFooter{
+    background-color: var(--bg-color);
+}
+
+/* Add this to your CSS files */
+
+._filter_card .modal-dialog {
+  height: auto;
+}
+
+
+._filter_card .modal-content {
+  height: auto;
+  overflow: visible;
+}
+
+
+._filter_card .modal-body {
+  overflow: visible;
+  max-height: none;
+}

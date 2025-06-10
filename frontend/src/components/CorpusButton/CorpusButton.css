@@ -1,0 +1,48 @@
+.corpus-button {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FFD98A;
+    border-radius: 50px;
+    padding: 8px 25px;
+    min-width: 150px;
+    height: 40px; 
+    transition: all 0.2s ease-in-out;
+    /* border: 1px solid gray; */
+}
+
+.corpus-button-text {
+    font-size: 18px;
+    font-weight: 500;
+    color: #302f2f;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+.corpus-button-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.corpus-button:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    filter: brightness(90%);
+}
+
+.corpus-number {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: var(--primary-color); 
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}

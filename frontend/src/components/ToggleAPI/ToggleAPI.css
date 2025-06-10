@@ -1,0 +1,30 @@
+/* Base style */
+.btn.toggle-button {
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Hover style (works) */
+  .btn.toggle-button:hover {
+    background-color: #F89066;
+    color: white;
+  }
+  
+  /* Active/Selected style */
+  .btn.toggle-button.active,
+  .btn.toggle-button:active:not(:disabled),
+  .btn.toggle-button:focus:not(:disabled),
+  .btn-check:checked + .btn.toggle-button {
+    background-color: #F89066 !important;
+    color: white !important;
+    box-shadow: none !important; 
+  }
+  
+  
+  .btn-check:checked + .btn.toggle-button {
+    background-color: #F89066 !important;
+    color: white !important;
+  }

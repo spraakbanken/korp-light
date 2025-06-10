@@ -1,0 +1,73 @@
+.menu-button {
+    font-size: 24px;
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    color: var(--primary-color);    
+}
+
+.menu-button:hover {
+    color: color-mix(in srgb, var(--primary-color) 100%, white 20%);
+}
+
+.side-menu{
+    background-color: var(--navbar-color);
+    color: var(--text-color);
+}
+
+.side-menu .link {
+    font-size: 16px;
+    padding: 10px;
+    color: black;
+}
+
+.offcanvas-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close_btn{
+    cursor: pointer;
+    transition: transform 0.2s ease; 
+}
+
+.close_btn:hover {
+    transform: scale(1.15);
+}
+
+.side-menu-body {
+    padding: 0;
+}
+
+.first-row {
+    background-color: var(--bg-color);
+    padding-left: 5px;
+}
+
+.first-row:hover {
+    background-color: color-mix(in srgb, var(--bg-color), black 20%);
+}
+
+.second-row {
+    background-color: color-mix(in srgb, var(--bg-color), black 15%);
+}
+
+.second-row.nav-item {
+    padding-left: 5px;
+}
+
+.second-row:hover {
+    background-color: color-mix(in srgb, var(--bg-color), black 30%);
+}
+
+.second-row.nav-link {
+    background-color: color-mix(in srgb, var(--bg-color), black 15%);
+    padding-left: 5px;
+}
+
+.second-row.nav-link:hover {
+    background-color: color-mix(in srgb, var(--bg-color), black 30%);
+}
+

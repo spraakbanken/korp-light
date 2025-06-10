@@ -1,0 +1,110 @@
+
+.inst{
+    color: var(--text-color);
+}
+.settings-card {
+    width: 50%;
+    align-items: center;
+    background: var(--bg-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    width: 50%
+}
+
+.theme-toggle {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    padding:10px;
+    color: var(--text-color);
+}
+
+.settings button {
+    background-color: var(--bg-color);
+    border: 2px solid var(--secondary-color);
+    border-radius: 50%;  
+    padding: 10px;
+    width: 50px; 
+    height: 50px; 
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.settings button[active="true"] {
+    background-color: var(--primary-color); 
+    color: var(--bg-color);
+    border-color: var(--primary-color);
+}
+
+.settings button:hover {
+    background-color: color-mix(in srgb, var(--primary-color), red 15%);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.settingsFooter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-color);
+}
+
+.settingClose{
+    width: 30%;
+    justify-content: center;
+    background-color: var(--primary-color);
+    border: var(--primary-color);
+}
+
+.settingClose:hover {
+    background-color: color-mix(in srgb, var(--primary-color), red 20%);
+    border: var(--primary-color);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+
+
+.settingsCloseButton {
+    width: 100%;
+}
+
+.light-mode-button {
+    color: var(--primary-color);
+}
+
+.dark-mode-button {
+    color: var(--secondary-color); 
+}
+
+.settings__description {
+    font-size: 0.8rem;
+    color: var(--text-color);
+}
+/* Add this to your CSS files */
+._settings-card .modal-dialog {
+  height: auto;
+}
+
+.form-label{
+ color: var(--text-color);
+}
+.form-check-label{
+    color: var(--text-color);
+}
+._settings-card .modal-content{
+  height: auto;
+  overflow: visible;
+}
+
+._settings-card .modal-body{
+  overflow: visible;
+  max-height: none;
+}

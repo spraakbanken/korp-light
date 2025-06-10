@@ -1,0 +1,14 @@
+.paragraph__container {
+    /*change to flex if needed*/
+    display: block;
+}
+
+.chevrons__img {
+   filter: invert(50%);
+   transition: all 0.3s ease;
+}
+
+.chevrons__img:hover {
+    filter:invert(0%);
+    cursor: pointer;
+}

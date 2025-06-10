@@ -1,0 +1,63 @@
+.token-container {
+  display: flex;
+  flex-wrap: nowrap; 
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  
+}
+
+.prefix-container,
+.suffix-container {
+  flex: 1; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px; 
+  word-spacing: 4px; 
+}
+
+.suffix-container {
+  justify-content: flex-start;
+}
+
+.match-container {
+  flex-shrink: 0; 
+  white-space: nowrap;
+  text-align: center;
+  padding: 0 10px;
+  background-color: rgba(255, 255, 255, 0);
+  font-weight: bold;
+}
+
+.special-char {
+  margin-left: -4px;
+}
+
+.resultCard__match_info {
+  display: inline;
+  text-align: left;
+  padding-top: 5px;
+  margin-left: 10px;
+  margin-bottom: 0px;
+  vertical-align: middle;
+}
+
+.resultCard__match_info p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-color);
+  
+}
+
+.resultCard__match_info_entry {
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.tableD {
+    transition: all 3s ease;
+}

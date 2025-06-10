@@ -9,6 +9,7 @@
   -moz-osx-font-smoothing: grayscale;
 
   /* Define colours here for time being */
+
   --bg-color: #ededed;
 }
 
@@ -17,4 +18,41 @@ body, html {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+[theme="dark"]{
+    /* Add more colour definitions and 
+    check that all .css files in the project use the variables */
+    --bg-color: #3B3B3B;
+    --navbar-color: #363333;
+    --primary-color: #F89066;
+    --highlight-color: #88523d;
+    --secondary-color: #898989;
+    --tertiary-color: #FDDBBB;
+    --quaternary-color: #FFCEBA;
+    --text-color: #FFFFFF;
+    --resultpanel-bg-color: #888383;
+   
+}
+
+[theme="light"] {
+  --bg-color: #FFFFFF;
+  --primary-color: #F89066;
+  --secondary-color: #898989;
+  --navbar-color: #EFEFEF;
+  --tertiary-color: #FDDBBB;
+  --quaternary-color: #FFCEBA;
+  --text-color: #000000;
+  --resultpanel-bg-color: rgba(255, 255, 255, 0.911);
+}
+
+[theme="test"] {
+  --bg-color: #ededed;
+  --navbar-color: red;
+  --primary-color: #F89066;
+  --secondary-color: #898989;
+  --text-color: black;
+  --label-color: gray;
+  --label-value-color: black;
+  --advanced-search-word: green;
 }

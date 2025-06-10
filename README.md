@@ -19,7 +19,7 @@ Coming Soon!
 
 ### Quickstart
 
-0. Have python (virtual environment called .env), node, npm, fastapi installed on your system!
+0. Have python (virtual environment called .env), node, npm, fastapi[standard] installed on your system!
 1. Clone this Repository
 
 ```shell
